@@ -28,28 +28,44 @@ public class PlayerParts : MonoBehaviour
     {
         DestroyPart(newPartType);
 
-        Vector3 partLocalPos = _playerPartsPosDict[newPartType].PartLocalPosition;
+        Transform partTrans = _playerPartsPosDict[newPartType].PartPosition;
         Vector3 partLocalScale = _playerPartsPosDict[newPartType].PartLocalScale;
 
-        GameObject newPart = Instantiate(newPartPrefab, partLocalPos, Quaternion.identity, partsContainer);
+        GameObject newPart = Instantiate(newPartPrefab, partTrans.position, Quaternion.identity, partTrans);
         newPart.transform.localScale = partLocalScale;
+
+        if (_equippedParts == null)
+            CreateEquippedPartsDictionary();
 
         _equippedParts[newPartType] = newPart;
     }
 
     public void DestroyPart(SkinPartType partTypeToDestroy) 
     {
+        if (_equippedParts == null)
+            return;
+
         if (_equippedParts[partTypeToDestroy] == null)
             return;
 
         Destroy(_equippedParts[partTypeToDestroy]);
         _equippedParts[partTypeToDestroy] = null;
     }
+
+    private void CreateEquippedPartsDictionary() 
+    {
+        _equippedParts = new Dictionary<SkinPartType, GameObject>();
+
+        for (int i = 0; i < System.Enum.GetNames(typeof(SkinPartType)).Length; i++)
+        {
+            _equippedParts.Add((SkinPartType) i, null);
+        }
+    }
 }
 
 [System.Serializable]
 public struct PlayerPartTransform 
 {
-    public Vector3 PartLocalPosition;
+    public Transform PartPosition;
     public Vector3 PartLocalScale;
 }
