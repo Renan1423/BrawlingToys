@@ -41,7 +41,8 @@ public class MovementState : State
 
     public override void FixedUpdateState()
     {
-        transform.position += velocity;
+        Debug.Log(velocity);
+        _player.transform.position += velocity;
     }
 
     private void CalculateSpeed()
