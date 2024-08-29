@@ -1,7 +1,10 @@
 {
     "name": "BrowlingToys.Actors",
     "rootNamespace": "BrowlingToys.Actors",
-    "references": [],
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:232f118339904344b99737a42fdc06f3"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
