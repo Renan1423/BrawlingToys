@@ -17,9 +17,11 @@ public class PlayerInputs : NetworkBehaviour
 
     private PlayerInputActions _playerInputActions;
 
-    private void Awake()
+    public override void OnNetworkSpawn()
     {
-        if (IsOwner)
+        base.OnNetworkSpawn();
+
+        if (IsOwner) 
         {
             InputsInitialization(); 
         }
