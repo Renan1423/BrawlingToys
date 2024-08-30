@@ -41,7 +41,6 @@ public class MovementState : State
 
     public override void FixedUpdateState()
     {
-        Debug.Log(velocity);
         _player.transform.position += velocity;
     }
 

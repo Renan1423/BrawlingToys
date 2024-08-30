@@ -1,11 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager;
+using Unity.Netcode;
 using UnityEngine;
 
-public class Player : MonoBehaviour, ICommandManager
+public class Player : NetworkBehaviour, ICommandManager
 {
     /// <summary>
     /// A classe Player ser� o componente principal do objeto player(Pai) e funcionar� como um "container" dos principais atrubitos
@@ -48,7 +45,8 @@ public class Player : MonoBehaviour, ICommandManager
             return;
         _currentState.UpdateState();
 
-        HandleAim();
+        if(Application.isFocused && IsOwner)
+            HandleAim();
     }
 
     private void FixedUpdate()

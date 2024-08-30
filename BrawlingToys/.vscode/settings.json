@@ -1,55 +1,231 @@
-﻿{
-    "files.exclude":
-    {
-        "**/.DS_Store":true,
-        "**/.git":true,
-        "**/.gitmodules":true,
-        "**/*.booproj":true,
-        "**/*.pidb":true,
-        "**/*.suo":true,
-        "**/*.user":true,
-        "**/*.userprefs":true,
-        "**/*.unityproj":true,
-        "**/*.dll":true,
-        "**/*.exe":true,
-        "**/*.pdf":true,
-        "**/*.mid":true,
-        "**/*.midi":true,
-        "**/*.wav":true,
-        "**/*.gif":true,
-        "**/*.ico":true,
-        "**/*.jpg":true,
-        "**/*.jpeg":true,
-        "**/*.png":true,
-        "**/*.psd":true,
-        "**/*.tga":true,
-        "**/*.tif":true,
-        "**/*.tiff":true,
-        "**/*.3ds":true,
-        "**/*.3DS":true,
-        "**/*.fbx":true,
-        "**/*.FBX":true,
-        "**/*.lxo":true,
-        "**/*.LXO":true,
-        "**/*.ma":true,
-        "**/*.MA":true,
-        "**/*.obj":true,
-        "**/*.OBJ":true,
-        "**/*.asset":true,
-        "**/*.cubemap":true,
-        "**/*.flare":true,
-        "**/*.mat":true,
-        "**/*.meta":true,
-        "**/*.prefab":true,
-        "**/*.unity":true,
-        "build/":true,
-        "Build/":true,
-        "Library/":true,
-        "library/":true,
-        "obj/":true,
-        "Obj/":true,
-        "ProjectSettings/":true,
-        "temp/":true,
-        "Temp/":true
-    }
+{
+    "files.exclude": {
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.gitmodules": true,
+        "**/*.booproj": true,
+        "**/*.pidb": true,
+        "**/*.suo": true,
+        "**/*.user": true,
+        "**/*.userprefs": true,
+        "**/*.unityproj": true,
+        "**/*.dll": true,
+        "**/*.exe": true,
+        "**/*.pdf": true,
+        "**/*.mid": true,
+        "**/*.midi": true,
+        "**/*.wav": true,
+        "**/*.gif": true,
+        "**/*.ico": true,
+        "**/*.jpg": true,
+        "**/*.jpeg": true,
+        "**/*.png": true,
+        "**/*.psd": true,
+        "**/*.tga": true,
+        "**/*.tif": true,
+        "**/*.tiff": true,
+        "**/*.3ds": true,
+        "**/*.3DS": true,
+        "**/*.fbx": true,
+        "**/*.FBX": true,
+        "**/*.lxo": true,
+        "**/*.LXO": true,
+        "**/*.ma": true,
+        "**/*.MA": true,
+        "**/*.obj": true,
+        "**/*.OBJ": true,
+        "**/*.asset": true,
+        "**/*.cubemap": true,
+        "**/*.flare": true,
+        "**/*.mat": true,
+        "**/*.meta": true,
+        "**/*.prefab": true,
+        "**/*.unity": true,
+        "build/": true,
+        "Build/": true,
+        "Library/": true,
+        "library/": true,
+        "obj/": true,
+        "Obj/": true,
+        "ProjectSettings/": true,
+        "temp/": true,
+        "Temp/": true
+    },
+    "dotnet.defaultSolution": "BrawlingToys.sln",
+     // Font
+     "editor.fontFamily": "JetBrains Mono", 
+     "editor.fontSize": 14,
+     "editor.lineHeight": 1.8,
+     // Marks
+     "editor.rulers": [80, 120],
+     "editor.renderLineHighlight": "gutter",
+     "editor.fontLigatures": true, 
+     "editor.semanticHighlighting.enabled": false,
+     //Explorer
+     "explorer.compactFolders": false,
+     "breadcrumbs.enabled": false, 
+     // Workbench
+     "workbench.activityBar.location": "bottom", 
+     "editor.minimap.enabled": false,
+     "editor.scrollbar.horizontal": "hidden",
+     "editor.scrollbar.vertical": "visible",
+     // C# Dev kit
+     "dotnet.preferCSharpExtension": true,
+     //Code snipets
+     "unity-code-snippets.style": "allman",
+     // Todo tree
+     "todo-tree.general.tags": [
+         // Main extencios tags 
+         "BUG",
+         "HACK",
+         "FIXME",
+         "TODO",
+         "XXX",
+         "[ ]",
+         "[x]",
+         // Custom tags
+         // (!) precisa ser feito ou resolvido com urgencia
+         // (-) precisa ser feito ou resolvido o quanto antes
+         // (*) Altercao pronta, mas precisa de revisoa
+         // n/d Alteracao que precisa ser feita, mas sem urgencia
+         
+         // todo
+         "TODO(!)",
+         "TODO(-)",
+         "TODO(*)",
+         
+         // Bugs
+         "BUG(!)",
+         "BUG(-)",
+         "BUG(*)",
+ 
+         // fixmes
+         "FIXME(!)",
+         "FIXME(-)",
+         "FIXME(*)",
+ 
+         // hacks
+         "HACK(!)",
+         "HACK(-)",
+         "HACK(*)"
+     ],
+     "todo-tree.highlights.customHighlight": {
+         // General
+         "TODO": {
+             "icon": "check",
+             "iconColour": "#a7a7a7",
+             "background": "#a7a7a7"
+         },
+         "BUG": {
+             "icon": "bug",
+             "iconColour": "#a7a7a7",
+             "background": "#a7a7a7"
+         },
+         "HACK": {
+             "icon": "flame",
+             "iconColour": "#a7a7a7",
+             "background": "#a7a7a7"
+         },
+         "FIXME": {
+             "icon": "tools",
+             "iconColour": "#a7a7a7",
+             "background": "#a7a7a7"
+         },
+         "XXX": {
+             "icon": "x",
+             "iconColour": "#a7a7a7",
+             "background": "#a7a7a7"
+         },
+         "[ ]": {
+             "icon": "issue-draft",
+             "iconColour": "#a7a7a7",
+             "background": "#a7a7a7"
+         },
+         "[x]": {
+             "icon": "issue-closed",
+             "iconColour": "#a7a7a7",
+             "background": "#a7a7a7"
+         },
+ 
+         // Urgentes(!)
+ 
+         "TODO(!)": {
+             "icon": "check",
+             "iconColour": "#ff0000",
+             "background": "#c90000c0",
+             "foreground": "#ffffff"
+         },
+         "BUG(!)": {
+             "icon": "bug",
+             "iconColour": "#ff0000",
+             "background": "#c90000c0",
+             "foreground": "#ffffff"
+         },
+         "HACK(!)": {
+             "icon": "flame",
+             "iconColour": "#ff0000",
+             "background": "#c90000c0",
+             "foreground": "#ffffff"
+         },
+         "FIXME(!)": {
+             "icon": "tools",
+             "iconColour": "#ff0000",
+             "background": "#c90000c0",
+             "foreground": "#ffffff"
+         },
+ 
+         // Moderado
+ 
+         "TODO(-)": {
+             "icon": "check",
+             "iconColour": "#fbff00",
+             "background": "#b0bd00e1",
+             "foreground": "#e0e0e0"
+         },
+         "BUG(-)": {
+             "icon": "bug",
+             "iconColour": "#fbff00",
+             "background": "#b0bd00e1",
+             "foreground": "#e0e0e0"
+         },
+         "HACK(-)": {
+             "icon": "flame",
+             "iconColour": "#fbff00",
+             "background": "#b0bd00e1",
+             "foreground": "#e0e0e0"
+         },
+         "FIXME(-)": {
+             "icon": "tools",
+             "iconColour": "#fbff00",
+             "background": "#b0bd00e1",
+             "foreground": "#e0e0e0"
+         }, 
+ 
+         // Moderado
+ 
+         "TODO(*)": {
+             "icon": "check",
+             "iconColour": "#00ff4c",
+             "background": "#4bcf469d",
+             "foreground": "#c2c2c2"
+         },
+         "BUG(*)": {
+             "icon": "bug",
+             "iconColour": "#00ff4c",
+             "background": "#4bcf469d",
+             "foreground": "#c2c2c2"
+         },
+         "HACK(*)": {
+             "icon": "flame",
+             "iconColour": "#00ff4c",
+             "background": "#4bcf469d",
+             "foreground": "#c2c2c2"
+         },
+         "FIXME(*)": {
+             "icon": "tools",
+             "iconColour": "#00ff4c",
+             "background": "#4bcf469d",
+             "foreground": "#c2c2c2"
+         }
+     }
 }
