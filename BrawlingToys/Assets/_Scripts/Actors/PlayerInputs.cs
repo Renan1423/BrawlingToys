@@ -1,9 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerInputs : MonoBehaviour
+public class PlayerInputs : NetworkBehaviour
 {
     // IMPORTANTE - O Update Mode do Input System Package est� setado para : Process Events In Dynamic Update.
 
@@ -12,13 +11,21 @@ public class PlayerInputs : MonoBehaviour
     /// através de eventos, quando ações (inputs) do PlayerInputSystem forem performadas.
     /// </summary>
 
-    public event EventHandler OnAttackAction;
+    public event EventHandler OnAttackAction; 
     public event EventHandler OnDashAction;
     public event EventHandler<Vector2> OnMoveAction;
 
     private PlayerInputActions _playerInputActions;
 
     private void Awake()
+    {
+        if (IsOwner)
+        {
+            InputsInitialization(); 
+        }
+    }
+
+    private void InputsInitialization()
     {
         _playerInputActions = new();
 
