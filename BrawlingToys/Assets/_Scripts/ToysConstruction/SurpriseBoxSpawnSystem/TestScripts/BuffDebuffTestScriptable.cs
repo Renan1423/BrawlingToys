@@ -17,6 +17,7 @@ public class BuffDebuffTestScriptable : ScriptableObject
     [Header("Part")]
     public string PartName;
     public string PartDescription;
+    public Sprite Icon;
     public SkinPartType SkinPartType;
     public GameObject SkinPartPrefab;
 }

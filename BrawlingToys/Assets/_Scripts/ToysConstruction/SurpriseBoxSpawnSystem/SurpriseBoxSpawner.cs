@@ -15,7 +15,7 @@ public class SurpriseBoxSpawner : MonoBehaviour
     [SerializeField]
     private Transform _surpriseBoxSpawnTrans;
 
-    private void Start()
+    private void OnEnable()
     {
         SpawnSurpriseBox();
     }
@@ -61,5 +61,6 @@ public class SurpriseBoxSpawner : MonoBehaviour
         surpriseBox.SetupSurpriseBox(buffDebuffInsideBox);
 
         _surpriseBoxUi.SetCurrentSurpriseBox(surpriseBox);
+        _surpriseBoxUi.EnableOpenButton();
     }
 }

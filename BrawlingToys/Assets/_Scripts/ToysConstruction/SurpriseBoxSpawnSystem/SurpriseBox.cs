@@ -25,21 +25,7 @@ public class SurpriseBox : MonoBehaviour
     public void OpenSurpriseBox() 
     {
         _anim.SetTrigger("Open");
-        ShowDrawnPart();
-    }
-
-    public void ShowDrawnPart() 
-    {
-        GameObject drawnPart = Instantiate(_buffDebuffInsideBox.SkinPartPrefab, _drawnPartContainerTrans);
-        drawnPart.transform.localScale = Vector3.one;
-        drawnPart.transform.localPosition = Vector3.zero;
-        drawnPart.layer = gameObject.layer;
-        for (int i = 0; i < drawnPart.transform.childCount; i++)
-        {
-            drawnPart.transform.GetChild(i).gameObject.layer = gameObject.layer;
-        }
-
-        _surpriseBoxModel.SetActive(false);
+        Destroy(this.gameObject, 5f);
     }
 
     public BuffDebuffTestScriptable GetBuffDebuffInsideBox() { return _buffDebuffInsideBox; }

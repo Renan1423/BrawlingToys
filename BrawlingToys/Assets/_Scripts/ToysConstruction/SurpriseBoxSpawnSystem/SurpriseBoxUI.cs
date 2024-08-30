@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class SurpriseBoxUI : MonoBehaviour
 {
@@ -10,11 +11,17 @@ public class SurpriseBoxUI : MonoBehaviour
 
     [Header("UI components")]
     [SerializeField]
+    private TextMeshProUGUI _titleText;
+    [SerializeField]
     private TextMeshProUGUI _partNameText;
     [SerializeField]
     private TextMeshProUGUI _partDescriptionText;
     [SerializeField]
+    private Image _partIconImage;
+    [SerializeField]
     private GameObject _openBoxButton;
+    [SerializeField]
+    private GameObject _equipBoxButton;
 
     [Header("Animations")]
     [SerializeField]
@@ -22,13 +29,18 @@ public class SurpriseBoxUI : MonoBehaviour
 
     private void OnEnable()
     {
-        ClearSurpriseBoxUi();
+        ResetSurpriseBoxUi();
     }
 
-    public void ClearSurpriseBoxUi() 
+    public void ResetSurpriseBoxUi() 
     {
+        _anim.SetTrigger("Neutral");
+        _titleText.gameObject.SetActive(true);
         _partNameText.text = "";
         _partDescriptionText.text = "";
+        _partIconImage.gameObject.SetActive(false);
+        _openBoxButton.SetActive(false);
+        _equipBoxButton.SetActive(false);
     }
 
     public void SetCurrentSurpriseBox(SurpriseBox surpriseBox) { _currentSurpriseBox = surpriseBox; }
@@ -39,22 +51,42 @@ public class SurpriseBoxUI : MonoBehaviour
         _openBoxButton.SetActive(false);
         _currentSurpriseBox.OpenSurpriseBox();
 
-        ShowDrawnPartDescription();
-        StartCoroutine(ShowDescription());
+        ShowDrawnPartInfo();
     }
 
-    private IEnumerator ShowDescription() 
-    {
-        yield return new WaitForSeconds(1f);
-
-        _anim.SetTrigger("ShowDescription");
-    } 
-
-    public void ShowDrawnPartDescription() 
+    public void ShowDrawnPartInfo() 
     {
         BuffDebuffTestScriptable drawnPart = _currentSurpriseBox.GetBuffDebuffInsideBox();
 
         _partNameText.text = drawnPart.PartName;
         _partDescriptionText.text = drawnPart.PartDescription;
+        _partIconImage.sprite = drawnPart.Icon;
+
+        StartCoroutine(StartShowPartInfoAnimation());
+    }
+
+    private IEnumerator StartShowPartInfoAnimation()
+    {
+        yield return new WaitForSeconds(2.25f);
+
+        _anim.SetTrigger("ShowPartInfo");
+        _equipBoxButton.SetActive(true);
+    }
+
+    public void OpenEquipPartScreen() 
+    {
+        this.gameObject.SetActive(false);
+    }
+
+    public void EnableOpenButton()
+    {
+        StartCoroutine(ToggleObjectWithDelay(_openBoxButton, true, 1.5f));
+    }
+
+    private IEnumerator ToggleObjectWithDelay(GameObject go, bool result, float delayTime) 
+    {
+        yield return new WaitForSeconds(delayTime);
+
+        go.SetActive(result);
     }
 }

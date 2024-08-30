@@ -15,6 +15,7 @@ MonoBehaviour:
   EffectType: 0
   PartName: "Cartola de M\xE1gico"
   PartDescription: "Aplica propriedades m\xE1gicas aos tiros da arma de \xE1gua"
+  Icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   SkinPartType: 0
   SkinPartPrefab: {fileID: 248433997760719686, guid: bbc241042d4b25343b3666e387935036,
     type: 3}
