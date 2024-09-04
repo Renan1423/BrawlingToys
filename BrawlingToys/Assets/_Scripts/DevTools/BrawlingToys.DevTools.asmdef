@@ -1,7 +1,11 @@
 {
-    "name": "BrowlingToys.Actors",
-    "rootNamespace": "BrowlingToys.Actors",
-    "references": [],
+    "name": "BrawlingToys.DevTools",
+    "rootNamespace": "BrawlingToys.DevTools",
+    "references": [
+        "GUID:18fd95bbd58b4ee408f6118933531ede",
+        "GUID:1491147abca9d7d4bb7105af628b223e",
+        "GUID:3de88c88fbbb8f944b9210d496af9762"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

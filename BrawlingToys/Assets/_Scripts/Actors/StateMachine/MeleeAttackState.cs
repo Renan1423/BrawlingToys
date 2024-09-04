@@ -1,0 +1,50 @@
+using System;
+using UnityEngine;
+
+namespace BrawlingToys.Actors
+{
+    public class MeleeAttackState : State
+    {
+        protected override void EnterState()
+        {
+            _player._animations.PlayAnimation(PlayerAnimations.AnimationType.MeleeAttack);
+            _player._animations.OnAnimationEnd.AddListener(WhenMeleeEnds);
+            _player._cooldowns.meleeTimer.Start();
+
+            // Aplicar força no player na direção de movimento
+        }
+
+        protected override void ExitState()
+        {
+            _player._animations.ResetEvents();
+        }
+
+        public override void UpdateState()
+        {
+            // Logica de verificação se acertou algo no caminho:
+            // Se for bullet : aplica parry,
+            // Se for player : aplica knockback;
+            _player._meleeCommand.Execute();
+        }
+
+        protected override void HandleShoot(object sender, EventArgs e)
+        {
+            // Previne atirar durante um melee.
+        }
+
+        protected override void HandleMelee(object sender, EventArgs e)
+        {
+            // Previne ataque melee durante um melee.
+        }
+
+        protected override void HandleDash(object sender, EventArgs e)
+        {
+            // Previne de dar outro dashe antes do término de um.
+        }
+
+        private void WhenMeleeEnds()
+        {
+            _player.TransitionToState(_player._stateFactory.GetState(StateFactory.StateType.Idle));
+        }
+    }
+}
