@@ -1,6 +1,6 @@
 {
-    "name": "BrowlingToys.Actors",
-    "rootNamespace": "BrowlingToys.Actors",
+    "name": "BrawlingToys.Actors",
+    "rootNamespace": "BrawlingToys.Actors",
     "references": [
         "GUID:1491147abca9d7d4bb7105af628b223e",
         "GUID:75469ad4d38634e559750d17036d5f7c",
