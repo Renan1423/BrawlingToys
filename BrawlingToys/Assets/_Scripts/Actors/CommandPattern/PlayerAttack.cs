@@ -16,7 +16,7 @@ public class PlayerAttack : MonoBehaviour {
 
     private void Start() {
         _timer = _cooldown;
-        _playerInputs.OnAttackAction += PlayerInputs_OnAttackAction;
+        _playerInputs.OnShootAction += PlayerInputs_OnAttackAction;
     }
 
     private void PlayerInputs_OnAttackAction(object sender, System.EventArgs e) {
