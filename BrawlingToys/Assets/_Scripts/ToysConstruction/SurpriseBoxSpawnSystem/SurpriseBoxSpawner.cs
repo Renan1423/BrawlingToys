@@ -30,7 +30,7 @@ public class SurpriseBoxSpawner : MonoBehaviour
         #region If not succeeded
         if (handle.Status != AsyncOperationStatus.Succeeded) 
         {
-            Debug.LogError("Failed to load ScriptableObjects from Addressables.");
+            Debug.LogError("SurpriseBoxSpawner: Failed to load ScriptableObjects from Addressables.");
             return;
         }
         #endregion
@@ -40,7 +40,7 @@ public class SurpriseBoxSpawner : MonoBehaviour
         #region If no scriptables found
         if (foundScriptables.Count == 0) 
         {
-            Debug.LogWarning("No ScriptableObjects of the specified type were found with the given label.");
+            Debug.LogWarning("SurpriseBoxSpawner: No ScriptableObjects of the specified type were found with the given label.");
             return;
         }
         #endregion

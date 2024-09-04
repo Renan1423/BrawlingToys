@@ -88,6 +88,7 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - BuffDebuff
+    - PrototypeCharacter
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 805d141bd5ad9534881ef5e08559a866, type: 2}

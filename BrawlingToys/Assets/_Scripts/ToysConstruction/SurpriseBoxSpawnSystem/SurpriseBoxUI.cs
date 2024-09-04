@@ -22,10 +22,18 @@ public class SurpriseBoxUI : MonoBehaviour
     private GameObject _openBoxButton;
     [SerializeField]
     private GameObject _equipBoxButton;
+    
+    [Space(10)]
 
     [Header("Animations")]
     [SerializeField]
     private Animator _anim;
+
+    [Space(10)]
+
+    [Header("Screens References")]
+    [SerializeField]
+    private EffectsSelectionScreen _equipEffectsSelectionScreen;
 
     private void OnEnable()
     {
@@ -75,6 +83,9 @@ public class SurpriseBoxUI : MonoBehaviour
 
     public void OpenEquipPartScreen() 
     {
+        _equipEffectsSelectionScreen.SetDrawnEffect(_currentSurpriseBox.GetBuffDebuffInsideBox());
+
+        _equipEffectsSelectionScreen.gameObject.SetActive(true);
         this.gameObject.SetActive(false);
     }
 
