@@ -9,6 +9,7 @@ namespace BrawlingToys.Actors
         {
             _player._animations.PlayAnimation(PlayerAnimations.AnimationType.MeleeAttack);
             _player._animations.OnAnimationEnd.AddListener(WhenMeleeEnds);
+            _player._cooldowns.meleeTimer.Start();
 
             // Aplicar força no player na direção de movimento
         }

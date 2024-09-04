@@ -15,6 +15,7 @@ namespace BrawlingToys.Actors
         protected override void EnterState()
         {
             _player._animations.PlayAnimation(PlayerAnimations.AnimationType.Dash);
+            _player._cooldowns.dashTimer.Start();
             physicUtil = new PhysicUtil(dashDuration);
 
             // Aplicar força no player na direção de movimento

@@ -9,9 +9,6 @@ namespace BrawlingToys.Actors
 
         protected Player _player;
 
-        private int shotsTaken = 0;
-        private int dashsTaken = 0;
-
         // Inicializa qualquer estado passando a referência do player.
         public void InitializeState(Player player)
         {
@@ -103,24 +100,19 @@ namespace BrawlingToys.Actors
             else
             {
                 _player._meleeCommand.Execute();
-                _player._cooldowns.meleeTimer.Start();
             }
         }
 
         protected virtual void HandleDash(object sender, System.EventArgs e)
         {
-            if (!_player._cooldowns.dashTimer.IsRunning)
+            if (_player._cooldowns.dashTimer.IsRunning)
             {
-                if (dashsTaken < _player._stats.DashAmount)
-                {
-                    dashsTaken++;
-                    _player.TransitionToState(_player._stateFactory.GetState(StateFactory.StateType.Dash));
-                }
-                else
-                {
-                    _player._cooldowns.dashTimer.Start();
-                    dashsTaken = 0;
-                }
+                // Som de fail
+                Debug.Log("Dash está em cooldown");
+            }
+            else
+            {
+                _player.TransitionToState(_player._stateFactory.GetState(StateFactory.StateType.Dash));
             }
         }
 
