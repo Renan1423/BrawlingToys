@@ -60,7 +60,7 @@ namespace BrawlingToys.Actors
                 // return value with modifiers applied
                 var query = new Query(StatType.DashAmount, _baseStats.dashAmount);
                 _mediator.PerformQuery(this, query);
-                return (int)query.Value;
+                return Mathf.FloorToInt(query.Value);
             }
         }
 
@@ -93,7 +93,7 @@ namespace BrawlingToys.Actors
                 // return value with modifiers applied
                 var query = new Query(StatType.FireRate, _baseStats.bulletAmount);
                 _mediator.PerformQuery(this, query);
-                return (int)query.Value;
+                return Mathf.FloorToInt(query.Value);
             }
         }
 
