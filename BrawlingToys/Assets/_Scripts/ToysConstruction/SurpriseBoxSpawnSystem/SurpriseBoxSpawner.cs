@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using BrawlingToys.Actors;
 
 public class SurpriseBoxSpawner : MonoBehaviour
 {
@@ -22,10 +23,10 @@ public class SurpriseBoxSpawner : MonoBehaviour
 
     public void SpawnSurpriseBox() 
     {
-        Addressables.LoadAssetsAsync<BuffDebuffTestScriptable>(_buffDebuffAssetLabelReference, null).Completed += SelectBuffDebuff;
+        Addressables.LoadAssetsAsync<ModifierScriptable>(_buffDebuffAssetLabelReference, null).Completed += SelectBuffDebuff;
     }
 
-    private void SelectBuffDebuff(AsyncOperationHandle<IList<BuffDebuffTestScriptable>> handle) 
+    private void SelectBuffDebuff(AsyncOperationHandle<IList<ModifierScriptable>> handle) 
     {
         #region If not succeeded
         if (handle.Status != AsyncOperationStatus.Succeeded) 
@@ -35,7 +36,7 @@ public class SurpriseBoxSpawner : MonoBehaviour
         }
         #endregion
 
-        IList<BuffDebuffTestScriptable> foundScriptables = handle.Result;
+        IList<ModifierScriptable> foundScriptables = handle.Result;
 
         #region If no scriptables found
         if (foundScriptables.Count == 0) 
@@ -46,13 +47,13 @@ public class SurpriseBoxSpawner : MonoBehaviour
         #endregion
 
         int randomIndex = Random.Range(0, foundScriptables.Count);
-        BuffDebuffTestScriptable selectedBuffDebuff = foundScriptables[randomIndex];
+        ModifierScriptable selectedBuffDebuff = foundScriptables[randomIndex];
 
         BuildSurpriseBox(selectedBuffDebuff);
 
     }
 
-    private void BuildSurpriseBox(BuffDebuffTestScriptable buffDebuffInsideBox) 
+    private void BuildSurpriseBox(ModifierScriptable buffDebuffInsideBox) 
     {
         GameObject surpriseBoxGo = Instantiate(_surpriseBoxPrefab, Vector3.zero, Quaternion.identity, _surpriseBoxSpawnTrans);
         SurpriseBox surpriseBox = surpriseBoxGo.GetComponent<SurpriseBox>();

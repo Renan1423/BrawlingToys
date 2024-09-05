@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using BrawlingToys.Actors;
 
 public class EffectsSelectionScreen : MonoBehaviour
 {
@@ -13,7 +14,10 @@ public class EffectsSelectionScreen : MonoBehaviour
     //Variable created for prototype reasons only!
     private AssetReference _playerCharacterAssetRef;
 
-    private BuffDebuffTestScriptable _drawnEffect;
+    private ModifierScriptable _drawnEffect;
+    [SerializeField]
+    //Variable created for prototype reasons only!
+    private Stats _playerStats;
 
     private void OnEnable()
     {
@@ -25,20 +29,20 @@ public class EffectsSelectionScreen : MonoBehaviour
         for (int i = 0; i < 6; i++)
         {
             string playerName = "Player " + i;
-            SpawnPlayerInfo(playerName, _playerCharacterAssetRef, new GameObject[0]);
+            SpawnPlayerInfo(_drawnEffect, _playerStats, playerName, _playerCharacterAssetRef, new GameObject[0]);
         }
     }
 
-    public void SpawnPlayerInfo(string playerName, AssetReference characterAsset, GameObject[] effectsGo) 
+    public void SpawnPlayerInfo(ModifierScriptable effect, Stats playerStats, string playerName, AssetReference characterAsset, GameObject[] effectsGo) 
     {
         GameObject playerInfoGo = Instantiate(_playerInfoPrefab, _playerInfoHorizontalLayout);
         PlayerInfoPanel playerInfo = playerInfoGo.GetComponent<PlayerInfoPanel>();
 
-        playerInfo.FillInfoPanel(playerName, characterAsset, effectsGo);
+        playerInfo.FillInfoPanel(effect, playerStats, playerName, characterAsset, effectsGo);
         playerInfo.GetPlayerInfoClickEvent().AddListener(OnTargetSelected);
     }
 
-    public void SetDrawnEffect(BuffDebuffTestScriptable drawnEffect) => _drawnEffect = drawnEffect;
+    public void SetDrawnEffect(ModifierScriptable drawnEffect) => _drawnEffect = drawnEffect;
 
     public void OnTargetSelected(PlayerInfoPanel playerInfoPanel) 
     {

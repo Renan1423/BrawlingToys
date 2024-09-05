@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using BrawlingToys.Actors;
 using System;
 
 public class SurpriseBoxUI : MonoBehaviour
@@ -64,11 +65,11 @@ public class SurpriseBoxUI : MonoBehaviour
 
     public void ShowDrawnPartInfo() 
     {
-        BuffDebuffTestScriptable drawnPart = _currentSurpriseBox.GetBuffDebuffInsideBox();
+        ModifierScriptable drawnPart = _currentSurpriseBox.GetBuffDebuffInsideBox();
 
-        _partNameText.text = drawnPart.PartName;
-        _partDescriptionText.text = drawnPart.PartDescription;
-        _partIconImage.sprite = drawnPart.Icon;
+        _partNameText.text = drawnPart.EffectName;
+        _partDescriptionText.text = drawnPart.EffectDescription;
+        _partIconImage.sprite = drawnPart.EffectIcon;
 
         StartCoroutine(StartShowPartInfoAnimation());
     }

@@ -2,16 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EffectType 
-{ 
-    Buff,
-    Debuff
-}
-
 [CreateAssetMenu(fileName = "BuffDebuff", menuName = "Prototype/BuffDebuff")]
 public class BuffDebuffTestScriptable : ScriptableObject
 {
-    public EffectType EffectType;
+    //public EffectType EffectType;
 
     [Space(10)]
     [Header("Part")]

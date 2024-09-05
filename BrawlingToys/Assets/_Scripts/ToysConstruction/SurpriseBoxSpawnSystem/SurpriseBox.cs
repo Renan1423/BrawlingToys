@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BrawlingToys.Actors;
 
 public class SurpriseBox : MonoBehaviour
 {
-    private BuffDebuffTestScriptable _buffDebuffInsideBox;
+    private ModifierScriptable _buffDebuffInsideBox;
 
     [SerializeField]
     private Animator _anim;
@@ -13,7 +14,7 @@ public class SurpriseBox : MonoBehaviour
     [SerializeField]
     private GameObject _surpriseBoxModel;
 
-    public void SetupSurpriseBox(BuffDebuffTestScriptable buffDebuffInsideBox) 
+    public void SetupSurpriseBox(ModifierScriptable buffDebuffInsideBox) 
     {
         _buffDebuffInsideBox = buffDebuffInsideBox;
 
@@ -28,5 +29,5 @@ public class SurpriseBox : MonoBehaviour
         Destroy(this.gameObject, 5f);
     }
 
-    public BuffDebuffTestScriptable GetBuffDebuffInsideBox() { return _buffDebuffInsideBox; }
+    public ModifierScriptable GetBuffDebuffInsideBox() { return _buffDebuffInsideBox; }
 }

@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Tag>k__BackingField: 
   <ModifierType>k__BackingField: 0
+  <EffectName>k__BackingField: Speed Buff
+  <EffectDescription>k__BackingField: Decrease speed
+  <EffectIcon>k__BackingField: {fileID: 0}
+  <EffectType>k__BackingField: 0
   modificationPercentage: 0
