@@ -9,18 +9,18 @@ namespace BrawlingToys.Actors
 
         protected Player _player;
 
-        // Inicializa qualquer estado passando a referência do player.
+        // Inicializa qualquer estado passando a referï¿½ncia do player.
         public void InitializeState(Player player)
         {
             _player = player;
         }
 
         /// <summary>
-        ///  - Enter() e Exit() são metodos padrões de entrada e saída que TODO estado concreto deverá realizar dessa mesma forma.
-        /// Eles são responsáveis pela inscrição dos Handlers nos eventos disparados pelo PlayerInputs
+        ///  - Enter() e Exit() sï¿½o metodos padrï¿½es de entrada e saï¿½da que TODO estado concreto deverï¿½ realizar dessa mesma forma.
+        /// Eles sï¿½o responsï¿½veis pela inscriï¿½ï¿½o dos Handlers nos eventos disparados pelo PlayerInputs
         /// 
-        ///  - Os UnityEvent OnEnter e OnExit são opcionais, mas são úteis para logicas extras adicionadas pelo inspector.
-        ///  NOTA : Adicionar apenas metodos de dentro da própria hierarquia.
+        ///  - Os UnityEvent OnEnter e OnExit sï¿½o opcionais, mas sï¿½o ï¿½teis para logicas extras adicionadas pelo inspector.
+        ///  NOTA : Adicionar apenas metodos de dentro da prï¿½pria hierarquia.
         /// </summary>
         public void Enter()
         {
@@ -47,7 +47,7 @@ namespace BrawlingToys.Actors
         }
 
         /// <summary>
-        ///  - EnterState() e ExitState() são os metodos que cada estado concreto poderá reescrever com sua própria lógica / métodos.
+        ///  - EnterState() e ExitState() sï¿½o os metodos que cada estado concreto poderï¿½ reescrever com sua prï¿½pria lï¿½gica / mï¿½todos.
         /// </summary>
         protected virtual void EnterState()
         {
@@ -66,7 +66,7 @@ namespace BrawlingToys.Actors
         }
 
         /// <summary>
-        ///  - Os Handlers responderão aos inputs. E, cada estado concreto poderá reescreve-los para responder da forma que for necessária
+        ///  - Os Handlers responderï¿½o aos inputs. E, cada estado concreto poderï¿½ reescreve-los para responder da forma que for necessï¿½ria
         ///  em cada estado concreto.
         /// </summary>
         protected virtual void HandleMovement(object sender, Vector2 inputVector)
@@ -95,11 +95,12 @@ namespace BrawlingToys.Actors
             if(_player._cooldowns.meleeTimer.IsRunning)
             {
                 // Som de fail
-                Debug.Log("Melee está em cooldown");
+                Debug.Log("Melee estï¿½ em cooldown");
             }
             else
             {
-                _player._meleeCommand.Execute();
+                Debug.Log("State.HandleMelee");
+                //_player.TransitionToState(_player._stateFactory.GetState(StateFactory.StateType.MeleeAttack));
             }
         }
 
@@ -108,7 +109,7 @@ namespace BrawlingToys.Actors
             if (_player._cooldowns.dashTimer.IsRunning)
             {
                 // Som de fail
-                Debug.Log("Dash está em cooldown");
+                Debug.Log("Dash estï¿½ em cooldown");
             }
             else
             {

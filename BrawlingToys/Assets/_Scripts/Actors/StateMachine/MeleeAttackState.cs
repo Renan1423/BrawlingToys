@@ -11,7 +11,7 @@ namespace BrawlingToys.Actors
             _player._animations.OnAnimationEnd.AddListener(WhenMeleeEnds);
             _player._cooldowns.meleeTimer.Start();
 
-            // Aplicar força no player na direção de movimento
+            // Aplicar forï¿½a no player na direï¿½ï¿½o de movimento
         }
 
         protected override void ExitState()
@@ -21,7 +21,7 @@ namespace BrawlingToys.Actors
 
         public override void UpdateState()
         {
-            // Logica de verificação se acertou algo no caminho:
+            // Logica de verificaï¿½ï¿½o se acertou algo no caminho:
             // Se for bullet : aplica parry,
             // Se for player : aplica knockback;
             _player._meleeCommand.Execute();
@@ -39,7 +39,7 @@ namespace BrawlingToys.Actors
 
         protected override void HandleDash(object sender, EventArgs e)
         {
-            // Previne de dar outro dashe antes do término de um.
+            // Previne de dar outro dashe antes do tï¿½rmino de um.
         }
 
         private void WhenMeleeEnds()

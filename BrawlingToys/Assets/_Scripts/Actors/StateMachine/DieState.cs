@@ -7,7 +7,7 @@ namespace BrawlingToys.Actors
     {
         protected override void EnterState()
         {
-            _player._inputs.DisablePlayerMap();
+            _player._inputs.TogglePlayerMap(false);
         }
 
         protected override void ExitState()
