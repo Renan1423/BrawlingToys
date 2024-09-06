@@ -16,6 +16,7 @@ MonoBehaviour:
   <ModifierType>k__BackingField: 0
   <EffectName>k__BackingField: Speed Buff
   <EffectDescription>k__BackingField: Decrease speed
-  <EffectIcon>k__BackingField: {fileID: 0}
+  <EffectIcon>k__BackingField: {fileID: 10907, guid: 0000000000000000f000000000000000,
+    type: 0}
   <EffectType>k__BackingField: 0
   modificationPercentage: 0.5

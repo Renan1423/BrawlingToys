@@ -5,7 +5,8 @@ namespace BrawlingToys.Actors
 {
     public class StatsMediator
     {
-        private readonly LinkedList<StatModifier> modifiers = new();
+        private readonly LinkedList<StatModifier> _modifiers = new();
+        private List<ModifierScriptable> _appliedModifiers;
 
         public EventHandler<Query> Queries;
 
@@ -14,24 +15,32 @@ namespace BrawlingToys.Actors
         public void PerformQuery(object sender, Query query) => Queries?.Invoke(sender, query);
 
         // Every time we add new modifier we are also going to register it with the queries
-        public void AddModifier(StatModifier modifier)
+        public void AddModifier(ModifierScriptable modifierSo)
         {
             // Every time we perform a query that's going to be specific to a type of stat every single modifier is going to get its Handle()
             // called
-            modifiers.AddLast(modifier);
-            Queries += modifier.Handle;
+            StatModifier statModifier = modifierSo.CreateModifier();
 
-            modifier.OnDispose += _ =>
+            _modifiers.AddLast(statModifier);
+            Queries += statModifier.Handle;
+
+            statModifier.OnDispose += _ =>
             {
-                modifiers.Remove(modifier);
-                Queries -= modifier.Handle;
+                _modifiers.Remove(statModifier);
+                _appliedModifiers.Remove(modifierSo);
+                Queries -= statModifier.Handle;
             };
+
+            if (_appliedModifiers == null)
+                _appliedModifiers = new List<ModifierScriptable>();
+
+            _appliedModifiers.Add(modifierSo);
         }
 
         public void Update(float deltaTime)
         {
             // Chama o Update() de todos os modifiers com um deltaTime
-            var node = modifiers.First;
+            var node = _modifiers.First;
             while (node != null)
             {
                 var modifier = node.Value;
@@ -40,7 +49,7 @@ namespace BrawlingToys.Actors
             }
 
             // Remove todos os modifiers que ja tiverem acabado
-            node = modifiers.First;
+            node = _modifiers.First;
             while (node != null)
             {
                 var nextNode = node.Next;
@@ -53,5 +62,7 @@ namespace BrawlingToys.Actors
                 node = nextNode;
             }
         }
+
+        public List<ModifierScriptable> GetAppliedModifiers() => _appliedModifiers;
     }
 }

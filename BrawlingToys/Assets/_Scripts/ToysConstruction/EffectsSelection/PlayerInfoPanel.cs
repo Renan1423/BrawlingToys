@@ -9,7 +9,7 @@ using TMPro;
 
 public class PlayerInfoPanel : MonoBehaviour
 {
-    private ModifierScriptable _effect;
+    private ModifierScriptable _effectToApply;
     private Stats _playerStats;
     [SerializeField]
     private TextMeshProUGUI _playerName;
@@ -20,9 +20,9 @@ public class PlayerInfoPanel : MonoBehaviour
     [SerializeField]
     private UnityEvent<PlayerInfoPanel> _onClicked;
 
-    public void FillInfoPanel(ModifierScriptable effect, Stats playerStats, string playerName, AssetReference characterAsset, GameObject[] effectsGo) 
+    public void FillInfoPanel(ModifierScriptable effectToApply, Stats playerStats, string playerName, AssetReference characterAsset, GameObject[] effectsGo) 
     {
-        _effect = effect;
+        _effectToApply = effectToApply;
         _playerStats = playerStats;
         _playerName.text = playerName;
 
@@ -31,7 +31,20 @@ public class PlayerInfoPanel : MonoBehaviour
             go.transform.SetParent(_effectsHorizontalLayout);
         }
 
+        CreateEffectIcons(playerStats);
+
         ModelSpawner.instance.SpawnModelWithRenderTexture(characterAsset, _modelRawImage);
+    }
+
+    private void CreateEffectIcons(Stats playerStats)
+    {
+        if (playerStats.Mediator.GetAppliedModifiers() == null)
+            return;
+
+        foreach (ModifierScriptable mod in playerStats.Mediator.GetAppliedModifiers())
+        {
+            EffectIconGenerator.instance.CreateEffectIcon(mod, _effectsHorizontalLayout);
+        }
     }
 
     public UnityEvent<PlayerInfoPanel> GetPlayerInfoClickEvent() => _onClicked;
@@ -40,6 +53,6 @@ public class PlayerInfoPanel : MonoBehaviour
     {
         _onClicked?.Invoke(this);
 
-        _playerStats.Mediator.AddModifier(_effect.CreateModifier());
+        _playerStats.Mediator.AddModifier(_effectToApply);
     }
 }
