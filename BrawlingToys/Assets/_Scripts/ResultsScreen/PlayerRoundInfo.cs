@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
-public class PlayerRoundInfo : MonoBehaviour
+public struct PlayerRoundInfo
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int PlayerNumber { get; private set; }
+    public AssetReference PlayerCharacter { get; private set; }
+    public int KillsAmount { get; private set; }
+    public bool IsSurvivor { get; private set; }
 
-    // Update is called once per frame
-    void Update()
+    public PlayerRoundInfo(int playerNumber, AssetReference playerCharacter, int killsAmount, bool isSurvivor) 
     {
-        
+        PlayerNumber = playerNumber;
+        PlayerCharacter = playerCharacter;
+        KillsAmount = killsAmount;
+        IsSurvivor = isSurvivor;
     }
 }

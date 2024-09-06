@@ -27,6 +27,7 @@ public class EffectsSelectionScreen : MonoBehaviour
 
     public void GetPlayersInformations()
     {
+        //We must gather the player informations using the multiplayer features. This is only for prototype purposes
         for (int i = 0; i < 6; i++)
         {
             string playerName = "Player " + i;
@@ -38,6 +39,8 @@ public class EffectsSelectionScreen : MonoBehaviour
     {
         GameObject playerInfoGo = Instantiate(_playerInfoPrefab, _playerInfoHorizontalLayout);
         PlayerInfoPanel playerInfo = playerInfoGo.GetComponent<PlayerInfoPanel>();
+
+        //playerStats.Mediator.modi
 
         playerInfo.FillInfoPanel(effect, playerStats, playerName, characterAsset, effectsGo);
         playerInfo.GetPlayerInfoClickEvent().AddListener(OnTargetSelected);
