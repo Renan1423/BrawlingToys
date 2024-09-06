@@ -18,9 +18,7 @@ public class PhysicUtil
 
         if (timer.IsRunning)
         {
-            float directionChangeRate = power / timer.Time;
-
-            subject.position = Vector3.Lerp(subject.position, subject.position + direction, directionChangeRate);
+            subject.position = Vector3.Lerp(subject.position, subject.position + direction, power * deltaTime);
         }
     }
 }

@@ -45,6 +45,11 @@ namespace BrawlingToys.Actors
             _playerInputActions.PlayerMap.Dash.performed += DashPerformed;
         }
 
+        public void DisablePlayerMap()
+        {
+            _playerInputActions.PlayerMap.Disable();
+        }
+
         private void MovePerformed(InputAction.CallbackContext obj)
         {
             GetMovementVectorNormalized();
