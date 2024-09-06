@@ -13,12 +13,28 @@ public class SurpriseBoxSpawner : MonoBehaviour
     private SurpriseBoxUI _surpriseBoxUi;
     [SerializeField]
     private GameObject _surpriseBoxPrefab;
-    [SerializeField]
     private Transform _surpriseBoxSpawnTrans;
+    [SerializeField]
+    private GameObject _surpriseBoxEnvironment;
 
     private void OnEnable()
     {
+        SpawnSurpriseBoxEnvironment();
         SpawnSurpriseBox();
+    }
+
+    private void OnDisable()
+    {
+        Destroy(_surpriseBoxSpawnTrans.parent.gameObject);
+        _surpriseBoxSpawnTrans = null;
+    }
+
+    private void SpawnSurpriseBoxEnvironment() 
+    {
+        GameObject surpriseBoxEnvironmentGo = Instantiate(_surpriseBoxEnvironment);
+        SurpriseBoxEnvironment surpriseBoxEnvironment = surpriseBoxEnvironmentGo.GetComponent<SurpriseBoxEnvironment>();
+
+        _surpriseBoxSpawnTrans = surpriseBoxEnvironment.SurpriseBoxSpawnTrans;
     }
 
     public void SpawnSurpriseBox() 

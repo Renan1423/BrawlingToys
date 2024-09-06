@@ -16,6 +16,7 @@ public class EffectsSelectionScreen : MonoBehaviour
 
     private ModifierScriptable _drawnEffect;
     [SerializeField]
+    private Player _player;
     //Variable created for prototype reasons only!
     private Stats _playerStats;
 
@@ -29,7 +30,7 @@ public class EffectsSelectionScreen : MonoBehaviour
         for (int i = 0; i < 6; i++)
         {
             string playerName = "Player " + i;
-            SpawnPlayerInfo(_drawnEffect, _playerStats, playerName, _playerCharacterAssetRef, new GameObject[0]);
+            SpawnPlayerInfo(_drawnEffect, _player._stats, playerName, _playerCharacterAssetRef, new GameObject[0]);
         }
     }
 

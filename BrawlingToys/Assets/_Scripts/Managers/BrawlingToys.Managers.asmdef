@@ -1,7 +1,9 @@
 {
-    "name": "BrowlingToys.Managers",
-    "rootNamespace": "BrowlingToys.Managers",
-    "references": [],
+    "name": "BrawlingToys.Managers",
+    "rootNamespace": "BrawlingToys.Managers",
+    "references": [
+        "GUID:1c4ad647caebd714583cf8b7511f1123"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

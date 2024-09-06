@@ -37,7 +37,8 @@ public class ModelSpawner : Singleton<ModelSpawner>
         float posOffSet = -200f * _activatedRenderTextureCamsCount;
         Vector3 renderTextureCamPos = Vector3.one * posOffSet;
 
-        GameObject renderTextureCamGo = Instantiate(_renderTextureCamPrefab, renderTextureCamPos, Quaternion.identity, _renderTextureCamParentTrans);
+        GameObject renderTextureCamGo = Instantiate(_renderTextureCamPrefab, Vector3.zero, Quaternion.identity, _renderTextureCamParentTrans);
+        renderTextureCamGo.transform.localPosition = renderTextureCamPos;
         RenderTextureCamera renderTextureCam = renderTextureCamGo.GetComponent<RenderTextureCamera>();
 
         modelRawImage.texture = renderTextureCam.SetupRenderTextureCamera();

@@ -18,4 +18,4 @@ MonoBehaviour:
   <EffectDescription>k__BackingField: Decrease speed
   <EffectIcon>k__BackingField: {fileID: 0}
   <EffectType>k__BackingField: 0
-  modificationPercentage: 0
+  modificationPercentage: 0.5
