@@ -35,14 +35,12 @@ public class EffectsSelectionScreen : MonoBehaviour
         }
     }
 
-    public void SpawnPlayerInfo(ModifierScriptable effect, Stats playerStats, string playerName, AssetReference characterAsset, GameObject[] effectsGo) 
+    public void SpawnPlayerInfo(ModifierScriptable effectToApply, Stats playerStats, string playerName, AssetReference characterAsset, GameObject[] effectsGo) 
     {
         GameObject playerInfoGo = Instantiate(_playerInfoPrefab, _playerInfoHorizontalLayout);
         PlayerInfoPanel playerInfo = playerInfoGo.GetComponent<PlayerInfoPanel>();
 
-        //playerStats.Mediator.modi
-
-        playerInfo.FillInfoPanel(effect, playerStats, playerName, characterAsset, effectsGo);
+        playerInfo.FillInfoPanel(effectToApply, playerStats, playerName, characterAsset, effectsGo);
         playerInfo.GetPlayerInfoClickEvent().AddListener(OnTargetSelected);
     }
 

@@ -16,11 +16,6 @@ public class SlowdownDebufArea : MonoBehaviour
     [Range(1f, 10f)]
     [SerializeField] private float radius = 1f;
 
-    private void Start()
-    {
-        basicStatModifier = BasicModifierSO.CreateModifier();
-    }
-
     private void Update()
     {
         if(Physics.SphereCast(transform.position, radius, Vector3.one, out hitInfo))
@@ -33,7 +28,7 @@ public class SlowdownDebufArea : MonoBehaviour
                 else if (playerTarget == playerHit)
                     return;
                 
-                playerTarget._stats.Mediator.AddModifier(basicStatModifier);
+                playerTarget._stats.Mediator.AddModifier(BasicModifierSO);
             }
         }
     }
