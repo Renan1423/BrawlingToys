@@ -1,7 +1,10 @@
 {
-    "name": "BrowlingToys.UI",
-    "rootNamespace": "BrowlingToys.UI",
-    "references": [],
+    "name": "BrawlingToys.UI",
+    "rootNamespace": "BrawlingToys.UI",
+    "references": [
+        "GUID:2bafac87e7f4b9b418d9448d219b01ab",
+        "GUID:2124370b6886b6e4fb43507fb717fd0e"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
