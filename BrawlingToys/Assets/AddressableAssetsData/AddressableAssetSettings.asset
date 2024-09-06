@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
+  m_Name: AddressableAssetSettings
+  m_EditorClassIdentifier: 
+  m_DefaultGroup: 14730fd3aa093204fb57087e814e5cf1
+  m_currentHash:
+    serializedVersion: 2
+    Hash: ac0b77945b5da62cdd8db4d1168260b1
+  m_OptimizeCatalogSize: 0
+  m_BuildRemoteCatalog: 0
+  m_BundleLocalCatalog: 0
+  m_CatalogRequestsTimeout: 0
+  m_DisableCatalogUpdateOnStart: 0
+  m_IgnoreUnsupportedFilesInBuild: 0
+  m_UniqueBundleIds: 0
+  m_NonRecursiveBuilding: 1
+  m_CCDEnabled: 0
+  m_maxConcurrentWebRequests: 3
+  m_ContiguousBundles: 1
+  m_StripUnityVersionFromBundleBuild: 0
+  m_DisableVisibleSubAssetRepresentations: 0
+  m_ShaderBundleNaming: 0
+  m_ShaderBundleCustomNaming: 
+  m_MonoScriptBundleNaming: 0
+  m_CheckForContentUpdateRestrictionsOption: 0
+  m_MonoScriptBundleCustomNaming: 
+  m_RemoteCatalogBuildPath:
+    m_Id: 
+  m_RemoteCatalogLoadPath:
+    m_Id: 
+  m_ContentStateBuildPathProfileVariableName: 
+  m_CustomContentStateBuildPath: 
+  m_ContentStateBuildPath: 
+  m_BuildAddressablesWithPlayerBuild: 0
+  m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
+  m_GroupAssets:
+  - {fileID: 11400000, guid: 43afa8834ccd19542a3b51313d7ad2b0, type: 2}
+  - {fileID: 11400000, guid: 438d87052d9578342a4106cf927cd7cd, type: 2}
+  m_BuildSettings:
+    m_CompileScriptsInVirtualMode: 0
+    m_CleanupStreamingAssetsAfterBuilds: 1
+    m_LogResourceManagerExceptions: 1
+    m_BundleBuildPath: Temp/com.unity.addressables/AssetBundles
+  m_ProfileSettings:
+    m_Profiles:
+    - m_InheritedParent: 
+      m_Id: 478a9970cd9430d4587b6cc3231d3e9c
+      m_ProfileName: Default
+      m_Values:
+      - m_Id: e4d0a9478ddd6624cb4e8fae6ed6871d
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: 3ad34f04cb2754340adc8f1a094b6e7d
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: dc880dc650ef998429fb93c9f2e374f3
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+      - m_Id: be94bb9360066bd4a81515e61bb99a2c
+        m_Value: ServerData/[BuildTarget]
+      - m_Id: 422212902f7983947a346c3dcb6004fc
+        m_Value: http://[PrivateIpAddress]:[HostingServicePort]
+    m_ProfileEntryNames:
+    - m_Id: e4d0a9478ddd6624cb4e8fae6ed6871d
+      m_Name: BuildTarget
+      m_InlineUsage: 0
+    - m_Id: 3ad34f04cb2754340adc8f1a094b6e7d
+      m_Name: Local.BuildPath
+      m_InlineUsage: 0
+    - m_Id: dc880dc650ef998429fb93c9f2e374f3
+      m_Name: Local.LoadPath
+      m_InlineUsage: 0
+    - m_Id: be94bb9360066bd4a81515e61bb99a2c
+      m_Name: Remote.BuildPath
+      m_InlineUsage: 0
+    - m_Id: 422212902f7983947a346c3dcb6004fc
+      m_Name: Remote.LoadPath
+      m_InlineUsage: 0
+    m_ProfileVersion: 1
+  m_LabelTable:
+    m_LabelNames:
+    - default
+    - BuffDebuff
+    - PrototypeCharacter
+    - PlayerPrototype
+  m_SchemaTemplates: []
+  m_GroupTemplateObjects:
+  - {fileID: 11400000, guid: 805d141bd5ad9534881ef5e08559a866, type: 2}
+  m_InitializationObjects: []
+  m_CertificateHandlerType:
+    m_AssemblyName: 
+    m_ClassName: 
+  m_ActivePlayerDataBuilderIndex: 3
+  m_DataBuilders:
+  - {fileID: 11400000, guid: 80e09f349eb09b047b4d1dfd0919fb2b, type: 2}
+  - {fileID: 11400000, guid: 719abdca781cf44459254fce56d2c83f, type: 2}
+  - {fileID: 11400000, guid: 36a2c1f2cd40dcc45a27c157f89e98ad, type: 2}
+  - {fileID: 11400000, guid: da036c5aded6b6d4a988fd57c2ecd0c7, type: 2}
+  m_ActiveProfileId: 478a9970cd9430d4587b6cc3231d3e9c
+  m_HostingServicesManager:
+    m_HostingServiceInfos: []
+    m_Settings: {fileID: 11400000}
+    m_NextInstanceId: 0
+    m_RegisteredServiceTypeRefs: []
+    m_PingTimeoutInMilliseconds: 5000

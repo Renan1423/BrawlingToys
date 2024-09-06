@@ -1,32 +1,38 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DieState : State
+namespace BrawlingToys.Actors
 {
-    protected override void EnterState()
+    public class DieState : State
     {
+        protected override void EnterState()
+        {
+            _player._inputs.TogglePlayerMap(false);
+        }
 
-    }
+        protected override void ExitState()
+        {
 
-    protected override void ExitState()
-    {
+        }
 
-    }
+        protected override void HandleShoot(object sender, EventArgs e)
+        {
+            // Previne de atirar durante a morte.
+        }
 
-    protected override void HandleAttack(object sender, EventArgs e)
-    {
-        // Previne atacar
-    }
+        protected override void HandleMelee(object sender, EventArgs e)
+        {
+            // Previne ataque melee durante a morte.
+        }
 
-    protected override void HandleDash(object sender, EventArgs e)
-    {
-        // Previne dar dash
-    }
+        protected override void HandleDash(object sender, EventArgs e)
+        {
+            // Previne dar dash
+        }
 
-    public override void HandleDie()
-    {
-        // Previne de entrar no estado de morte novamente
+        public override void HandleDie()
+        {
+            // Previne de entrar no estado de morte novamente
+        }
     }
 }

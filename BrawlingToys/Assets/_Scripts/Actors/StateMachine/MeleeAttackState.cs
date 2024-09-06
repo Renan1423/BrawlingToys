@@ -1,43 +1,50 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeAttackState : State
+namespace BrawlingToys.Actors
 {
-    protected override void EnterState()
+    public class MeleeAttackState : State
     {
-        _player._animations.PlayAnimation(PlayerAnimations.AnimationType.MeleeAttack);
-        _player._animations.OnAnimationEnd.AddListener(WhenMeleeEnds);
+        protected override void EnterState()
+        {
+            _player._animations.PlayAnimation(PlayerAnimations.AnimationType.MeleeAttack);
+            _player._animations.OnAnimationEnd.AddListener(WhenMeleeEnds);
+            _player._cooldowns.meleeTimer.Start();
 
-        // Aplicar força no player na direção de movimento
-    }
+            // Aplicar forï¿½a no player na direï¿½ï¿½o de movimento
+        }
 
-    protected override void ExitState()
-    {
-        _player._animations.ResetEvents();
-    }
+        protected override void ExitState()
+        {
+            _player._animations.ResetEvents();
+        }
 
-    public override void UpdateState()
-    {
-        // Logica de verificação se acertou algo no caminho:
-        // Se for bullet : aplica parry,
-        // Se for player : aplica knockback;
-        _player._meleeCommand.Execute();
-    }
+        public override void UpdateState()
+        {
+            // Logica de verificaï¿½ï¿½o se acertou algo no caminho:
+            // Se for bullet : aplica parry,
+            // Se for player : aplica knockback;
+            _player._meleeCommand.Execute();
+        }
 
-    protected override void HandleAttack(object sender, EventArgs e)
-    {
-        // Previne atacar durante um dash.
-    }
+        protected override void HandleShoot(object sender, EventArgs e)
+        {
+            // Previne atirar durante um melee.
+        }
 
-    protected override void HandleDash(object sender, EventArgs e)
-    {
-        // Previne de dar outro dashe antes do término de um.
-    }
+        protected override void HandleMelee(object sender, EventArgs e)
+        {
+            // Previne ataque melee durante um melee.
+        }
 
-    private void WhenMeleeEnds()
-    {
-        _player.TransitionToState(_player._stateFactory.GetState(StateFactory.StateType.Idle));
+        protected override void HandleDash(object sender, EventArgs e)
+        {
+            // Previne de dar outro dashe antes do tï¿½rmino de um.
+        }
+
+        private void WhenMeleeEnds()
+        {
+            _player.TransitionToState(_player._stateFactory.GetState(StateFactory.StateType.Idle));
+        }
     }
 }

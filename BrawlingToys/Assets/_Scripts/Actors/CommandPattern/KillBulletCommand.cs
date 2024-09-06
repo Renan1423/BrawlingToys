@@ -8,9 +8,7 @@ public class KillBulletCommand : ICommand {
     }
 
     public void Execute() {
-        Debug.Log("KillBullet");
-        /* KillBullet Logic 
-         *
-         */
+        Debug.Log("KillerBullet");
+        GameObject bullet = Object.Instantiate(Resources.Load("KillerBullet"), _firePoint.position, _firePoint.rotation) as GameObject;
     }
 }

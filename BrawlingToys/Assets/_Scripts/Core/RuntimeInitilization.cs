@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BrowlingToys.Core
+namespace BrawlingToys.Core
 {
     /// <summary>
     /// Gerencia as ações que devem acontecer assim que a build for inicializada

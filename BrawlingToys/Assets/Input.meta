@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:BrawlingToys/Assets/Animations.meta
+guid: 79350ef6568cd874ea0148dcbb5c729c
+========
 guid: 01383d2defbca664d88a7aa2babe637a
+>>>>>>>> Development-Combate:BrawlingToys/Assets/Input.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SurpriseBoxUI
+  - ResultsUI
   layers:
   - Default
   - TransparentFX
@@ -11,17 +13,17 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Player
   - Ground
+  - Bullets
   - 
   - 
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - SurpriseBox
+  - PrototypePlayerLayer
   - 
   - 
   - 

@@ -9,6 +9,6 @@ public class PushBulletCommand : ICommand {
 
     public void Execute() {
         Debug.Log("PushBullet");
-        // KillBullet Logic
+        GameObject bullet = Object.Instantiate(Resources.Load("PusherBullet"), _firePoint.position, _firePoint.rotation) as GameObject;
     }
 }

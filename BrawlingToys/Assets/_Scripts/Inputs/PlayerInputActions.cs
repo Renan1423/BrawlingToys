@@ -46,9 +46,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Attack"",
+                    ""name"": ""Shoot"",
                     ""type"": ""Button"",
                     ""id"": ""4f96231f-495e-45ce-b754-2f6edb76498d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Melee"",
+                    ""type"": ""Button"",
+                    ""id"": ""a15a0d50-de5a-4adf-8d79-1d9d9708801d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -199,23 +208,34 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""046cc81b-286a-401c-8a5c-39e1869f01a8"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""3d613405-c73e-4be5-9765-cb5e60d87237"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Attack"",
+                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""b7e75c6c-9e01-43a5-8b15-7aade8951b56"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Attack"",
+                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -240,6 +260,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ba02989-6f0d-4562-9f50-c65b4a60021d"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Melee"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45e0d570-756c-4b2e-b9a8-ed4831124505"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Melee"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -250,7 +292,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_PlayerMap = asset.FindActionMap("PlayerMap", throwIfNotFound: true);
         m_PlayerMap_Move = m_PlayerMap.FindAction("Move", throwIfNotFound: true);
         m_PlayerMap_Dash = m_PlayerMap.FindAction("Dash", throwIfNotFound: true);
-        m_PlayerMap_Attack = m_PlayerMap.FindAction("Attack", throwIfNotFound: true);
+        m_PlayerMap_Shoot = m_PlayerMap.FindAction("Shoot", throwIfNotFound: true);
+        m_PlayerMap_Melee = m_PlayerMap.FindAction("Melee", throwIfNotFound: true);
         m_PlayerMap_Look = m_PlayerMap.FindAction("Look", throwIfNotFound: true);
     }
 
@@ -315,7 +358,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<IPlayerMapActions> m_PlayerMapActionsCallbackInterfaces = new List<IPlayerMapActions>();
     private readonly InputAction m_PlayerMap_Move;
     private readonly InputAction m_PlayerMap_Dash;
-    private readonly InputAction m_PlayerMap_Attack;
+    private readonly InputAction m_PlayerMap_Shoot;
+    private readonly InputAction m_PlayerMap_Melee;
     private readonly InputAction m_PlayerMap_Look;
     public struct PlayerMapActions
     {
@@ -323,7 +367,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public PlayerMapActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_PlayerMap_Move;
         public InputAction @Dash => m_Wrapper.m_PlayerMap_Dash;
-        public InputAction @Attack => m_Wrapper.m_PlayerMap_Attack;
+        public InputAction @Shoot => m_Wrapper.m_PlayerMap_Shoot;
+        public InputAction @Melee => m_Wrapper.m_PlayerMap_Melee;
         public InputAction @Look => m_Wrapper.m_PlayerMap_Look;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMap; }
         public void Enable() { Get().Enable(); }
@@ -340,9 +385,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
-            @Attack.started += instance.OnAttack;
-            @Attack.performed += instance.OnAttack;
-            @Attack.canceled += instance.OnAttack;
+            @Shoot.started += instance.OnShoot;
+            @Shoot.performed += instance.OnShoot;
+            @Shoot.canceled += instance.OnShoot;
+            @Melee.started += instance.OnMelee;
+            @Melee.performed += instance.OnMelee;
+            @Melee.canceled += instance.OnMelee;
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
@@ -356,9 +404,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
-            @Attack.started -= instance.OnAttack;
-            @Attack.performed -= instance.OnAttack;
-            @Attack.canceled -= instance.OnAttack;
+            @Shoot.started -= instance.OnShoot;
+            @Shoot.performed -= instance.OnShoot;
+            @Shoot.canceled -= instance.OnShoot;
+            @Melee.started -= instance.OnMelee;
+            @Melee.performed -= instance.OnMelee;
+            @Melee.canceled -= instance.OnMelee;
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
@@ -383,7 +434,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
-        void OnAttack(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
+        void OnMelee(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
     }
 }
