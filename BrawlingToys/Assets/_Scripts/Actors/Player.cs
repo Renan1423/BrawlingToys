@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BrawlingToys.Actors
 {
-    public class Player : NetworkBehaviour, ICommandManager
+    public class Player : NetworkBehaviour, ICommandManager, IDamageable
     {
         /// <summary>
         /// A classe Player ser� o componente principal do objeto player(Pai) e funcionar� como um "container" dos principais atrubitos
@@ -27,12 +27,22 @@ namespace BrawlingToys.Actors
         [Header("Command Stuffs: ")]
         public ICommand _shootCommand;
         public ICommand _meleeCommand;
+        [SerializeField] private float _meleeRadius;
 
         [SerializeField] private LayerMask _groundLayerMask;
         private RaycastHit hitInfo;
         private float aimSmoothRate = 50f;
 
         private StatsMediator _mediator;
+
+        [Header("Gizmos Stuff: ")]
+        [SerializeField] private Color _meleeColor;
+        [SerializeField] private Color _aimColor;
+
+        // Teste do Damageable
+        [SerializeField] private Transform _firePoint; // Instancia a bala nesse game object
+
+        public int Health { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private void Awake()
         {
@@ -77,8 +87,8 @@ namespace BrawlingToys.Actors
             _cooldowns = new PlayerCooldownController(this);
             _cooldowns.Initialize();
 
-            SetShootingCommand(new KillBulletCommand(transform));
-            SetMeleeCommand(new MeleeCommand(transform));
+            SetShootingCommand(new KillBulletCommand(_firePoint));
+            SetMeleeCommand(new MeleeCommand(_firePoint, _meleeRadius));
         }
 
         // Metodo respons�vel por toda a troca de estado. Chama o Exit() do atual e o Enter() do novo,
@@ -123,10 +133,23 @@ namespace BrawlingToys.Actors
             _meleeCommand = command;
         }
 
+        // Esse método vai ficar assim e a gente gerencia a invencibilidade no outro script (State)
+        public void Damage() {
+            DieInCurrentState();
+        }
+
+        // Já esse aqui tem que mudar ASAP
+        public void Knockback() {
+            Debug.Log("Me empurraram");
+        }
+
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.red;
+            Gizmos.color = _aimColor;
             Gizmos.DrawSphere(hitInfo.point, .5f);
+
+            Gizmos.color = _meleeColor;
+            Gizmos.DrawSphere(_firePoint.position, _meleeRadius);
         }
     }
 }

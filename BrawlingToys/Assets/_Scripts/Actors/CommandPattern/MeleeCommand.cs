@@ -1,17 +1,19 @@
+using BrawlingToys.Actors;
 using UnityEngine;
 
 public class MeleeCommand : ICommand {
     private Transform _firePoint;
+    private float _meleeRadius;
 
-    public MeleeCommand(Transform firePoint) {
+    public MeleeCommand(Transform firePoint, float radius) {
         _firePoint = firePoint;
+        _meleeRadius = radius;
     }
 
     public void Execute() {
-        if (Physics.SphereCast(_firePoint.position, 0.5f, _firePoint.forward, out RaycastHit raycastHit, 2.0f)) {
-            Debug.Log("Melee hit: " + raycastHit.collider.gameObject.ToString());
-        } else {
-            Debug.Log("Melee missed!");
+        if (Physics.SphereCast(_firePoint.position, _meleeRadius, _firePoint.forward, out RaycastHit raycastHit, 2.0f)) {
+            if(raycastHit.collider.TryGetComponent(out IDamageable hit))
+                hit.Knockback();
         }
     }
 }
