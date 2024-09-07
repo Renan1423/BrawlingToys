@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BrawlingToys.Bullets
 {
-    public abstract class BaseBullet : MonoBehaviour, IDamageable
+    public abstract class BaseBullet : NetworkBehaviour, IDamageable
     {
         [SerializeField] private float speed = 1f;
         [SerializeField] private float lifespan = 1f;
@@ -48,7 +48,10 @@ namespace BrawlingToys.Bullets
             rb.useGravity = true;
         }
 
-        public abstract void OnTriggerEnter(Collider other);
+        public virtual void OnTriggerEnter(Collider other)
+        {
+            if(!IsHost) return; // Just the host machine will manage the collision  
+        }
 
         public void Damage() { }
 

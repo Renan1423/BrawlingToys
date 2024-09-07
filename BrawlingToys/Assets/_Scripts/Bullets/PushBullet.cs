@@ -7,6 +7,8 @@ namespace BrawlingToys.Bullets
     {
         public override void OnTriggerEnter(Collider other)
         {
+            base.OnTriggerEnter(other); 
+
             if (other.TryGetComponent(out IDamageable hit))
                 hit.Knockback(gameObject);
 
