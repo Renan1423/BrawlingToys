@@ -2,7 +2,8 @@
     "name": "BrawlingToys.Bullets",
     "rootNamespace": "BrawlingToys.Bullets",
     "references": [
-        "GUID:18fd95bbd58b4ee408f6118933531ede"
+        "GUID:18fd95bbd58b4ee408f6118933531ede",
+        "GUID:1491147abca9d7d4bb7105af628b223e"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
