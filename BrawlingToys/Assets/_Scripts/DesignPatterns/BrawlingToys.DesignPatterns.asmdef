@@ -1,3 +1,14 @@
 {
-	"name": "BrawlingToys.DesignPatterns"
+    "name": "BrawlingToys.DesignPatterns",
+    "rootNamespace": "BrawlingToys.DesignPatterns",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

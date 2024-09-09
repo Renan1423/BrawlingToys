@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BrawlingToys.Actors;
+using BrawlingToys.DesignPatterns;
 
 public class EffectIconGenerator : Singleton<EffectIconGenerator>
 {

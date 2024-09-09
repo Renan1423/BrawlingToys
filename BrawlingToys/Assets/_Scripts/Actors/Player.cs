@@ -43,7 +43,7 @@ namespace BrawlingToys.Actors
         private PhysicUtil _knockback;
 
         private StatsMediator _mediator;
-        
+
         [Header("Gizmos Stuff: ")]
         [SerializeField] private Color _meleeColor;
         [SerializeField] private Color _aimColor;
@@ -74,16 +74,24 @@ namespace BrawlingToys.Actors
             if (Application.isFocused && IsOwner)
                 HandleAim();
 
-            if (_knockback.Timer.IsRunning) {
-                _inputs.TogglePlayerMap(false);
-                _knockback.AddForce(transform, _knockbackDirection, _knockbackPower, Time.deltaTime);
+            if (_knockback.Timer.IsRunning)
+            {
+                if (IsOwner)
+                {
+                    _inputs.TogglePlayerMap(false);
+                    _knockback.AddForce(transform, _knockbackDirection, _knockbackPower, Time.deltaTime);
+                }
             }
 
-            if (Input.GetKeyDown(KeyCode.Z)) {
-                if (bala) {
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                if (bala)
+                {
                     SetShootingCommand(new PushBulletCommand(_firePoint));
                     bala = !bala;
-                } else {
+                }
+                else
+                {
                     SetShootingCommand(new KillBulletCommand(_firePoint));
                     bala = !bala;
                 }
@@ -113,7 +121,11 @@ namespace BrawlingToys.Actors
             SetMeleeCommand(new MeleeCommand(_firePoint, _meleeRadius));
 
             _knockback = new(_knockbackDuration);
-            _knockback.Timer.OnTimerStop += _inputs.EnablePlayerMap;
+            
+            if (IsOwner)
+            {
+                _knockback.Timer.OnTimerStop += _inputs.EnablePlayerMap;
+            }
         }
 
         // Metodo respons�vel por toda a troca de estado. Chama o Exit() do atual e o Enter() do novo,
@@ -162,13 +174,14 @@ namespace BrawlingToys.Actors
         }
 
         // Esse método vai ficar assim e a gente gerencia a invencibilidade no outro script (State)
-        public void Damage() {
-            DieInCurrentState();
+        public void Damage()
+        {
+            DieServerRpc(); 
         }
 
-        public void Knockback(GameObject sender) {
-            _knockback.Timer.Start();
-            _knockbackDirection = sender.transform.forward;
+        public void Knockback(GameObject sender)
+        {
+            KnockBackServerRpc(sender.transform.forward); 
         }
 
         private void OnDrawGizmos()
@@ -178,6 +191,31 @@ namespace BrawlingToys.Actors
 
             Gizmos.color = _meleeColor;
             Gizmos.DrawSphere(_firePoint.position, _meleeRadius);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void DieServerRpc()
+        {
+            DieClientRpc(); 
+        }
+
+        [ClientRpc]
+        private void DieClientRpc()
+        {
+            DieInCurrentState(); 
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void KnockBackServerRpc(Vector3 senderForward)
+        {
+            KnockBackClientRpc(senderForward); 
+        }
+
+        [ClientRpc]
+        private void KnockBackClientRpc(Vector3 senderForward)
+        {
+            _knockback.Timer.Start();
+            _knockbackDirection = senderForward;
         }
     }
 }

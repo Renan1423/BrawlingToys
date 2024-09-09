@@ -1,24 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Singleton<T> : MonoBehaviour where T : Component
+namespace BrawlingToys.DesignPatterns
 {
-    public static T instance { get; private set; }
-
-    protected virtual void Awake()
+    public abstract class Singleton<T> : MonoBehaviour where T : Component
     {
-        int timeManagers = FindObjectsOfType<T>().Length;
+        [Header("Singleton Settings")]
 
-        if (instance != null && instance != this as T
-            && timeManagers > 1)
+        [Tooltip("If its true, the singleton will be add to Dont Destroy On Load Scene in initialization")]
+        [SerializeField] private bool _dontDestroyOnLoad = true; 
+        
+        public static T instance { get; private set; }
+
+        protected virtual void Awake()
         {
-            Destroy(gameObject);
-            return;
+            int timeManagers = FindObjectsOfType<T>().Length;
+
+            if (instance != null && instance != this as T
+                && timeManagers > 1)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            if(_dontDestroyOnLoad)
+            {
+                DontDestroyOnLoad(transform.root.gameObject);
+                DontDestroyOnLoad(gameObject);
+            }
+            
+            instance = this as T;
         }
 
-        DontDestroyOnLoad(transform.root.gameObject);
-        DontDestroyOnLoad(gameObject);
-        instance = this as T;
+        protected virtual void OnDestroy()
+        {
+            if (instance == this as T)
+            {
+                instance = null; 
+            }
+        }
     }
 }
+
