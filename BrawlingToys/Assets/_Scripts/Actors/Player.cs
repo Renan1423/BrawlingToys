@@ -79,10 +79,8 @@ namespace BrawlingToys.Actors
                 if (IsOwner)
                 {
                     _inputs.TogglePlayerMap(false);
+                    _knockback.AddForce(transform, _knockbackDirection, _knockbackPower, Time.deltaTime);
                 }
-                
-                Debug.Log("Knock back");
-                _knockback.AddForce(transform, _knockbackDirection, _knockbackPower, Time.deltaTime);
             }
 
             if (Input.GetKeyDown(KeyCode.Z))
@@ -183,9 +181,7 @@ namespace BrawlingToys.Actors
 
         public void Knockback(GameObject sender)
         {
-            Debug.Log("Kockback");
-            _knockback.Timer.Start();
-            _knockbackDirection = sender.transform.forward;
+            KnockBackServerRpc(sender.transform.forward); 
         }
 
         private void OnDrawGizmos()
@@ -200,15 +196,26 @@ namespace BrawlingToys.Actors
         [ServerRpc(RequireOwnership = false)]
         private void DieServerRpc()
         {
-            Debug.Log("Die -Server call-");
             DieClientRpc(); 
         }
 
         [ClientRpc]
         private void DieClientRpc()
         {
-            Debug.Log("Die -Client call-");
             DieInCurrentState(); 
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void KnockBackServerRpc(Vector3 senderForward)
+        {
+            KnockBackClientRpc(senderForward); 
+        }
+
+        [ClientRpc]
+        private void KnockBackClientRpc(Vector3 senderForward)
+        {
+            _knockback.Timer.Start();
+            _knockbackDirection = senderForward;
         }
     }
 }

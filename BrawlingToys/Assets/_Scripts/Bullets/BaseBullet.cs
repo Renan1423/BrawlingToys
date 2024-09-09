@@ -50,7 +50,7 @@ namespace BrawlingToys.Bullets
 
         public virtual void OnTriggerEnter(Collider other)
         {
-            if(!IsHost) return; // Just the host machine will manage the collision  
+            //if(!IsHost) return; // Just the host machine will manage the collision  
         }
 
         public void Damage() { }

@@ -9,6 +9,7 @@ namespace BrawlingToys.Bullets
         {
             base.OnTriggerEnter(other); 
 
+            Debug.Log("Collision");
             if (other.TryGetComponent(out IDamageable hit))
                 hit.Damage();
             
