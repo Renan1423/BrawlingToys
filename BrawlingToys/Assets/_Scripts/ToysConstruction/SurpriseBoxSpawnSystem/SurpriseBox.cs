@@ -12,15 +12,18 @@ public class SurpriseBox : MonoBehaviour
     [SerializeField]
     private Transform _drawnPartContainerTrans;
     [SerializeField]
-    private GameObject _surpriseBoxModel;
+    private Transform _modelTrans;
+    [SerializeField]
+    private GameObject _buffSurpriseBoxPrefab;
+    [SerializeField]
+    private GameObject _debuffSurpriseBoxPrefab;
 
     public void SetupSurpriseBox(ModifierScriptable buffDebuffInsideBox) 
     {
         _buffDebuffInsideBox = buffDebuffInsideBox;
 
-        Renderer modelMesh = _surpriseBoxModel.GetComponent<Renderer>();
-        Color newMatColor = (buffDebuffInsideBox.EffectType == EffectType.Buff) ? Color.green : Color.red;
-        modelMesh.material.color = newMatColor;
+        GameObject surpriseBoxModelPrefab = (buffDebuffInsideBox.EffectType == EffectType.Buff) ? _buffSurpriseBoxPrefab : _debuffSurpriseBoxPrefab;
+        GameObject surpriseBoxModel = Instantiate(surpriseBoxModelPrefab, _modelTrans);
     }
 
     public void OpenSurpriseBox() 

@@ -2,23 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Singleton<T> : MonoBehaviour where T : Component
+namespace BrawlingToys.DesignPatterns
 {
-    public static T instance { get; private set; }
-
-    protected virtual void Awake()
+    public abstract class Singleton<T> : MonoBehaviour where T : Component
     {
-        int timeManagers = FindObjectsOfType<T>().Length;
+        public static T instance { get; private set; }
 
-        if (instance != null && instance != this as T
-            && timeManagers > 1)
+        protected virtual void Awake()
         {
-            Destroy(gameObject);
-            return;
-        }
+            int timeManagers = FindObjectsOfType<T>().Length;
 
-        DontDestroyOnLoad(transform.root.gameObject);
-        DontDestroyOnLoad(gameObject);
-        instance = this as T;
+            if (instance != null && instance != this as T
+                && timeManagers > 1)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            DontDestroyOnLoad(transform.root.gameObject);
+            DontDestroyOnLoad(gameObject);
+            instance = this as T;
+        }
     }
 }

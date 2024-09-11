@@ -6,8 +6,8 @@ namespace BrawlingToys.Managers
 {
     public static class TagManager
     {
-        private const string MAIN_MENU = "MainMenu";
-        private const string SURPRISE_BOX_UI = "SurpriseBoxUI";
-        private const string RESULTS_UI = "ResultsUI";
+        public const string MAIN_MENU = "MainMenu";
+        public const string SURPRISE_BOX_UI = "SurpriseBoxUI";
+        public const string RESULTS_UI = "ResultsUI";
     }
 }
