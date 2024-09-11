@@ -5,7 +5,7 @@ using BrawlingToys.Managers;
 
 namespace BrawlingToys.UI
 {
-    public class MainMenu : MonoBehaviour
+    public class MainMenu : BaseScreen
     {
         public void StartGame()
         {
