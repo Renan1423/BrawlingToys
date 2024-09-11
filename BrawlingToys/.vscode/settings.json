@@ -227,5 +227,8 @@
              "background": "#4bcf469d",
              "foreground": "#c2c2c2"
          }
-     }
+    },
+    "cSpell.words": [
+        "Rigidbody"
+    ]
 }

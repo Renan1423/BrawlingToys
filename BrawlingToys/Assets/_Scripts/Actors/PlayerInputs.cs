@@ -37,7 +37,7 @@ namespace BrawlingToys.Actors
 
             // NOTA : Habilitar o player map por aqui talvez não seja a melhor das opções.
             // Dificultaria controlar os estados de gameplay e menu.
-            _playerInputActions.PlayerMap.Enable();
+            TogglePlayerMap(true);
 
             _playerInputActions.PlayerMap.Move.performed += MovePerformed;
             _playerInputActions.PlayerMap.Shoot.performed += ShootPerformed;
@@ -45,9 +45,16 @@ namespace BrawlingToys.Actors
             _playerInputActions.PlayerMap.Dash.performed += DashPerformed;
         }
 
-        public void DisablePlayerMap()
+        public void TogglePlayerMap(bool val)
         {
-            _playerInputActions.PlayerMap.Disable();
+            if(val)
+                EnablePlayerMap();
+            else
+                _playerInputActions.PlayerMap.Disable();
+        }
+
+        public void EnablePlayerMap() {
+            _playerInputActions.PlayerMap.Enable();
         }
 
         private void MovePerformed(InputAction.CallbackContext obj)

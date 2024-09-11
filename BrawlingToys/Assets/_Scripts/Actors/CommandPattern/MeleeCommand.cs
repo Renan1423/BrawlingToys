@@ -11,9 +11,11 @@ public class MeleeCommand : ICommand {
     }
 
     public void Execute() {
+        Debug.Log("Ataquei kk");
+
         if (Physics.SphereCast(_firePoint.position, _meleeRadius, _firePoint.forward, out RaycastHit raycastHit, 2.0f)) {
             if(raycastHit.collider.TryGetComponent(out IDamageable hit))
-                hit.Knockback();
+                hit.Knockback(_firePoint.gameObject);
         }
     }
 }

@@ -28,10 +28,19 @@ namespace BrawlingToys.Actors
         public ICommand _shootCommand;
         public ICommand _meleeCommand;
         [SerializeField] private float _meleeRadius;
+        private bool bala;
 
+        [Header("Aim Stuff: ")]
         [SerializeField] private LayerMask _groundLayerMask;
         private RaycastHit hitInfo;
         private float aimSmoothRate = 50f;
+
+        [Header("Damage Stuffs: ")]
+        [SerializeField] private Transform _firePoint; // Instancia a bala nesse game object
+        [SerializeField] private float _knockbackDuration;
+        [SerializeField] private float _knockbackPower;
+        private Vector3 _knockbackDirection = Vector3.zero;
+        private PhysicUtil _knockback;
 
         private StatsMediator _mediator;
 
@@ -39,10 +48,8 @@ namespace BrawlingToys.Actors
         [SerializeField] private Color _meleeColor;
         [SerializeField] private Color _aimColor;
 
-        // Teste do Damageable
-        [SerializeField] private Transform _firePoint; // Instancia a bala nesse game object
-
-        public int Health { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        // Damageable padrão, retirar
+        public int Health { get; set; }
 
         private void Awake()
         {
@@ -66,6 +73,29 @@ namespace BrawlingToys.Actors
 
             if (Application.isFocused && IsOwner)
                 HandleAim();
+
+            if (_knockback.Timer.IsRunning)
+            {
+                if (IsOwner)
+                {
+                    _inputs.TogglePlayerMap(false);
+                    _knockback.AddForce(transform, _knockbackDirection, _knockbackPower, Time.deltaTime);
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                if (bala)
+                {
+                    SetShootingCommand(new PushBulletCommand(_firePoint));
+                    bala = !bala;
+                }
+                else
+                {
+                    SetShootingCommand(new KillBulletCommand(_firePoint));
+                    bala = !bala;
+                }
+            }
         }
 
         private void FixedUpdate()
@@ -87,8 +117,15 @@ namespace BrawlingToys.Actors
             _cooldowns = new PlayerCooldownController(this);
             _cooldowns.Initialize();
 
-            SetShootingCommand(new KillBulletCommand(_firePoint));
+            SetShootingCommand(new PushBulletCommand(_firePoint));
             SetMeleeCommand(new MeleeCommand(_firePoint, _meleeRadius));
+
+            _knockback = new(_knockbackDuration);
+            
+            if (IsOwner)
+            {
+                _knockback.Timer.OnTimerStop += _inputs.EnablePlayerMap;
+            }
         }
 
         // Metodo respons�vel por toda a troca de estado. Chama o Exit() do atual e o Enter() do novo,
@@ -106,7 +143,7 @@ namespace BrawlingToys.Actors
             _currentState.Enter();
         }
 
-        public void DieInCurrentState() //*
+        public void DieInCurrentState()
         {
             if (_currentState == null) return;
 
@@ -115,6 +152,9 @@ namespace BrawlingToys.Actors
 
         private void HandleAim()
         {
+            if (_knockback.Timer.IsRunning)
+                return;
+
             Ray ray = Camera.main.ScreenPointToRay(_inputs.GetLookVector());
             if (Physics.Raycast(ray, out hitInfo, float.MaxValue, _groundLayerMask))
             {
@@ -134,13 +174,14 @@ namespace BrawlingToys.Actors
         }
 
         // Esse método vai ficar assim e a gente gerencia a invencibilidade no outro script (State)
-        public void Damage() {
-            DieInCurrentState();
+        public void Damage()
+        {
+            DieServerRpc(); 
         }
 
-        // Já esse aqui tem que mudar ASAP
-        public void Knockback() {
-            Debug.Log("Me empurraram");
+        public void Knockback(GameObject sender)
+        {
+            KnockBackServerRpc(sender.transform.forward); 
         }
 
         private void OnDrawGizmos()
@@ -150,6 +191,31 @@ namespace BrawlingToys.Actors
 
             Gizmos.color = _meleeColor;
             Gizmos.DrawSphere(_firePoint.position, _meleeRadius);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void DieServerRpc()
+        {
+            DieClientRpc(); 
+        }
+
+        [ClientRpc]
+        private void DieClientRpc()
+        {
+            DieInCurrentState(); 
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void KnockBackServerRpc(Vector3 senderForward)
+        {
+            KnockBackClientRpc(senderForward); 
+        }
+
+        [ClientRpc]
+        private void KnockBackClientRpc(Vector3 senderForward)
+        {
+            _knockback.Timer.Start();
+            _knockbackDirection = senderForward;
         }
     }
 }
