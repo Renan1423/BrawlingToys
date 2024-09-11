@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using BrawlingToys.Managers;
 
@@ -10,6 +9,15 @@ namespace BrawlingToys.UI
         [field: SerializeField]
         public string ScreenName { get; private set; }
 
+        [Header("Game Manager Itegration")]
+
+        [SerializeField] private bool _canChangeGameState;
+
+        [field: SerializeField]
+        public GameStateType StateType { get; private set; }
+
+        
+
         protected void Start()
         {
             ScreenManager.instance.OnToggleAnyScreen += ScreenManager_OnToggleAnyScreen;
@@ -19,6 +27,11 @@ namespace BrawlingToys.UI
         {
             if (e.screenName == ScreenName) 
             {
+                if (e.active && _canChangeGameState)
+                {
+                    GameManager.LocalInstance.ChangeGameState(StateType);
+                }
+
                 this.gameObject.SetActive(e.active);
             }
         }
