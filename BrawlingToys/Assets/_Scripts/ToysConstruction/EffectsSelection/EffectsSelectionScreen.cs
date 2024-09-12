@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using BrawlingToys.Actors;
+using BrawlingToys.UI;
+using BrawlingToys.Managers;
 
-public class EffectsSelectionScreen : MonoBehaviour
+public class EffectsSelectionScreen : BaseScreen
 {
     [SerializeField]
     private GameObject _playerInfoPrefab;
@@ -48,6 +50,7 @@ public class EffectsSelectionScreen : MonoBehaviour
 
     public void OnTargetSelected(PlayerInfoPanel playerInfoPanel) 
     {
-        this.gameObject.SetActive(false);
+        Debug.Log("Target selected");
+        ScreenManager.instance.ToggleScreenByTag(ScreenName, false);
     }
 }

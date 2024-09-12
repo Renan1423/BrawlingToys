@@ -2,9 +2,12 @@
     "name": "BrawlingToys.DevTools",
     "rootNamespace": "BrawlingToys.DevTools",
     "references": [
-        "GUID:18fd95bbd58b4ee408f6118933531ede",
         "GUID:1491147abca9d7d4bb7105af628b223e",
-        "GUID:3de88c88fbbb8f944b9210d496af9762"
+        "GUID:3de88c88fbbb8f944b9210d496af9762",
+        "GUID:18fd95bbd58b4ee408f6118933531ede",
+        "GUID:55adae7a089103b4da7d201d686d8386",
+        "GUID:f161c3dd7acddb64f8d0bfa8c6ec4e07",
+        "GUID:1c4ad647caebd714583cf8b7511f1123"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

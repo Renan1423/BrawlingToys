@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 1ed24acbe90d38a418c41492e7681810
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - FRANKY TOYS
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: eab6eb69d66763547b5413de8e152fac, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
