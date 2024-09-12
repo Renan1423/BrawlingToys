@@ -2,10 +2,10 @@
 {
     public enum GameStateType
     {
-        Conexao,
-        Montagem,
-        Combate,
-        Pontuacao,
-        TelaFinal
+        Connection,
+        Building,
+        Combat,
+        Score,
+        FinalScreen
     }
 }
