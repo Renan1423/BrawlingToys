@@ -22,7 +22,6 @@ public class PhysicUtil
 
         if (timer.IsRunning)
         {
-            Debug.Log($"Running knock back on instance id: {_id.ToString()}");
             subject.position = Vector3.Lerp(subject.position, subject.position + direction, power * deltaTime);
         }
     }
