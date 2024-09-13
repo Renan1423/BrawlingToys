@@ -28,14 +28,14 @@ namespace BrawlingToys.DevTools
             Debug.Log("Starting Clinet");
         }
 
-        [ConsoleMethod("change-game-state", "")]
+        [ConsoleMethod("change-game-state", "Muda o estado do GameManager, estados disponiveis: Connection, Building, Combat, Score, FinalScreen")]
         public static void ChangeGameState(string gameState)
         {
             var parseEnum = (GameStateType)Enum.Parse(typeof(GameStateType), gameState);
             GameManager.LocalInstance.ChangeGameState(parseEnum);
         }
 
-        [ConsoleMethod("change-screen", "")]
+        [ConsoleMethod("change-screen", "Call screen manager change")]
         public static void ChangeScreen(string screenName, bool active)
         {
             ScreenManager.instance.ToggleScreenByTag(screenName, active);
