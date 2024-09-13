@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BrawlingToys.Network;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace BrawlingToys.Network
 {
@@ -19,7 +20,7 @@ namespace BrawlingToys.Network
         /// <summary>
         /// Called when any game object spawn on server, and return it
         /// </summary>
-        public event Action<GameObject> WhenObjectSpawnedOnServer = delegate{ }; 
+        public UnityEvent<string, GameObject> WhenObjectSpawnedOnServer = new(); 
 
         protected override void Awake()
         {
@@ -66,7 +67,7 @@ namespace BrawlingToys.Network
             var objectToSpawn = Instantiate(prefab, position, rotation);
             objectToSpawn.GetComponent<NetworkObject>().Spawn(true);
 
-            WhenObjectSpawnedOnServer.Invoke(objectToSpawn); 
+            WhenObjectSpawnedOnServer?.Invoke(gameObjectName, objectToSpawn); 
         }
     }
 }

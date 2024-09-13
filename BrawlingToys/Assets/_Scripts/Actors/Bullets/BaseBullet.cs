@@ -1,8 +1,7 @@
-using BrawlingToys.Actors;
 using Unity.Netcode;
 using UnityEngine;
 
-namespace BrawlingToys.Bullets
+namespace BrawlingToys.Actors
 {
     public abstract class BaseBullet : NetworkBehaviour
     {
@@ -23,7 +22,6 @@ namespace BrawlingToys.Bullets
         private void Start()
         {
             rb = GetComponent<Rigidbody>();
-            Initialize();
         }
 
         private void Update()
@@ -43,17 +41,18 @@ namespace BrawlingToys.Bullets
             Move();
         }
 
-        public void Initialize()
+        public void Initialize(Player bulletOwner)
         {
-            Debug.DrawRay(transform.position, -transform.forward, Color.red, .5f);
-            Physics.Raycast(transform.position, -transform.forward, out RaycastHit hitInfo, range, PlayerMask);
-            if(hitInfo.collider != null)
-            {
-                if(hitInfo.transform.TryGetComponent(out Player bulletOwner))
-                {
-                    _bulletOwner = bulletOwner;
-                }
-            }
+            _bulletOwner = bulletOwner;
+            //Debug.DrawRay(transform.position, -transform.forward, Color.red, .5f);
+            //Physics.Raycast(transform.position, -transform.forward, out RaycastHit hitInfo, range, PlayerMask);
+            //if(hitInfo.collider != null)
+            //{
+            //    if(hitInfo.transform.TryGetComponent(out Player bulletOwner))
+            //    {
+            //        _bulletOwner = bulletOwner;
+            //    }
+            //}
         }
 
         private void Move()
@@ -77,7 +76,7 @@ namespace BrawlingToys.Bullets
         [ServerRpc(RequireOwnership = false)]
         protected void DestroyBulletServerRpc()
         {
-            DestroyBulletClientRpc(); 
+            DestroyBulletClientRpc();
         }
 
         /// <summary>
@@ -86,7 +85,7 @@ namespace BrawlingToys.Bullets
         [ClientRpc]
         protected void DestroyBulletClientRpc()
         {
-            Destroy(gameObject); 
+            Destroy(gameObject);
         }
     }
 }

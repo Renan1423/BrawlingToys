@@ -102,7 +102,7 @@ namespace BrawlingToys.Actors
                 }
                 else
                 {
-                    SetShootingCommand(new KillBulletCommand(_firePoint));
+                    SetShootingCommand(new KillBulletCommand(_firePoint, this));
                     bala = !bala;
                 }
             }
