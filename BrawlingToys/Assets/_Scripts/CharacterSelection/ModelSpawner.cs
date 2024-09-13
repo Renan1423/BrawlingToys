@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
+using BrawlingToys.DesignPatterns;
+
 public class ModelSpawner : Singleton<ModelSpawner>
 {
     [Header("Render Texture Camera")]

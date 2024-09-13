@@ -5,8 +5,9 @@ using UnityEngine.UI;
 using TMPro;
 using BrawlingToys.Actors;
 using System;
+using BrawlingToys.UI;
 
-public class SurpriseBoxUI : MonoBehaviour
+public class SurpriseBoxUI : BaseScreen
 {
     private SurpriseBox _currentSurpriseBox;
 
