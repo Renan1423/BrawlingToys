@@ -45,7 +45,7 @@ public class TemporaryTrain : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.TryGetComponent(out IDamageable hit)) {
-            hit.Damage();
+            hit.Damage(null);
         }
     }
 }

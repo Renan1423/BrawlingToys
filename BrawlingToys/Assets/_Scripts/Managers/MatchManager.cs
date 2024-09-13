@@ -2,6 +2,7 @@ using BrawlingToys.Network;
 using System.Collections.Generic;
 using BrawlingToys.Actors;
 using BrawlingToys.Core;
+using System;
 
 namespace BrawlingToys.Managers
 {
@@ -28,6 +29,9 @@ namespace BrawlingToys.Managers
 
             foreach (Player player in _playerMatchInfo.Keys)
             {
+                player.OnPlayerInitialize.AddListener(AddPlayerMatchInfo);
+                player.OnPlayerKill.AddListener(RegisterKill);
+                player.OnPlayerDeath.AddListener(RegisterDeath);
                 _playerMatchInfo[player] = new PlayerRoundInfo(0, true);
             }
         }
@@ -39,6 +43,9 @@ namespace BrawlingToys.Managers
 
         public void RegisterKill(Player player)
         {
+            if (player == null)
+                return;
+
             _playerMatchInfo[player].KillsAmount++;
         }
 
@@ -54,6 +61,13 @@ namespace BrawlingToys.Managers
         {
             if(_playerMatchInfo.Count - _deadPlayersCount <= 1)
             {
+                foreach (Player player in _playerMatchInfo.Keys)
+                {
+                    player.OnPlayerInitialize.RemoveListener(AddPlayerMatchInfo);
+                    player.OnPlayerKill.RemoveListener(RegisterKill);
+                    player.OnPlayerDeath.RemoveListener(RegisterDeath);
+                }
+
                 ScreenManager.instance.ToggleScreenByTag("ResultScreen", true);
             }
         }

@@ -2,6 +2,7 @@ using System;
 using Unity.Netcode;
 using UnityEngine;
 using BrawlingToys.Core;
+using UnityEngine.Events;
 
 namespace BrawlingToys.Actors
 {
@@ -12,6 +13,9 @@ namespace BrawlingToys.Actors
         /// e componentes necess�rios para o funcionamento do objeto como um todo.
         /// </summary>
         public event EventHandler<Vector3> OnUpdateAimRotation;
+        public UnityEvent<Player> OnPlayerInitialize;
+        public UnityEvent<Player> OnPlayerKill;
+        public UnityEvent<Player> OnPlayerDeath;
 
         // NOTE : Talvez seja melhor fazer um metodo Get...() ou uma propriedade ao inv�s de deixar tudo publico.
         public BaseStats _baseStatsSO;
@@ -19,6 +23,7 @@ namespace BrawlingToys.Actors
         public PlayerAnimations _animations;
         public PlayerCooldownController _cooldowns;
         public Stats _stats;
+        public Player myKiller;
         //public PlayerWeapon weapon;
 
         [Header("State Stuffs: ")]
@@ -57,9 +62,13 @@ namespace BrawlingToys.Actors
             _stateFactory.InitializeStates(this);
         }
 
-        private void Start()
+        private void OnEnable()
         {
             InitializePlayer();
+        }
+
+        private void Start()
+        {
         }
 
         private void Update()
@@ -110,6 +119,7 @@ namespace BrawlingToys.Actors
         // e possivelmente modifica��es de buffs e debuffs.
         private void InitializePlayer()
         {
+            OnPlayerInitialize?.Invoke(this);
             TransitionToState(_stateFactory.GetState(StateFactory.StateType.Idle));
 
             _mediator = new StatsMediator();
@@ -175,8 +185,9 @@ namespace BrawlingToys.Actors
         }
 
         // Esse método vai ficar assim e a gente gerencia a invencibilidade no outro script (State)
-        public void Damage()
+        public void Damage(Player sender)
         {
+            myKiller = sender;
             DieServerRpc(); 
         }
 

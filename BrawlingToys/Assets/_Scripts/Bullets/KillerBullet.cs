@@ -11,7 +11,7 @@ namespace BrawlingToys.Bullets
 
             Debug.Log("Collision");
             if (other.TryGetComponent(out IDamageable hit))
-                hit.Damage();
+                hit.Damage(_bulletOwner);
             
             DestroyBulletServerRpc(); 
         }

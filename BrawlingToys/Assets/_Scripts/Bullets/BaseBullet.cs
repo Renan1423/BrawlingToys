@@ -4,21 +4,26 @@ using UnityEngine;
 
 namespace BrawlingToys.Bullets
 {
-    public abstract class BaseBullet : NetworkBehaviour, IDamageable
+    public abstract class BaseBullet : NetworkBehaviour
     {
         [SerializeField] private float speed = 1f;
         [SerializeField] private float lifespan = 1f;
+        [SerializeField] private float range = 1f;
+
         [SerializeField] private LayerMask ground;
+        [SerializeField] private LayerMask PlayerMask;
 
         private float timer;
         private Rigidbody rb;
         private Vector3 direction;
+        protected Player _bulletOwner;
 
         public int Health { get; set; }
 
         private void Start()
         {
             rb = GetComponent<Rigidbody>();
+            Initialize();
         }
 
         private void Update()
@@ -38,6 +43,19 @@ namespace BrawlingToys.Bullets
             Move();
         }
 
+        public void Initialize()
+        {
+            Debug.DrawRay(transform.position, -transform.forward, Color.red, .5f);
+            Physics.Raycast(transform.position, -transform.forward, out RaycastHit hitInfo, range, PlayerMask);
+            if(hitInfo.collider != null)
+            {
+                if(hitInfo.transform.TryGetComponent(out Player bulletOwner))
+                {
+                    _bulletOwner = bulletOwner;
+                }
+            }
+        }
+
         private void Move()
         {
             transform.position += speed * Time.deltaTime * direction;
@@ -52,10 +70,6 @@ namespace BrawlingToys.Bullets
         {
             //if(!IsHost) return; // Just the host machine will manage the collision  
         }
-
-        public void Damage() { }
-
-        public void Knockback(GameObject sender) { }
 
         /// <summary>
         /// Server call to destroy the bullet on all connected clients
