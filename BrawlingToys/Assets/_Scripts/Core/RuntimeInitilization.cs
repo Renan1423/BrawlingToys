@@ -10,25 +10,27 @@ namespace BrawlingToys.Core
         private const string MAIN_PATH = "InitializationObjects/"; 
 
         private const string INGAMECONSONE_PATH = MAIN_PATH + "IngameDebugConsole"; 
-        private const string NETOWRK_MANAGER_PATH = MAIN_PATH + "Network Manager"; 
+        private const string NETWORK_MANAGER_PATH = MAIN_PATH + "Network Manager"; 
+        private const string NETWORK_AUTHENTICATION = MAIN_PATH + "Unity Services Auth"; 
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void Execute()
         {
-            TryInstantieteDevelopmentObjects();
-            InstantieteCoreObjects(); 
+            TryInstantiateDevelopmentObjects();
+            InstantiateCoreObjects(); 
         }
 
-        private static void TryInstantieteDevelopmentObjects()
+        private static void TryInstantiateDevelopmentObjects()
         {
             if (!Debug.isDebugBuild) return; 
 
             GameObject.Instantiate(Resources.Load(INGAMECONSONE_PATH)); 
         }
 
-        private static void InstantieteCoreObjects()
+        private static void InstantiateCoreObjects()
         {
-            GameObject.Instantiate(Resources.Load(NETOWRK_MANAGER_PATH));
+            GameObject.Instantiate(Resources.Load(NETWORK_MANAGER_PATH));
+            GameObject.Instantiate(Resources.Load(NETWORK_AUTHENTICATION)); 
         }
     }
 }
