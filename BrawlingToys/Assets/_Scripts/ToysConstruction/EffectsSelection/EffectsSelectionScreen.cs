@@ -5,6 +5,8 @@ using UnityEngine.AddressableAssets;
 using BrawlingToys.Actors;
 using BrawlingToys.UI;
 using BrawlingToys.Managers;
+using Unity.Netcode;
+using System.Linq;
 
 public class EffectsSelectionScreen : BaseScreen
 {
@@ -18,22 +20,24 @@ public class EffectsSelectionScreen : BaseScreen
 
     private ModifierScriptable _drawnEffect;
     [SerializeField]
-    private Player _player;
+    private List<Player> _players;
     //Variable created for prototype reasons only!
     private Stats _playerStats;
 
     private void OnEnable()
     {
-        GetPlayersInformations();
+        GetPlayersReferenceServerRpc(); 
+        GetPlayersInformation();
     }
 
-    public void GetPlayersInformations()
+    public void GetPlayersInformation()
     {
-        //We must gather the player informations using the multiplayer features. This is only for prototype purposes
-        for (int i = 0; i < 6; i++)
+        //We must gather the player informations using the multiplayer features. This is only for prototype purpose
+
+        for (int i = 0; i < _players.Count; i++)
         {
             string playerName = "Player " + i;
-            SpawnPlayerInfo(_drawnEffect, _player._stats, playerName, _playerCharacterAssetRef, new GameObject[0]);
+            SpawnPlayerInfo(_drawnEffect, _players[i]._stats, playerName, _playerCharacterAssetRef, new GameObject[0]);
         }
     }
 
@@ -52,5 +56,30 @@ public class EffectsSelectionScreen : BaseScreen
     {
         Debug.Log("Target selected");
         ScreenManager.instance.ToggleScreenByTag(ScreenName, false);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void GetPlayersReferenceServerRpc()
+    {
+        var playersIds = MatchManager.LocalInstance.MatchPlayers
+            .Select(p => p.PlayerId)
+            .ToArray(); 
+
+        GetPlayersReferenceClientRpc(playersIds); 
+    }
+
+    [ClientRpc]
+    private void GetPlayersReferenceClientRpc(ulong[] playersIds)
+    {
+        foreach (var id in playersIds)
+        {
+            if (NetworkManager.Singleton.ConnectedClients.ContainsKey(id))
+            {
+                var playerNetworkObject = NetworkManager.Singleton.ConnectedClients[id].PlayerObject;
+                var playerReference = playerNetworkObject.GetComponent<Player>(); 
+                
+                _players.Add(playerReference);
+            }
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BrawlingToys.DesignPatterns;
 using Unity.Netcode;
@@ -8,7 +9,7 @@ using UnityEngine;
 namespace BrawlingToys.Network
 {
     public class RelayParty : ContextSingleton<RelayParty>
-    {
+    {        
         [Header("Lobby Settings")]
         [SerializeField] private int _lobbySize = 4; 
 

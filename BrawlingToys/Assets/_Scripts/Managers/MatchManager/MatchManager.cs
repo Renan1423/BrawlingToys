@@ -1,17 +1,24 @@
 using System.Collections.Generic;
+using System.Linq;
 using BrawlingToys.Actors;
+using BrawlingToys.Network;
 using Unity.Netcode;
 
 namespace BrawlingToys.Managers
 {
-    public class MatchManager : NetworkBehaviour
+    public class MatchManager : NetworkSingleton<MatchManager>
     {
         private Dictionary<Player, PlayerRoundInfo> _playerMatchInfo;
         private int _deadPlayersCount = 0;
 
-        private void Awake()
+        public Player[] MatchPlayers { get {
+            return _playerMatchInfo.Keys.ToArray();  
+        } }
+
+        protected override void Awake()
         {
-            if (IsHost) RestartMatchInfo();
+            base.Awake(); 
+            if(IsHost) RestartMatchInfo();
         }
 
         private void RestartMatchInfo()
@@ -21,7 +28,7 @@ namespace BrawlingToys.Managers
             if(_playerMatchInfo == null)
             {
                 _playerMatchInfo = new Dictionary<Player, PlayerRoundInfo>();
-                return;
+                //return;
             }
 
             foreach (Player player in _playerMatchInfo.Keys)
@@ -81,6 +88,6 @@ namespace BrawlingToys.Managers
         private void CallResultScreenClientRpc()
         {
             ScreenManager.instance.ToggleScreenByTag("ResultScreen", true);
-        }
+        } 
     }
 }

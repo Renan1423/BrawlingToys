@@ -25,7 +25,7 @@ namespace BrawlingToys.Actors
         public Stats _stats;
         public Player myKiller;
         //public PlayerWeapon weapon;
-
+        
         [Header("State Stuffs: ")]
         public StateFactory _stateFactory;
         public State _currentState = null, _previousState = null;
@@ -57,6 +57,8 @@ namespace BrawlingToys.Actors
         // Damageable padrão, retirar
         public int Health { get; set; }
 
+        public ulong PlayerId { get; private set; }
+
         private void Awake()
         {
             _stateFactory.InitializeStates(this);
@@ -69,6 +71,11 @@ namespace BrawlingToys.Actors
 
         private void Start()
         {
+        }
+
+        public override void OnNetworkSpawn()
+        {
+            PlayerId = OwnerClientId; 
         }
 
         private void Update()
