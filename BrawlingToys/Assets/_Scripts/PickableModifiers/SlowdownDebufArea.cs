@@ -8,7 +8,6 @@ public class SlowdownDebufArea : MonoBehaviour
     [SerializeField] BasicModifierSO BasicModifierSO;
 
     private RaycastHit hitInfo;
-    private StatModifier basicStatModifier;
     private Player playerTarget;
 
     [Header("Gizmos Parameters")]

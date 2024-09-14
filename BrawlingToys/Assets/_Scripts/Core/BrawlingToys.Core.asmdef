@@ -1,6 +1,6 @@
 {
-    "name": "BrowlingToys.Core",
-    "rootNamespace": "BrowlingToys.Core",
+    "name": "BrawlingToys.Core",
+    "rootNamespace": "BrawlingToys.Core",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

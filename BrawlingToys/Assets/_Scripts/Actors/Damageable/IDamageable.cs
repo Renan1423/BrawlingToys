@@ -6,7 +6,7 @@ namespace BrawlingToys.Actors
     {
         public int Health { get; set; }
 
-        public void Damage();
+        public void Damage(Player sender);
 
         public void Knockback(GameObject sender);
     }
