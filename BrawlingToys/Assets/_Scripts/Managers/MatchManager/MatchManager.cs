@@ -20,6 +20,8 @@ namespace BrawlingToys.Managers
             return _playerMatchInfo.Keys.ToArray();  
         } }
 
+        public Dictionary<Player, PlayerRoundInfo> PlayerMatchInfo { get => _playerMatchInfo; }
+
         private void Start()
         {
             Debug.Log(GetComponent<NetworkObject>().NetworkManager);

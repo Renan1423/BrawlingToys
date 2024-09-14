@@ -2,6 +2,7 @@ using BrawlingToys.Managers;
 using BrawlingToys.Network;
 using IngameDebugConsole;
 using System;
+using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -79,6 +80,13 @@ namespace BrawlingToys.DevTools
             {
                 Debug.Log($"Falha ao entrar na party: {partyCode}");
             } 
+        }
+
+        [ConsoleMethod("kill", "Mata um jogador na cena")]
+        public static void KillPlayer(ulong playerId)
+        {
+            var player = MatchManager.LocalInstance.MatchPlayers.FirstOrDefault(p => p.PlayerId == playerId); 
+            player.Damage(null); 
         }
     }
 }

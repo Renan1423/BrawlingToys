@@ -23,7 +23,7 @@ namespace BrawlingToys.UI
         private Image _playerIcon;
         private List<ScorePoint> _scorePoints;
 
-        public void FillPlayerScoreInfo(int requiredScoreToWin)
+        public void FillPlayerScoreInfo(int requiredScoreToWin, int playerNumberId)
         {
             _scorePoints = new List<ScorePoint>();
 
@@ -35,7 +35,7 @@ namespace BrawlingToys.UI
                 _scorePoints.Add(scorePoint);
             }
 
-            //_playerIdText.text = "P" + (playerNumber + 1);
+            _playerIdText.text = "P" + (playerNumberId + 1);
         }
 
         public void AddScore(int scoreToAdd, ResultsScreen resultsScreen)

@@ -24,15 +24,10 @@ public class EffectsSelectionScreen : BaseScreen
     //Variable created for prototype reasons only!
     private Stats _playerStats;
 
-    protected override void ScreenManager_OnToggleAnyScreen(object sender, ScreenManager.ToggleAnyScreenEventArgs e)
+    protected override void OnScreenEnable()
     {
-        base.ScreenManager_OnToggleAnyScreen(sender, e);
-
-        if (e.active)
-        {
-            GetPlayersReferenceServerRpc(); 
-            GetPlayersInformation();
-        }
+        GetPlayersReferenceServerRpc(); 
+        GetPlayersInformation();
     }
 
     public void GetPlayersInformation()

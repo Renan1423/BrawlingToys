@@ -1,10 +1,11 @@
 using System.Collections;
 using UnityEngine;
 using BrawlingToys.Managers;
+using Unity.Netcode;
 
 namespace BrawlingToys.UI
 {
-    public abstract class BaseScreen : MonoBehaviour
+    public abstract class BaseScreen : NetworkBehaviour
     {
         [Header("References")]
 
@@ -39,7 +40,18 @@ namespace BrawlingToys.UI
         {
             if (e.screenName == ScreenName) 
             {
-                Debug.Log("Validou o nome da tela");
+                CheckGameManagerCallbacks(); 
+
+                _graphicContainer.SetActive(e.active);
+
+                if (e.active)
+                {
+                    OnScreenEnable(); 
+                }
+            }
+
+            void CheckGameManagerCallbacks()
+            {
                 if (e.active && _canChangeGameStateOnEnter)
                 {
                     GameManager.LocalInstance.ChangeGameState(EnterStateType);
@@ -49,8 +61,6 @@ namespace BrawlingToys.UI
                 {
                     GameManager.LocalInstance.ChangeGameState(ExitStateType);
                 }
-
-                _graphicContainer.SetActive(e.active);
             }
         }
 
@@ -64,6 +74,11 @@ namespace BrawlingToys.UI
             yield return new WaitForSeconds(delayToClose);
 
             gameObject.SetActive(false);
+        }
+
+        protected virtual void OnScreenEnable()
+        {
+            return; 
         }
     }
 }
