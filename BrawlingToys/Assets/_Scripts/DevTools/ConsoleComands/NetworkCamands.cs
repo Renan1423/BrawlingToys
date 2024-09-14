@@ -1,4 +1,6 @@
+using BrawlingToys.Managers;
 using IngameDebugConsole;
+using System;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -24,6 +26,19 @@ namespace BrawlingToys.DevTools
         {
             NetworkManager.Singleton.StartClient(); 
             Debug.Log("Starting Clinet");
+        }
+
+        [ConsoleMethod("change-game-state", "")]
+        public static void ChangeGameState(string gameState)
+        {
+            var parseEnum = (GameStateType)Enum.Parse(typeof(GameStateType), gameState);
+            GameManager.LocalInstance.ChangeGameState(parseEnum);
+        }
+
+        [ConsoleMethod("change-screen", "")]
+        public static void ChangeScreen(string screenName, bool active)
+        {
+            ScreenManager.instance.ToggleScreenByTag(screenName, active);
         }
     }
 }

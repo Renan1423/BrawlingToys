@@ -1,7 +1,6 @@
 using BrawlingToys.DesignPatterns;
-using UnityEngine;
-using BrawlingToys.DesignPatterns;
 using System;
+using UnityEngine;
 
 namespace BrawlingToys.Managers
 {

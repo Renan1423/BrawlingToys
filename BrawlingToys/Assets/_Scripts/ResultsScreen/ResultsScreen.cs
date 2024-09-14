@@ -1,9 +1,10 @@
+using BrawlingToys.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-public class ResultsScreen : MonoBehaviour
+public class ResultsScreen : BaseScreen
 {
     [Header("Results Screen parameters")]
     [SerializeField]
