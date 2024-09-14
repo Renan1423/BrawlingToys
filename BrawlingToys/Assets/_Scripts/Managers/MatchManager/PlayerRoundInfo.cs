@@ -1,4 +1,4 @@
-namespace BrawlingToys.Core
+namespace BrawlingToys.Managers
 {
     public class PlayerRoundInfo
     {
