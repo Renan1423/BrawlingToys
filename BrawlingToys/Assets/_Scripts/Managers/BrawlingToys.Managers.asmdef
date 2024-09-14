@@ -2,10 +2,11 @@
     "name": "BrawlingToys.Managers",
     "rootNamespace": "BrawlingToys.Managers",
     "references": [
+        "GUID:1491147abca9d7d4bb7105af628b223e",
         "GUID:1c4ad647caebd714583cf8b7511f1123",
         "GUID:f161c3dd7acddb64f8d0bfa8c6ec4e07",
-        "GUID:1491147abca9d7d4bb7105af628b223e",
-        "GUID:51f07e88ca493b04c81a8ac24c02c43b"
+        "GUID:51f07e88ca493b04c81a8ac24c02c43b",
+        "GUID:18fd95bbd58b4ee408f6118933531ede"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

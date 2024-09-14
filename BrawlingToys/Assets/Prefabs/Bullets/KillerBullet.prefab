@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9431776b07dd2c4449a037c751d83a26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 9
-  lifespan: 1
+  speed: 20
+  lifespan: 0.75
   ground:
     serializedVersion: 2
     m_Bits: 128
