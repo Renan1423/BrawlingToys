@@ -6,6 +6,12 @@ namespace BrawlingToys.UI
 {
     public abstract class BaseScreen : MonoBehaviour
     {
+        [Header("References")]
+
+        [SerializeField] private GameObject _graphicContainer; 
+        
+        [field:Header("Tags")]
+        
         [field: SerializeField]
         public string ScreenName { get; private set; }
 
@@ -23,12 +29,10 @@ namespace BrawlingToys.UI
         [field: SerializeField]
         public GameStateType ExitStateType { get; private set; }
 
-
-
         protected void Start()
         {   
             ScreenManager.instance.OnToggleAnyScreen += ScreenManager_OnToggleAnyScreen;
-            gameObject.SetActive(false);
+            _graphicContainer.SetActive(false);
         }
 
         protected virtual void ScreenManager_OnToggleAnyScreen(object sender, ScreenManager.ToggleAnyScreenEventArgs e) 
@@ -46,7 +50,7 @@ namespace BrawlingToys.UI
                     GameManager.LocalInstance.ChangeGameState(ExitStateType);
                 }
 
-                this.gameObject.SetActive(e.active);
+                _graphicContainer.SetActive(e.active);
             }
         }
 

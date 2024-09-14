@@ -1,17 +1,19 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using BrawlingToys.DesignPatterns;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Services.Relay;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace BrawlingToys.Network
 {
     public class RelayParty : ContextSingleton<RelayParty>
     {        
+        [HideInInspector] public UnityEvent OnNewPlayerConnected = new(); 
+        
         [Header("Lobby Settings")]
-        [SerializeField] private int _lobbySize = 4; 
+        [SerializeField] private int _lobbySize = 6; 
 
         [Header("Logs")]
 
@@ -42,6 +44,8 @@ namespace BrawlingToys.Network
                 ); 
 
                 NetworkManager.Singleton.StartHost(); 
+
+                OnNewPlayerConnected?.Invoke();
 
                 return (true, joinCode); 
             }
@@ -79,6 +83,8 @@ namespace BrawlingToys.Network
                     );
 
                 NetworkManager.Singleton.StartClient(); 
+
+                OnNewPlayerConnected?.Invoke(); 
 
                 Debug.Log($"Joined!");
 

@@ -14,7 +14,6 @@ namespace BrawlingToys.Actors
 
         public void Execute()
         {
-            Debug.Log("PushBullet");
             //GameObject bullet = Object.Instantiate(Resources.Load("PusherBullet"), _firePoint.position, _firePoint.rotation) as GameObject;
             NetworkSpawner.LocalInstance.InstantiateOnServer("PusherBullet", _firePoint.position, _firePoint.rotation); 
         }

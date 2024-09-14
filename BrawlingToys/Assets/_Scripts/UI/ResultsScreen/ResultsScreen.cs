@@ -22,9 +22,19 @@ namespace BrawlingToys.UI
         private int _updateIndex = 0;
         private bool _initialized = false;
 
-        private void OnEnable()
+        protected override void ScreenManager_OnToggleAnyScreen(object sender, ScreenManager.ToggleAnyScreenEventArgs e)
         {
-            GatherPlayerInformations();
+            base.ScreenManager_OnToggleAnyScreen(sender, e);
+
+            if(e.active)
+            {
+                InitializeResultScreenGraphics(); 
+            }
+        }
+
+        private void InitializeResultScreenGraphics()
+        {
+            GatherPlayerInformation();
             _updateIndex = 0;
 
             if (!_initialized)
@@ -37,7 +47,7 @@ namespace BrawlingToys.UI
             UpdateScores();
         }
 
-        public void GatherPlayerInformations()
+        public void GatherPlayerInformation()
         {
             _playersRoundInfo = new List<PlayerRoundInfo>();
 

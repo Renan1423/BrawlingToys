@@ -20,7 +20,6 @@ namespace BrawlingToys.Actors
 
         public void Execute()
         {
-            Debug.Log("KillerBullet");
             //GameObject bullet = Object.Instantiate(Resources.Load("KillerBullet"), _firePoint.position, _firePoint.rotation) as GameObject;
             
             NetworkSpawner.LocalInstance.InstantiateOnServer(BULLET_NAME, _firePoint.position, _firePoint.rotation);

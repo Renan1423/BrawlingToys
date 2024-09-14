@@ -24,16 +24,20 @@ public class EffectsSelectionScreen : BaseScreen
     //Variable created for prototype reasons only!
     private Stats _playerStats;
 
-    private void OnEnable()
+    protected override void ScreenManager_OnToggleAnyScreen(object sender, ScreenManager.ToggleAnyScreenEventArgs e)
     {
-        GetPlayersReferenceServerRpc(); 
-        GetPlayersInformation();
+        base.ScreenManager_OnToggleAnyScreen(sender, e);
+
+        if (e.active)
+        {
+            GetPlayersReferenceServerRpc(); 
+            GetPlayersInformation();
+        }
     }
 
     public void GetPlayersInformation()
     {
         //We must gather the player informations using the multiplayer features. This is only for prototype purpose
-
         for (int i = 0; i < _players.Count; i++)
         {
             string playerName = "Player " + i;
