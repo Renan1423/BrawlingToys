@@ -14,17 +14,12 @@ public class PlayerAnimations : MonoBehaviour
         Die
     }
 
+    [SerializeField] private Animator animator;
+
     public UnityEvent OnAnimationAction;
     public UnityEvent OnAnimationEnd;
 
-    private Animator animator;
-
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
-
-    // Da play na animação escolhida com base no AnimationType passado.
+    // Da play na animaï¿½ï¿½o escolhida com base no AnimationType passado.
     public void PlayAnimation(AnimationType animationType)
     {
         switch (animationType)
@@ -74,7 +69,7 @@ public class PlayerAnimations : MonoBehaviour
         OnAnimationEnd?.Invoke();
     }
 
-    public void ResetEvents() //Não remove callbacks adicionados no Inspector!!!!
+    public void ResetEvents() //Nï¿½o remove callbacks adicionados no Inspector!!!!
     {
         OnAnimationAction.RemoveAllListeners();
         OnAnimationEnd.RemoveAllListeners();

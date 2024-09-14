@@ -1,18 +1,17 @@
-using BrawlingToys.Network;
 using System.Collections.Generic;
 using BrawlingToys.Actors;
+using Unity.Netcode;
 
 namespace BrawlingToys.Managers
 {
-    public class MatchManager : NetworkSingleton<MatchManager>
+    public class MatchManager : NetworkBehaviour
     {
         private Dictionary<Player, PlayerRoundInfo> _playerMatchInfo;
         private int _deadPlayersCount = 0;
 
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
-            RestartMatchInfo();
+            if (IsHost) RestartMatchInfo();
         }
 
         private void RestartMatchInfo()
@@ -57,7 +56,7 @@ namespace BrawlingToys.Managers
 
         private void CheckMatchEnd()
         {
-            if(_playerMatchInfo.Count - _deadPlayersCount <= 1)
+            if(MatchIsEnded())
             {
                 foreach (Player player in _playerMatchInfo.Keys)
                 {
@@ -66,8 +65,22 @@ namespace BrawlingToys.Managers
                     player.OnPlayerDeath.RemoveListener(RegisterDeath);
                 }
 
-                ScreenManager.instance.ToggleScreenByTag("ResultScreen", true);
+                CallResultScreenServerRpc(); 
             }
+
+            bool MatchIsEnded() => _playerMatchInfo.Count - _deadPlayersCount <= 1; 
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void CallResultScreenServerRpc()
+        {
+            CallResultScreenClientRpc(); 
+        }
+
+        [ClientRpc]
+        private void CallResultScreenClientRpc()
+        {
+            ScreenManager.instance.ToggleScreenByTag("ResultScreen", true);
         }
     }
 }

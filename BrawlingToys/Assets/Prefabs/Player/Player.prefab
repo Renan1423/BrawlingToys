@@ -116,9 +116,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e88b5401b8dce42b84b18744de9a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnPlayerInitialize:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerKill:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerDeath:
+    m_PersistentCalls:
+      m_Calls: []
   _baseStatsSO: {fileID: 11400000, guid: 6618a62998fb61d40b1f88e97625350d, type: 2}
   _inputs: {fileID: 8132426246734092638}
   _animations: {fileID: 5725714426884926404}
+  myKiller: {fileID: 0}
   _stateFactory: {fileID: 5179218893500982180}
   _currentState: {fileID: 0}
   _previousState: {fileID: 0}
@@ -1011,6 +1021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f90779e068cd0458a070cc3a857bd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 671930220915619101}
   OnAnimationAction:
     m_PersistentCalls:
       m_Calls: []

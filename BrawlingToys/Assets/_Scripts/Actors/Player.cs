@@ -119,7 +119,6 @@ namespace BrawlingToys.Actors
         // e possivelmente modifica��es de buffs e debuffs.
         private void InitializePlayer()
         {
-            OnPlayerInitialize?.Invoke(this);
             TransitionToState(_stateFactory.GetState(StateFactory.StateType.Idle));
 
             _mediator = new StatsMediator();
@@ -137,6 +136,8 @@ namespace BrawlingToys.Actors
             {
                 _knockback.Timer.OnTimerStop += _inputs.EnablePlayerMap;
             }
+            
+            OnPlayerInitialize?.Invoke(this);
         }
 
         // Metodo respons�vel por toda a troca de estado. Chama o Exit() do atual e o Enter() do novo,
