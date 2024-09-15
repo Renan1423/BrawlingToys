@@ -30,6 +30,8 @@ namespace BrawlingToys.Actors
             if (bulletName != BULLET_NAME)
                 return;
 
+            Debug.Log(_bulletOwner);
+
             BaseBullet newBullet = bullet.GetComponent<BaseBullet>();
             newBullet.Initialize(_bulletOwner);
         }

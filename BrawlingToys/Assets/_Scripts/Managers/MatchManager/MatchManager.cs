@@ -24,25 +24,25 @@ namespace BrawlingToys.Managers
 
         private void Start()
         {
-            Debug.Log(GetComponent<NetworkObject>().NetworkManager);
             SubscribeEvents(); 
         }
 
         public override void OnDestroy()
         {
             UnsubscribeEvents(); 
+            
             base.OnDestroy();
         }
-
 
         private void SubscribeEvents()
         {
             NetworkManager.Singleton.OnClientConnectedCallback += UpdateMatchInfoDictionary; 
+            GameManager.LocalInstance.OnGameStateChange.AddListener(TryResetMatch); 
         }
 
         private void UnsubscribeEvents()
         {
-            if (NetworkManager.Singleton != null)
+            if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsHost)
             {
                 NetworkManager.Singleton.OnClientConnectedCallback -= UpdateMatchInfoDictionary;
             }
@@ -50,7 +50,6 @@ namespace BrawlingToys.Managers
 
         private void UpdateMatchInfoDictionary(ulong clientId)
         {
-            Debug.Log("Client Conected");
             if(NetworkManager.Singleton.IsHost) AddClientPlayerToDic(clientId);
         }
 
@@ -67,16 +66,34 @@ namespace BrawlingToys.Managers
 
             _playerMatchInfo.Add(player, new PlayerRoundInfo(0, true));
 
-            Debug.Log("Player Id: " + player.PlayerId);
+            Debug.Log($"Player: {player.PlayerId} was inited on server");
         }
 
-        private void ResetMatch()
+        private void TryResetMatch(GameStateType newGameState)
+        {
+            if (newGameState == GameStateType.Combat)
+            {
+                ResetMatchInfo();
+                EnablePlayers(); 
+            }
+        }
+        
+        private void ResetMatchInfo()
         {
             _deadPlayersCount = 0;
             
-            foreach (Player player in _playerMatchInfo.Keys)
+            foreach (Player player in MatchPlayers)
             {
                 _playerMatchInfo[player] = new PlayerRoundInfo(0, true);
+            }
+        }
+
+        private void EnablePlayers()
+        {
+            foreach (var player in MatchPlayers)
+            {
+                Debug.Log($"Resetando o jgoaodr: {player.PlayerId}");
+                player.gameObject.SetActive(true); 
             }
         }
 
@@ -87,16 +104,16 @@ namespace BrawlingToys.Managers
 
         public void RegisterKill(Player player)
         {
+            Debug.Log($"Register kill, killer: {player}");
             if (player == null)
                 return;
 
-            Debug.Log("Register kill");
             _playerMatchInfo[player].KillsAmount++;
         }
 
         public void RegisterDeath(Player player)
         {
-            Debug.Log("Register Deathg");
+            Debug.Log("Register Death");
             _playerMatchInfo[player].IsSurvivor = false;
 
             _deadPlayersCount++;
@@ -109,7 +126,7 @@ namespace BrawlingToys.Managers
             {
                 foreach (Player player in _playerMatchInfo.Keys)
                 {
-                    player.OnPlayerInitialize.RemoveListener(AddPlayerMatchInfo);
+                    //player.OnPlayerInitialize.RemoveListener(AddPlayerMatchInfo);
                     player.OnPlayerKill.RemoveListener(RegisterKill);
                     player.OnPlayerDeath.RemoveListener(RegisterDeath);
                 }
@@ -123,14 +140,12 @@ namespace BrawlingToys.Managers
         [ServerRpc(RequireOwnership = false)]
         private void CallResultScreenServerRpc()
         {
-            Debug.Log("Screen manager server rpc");
             CallResultScreenClientRpc(); 
         }
 
         [ClientRpc]
         private void CallResultScreenClientRpc()
         {
-            Debug.Log("Screen manager clients rpc");
             ScreenManager.instance.ToggleScreenByTag("ResultScreen", true);
         } 
     }

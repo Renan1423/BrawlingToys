@@ -13,9 +13,9 @@ namespace BrawlingToys.Actors
         /// e componentes necess�rios para o funcionamento do objeto como um todo.
         /// </summary>
         public event EventHandler<Vector3> OnUpdateAimRotation;
-        public UnityEvent<Player> OnPlayerInitialize;
-        public UnityEvent<Player> OnPlayerKill;
-        public UnityEvent<Player> OnPlayerDeath;
+        public UnityEvent<Player> OnPlayerInitialize = new();
+        public UnityEvent<Player> OnPlayerKill = new();
+        public UnityEvent<Player> OnPlayerDeath = new();
 
         // NOTE : Talvez seja melhor fazer um metodo Get...() ou uma propriedade ao inv�s de deixar tudo publico.
         public BaseStats _baseStatsSO;
@@ -195,6 +195,7 @@ namespace BrawlingToys.Actors
         // Esse método vai ficar assim e a gente gerencia a invencibilidade no outro script (State)
         public void Damage(Player sender)
         {
+            Debug.Log("Damege");
             myKiller = sender;
             DieServerRpc(); 
         }

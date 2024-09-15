@@ -3,6 +3,7 @@ using UnityEngine;
 using BrawlingToys.Managers;
 using Unity.Netcode;
 using System.Linq;
+using System.Collections;
 
 namespace BrawlingToys.UI
 {
@@ -18,6 +19,10 @@ namespace BrawlingToys.UI
         [SerializeField]
         private Transform _scoreVerticalLayout;
 
+        [Header("Settings")]
+
+        [SerializeField] private float _timeToBackToGame = 7f; 
+
         private List<PlayerScore> _playerScores;
 
         private Dictionary<ulong, PlayerRoundInfo> _playersRoundInfo = new(); 
@@ -32,14 +37,25 @@ namespace BrawlingToys.UI
                 ServerGetPlayersRoundInfo();
                 CallSyncRpc(); 
                 InitializeResultScreenGraphics(); 
+                StartCoroutine(WaitForCloseScreen());
             }
             
 
             void CallSyncRpc()
             {
-                var serializedIds = _playersRoundInfo.Keys.ToArray();
-                var serializedKills = _playersRoundInfo.Values.Select(i => i.KillsAmount).ToArray(); 
-                var serializedSurvivals = _playersRoundInfo.Values.Select(i => i.IsSurvivor).ToArray();
+                var serializedIds = _playersRoundInfo
+                    .Keys
+                    .ToArray();
+                
+                var serializedKills = _playersRoundInfo
+                    .Values
+                    .Select(i => i.KillsAmount)
+                    .ToArray(); 
+                
+                var serializedSurvivals = _playersRoundInfo
+                    .Values
+                    .Select(i => i.IsSurvivor)
+                    .ToArray();
 
                 SyncPlayersInfoServerRpc(serializedIds, serializedKills, serializedSurvivals); 
             }
@@ -100,6 +116,13 @@ namespace BrawlingToys.UI
 
         public int GetRequiredScoreToWin() => _requiredScoreToWin;
 
+        private IEnumerator WaitForCloseScreen()
+        {
+            yield return new WaitForSeconds(_timeToBackToGame); 
+
+            CloseScreenServerRpc(); 
+        }
+
         #region Network Actions
 
         private void ServerGetPlayersRoundInfo()
@@ -140,6 +163,18 @@ namespace BrawlingToys.UI
                 
                 InitializeResultScreenGraphics(); 
             }
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void CloseScreenServerRpc()
+        {
+            CloseScreenClientRpc(); 
+        }
+
+        [ClientRpc]
+        private void CloseScreenClientRpc()
+        {
+            ScreenManager.instance.ToggleScreenByTag(ScreenName, false); 
         }
 
         #endregion

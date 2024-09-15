@@ -8,7 +8,6 @@ namespace BrawlingToys.Actors
         {
             base.OnTriggerEnter(other);
 
-            Debug.Log("Collision");
             if (other.TryGetComponent(out IDamageable hit))
                 hit.Knockback(gameObject);
 
