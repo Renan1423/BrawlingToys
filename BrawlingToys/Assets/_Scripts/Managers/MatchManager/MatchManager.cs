@@ -14,9 +14,7 @@ namespace BrawlingToys.Managers
         private int _deadPlayersCount = 0;
 
         public Player[] MatchPlayers { get 
-        {
-            if(!NetworkManager.Singleton.IsHost) throw new Exception("This property cannot be called on clients!"); 
-            
+        {            
             return _playerMatchInfo.Keys.ToArray();  
         } }
 
@@ -64,36 +62,41 @@ namespace BrawlingToys.Managers
             player.OnPlayerKill.AddListener(RegisterKill);
             player.OnPlayerDeath.AddListener(RegisterDeath);
 
-            _playerMatchInfo.Add(player, new PlayerRoundInfo(0, true));
+            var roundInfo = new PlayerRoundInfo(0, true); 
+
+            _playerMatchInfo.Add(player, roundInfo);
+
+            var serializedIds = _playerMatchInfo
+                    .Keys
+                    .Select(p => p.PlayerId)
+                    .ToArray();
+            
+            var serializedKills = _playerMatchInfo
+                    .Values
+                    .Select(i => i.KillsAmount)
+                    .ToArray(); 
+                
+                var serializedSurvivals = _playerMatchInfo
+                    .Values
+                    .Select(i => i.IsSurvivor)
+                    .ToArray();
+
+            SyncMatchPlayersServerRpc(serializedIds, serializedKills, serializedSurvivals); 
 
             Debug.Log($"Player: {player.PlayerId} was inited on server");
         }
 
         private void TryResetMatch(GameStateType newGameState)
         {
-            if (newGameState == GameStateType.Combat)
+            if (newGameState == GameStateType.Combat && NetworkManager.Singleton.IsHost)
             {
-                ResetMatchInfo();
-                EnablePlayers(); 
-            }
-        }
-        
-        private void ResetMatchInfo()
-        {
-            _deadPlayersCount = 0;
-            
-            foreach (Player player in MatchPlayers)
-            {
-                _playerMatchInfo[player] = new PlayerRoundInfo(0, true);
-            }
-        }
+                ResetMatchInfoServerRpc(); 
+                
+                var serializedIds = _playerMatchInfo
+                    .Select(p => p.Key.PlayerId)
+                    .ToArray(); 
 
-        private void EnablePlayers()
-        {
-            foreach (var player in MatchPlayers)
-            {
-                Debug.Log($"Resetando o jgoaodr: {player.PlayerId}");
-                player.gameObject.SetActive(true); 
+                EnablePlayersServerRpc(); 
             }
         }
 
@@ -124,12 +127,12 @@ namespace BrawlingToys.Managers
         {
             if(MatchIsEnded())
             {
-                foreach (Player player in _playerMatchInfo.Keys)
-                {
-                    //player.OnPlayerInitialize.RemoveListener(AddPlayerMatchInfo);
-                    player.OnPlayerKill.RemoveListener(RegisterKill);
-                    player.OnPlayerDeath.RemoveListener(RegisterDeath);
-                }
+                // foreach (Player player in _playerMatchInfo.Keys)
+                // {
+                //     player.OnPlayerInitialize.RemoveListener(AddPlayerMatchInfo);
+                //     player.OnPlayerKill.RemoveListener(RegisterKill);
+                //     player.OnPlayerDeath.RemoveListener(RegisterDeath);
+                // }
 
                 CallResultScreenServerRpc(); 
             }
@@ -148,5 +151,58 @@ namespace BrawlingToys.Managers
         {
             ScreenManager.instance.ToggleScreenByTag("ResultScreen", true);
         } 
+
+        [ServerRpc]
+        private void ResetMatchInfoServerRpc()
+        {
+            _deadPlayersCount = 0;
+            
+            foreach (Player player in MatchPlayers)
+            {
+                _playerMatchInfo[player] = new PlayerRoundInfo(0, true);
+            }
+        }
+
+        [ServerRpc]
+        private void EnablePlayersServerRpc()
+        {
+            EnablePlayersClientRpc(); 
+        }
+
+        [ClientRpc]
+        private void EnablePlayersClientRpc()
+        {
+            Debug.Log("Chaves: " + _playerMatchInfo.Keys.ToArray().Length);
+            
+            foreach (var player in MatchPlayers)
+            {
+                player.gameObject.SetActive(true); 
+            }
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void SyncMatchPlayersServerRpc(ulong[] playerId, int[] serializedKills, bool[] serializedSurvivals)
+        {
+            SyncMatchPlayersClientRpc(playerId, serializedKills, serializedSurvivals); 
+        }
+
+        [ClientRpc]
+        private void SyncMatchPlayersClientRpc(ulong[] playerId, int[] serializedKills, bool[] serializedSurvivals)
+        {
+            if (!NetworkManager.Singleton.IsHost)
+            {
+                var players = GameObject.FindObjectsByType<Player>(FindObjectsSortMode.None);
+                _playerMatchInfo = new(); 
+
+                for (int i = 0; i < playerId.Length; i++)
+                {
+                    var player = players.First(p => p.PlayerId == playerId[i]); 
+    
+                    var roundInfo = new PlayerRoundInfo(serializedKills[i], serializedSurvivals[i]);
+    
+                    _playerMatchInfo.Add(player, roundInfo);  
+                }
+            }
+        }
     }
 }

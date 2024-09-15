@@ -335,8 +335,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _graphicContainer: {fileID: 519180055522638655}
   <ScreenName>k__BackingField: ResultScreen
-  _canChangeGameStateOnEnter: 0
-  <EnterStateType>k__BackingField: 0
+  _canChangeGameStateOnEnter: 1
+  <EnterStateType>k__BackingField: 3
   _canChangeGameStateOnExit: 1
   <ExitStateType>k__BackingField: 2
   _requiredScoreToWin: 10

@@ -136,7 +136,14 @@ namespace BrawlingToys.UI
 
                 var id = player.PlayerId; 
 
-                _playersRoundInfo.Add(id, info); 
+                if (_playersRoundInfo.ContainsKey(id))
+                {
+                    _playersRoundInfo[id] = info; 
+                }
+                else
+                {
+                    _playersRoundInfo.Add(id, info); 
+                }
             }
         }
 
@@ -156,7 +163,14 @@ namespace BrawlingToys.UI
                     var info = new PlayerRoundInfo(killsAmount[i], isSurvivor[i]); 
                     var id = playerIds[i]; 
 
-                    _playersRoundInfo.Add(id, info); 
+                    if (_playersRoundInfo.ContainsKey(id))
+                    {
+                        _playersRoundInfo[id] = info; 
+                    }
+                    else
+                    {
+                        _playersRoundInfo.Add(id, info); 
+                    }
 
                     Debug.Log($"{id}{info}");
                 }
