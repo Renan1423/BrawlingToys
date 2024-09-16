@@ -5,7 +5,7 @@ public class TemporaryTrain : MonoBehaviour {
     private Rigidbody rb;
     private Animator anim;
 
-    [SerializeField] private float screenXLimit = -30f;
+    [SerializeField] private float screenLimit = -30f;
     [SerializeField] private float speed = 250.0f;
     [SerializeField] private float maxSpeed = 3000f;
     [SerializeField][Range(1.0f, 1.25f)] private float speedMultiplierFactor = 1.10f;
@@ -27,7 +27,7 @@ public class TemporaryTrain : MonoBehaviour {
     private void Update() {
         direction = transform.forward;
 
-        if (transform.position.x <= screenXLimit) {
+        if (transform.position.z <= screenLimit) {
             transform.position = startPosition;
 
             if (speed < maxSpeed) {
