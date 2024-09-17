@@ -7,18 +7,23 @@ namespace BrawlingToys.Actors
     {
         public UnityEvent OnStep;
 
-        [SerializeField] private float accel = 10f;
+        [SerializeField] private Rigidbody _rig; 
+        [SerializeField] private float _moveSpeed; 
 
-        private float currentSpeed;
-        private Vector3 velocity;
+        [Space]
+
+        [SerializeField] private float _accel = 10f;
+
+        private float _currentSpeed;
+        private Vector3 _velocity;
 
         protected override void EnterState()
         {
             _player._animations.PlayAnimation(PlayerAnimations.AnimationType.Movement);
             _player._animations.OnAnimationAction.AddListener(() => OnStep?.Invoke());
 
-            currentSpeed = 0;
-            velocity = Vector3.zero;
+            _currentSpeed = 0;
+            _velocity = Vector3.zero;
         }
 
         protected override void ExitState()
@@ -39,17 +44,17 @@ namespace BrawlingToys.Actors
 
         public override void FixedUpdateState()
         {
-            _player.transform.position += velocity;
+            _rig.MovePosition(_rig.position + _velocity * _moveSpeed * Time.fixedDeltaTime);
         }
 
         private void CalculateSpeed()
         {
             if (_player._inputs.GetMovementVectorNormalized().magnitude > 0)
             {
-                currentSpeed += accel * Time.deltaTime;
+                _currentSpeed += _accel * Time.deltaTime;
             }
 
-            currentSpeed = Mathf.Clamp(currentSpeed, 0, _player._stats.MoveSpeed);
+            _currentSpeed = Mathf.Clamp(_currentSpeed, 0, _player._stats.MoveSpeed);
         }
 
         private void CalculateVelocity()
@@ -57,7 +62,7 @@ namespace BrawlingToys.Actors
             Vector2 inputVector = _player._inputs.GetMovementVectorNormalized();
             Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
 
-            velocity = moveDirection * currentSpeed;
+            _velocity = moveDirection * _currentSpeed;
         }
     }
 }

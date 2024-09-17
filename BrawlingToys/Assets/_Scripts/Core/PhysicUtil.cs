@@ -25,4 +25,14 @@ public class PhysicUtil
             subject.position = Vector3.Lerp(subject.position, subject.position + direction, power * deltaTime);
         }
     }
+
+    public void AddForce(Rigidbody subject, Vector3 direction, float power, float deltaTime)
+    {
+        timer.Tick(deltaTime);
+
+        if (timer.IsRunning)
+        {
+            subject.MovePosition(subject.position + direction * power * Time.fixedDeltaTime);
+        }
+    }
 }

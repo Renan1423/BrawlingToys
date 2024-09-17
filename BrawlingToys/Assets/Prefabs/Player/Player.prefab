@@ -76,7 +76,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172481498366530268}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: cac1f8d43513ae34cba060639174e50c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1164,7 +1164,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  accel: 10
+  _rig: {fileID: 8344952857166226115}
+  _moveSpeed: 37
+  _accel: 10
 --- !u!114 &3293204902309920025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1225,6 +1227,7 @@ MonoBehaviour:
   OnExit:
     m_PersistentCalls:
       m_Calls: []
+  _rig: {fileID: 8344952857166226115}
   dashDuration: 0.2
   impulsePower: 200
 --- !u!114 &1567318420048852312

@@ -5,6 +5,10 @@ namespace BrawlingToys.Actors
 {
     public class DashState : State
     {
+        [SerializeField] private Rigidbody _rig; 
+        
+        [Space]
+        
         [SerializeField] float dashDuration = 0;
         [SerializeField] float impulsePower = 20f;
 
@@ -18,7 +22,7 @@ namespace BrawlingToys.Actors
             _player._cooldowns.dashTimer.Start();
             physicUtil = new PhysicUtil(dashDuration);
 
-            // Aplicar força no player na direção de movimento
+            // Aplicar forï¿½a no player na direï¿½ï¿½o de movimento
             float movementMagnitude = _player._inputs.GetMovementVectorNormalized().magnitude;
             Vector3 movementDirection = new Vector3(_player._inputs.GetMovementVectorNormalized().x, 0,
                 _player._inputs.GetMovementVectorNormalized().y);
@@ -56,7 +60,7 @@ namespace BrawlingToys.Actors
 
         protected override void HandleDash(object sender, EventArgs e)
         {
-            // Previne de dar outro dashe antes do término de um.
+            // Previne de dar outro dashe antes do tï¿½rmino de um.
         }
 
         private void WhenDashEnds()
