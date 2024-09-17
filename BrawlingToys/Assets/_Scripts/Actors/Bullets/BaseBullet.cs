@@ -57,7 +57,7 @@ namespace BrawlingToys.Actors
 
         private void Move()
         {
-            transform.position += speed * Time.deltaTime * direction;
+            if(IsOwner) transform.position += speed * Time.deltaTime * direction;
         }
 
         private void EnableGravity()
@@ -67,7 +67,7 @@ namespace BrawlingToys.Actors
 
         public virtual void OnTriggerEnter(Collider other)
         {
-            //if(!IsHost) return; // Just the host machine will manage the collision  
+            if(!IsOwner) return; // Just the host machine will manage the collision  
         }
 
         /// <summary>
