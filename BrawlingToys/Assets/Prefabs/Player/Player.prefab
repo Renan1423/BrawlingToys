@@ -128,7 +128,8 @@ MonoBehaviour:
   _baseStatsSO: {fileID: 11400000, guid: 6618a62998fb61d40b1f88e97625350d, type: 2}
   _inputs: {fileID: 8132426246734092638}
   _animations: {fileID: 5725714426884926404}
-  myKiller: {fileID: 0}
+  _myKiller: {fileID: 0}
+  _rig: {fileID: 8344952857166226115}
   _stateFactory: {fileID: 5179218893500982180}
   _currentState: {fileID: 0}
   _previousState: {fileID: 0}
@@ -1164,9 +1165,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _rig: {fileID: 8344952857166226115}
-  _moveSpeed: 37
-  _accel: 10
+  _accel: 500
+  _deAccel: 300
 --- !u!114 &3293204902309920025
 MonoBehaviour:
   m_ObjectHideFlags: 0

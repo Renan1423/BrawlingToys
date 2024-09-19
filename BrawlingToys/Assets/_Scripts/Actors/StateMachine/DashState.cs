@@ -18,14 +18,14 @@ namespace BrawlingToys.Actors
 
         protected override void EnterState()
         {
-            _player._animations.PlayAnimation(PlayerAnimations.AnimationType.Dash);
-            _player._cooldowns.dashTimer.Start();
+            _player.Animations.PlayAnimation(PlayerAnimations.AnimationType.Dash);
+            _player.Cooldowns.dashTimer.Start();
             physicUtil = new PhysicUtil(dashDuration);
 
             // Aplicar for�a no player na dire��o de movimento
-            float movementMagnitude = _player._inputs.GetMovementVectorNormalized().magnitude;
-            Vector3 movementDirection = new Vector3(_player._inputs.GetMovementVectorNormalized().x, 0,
-                _player._inputs.GetMovementVectorNormalized().y);
+            float movementMagnitude = _player.Inputs.GetMovementVectorNormalized().magnitude;
+            Vector3 movementDirection = new Vector3(_player.Inputs.GetMovementVectorNormalized().x, 0,
+                _player.Inputs.GetMovementVectorNormalized().y);
 
             dashDirection = movementMagnitude > 0 ? movementDirection : Vector3.forward;
 
@@ -40,7 +40,7 @@ namespace BrawlingToys.Actors
 
         public override void UpdateState()
         {
-            physicUtil.AddForce(_player.transform, dashDirection, impulsePower * _player._stats.MoveSpeed, Time.deltaTime);
+            physicUtil.AddForce(_player.transform, dashDirection, impulsePower * _player.Stats.MoveSpeed, Time.deltaTime);
 
             if (physicUtil.Timer.IsFinished)
             {
@@ -65,7 +65,7 @@ namespace BrawlingToys.Actors
 
         private void WhenDashEnds()
         {
-            _player.TransitionToState(_player._stateFactory.GetState(StateFactory.StateType.Idle));
+            _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Idle));
         }
     }
 }

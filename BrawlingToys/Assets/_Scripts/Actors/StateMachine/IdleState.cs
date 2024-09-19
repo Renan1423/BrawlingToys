@@ -6,14 +6,14 @@ namespace BrawlingToys.Actors
     {
         protected override void EnterState()
         {
-            _player._animations.PlayAnimation(PlayerAnimations.AnimationType.Idle);
+            _player.Animations.PlayAnimation(PlayerAnimations.AnimationType.Idle);
         }
 
         protected override void HandleMovement(object sender, Vector2 inputVector)
         {
             if (Mathf.Abs(inputVector.x) > 0f || Mathf.Abs(inputVector.y) > 0f)
             {
-                _player.TransitionToState(_player._stateFactory.GetState(StateFactory.StateType.Movement));
+                _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Movement));
             }
         }
     }

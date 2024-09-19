@@ -24,10 +24,10 @@ namespace BrawlingToys.Actors
         {
             OnSomeCooldownChange = CooldownChange;
 
-            meleeTimer = new CountdownTimer(_player._stats.MeleeCooldown);
-            dashTimer = new CountdownTimer(_player._stats.DashCooldown);
-            reloadTimer = new CountdownTimer(_player._stats.ReloadTime);
-            fireRateTimer = new CountdownTimer(_player._stats.FireRate);
+            meleeTimer = new CountdownTimer(_player.Stats.MeleeCooldown);
+            dashTimer = new CountdownTimer(_player.Stats.DashCooldown);
+            reloadTimer = new CountdownTimer(_player.Stats.ReloadTime);
+            fireRateTimer = new CountdownTimer(_player.Stats.FireRate);
         }
 
         public void UpdateCooldowns()
@@ -58,25 +58,25 @@ namespace BrawlingToys.Actors
             switch (statType)
             {
                 case StatType.MeleeCooldown:
-                    if (CompareValues(_player._stats.MeleeCooldown, value))
+                    if (CompareValues(_player.Stats.MeleeCooldown, value))
                     {
                         meleeTimer.Reset(value);
                     }
                     break;
                 case StatType.DashCooldown:
-                    if (CompareValues(_player._stats.DashCooldown, value))
+                    if (CompareValues(_player.Stats.DashCooldown, value))
                     {
                         dashTimer.Reset(value);
                     }
                     break;
                 case StatType.ReloadTime:
-                    if (CompareValues(_player._stats.ReloadTime, value))
+                    if (CompareValues(_player.Stats.ReloadTime, value))
                     {
                         reloadTimer.Reset(value);
                     }
                     break;
                 case StatType.FireRate:
-                    if (CompareValues(_player._stats.FireRate, value))
+                    if (CompareValues(_player.Stats.FireRate, value))
                     {
                         fireRateTimer.Reset(value);
                     }

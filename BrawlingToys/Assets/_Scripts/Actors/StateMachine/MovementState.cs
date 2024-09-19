@@ -7,62 +7,68 @@ namespace BrawlingToys.Actors
     {
         public UnityEvent OnStep;
 
-        [SerializeField] private Rigidbody _rig; 
-        [SerializeField] private float _moveSpeed; 
-
-        [Space]
-
-        [SerializeField] private float _accel = 10f;
+        [SerializeField] private float _accel, _deAccel;
 
         private float _currentSpeed;
-        private Vector3 _velocity;
+        private Vector3 _currentVelocity;
 
         protected override void EnterState()
         {
-            _player._animations.PlayAnimation(PlayerAnimations.AnimationType.Movement);
-            _player._animations.OnAnimationAction.AddListener(() => OnStep?.Invoke());
+            _player.Animations.PlayAnimation(PlayerAnimations.AnimationType.Movement);
+            _player.Animations.OnAnimationAction.AddListener(() => OnStep?.Invoke());
 
             _currentSpeed = 0;
-            _velocity = Vector3.zero;
+            _currentVelocity = Vector3.zero;
         }
 
         protected override void ExitState()
         {
-            _player._animations.ResetEvents();
+            _player.Animations.ResetEvents();
         }
 
         public override void UpdateState()
         {
-            CalculateSpeed();
             CalculateVelocity();
+            SetVelocity();
 
-            if (_player._inputs.GetMovementVectorNormalized() == Vector2.zero)
+            if (_currentSpeed < .01f)
             {
-                _player.TransitionToState(_player._stateFactory.GetState(StateFactory.StateType.Idle));
+                _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Idle));
             }
         }
 
         public override void FixedUpdateState()
         {
-            _rig.MovePosition(_rig.position + _velocity * _moveSpeed * Time.fixedDeltaTime);
+            
         }
 
-        private void CalculateSpeed()
+        private void CalculateSpeed(Vector2 inputVector)
         {
-            if (_player._inputs.GetMovementVectorNormalized().magnitude > 0)
+            if (Mathf.Abs(inputVector.x) > 0 || Mathf.Abs(inputVector.y) > 0)
             {
                 _currentSpeed += _accel * Time.deltaTime;
             }
-
-            _currentSpeed = Mathf.Clamp(_currentSpeed, 0, _player._stats.MoveSpeed);
+            else
+            {
+                _currentSpeed -= _deAccel * Time.deltaTime;
+            }
+            _currentSpeed = Mathf.Clamp(_currentSpeed, 0, _player.Stats.MoveSpeed);
         }
 
         private void CalculateVelocity()
         {
-            Vector2 inputVector = _player._inputs.GetMovementVectorNormalized();
-            Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
+            CalculateSpeed(_player.Inputs.GetMovementVectorNormalized());
 
-            _velocity = moveDirection * _currentSpeed;
+            Vector3 moveDirection = new Vector3(_player.Inputs.GetMovementVectorNormalized().x, 0, 
+                _player.Inputs.GetMovementVectorNormalized().y);
+
+            _currentVelocity = moveDirection * _currentSpeed;
+            _currentVelocity.y = _player.Rig.velocity.y;
+        }
+
+        private void SetVelocity()
+        {
+            _player.Rig.velocity = _currentVelocity;
         }
     }
 }

@@ -43,16 +43,8 @@ namespace BrawlingToys.Actors
 
         public void Initialize(Player bulletOwner)
         {
+            Debug.Log("Bullet Inicializada");
             _bulletOwner = bulletOwner;
-            //Debug.DrawRay(transform.position, -transform.forward, Color.red, .5f);
-            //Physics.Raycast(transform.position, -transform.forward, out RaycastHit hitInfo, range, PlayerMask);
-            //if(hitInfo.collider != null)
-            //{
-            //    if(hitInfo.transform.TryGetComponent(out Player bulletOwner))
-            //    {
-            //        _bulletOwner = bulletOwner;
-            //    }
-            //}
         }
 
         private void Move()
@@ -67,7 +59,8 @@ namespace BrawlingToys.Actors
 
         public virtual void OnTriggerEnter(Collider other)
         {
-            if(!IsOwner) return; // Just the host machine will manage the collision  
+            if(!IsOwner) return; // Just the host machine will manage the collision
+            if (other.gameObject == _bulletOwner.gameObject) return;
         }
 
         /// <summary>
