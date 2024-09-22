@@ -23,8 +23,6 @@ namespace BrawlingToys.UI
         [field: SerializeField]
         public GameStateType ExitStateType { get; private set; }
 
-
-
         protected void Start()
         {   
             ScreenManager.instance.OnToggleAnyScreen += ScreenManager_OnToggleAnyScreen;
@@ -60,6 +58,11 @@ namespace BrawlingToys.UI
             yield return new WaitForSeconds(delayToClose);
 
             gameObject.SetActive(false);
+        }
+
+        protected virtual void OnScreenEnable() 
+        {
+            return;
         }
     }
 }
