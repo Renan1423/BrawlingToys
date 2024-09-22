@@ -12,8 +12,8 @@ namespace BrawlingToys.Actors
                 _player.Inputs.TogglePlayerMap(false);
             }
 
-            _player.OnPlayerDeath?.Invoke(_player);
             _player.OnPlayerKill?.Invoke(_player.MyKiller);
+            _player.OnPlayerDeath?.Invoke(_player);
 
             _player.Animations.PlayAnimation(PlayerAnimations.AnimationType.Die);
             _player.Animations.OnAnimationEnd.AddListener(WhenAnimationEnd);

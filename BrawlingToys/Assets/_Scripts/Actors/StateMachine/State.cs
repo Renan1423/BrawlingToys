@@ -78,7 +78,6 @@ namespace BrawlingToys.Actors
             if (_player.Cooldowns.reloadTimer.IsRunning)
             {
                 // Som de reload
-                Debug.Log("Reload");
             }
             else
             {

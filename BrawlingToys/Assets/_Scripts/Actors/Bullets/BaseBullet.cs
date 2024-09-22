@@ -43,7 +43,6 @@ namespace BrawlingToys.Actors
 
         public void Initialize(Player bulletOwner)
         {
-            Debug.Log("Bullet Inicializada");
             _bulletOwner = bulletOwner;
         }
 
