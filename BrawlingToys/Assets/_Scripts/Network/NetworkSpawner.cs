@@ -20,13 +20,18 @@ namespace BrawlingToys.Network
         /// <summary>
         /// Called when any game object spawn on server, and return it
         /// </summary>
-        public UnityEvent<string, GameObject> WhenObjectSpawnedOnServer = new(); 
+        [HideInInspector] public UnityEvent<string, GameObject> WhenObjectSpawnedOnServer = new(); 
 
         protected override void Awake()
         {
             base.Awake();
 
             GenerateNetworkDictionary();
+        }
+
+        private void Start()
+        {
+            Debug.Log(GetComponent<NetworkObject>().NetworkManager);
         }
 
         private void GenerateNetworkDictionary()
@@ -37,6 +42,7 @@ namespace BrawlingToys.Network
             {
                 foreach (var prefab in prefabList.PrefabList)
                 {
+                    Debug.Log(prefab.Prefab.name, prefab.Prefab);
                     _networkPrefabs.Add(prefab.Prefab.name, prefab.Prefab); 
                 }
             }

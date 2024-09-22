@@ -13,9 +13,9 @@ namespace BrawlingToys.Actors
         /// e componentes necess�rios para o funcionamento do objeto como um todo.
         /// </summary>
         public event EventHandler<Vector3> OnUpdateAimRotation;
-        public UnityEvent<Player> OnPlayerInitialize;
-        public UnityEvent<Player> OnPlayerKill;
-        public UnityEvent<Player> OnPlayerDeath;
+        public UnityEvent<Player> OnPlayerInitialize = new();
+        public UnityEvent<Player> OnPlayerKill = new();
+        public UnityEvent<Player> OnPlayerDeath = new();
 
         // NOTE : Talvez seja melhor fazer um metodo Get...() ou uma propriedade ao inv�s de deixar tudo publico.
         public BaseStats _baseStatsSO;
@@ -25,7 +25,7 @@ namespace BrawlingToys.Actors
         public Stats _stats;
         public Player myKiller;
         //public PlayerWeapon weapon;
-
+        
         [Header("State Stuffs: ")]
         public StateFactory _stateFactory;
         public State _currentState = null, _previousState = null;
@@ -57,6 +57,8 @@ namespace BrawlingToys.Actors
         // Damageable padrão, retirar
         public int Health { get; set; }
 
+        public ulong PlayerId { get; private set; }
+
         private void Awake()
         {
             _stateFactory.InitializeStates(this);
@@ -69,6 +71,11 @@ namespace BrawlingToys.Actors
 
         private void Start()
         {
+        }
+
+        public override void OnNetworkSpawn()
+        {
+            PlayerId = OwnerClientId; 
         }
 
         private void Update()
@@ -119,7 +126,6 @@ namespace BrawlingToys.Actors
         // e possivelmente modifica��es de buffs e debuffs.
         private void InitializePlayer()
         {
-            OnPlayerInitialize?.Invoke(this);
             TransitionToState(_stateFactory.GetState(StateFactory.StateType.Idle));
 
             _mediator = new StatsMediator();
@@ -137,6 +143,8 @@ namespace BrawlingToys.Actors
             {
                 _knockback.Timer.OnTimerStop += _inputs.EnablePlayerMap;
             }
+            
+            OnPlayerInitialize?.Invoke(this);
         }
 
         // Metodo respons�vel por toda a troca de estado. Chama o Exit() do atual e o Enter() do novo,
@@ -187,6 +195,7 @@ namespace BrawlingToys.Actors
         // Esse método vai ficar assim e a gente gerencia a invencibilidade no outro script (State)
         public void Damage(Player sender)
         {
+            Debug.Log("Damege");
             myKiller = sender;
             DieServerRpc(); 
         }

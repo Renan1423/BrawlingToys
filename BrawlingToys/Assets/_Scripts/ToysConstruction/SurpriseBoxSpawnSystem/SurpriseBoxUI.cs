@@ -37,7 +37,7 @@ public class SurpriseBoxUI : BaseScreen
     [SerializeField]
     private EffectsSelectionScreen _equipEffectsSelectionScreen;
 
-    private void OnEnable()
+    protected override void OnScreenEnable()
     {
         ResetSurpriseBoxUi();
     }
@@ -55,7 +55,7 @@ public class SurpriseBoxUI : BaseScreen
 
     public void SetCurrentSurpriseBox(SurpriseBox surpriseBox) { _currentSurpriseBox = surpriseBox; }
 
-    [Tooltip("Deve ser chamado quando o player apertar o botão de confirmar")]
+    [Tooltip("Deve ser chamado quando o player apertar o botï¿½o de confirmar")]
     public void OpenCurrentSurpriseBox() 
     {
         _openBoxButton.SetActive(false);

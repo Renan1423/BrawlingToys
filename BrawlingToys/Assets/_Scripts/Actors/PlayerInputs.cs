@@ -31,6 +31,11 @@ namespace BrawlingToys.Actors
             }
         }
 
+        private void OnEnable()
+        {
+            if(IsOwner) TogglePlayerMap(true); 
+        }
+
         private void InputsInitialization()
         {
             _playerInputActions = new();
