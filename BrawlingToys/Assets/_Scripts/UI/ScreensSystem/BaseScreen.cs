@@ -35,7 +35,7 @@ namespace BrawlingToys.UI
         {
             if (e.screenName == ScreenName) 
             {
-                Debug.Log("Validou o nome da tela");
+                Debug.Log("BaseScreen: Validou o nome da tela");
                 if (e.active && _canChangeGameStateOnEnter)
                 {
                     GameManager.LocalInstance.ChangeGameState(EnterStateType);

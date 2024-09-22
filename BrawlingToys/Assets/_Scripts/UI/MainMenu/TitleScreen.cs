@@ -4,14 +4,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.LowLevel;
+using BrawlingToys.Managers;
+using BrawlingToys.Core;
 
 namespace BrawlingToys.UI
 {
     public class TitleScreen : MonoBehaviour
     {
-        [SerializeField]
-        private GameObject _mainMenu;
-
         private void OnEnable()
         {
             InputSystem.onEvent += OnEvent;
@@ -44,7 +43,7 @@ namespace BrawlingToys.UI
 
         private void CloseTitleScreen() 
         {
-            _mainMenu.SetActive(true);
+            ScreenManager.instance.ToggleScreenByTag(TagManager.MainMenu.MAIN_MENU, true);
             this.gameObject.SetActive(false);
         }
     }
