@@ -56,10 +56,15 @@ namespace BrawlingToys.Actors
             rb.useGravity = true;
         }
 
-        public virtual void OnTriggerEnter(Collider other)
+        public abstract void OnTriggerEnter(Collider other); 
+
+        protected bool ValidCollision(Collider other)
         {
-            if(!IsOwner) return; // Just the host machine will manage the collision
-            if (other.gameObject == _bulletOwner.gameObject) return;
+            if (!IsOwner) return false; 
+            Debug.Log($"Is the same: {other.gameObject == _bulletOwner.gameObject} - Collisin: {other.gameObject} - Owner: {_bulletOwner.gameObject}");
+            if (other.gameObject == _bulletOwner.gameObject) return false;
+
+            return true; 
         }
 
         /// <summary>

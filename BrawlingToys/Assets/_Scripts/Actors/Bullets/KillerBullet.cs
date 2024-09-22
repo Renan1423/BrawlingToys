@@ -6,8 +6,8 @@ namespace BrawlingToys.Actors
     {
         public override void OnTriggerEnter(Collider other)
         {
-            base.OnTriggerEnter(other);
-
+            if(!ValidCollision(other)) return; 
+            
             if (other.TryGetComponent(out IDamageable hit))
                 hit.Damage(_bulletOwner);
 

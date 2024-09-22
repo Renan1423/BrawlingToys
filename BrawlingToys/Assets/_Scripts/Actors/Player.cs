@@ -3,11 +3,16 @@ using Unity.Netcode;
 using UnityEngine;
 using BrawlingToys.Core;
 using UnityEngine.Events;
+using System.Collections.Generic;
+using System.Linq;
+using BrawlingToys.Network;
 
 namespace BrawlingToys.Actors
 {
     public class Player : NetworkBehaviour, ICommandManager, IDamageable
     {
+        public static List<Player> Instances = new();
+        
         /// <summary>
         /// A classe Player ser� o componente principal do objeto player(Pai) e funcionar� como um "container" dos principais atrubitos
         /// e componentes necess�rios para o funcionamento do objeto como um todo.
@@ -90,6 +95,9 @@ namespace BrawlingToys.Actors
         public override void OnNetworkSpawn()
         {
             PlayerId = OwnerClientId; 
+            
+            var playerInstances = GameObject.FindObjectsOfType<Player>(); 
+            Instances = playerInstances.ToList(); 
         }
 
         private void Update()
@@ -134,6 +142,7 @@ namespace BrawlingToys.Actors
             _cooldowns = new PlayerCooldownController(this);
             _cooldowns.Initialize();
 
+            
             SetShootingCommand(new KillBulletCommand(_firePoint, this));
             SetMeleeCommand(new MeleeCommand(_firePoint, _meleeRadius));
 
@@ -143,7 +152,7 @@ namespace BrawlingToys.Actors
             {
                 _knockback.Timer.OnTimerStop += _inputs.EnablePlayerMap;
             }
-            
+    
             OnPlayerInitialize?.Invoke(this);
         }
 
@@ -237,6 +246,19 @@ namespace BrawlingToys.Actors
         {
             _knockback.Timer.Start();
             _knockbackDirection = senderForward;
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        public void SpawnBulletServerRpc(string bulletName, ulong bulletOwnerPlayerId)
+        {
+            var bullet = NetworkSpawner
+                .LocalInstance
+                .InstantiateOnServer(bulletName, _firePoint.position, _firePoint.rotation)
+                .GetComponent<BaseBullet>();
+                
+            var owner = Instances.First(p => p.PlayerId == bulletOwnerPlayerId); 
+            
+            bullet.Initialize(owner); 
         }
     }
 }
