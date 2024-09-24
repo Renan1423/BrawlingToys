@@ -45,6 +45,8 @@ namespace BrawlingToys.UI
                 }
 
                 this.gameObject.SetActive(e.active);
+                if (e.active)
+                    OnScreenEnable();
             }
         }
 

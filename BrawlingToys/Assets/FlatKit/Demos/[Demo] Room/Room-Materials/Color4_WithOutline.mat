@@ -109,7 +109,7 @@ Material:
     - _FlatSmoothness: 0.362
     - _FlatSpecularEdgeSmoothness: 0.5
     - _FlatSpecularEnabled: 1
-    - _FlatSpecularSize: 0.712
+    - _FlatSpecularSize: 0.11
     - _FlatSpecularSmoothness: 0.5
     - _Flatness: 1
     - _FlatnessExtra: 1
@@ -148,7 +148,7 @@ Material:
     - _SecondaryColor: 1
     - _SecondaryColorEnabled: 1
     - _SelfShadingSize: 0.491
-    - _SelfShadingSizeExtra: 0.5
+    - _SelfShadingSizeExtra: 0.55
     - _ShadowEdgeSize: 0.021
     - _ShadowEdgeSizeExtra: 0.05
     - _ShadowEdgeSmoothness: 0.01
