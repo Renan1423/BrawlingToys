@@ -3,11 +3,16 @@ using Unity.Netcode;
 using UnityEngine;
 using BrawlingToys.Core;
 using UnityEngine.Events;
+using System.Collections.Generic;
+using System.Linq;
+using BrawlingToys.Network;
 
 namespace BrawlingToys.Actors
 {
     public class Player : NetworkBehaviour, ICommandManager, IDamageable
     {
+        public static List<Player> Instances = new();
+        
         /// <summary>
         /// A classe Player ser� o componente principal do objeto player(Pai) e funcionar� como um "container" dos principais atrubitos
         /// e componentes necess�rios para o funcionamento do objeto como um todo.
@@ -18,16 +23,30 @@ namespace BrawlingToys.Actors
         public UnityEvent<Player> OnPlayerDeath = new();
 
         // NOTE : Talvez seja melhor fazer um metodo Get...() ou uma propriedade ao inv�s de deixar tudo publico.
-        public BaseStats _baseStatsSO;
-        public PlayerInputs _inputs;
-        public PlayerAnimations _animations;
-        public PlayerCooldownController _cooldowns;
-        public Stats _stats;
-        public Player myKiller;
+        #region Properties
+        public ulong PlayerId { get; private set; }
+        public BaseStats BaseStatsSO { get => _baseStatsSO; }
+        public PlayerInputs Inputs { get => _inputs; }
+        public PlayerAnimations Animations { get => _animations; }
+        public PlayerCooldownController Cooldowns { get => _cooldowns; }
+        public Stats Stats { get => _stats; }
+        public Player MyKiller { get => _myKiller; }
+        public Rigidbody Rig { get => _rig; }
+        public StateFactory StateFactory { get => _stateFactory; }
+
+        #endregion
+
+        [SerializeField] private BaseStats _baseStatsSO;
+        [SerializeField] private PlayerInputs _inputs;
+        [SerializeField] private PlayerAnimations _animations;
+        [SerializeField] private PlayerCooldownController _cooldowns;
+        [SerializeField] private Stats _stats;
+        [SerializeField] private Player _myKiller;
+        [SerializeField] private Rigidbody _rig;
         //public PlayerWeapon weapon;
         
         [Header("State Stuffs: ")]
-        public StateFactory _stateFactory;
+        [SerializeField] private StateFactory _stateFactory;
         public State _currentState = null, _previousState = null;
 
         [Header("Command Stuffs: ")]
@@ -57,7 +76,7 @@ namespace BrawlingToys.Actors
         // Damageable padrão, retirar
         public int Health { get; set; }
 
-        public ulong PlayerId { get; private set; }
+        
 
         private void Awake()
         {
@@ -76,6 +95,9 @@ namespace BrawlingToys.Actors
         public override void OnNetworkSpawn()
         {
             PlayerId = OwnerClientId; 
+            
+            var playerInstances = GameObject.FindObjectsOfType<Player>(); 
+            Instances = playerInstances.ToList(); 
         }
 
         private void Update()
@@ -99,20 +121,6 @@ namespace BrawlingToys.Actors
                     _knockback.AddForce(transform, _knockbackDirection, _knockbackPower, Time.deltaTime);
                 }
             }
-
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                if (bala)
-                {
-                    SetShootingCommand(new PushBulletCommand(_firePoint));
-                    bala = !bala;
-                }
-                else
-                {
-                    SetShootingCommand(new KillBulletCommand(_firePoint, this));
-                    bala = !bala;
-                }
-            }
         }
 
         private void FixedUpdate()
@@ -134,7 +142,8 @@ namespace BrawlingToys.Actors
             _cooldowns = new PlayerCooldownController(this);
             _cooldowns.Initialize();
 
-            SetShootingCommand(new PushBulletCommand(_firePoint));
+            
+            SetShootingCommand(new KillBulletCommand(_firePoint, this));
             SetMeleeCommand(new MeleeCommand(_firePoint, _meleeRadius));
 
             _knockback = new(_knockbackDuration);
@@ -143,7 +152,7 @@ namespace BrawlingToys.Actors
             {
                 _knockback.Timer.OnTimerStop += _inputs.EnablePlayerMap;
             }
-            
+    
             OnPlayerInitialize?.Invoke(this);
         }
 
@@ -196,7 +205,7 @@ namespace BrawlingToys.Actors
         public void Damage(Player sender)
         {
             Debug.Log("Damege");
-            myKiller = sender;
+            _myKiller = sender;
             DieServerRpc(); 
         }
 
@@ -237,6 +246,19 @@ namespace BrawlingToys.Actors
         {
             _knockback.Timer.Start();
             _knockbackDirection = senderForward;
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        public void SpawnBulletServerRpc(string bulletName, ulong bulletOwnerPlayerId)
+        {
+            var bullet = NetworkSpawner
+                .LocalInstance
+                .InstantiateOnServer(bulletName, _firePoint.position, _firePoint.rotation)
+                .GetComponent<BaseBullet>();
+                
+            var owner = Instances.First(p => p.PlayerId == bulletOwnerPlayerId); 
+            
+            bullet.Initialize(owner); 
         }
     }
 }

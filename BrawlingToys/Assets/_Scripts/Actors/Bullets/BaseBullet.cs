@@ -44,20 +44,11 @@ namespace BrawlingToys.Actors
         public void Initialize(Player bulletOwner)
         {
             _bulletOwner = bulletOwner;
-            //Debug.DrawRay(transform.position, -transform.forward, Color.red, .5f);
-            //Physics.Raycast(transform.position, -transform.forward, out RaycastHit hitInfo, range, PlayerMask);
-            //if(hitInfo.collider != null)
-            //{
-            //    if(hitInfo.transform.TryGetComponent(out Player bulletOwner))
-            //    {
-            //        _bulletOwner = bulletOwner;
-            //    }
-            //}
         }
 
         private void Move()
         {
-            transform.position += speed * Time.deltaTime * direction;
+            if(IsOwner) transform.position += speed * Time.deltaTime * direction;
         }
 
         private void EnableGravity()
@@ -65,9 +56,15 @@ namespace BrawlingToys.Actors
             rb.useGravity = true;
         }
 
-        public virtual void OnTriggerEnter(Collider other)
+        public abstract void OnTriggerEnter(Collider other); 
+
+        protected bool ValidCollision(Collider other)
         {
-            //if(!IsHost) return; // Just the host machine will manage the collision  
+            if (!IsOwner) return false; 
+            Debug.Log($"Is the same: {other.gameObject == _bulletOwner.gameObject} - Collisin: {other.gameObject} - Owner: {_bulletOwner.gameObject}");
+            if (other.gameObject == _bulletOwner.gameObject) return false;
+
+            return true; 
         }
 
         /// <summary>

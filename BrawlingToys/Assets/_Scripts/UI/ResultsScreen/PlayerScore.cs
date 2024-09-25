@@ -56,10 +56,6 @@ namespace BrawlingToys.UI
 
                 yield return new WaitForSeconds(0.25f);
             }
-
-            resultsScreen.UpdateScores();
         }
-
-
     }
 }

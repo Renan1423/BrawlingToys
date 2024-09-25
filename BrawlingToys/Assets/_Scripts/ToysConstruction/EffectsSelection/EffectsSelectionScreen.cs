@@ -36,7 +36,7 @@ public class EffectsSelectionScreen : BaseScreen
         for (int i = 0; i < _players.Count; i++)
         {
             string playerName = "Player " + i;
-            SpawnPlayerInfo(_drawnEffect, _players[i]._stats, playerName, _playerCharacterAssetRef, new GameObject[0]);
+            SpawnPlayerInfo(_drawnEffect, _players[i].Stats, playerName, _playerCharacterAssetRef, new GameObject[0]);
         }
     }
 

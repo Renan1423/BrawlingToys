@@ -76,7 +76,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172481498366530268}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: cac1f8d43513ae34cba060639174e50c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -88,7 +88,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.65
   m_Height: 2.8
   m_Direction: 1
   m_Center: {x: 0, y: 1.37, z: 0}
@@ -128,7 +128,8 @@ MonoBehaviour:
   _baseStatsSO: {fileID: 11400000, guid: 6618a62998fb61d40b1f88e97625350d, type: 2}
   _inputs: {fileID: 8132426246734092638}
   _animations: {fileID: 5725714426884926404}
-  myKiller: {fileID: 0}
+  _myKiller: {fileID: 0}
+  _rig: {fileID: 8344952857166226115}
   _stateFactory: {fileID: 5179218893500982180}
   _currentState: {fileID: 0}
   _previousState: {fileID: 0}
@@ -1053,7 +1054,7 @@ Transform:
   m_GameObject: {fileID: 9066835223822736270}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 1}
+  m_LocalPosition: {x: 0, y: 1.59, z: 1.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1164,7 +1165,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  accel: 10
+  _accel: 500
+  _deAccel: 300
 --- !u!114 &3293204902309920025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1225,6 +1227,7 @@ MonoBehaviour:
   OnExit:
     m_PersistentCalls:
       m_Calls: []
+  _rig: {fileID: 8344952857166226115}
   dashDuration: 0.2
   impulsePower: 200
 --- !u!114 &1567318420048852312

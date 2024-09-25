@@ -23,11 +23,10 @@ namespace BrawlingToys.UI
 
         [SerializeField] private float _timeToBackToGame = 7f; 
 
-        private List<PlayerScore> _playerScores;
+        private List<PlayerScore> _connectedPlayerScoresUIs;
 
         private Dictionary<ulong, PlayerRoundInfo> _playersRoundInfo = new(); 
 
-        private ulong _updateIndex = 0;
         private bool _initialized = false;
 
         protected override void OnScreenEnable()
@@ -36,7 +35,7 @@ namespace BrawlingToys.UI
             {
                 ServerGetPlayersRoundInfo();
                 CallSyncRpc(); 
-                InitializeResultScreenGraphics(); 
+                DrawGraphics(); 
                 StartCoroutine(WaitForCloseScreen());
             }
             
@@ -45,7 +44,7 @@ namespace BrawlingToys.UI
             {
                 var serializedIds = _playersRoundInfo
                     .Keys
-                    .ToArray();
+                    .ToArray(); 
                 
                 var serializedKills = _playersRoundInfo
                     .Values
@@ -61,30 +60,21 @@ namespace BrawlingToys.UI
             }
         }
 
-        private void InitializeResultScreenGraphics()
+        private void DrawGraphics()
         {
-            Debug.Log("Init result screen graphicsa");
-            _updateIndex = 0;
-
             if (!_initialized)
             {
-                //_requiredScoreToWin = Random.Range(6, 16);
-                SpawnPlayerScoresObjects();
+                InitializeScreen();
                 _initialized = true;
-
-                Debug.Log("Inited varible");
             }
 
             UpdateScores();
         }
 
-        public void SpawnPlayerScoresObjects()
+        public void InitializeScreen()
         {
-            _playerScores = new List<PlayerScore>();
-
-            //We must gather the amount of players using the multiplayer features. This is only for prototype purposes
+            _connectedPlayerScoresUIs = new List<PlayerScore>();
             int playerAmount = _playersRoundInfo.Count;
-            Debug.Log("Playert amoubnt" + playerAmount);
 
             for (int i = 0; i < playerAmount; i++)
             {
@@ -94,24 +84,27 @@ namespace BrawlingToys.UI
                 var playerIdKey = _playersRoundInfo.Keys.ToArray()[i]; 
 
                 playerScore.FillPlayerScoreInfo(_requiredScoreToWin, (int) playerIdKey);
-                _playerScores.Add(playerScore);
+                _connectedPlayerScoresUIs.Add(playerScore);
             }
         }
 
         public void UpdateScores()
         {
-            if ((int) _updateIndex >= _playerScores.Count)
-                return;
+            for (int i = 0; i < _playersRoundInfo.Count; i++)
+            {
+                var index = GetCastedIndex(i); 
+                var roundInfo = _playersRoundInfo[index]; 
+                
+                var score = roundInfo.IsSurvivor 
+                ? roundInfo.KillsAmount + 1 
+                : roundInfo.KillsAmount;
 
-            Debug.Log("Updating Scrioe");
+                Debug.Log($"Index: {i} - Score {score}");
 
-            int additionalScore = _playersRoundInfo[_updateIndex].IsSurvivor 
-            ? _playersRoundInfo[_updateIndex].KillsAmount + 1 
-            : _playersRoundInfo[_updateIndex].KillsAmount;
+                _connectedPlayerScoresUIs[i].AddScore(score, this);
+            }
 
-            _updateIndex++;
-
-            _playerScores[(int) _updateIndex - 1].AddScore(additionalScore, this);
+            ulong GetCastedIndex(int i) => (ulong) i;  
         }
 
         public int GetRequiredScoreToWin() => _requiredScoreToWin;
@@ -175,7 +168,7 @@ namespace BrawlingToys.UI
                     Debug.Log($"{id}{info}");
                 }
                 
-                InitializeResultScreenGraphics(); 
+                DrawGraphics(); 
             }
         }
 

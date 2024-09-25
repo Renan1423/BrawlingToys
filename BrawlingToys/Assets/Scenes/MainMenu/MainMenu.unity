@@ -734,50 +734,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135133445}
   m_CullTransparentMesh: 1
---- !u!1 &174350374
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 174350376}
-  - component: {fileID: 174350375}
-  m_Layer: 0
-  m_Name: ScreenManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &174350375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 174350374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c65e2acd7d0384f82ea52fa70e3a57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &174350376
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 174350374}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &198206609 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7749185303235270918, guid: 512f33625372fa94da93c25e4a9b0c77,
@@ -935,6 +891,7 @@ GameObject:
   m_Component:
   - component: {fileID: 328588086}
   - component: {fileID: 328588087}
+  - component: {fileID: 328588088}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: MainMenu
@@ -975,6 +932,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab4bb17d814955b4080095481d500e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _graphicContainer: {fileID: 0}
+  <ScreenName>k__BackingField: 
+  _canChangeGameStateOnEnter: 0
+  <EnterStateType>k__BackingField: 0
+  _canChangeGameStateOnExit: 0
+  <ExitStateType>k__BackingField: 0
+--- !u!114 &328588088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328588085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 3045260567
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &343426996
 GameObject:
   m_ObjectHideFlags: 0
@@ -3916,5 +3899,4 @@ SceneRoots:
   - {fileID: 586002069}
   - {fileID: 351974366}
   - {fileID: 75449562}
-  - {fileID: 174350376}
   - {fileID: 1393221855}

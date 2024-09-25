@@ -12,6 +12,7 @@ namespace BrawlingToys.Core
         private const string INGAMECONSONE_PATH = MAIN_PATH + "IngameDebugConsole"; 
         private const string NETWORK_MANAGER_PATH = MAIN_PATH + "Network Manager"; 
         private const string NETWORK_AUTHENTICATION = MAIN_PATH + "Unity Services Auth"; 
+        private const string SCREEN_MANAGER = MAIN_PATH + "Screen Manager"; 
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void Execute()
@@ -31,6 +32,7 @@ namespace BrawlingToys.Core
         {
             GameObject.Instantiate(Resources.Load(NETWORK_MANAGER_PATH));
             GameObject.Instantiate(Resources.Load(NETWORK_AUTHENTICATION)); 
+            GameObject.Instantiate(Resources.Load(SCREEN_MANAGER)); 
         }
     }
 }

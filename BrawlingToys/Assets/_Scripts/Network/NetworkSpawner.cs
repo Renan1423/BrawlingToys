@@ -54,26 +54,39 @@ namespace BrawlingToys.Network
         /// <param name="gameObjectName">The name of the object to spawn.</param>
         /// <param name="position">The position to spawn the object at.</param>
         /// <param name="rotation">The rotation to spawn the object with.</param>
-        public void InstantiateOnServer(string gameObjectName, Vector3 position, Quaternion rotation)
+        public GameObject InstantiateOnServer(string gameObjectName, Vector3 position, Quaternion rotation)
         {
-            if (!NameExistsInNetworkPrefabs()) MakeLogError(); 
+            if (!NameExistsInNetworkPrefabs())
+            {
+                MakeDictionaryLogError();
+                return null;  
+            }
 
-            SpawnServerRpc(gameObjectName, position, rotation); 
+            if (!NetworkManager.Singleton.IsServer)
+            {
+                MakeServerLogError();
+                return null; 
+            }
+
+            var response = GetNetworkSpawnerObject(); 
+            return response;
+
+            GameObject GetNetworkSpawnerObject()
+            {
+                var prefab = _networkPrefabs[gameObjectName]; 
+            
+                var objectToSpawn = Instantiate(prefab, position, rotation);
+                objectToSpawn.GetComponent<NetworkObject>().Spawn(true);
+
+                return objectToSpawn; 
+            }
 
             bool NameExistsInNetworkPrefabs() => _networkPrefabs.ContainsKey(gameObjectName); 
-            void MakeLogError() => 
-            Debug.LogError($"The object name {gameObjectName} dont match with network prefabs list names, please check network prefab names");
-        }
-
-        [ServerRpc(RequireOwnership = false)]
-        private void SpawnServerRpc(string gameObjectName, Vector3 position, Quaternion rotation)
-        {
-            var prefab = _networkPrefabs[gameObjectName]; 
             
-            var objectToSpawn = Instantiate(prefab, position, rotation);
-            objectToSpawn.GetComponent<NetworkObject>().Spawn(true);
-
-            WhenObjectSpawnedOnServer?.Invoke(gameObjectName, objectToSpawn); 
+            void MakeDictionaryLogError() => 
+            Debug.LogError($"The object name {gameObjectName} dont match with network prefabs list names, please check network prefab names");
+            void MakeServerLogError() => 
+            Debug.LogError($"This call can be executed in server only!");
         }
     }
 }

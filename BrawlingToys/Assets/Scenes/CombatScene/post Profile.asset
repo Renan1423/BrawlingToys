@@ -9,14 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4991a3bb4e035dd4680456f85d7a144f, type: 3}
-  m_Name: PlayerBaseStatsSO
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: post Profile
   m_EditorClassIdentifier: 
-  moveSpeed: 70
-  meleeCooldown: 5
-  dashCooldown: 2
-  dashAmount: 1
-  reloadTime: 1
-  fireRate: 0.1
-  bulletAmount: 1
-  defaultBullet: {fileID: 0}
+  components: []

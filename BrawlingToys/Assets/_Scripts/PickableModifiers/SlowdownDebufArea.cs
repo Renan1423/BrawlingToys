@@ -27,7 +27,7 @@ public class SlowdownDebufArea : MonoBehaviour
                 else if (playerTarget == playerHit)
                     return;
                 
-                playerTarget._stats.Mediator.AddModifier(BasicModifierSO);
+                playerTarget.Stats.Mediator.AddModifier(BasicModifierSO);
             }
         }
     }
