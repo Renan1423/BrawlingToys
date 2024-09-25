@@ -20,12 +20,24 @@ namespace BrawlingToys.UI
 
         public void StartGame()
         {
+            _mainMenuCamAnimHandler.TriggerPlayGame();
+
+            StartCoroutine(StartGameWithDelay());
+        }
+
+        private IEnumerator StartGameWithDelay() 
+        {
+            yield return new WaitForSeconds(1f);
+
             LevelManager.instance.LoadNextLevel();
+            CloseScreen(0f);
         }
 
         public void OpenCredits() 
         {
             ScreenManager.instance.ToggleScreenByTag(TagManager.MainMenu.CREDITS, true);
+            _mainMenuCamAnimHandler.TriggerCredits();
+            CloseScreen(0f);
         }
 
         public void OpenSettings() 

@@ -14,9 +14,19 @@ namespace BrawlingToys.UI
             _anim.SetTrigger("TitleScreen");
         }
 
-        public void TriggerMainMenu() 
+        public void TriggerMainMenu()
         {
             _anim.SetTrigger("MainMenu");
+        }
+
+        public void TriggerPlayGame() 
+        {
+            _anim.SetTrigger("PlayGame");
+        }
+
+        public void TriggerCredits() 
+        {
+            _anim.SetTrigger("Credits");
         }
 
         public void TriggerSettings()
