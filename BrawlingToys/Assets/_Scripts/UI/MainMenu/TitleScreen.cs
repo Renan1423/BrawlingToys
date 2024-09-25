@@ -11,6 +11,9 @@ namespace BrawlingToys.UI
 {
     public class TitleScreen : MonoBehaviour
     {
+        [SerializeField]
+        private Animator _anim;
+
         private void OnEnable()
         {
             InputSystem.onEvent += OnEvent;
@@ -44,7 +47,18 @@ namespace BrawlingToys.UI
         private void CloseTitleScreen() 
         {
             ScreenManager.instance.ToggleScreenByTag(TagManager.MainMenu.MAIN_MENU, true);
+            _anim.SetTrigger("Close");
+
+            StartCoroutine(CloseTitleScreenCoroutine());
+        }
+
+        private IEnumerator CloseTitleScreenCoroutine() 
+        {
+            yield return new WaitForSeconds(0.5f);
+
             this.gameObject.SetActive(false);
         }
+
+
     }
 }
