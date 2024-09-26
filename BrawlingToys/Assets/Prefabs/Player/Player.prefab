@@ -199,8 +199,8 @@ MonoBehaviour:
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
   UseQuaternionSynchronization: 1
-  UseQuaternionCompression: 0
-  UseHalfFloatPrecision: 0
+  UseQuaternionCompression: 1
+  UseHalfFloatPrecision: 1
   InLocalSpace: 0
   Interpolate: 0
   SlerpPosition: 1
@@ -1228,6 +1228,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _rig: {fileID: 8344952857166226115}
+  dashDuration: 0.2
   impulsePower: 200
 --- !u!114 &1567318420048852312
 MonoBehaviour:
