@@ -9,18 +9,14 @@ namespace BrawlingToys.Actors
         
         [Space]
         
-        [SerializeField] float dashDuration = 0;
         [SerializeField] float impulsePower = 20f;
 
         private Vector3 dashDirection;
-
-        private PhysicUtil physicUtil;
 
         protected override void EnterState()
         {
             _player.Animations.PlayAnimation(PlayerAnimations.AnimationType.Dash);
             _player.Cooldowns.dashTimer.Start();
-            physicUtil = new PhysicUtil(dashDuration);
 
             // Aplicar for�a no player na dire��o de movimento
             float movementMagnitude = _player.Inputs.GetMovementVectorNormalized().magnitude;
@@ -29,23 +25,14 @@ namespace BrawlingToys.Actors
 
             dashDirection = movementMagnitude > 0 ? movementDirection : Vector3.forward;
 
-            physicUtil.Timer.Start();
+            _player.Animations.OnAnimationAction.AddListener(() => _player.Rig.AddForce(impulsePower * dashDirection, ForceMode.Impulse));
+            _player.Animations.OnAnimationEnd.AddListener(WhenDashEnds);
         }
 
         protected override void ExitState()
         {
             dashDirection = Vector3.zero;
-            physicUtil.Timer.Stop();
-        }
-
-        public override void UpdateState()
-        {
-            physicUtil.AddForce(_player.transform, dashDirection, impulsePower * _player.Stats.MoveSpeed, Time.deltaTime);
-
-            if (physicUtil.Timer.IsFinished)
-            {
-                WhenDashEnds();
-            }
+            _player.Animations.ResetEvents();
         }
 
         protected override void HandleShoot(object sender, EventArgs e)
