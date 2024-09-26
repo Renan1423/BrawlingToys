@@ -1,18 +1,11 @@
 using System.Collections;
 using UnityEngine;
 using BrawlingToys.Managers;
-using Unity.Netcode;
 
 namespace BrawlingToys.UI
 {
-    public abstract class BaseScreen : NetworkBehaviour
+    public abstract class BaseScreen : MonoBehaviour
     {
-        [Header("References")]
-
-        [SerializeField] private GameObject _graphicContainer; 
-        
-        [field:Header("Tags")]
-        
         [field: SerializeField]
         public string ScreenName { get; private set; }
 
@@ -33,25 +26,14 @@ namespace BrawlingToys.UI
         protected void Start()
         {   
             ScreenManager.instance.OnToggleAnyScreen += ScreenManager_OnToggleAnyScreen;
-            _graphicContainer.SetActive(false);
+            gameObject.SetActive(false);
         }
 
         protected virtual void ScreenManager_OnToggleAnyScreen(object sender, ScreenManager.ToggleAnyScreenEventArgs e) 
         {
             if (e.screenName == ScreenName) 
             {
-                CheckGameManagerCallbacks(); 
-
-                _graphicContainer.SetActive(e.active);
-
-                if (e.active)
-                {
-                    OnScreenEnable(); 
-                }
-            }
-
-            void CheckGameManagerCallbacks()
-            {
+                Debug.Log("BaseScreen: Validou o nome da tela");
                 if (e.active && _canChangeGameStateOnEnter)
                 {
                     GameManager.LocalInstance.ChangeGameState(EnterStateType);
@@ -61,6 +43,10 @@ namespace BrawlingToys.UI
                 {
                     GameManager.LocalInstance.ChangeGameState(ExitStateType);
                 }
+
+                this.gameObject.SetActive(e.active);
+                if (e.active)
+                    OnScreenEnable();
             }
         }
 
@@ -76,9 +62,9 @@ namespace BrawlingToys.UI
             gameObject.SetActive(false);
         }
 
-        protected virtual void OnScreenEnable()
+        protected virtual void OnScreenEnable() 
         {
-            return; 
+            return;
         }
     }
 }

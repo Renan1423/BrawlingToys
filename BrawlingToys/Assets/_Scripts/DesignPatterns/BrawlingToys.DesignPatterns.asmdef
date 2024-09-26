@@ -1,7 +1,9 @@
 {
     "name": "BrawlingToys.DesignPatterns",
     "rootNamespace": "BrawlingToys.DesignPatterns",
-    "references": [],
+    "references": [
+        "GUID:51f07e88ca493b04c81a8ac24c02c43b"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
