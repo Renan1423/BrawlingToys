@@ -15,5 +15,5 @@ public class BaseStats : ScriptableObject
     public float reloadTime = 10;
     public float fireRate = 10;
     public float bulletAmount = 1;
-    public GameObject defaultBullet;
+    public IHitCommand defaultHitEffect;
 }

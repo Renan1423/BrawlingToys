@@ -9,7 +9,7 @@ using BrawlingToys.Network;
 
 namespace BrawlingToys.Actors
 {
-    public class Player : NetworkBehaviour, ICommandManager, IDamageable
+    public class Player : NetworkBehaviour
     {
         public static List<Player> Instances = new();
         
@@ -49,12 +49,6 @@ namespace BrawlingToys.Actors
         [SerializeField] private StateFactory _stateFactory;
         public State _currentState = null, _previousState = null;
 
-        [Header("Command Stuffs: ")]
-        public ICommand _shootCommand;
-        public ICommand _meleeCommand;
-        [SerializeField] private float _meleeRadius;
-        private bool bala;
-
         [Header("Aim Stuff: ")]
         [SerializeField] private LayerMask _groundLayerMask;
         private RaycastHit hitInfo;
@@ -70,13 +64,7 @@ namespace BrawlingToys.Actors
         private StatsMediator _mediator;
 
         [Header("Gizmos Stuff: ")]
-        [SerializeField] private Color _meleeColor;
         [SerializeField] private Color _aimColor;
-
-        // Damageable padrão, retirar
-        public int Health { get; set; }
-
-        
 
         private void Awake()
         {
@@ -86,10 +74,6 @@ namespace BrawlingToys.Actors
         private void OnEnable()
         {
             InitializePlayer();
-        }
-
-        private void Start()
-        {
         }
 
         public override void OnNetworkSpawn()
@@ -142,10 +126,6 @@ namespace BrawlingToys.Actors
             _cooldowns = new PlayerCooldownController(this);
             _cooldowns.Initialize();
 
-            
-            SetShootingCommand(new KillBulletCommand(_firePoint, this));
-            SetMeleeCommand(new MeleeCommand(_firePoint, _meleeRadius));
-
             _knockback = new(_knockbackDuration);
             
             if (IsOwner)
@@ -191,25 +171,15 @@ namespace BrawlingToys.Actors
             }
         }
 
-        public void SetShootingCommand(ICommand command)
-        {
-            _shootCommand = command;
-        }
-
-        public void SetMeleeCommand(ICommand command)
-        {
-            _meleeCommand = command;
-        }
-
         // Esse método vai ficar assim e a gente gerencia a invencibilidade no outro script (State)
-        public void Damage(Player sender)
+        public void Damage(Player sender)////////////////////
         {
             Debug.Log("Damege");
             _myKiller = sender;
             DieServerRpc(); 
         }
 
-        public void Knockback(GameObject sender)
+        public void Knockback(GameObject sender)//////////////////////
         {
             KnockBackServerRpc(sender.transform.forward); 
         }
@@ -218,9 +188,6 @@ namespace BrawlingToys.Actors
         {
             Gizmos.color = _aimColor;
             Gizmos.DrawSphere(hitInfo.point, .5f);
-
-            Gizmos.color = _meleeColor;
-            Gizmos.DrawSphere(_firePoint.position, _meleeRadius);
         }
 
         [ServerRpc(RequireOwnership = false)]
@@ -254,7 +221,7 @@ namespace BrawlingToys.Actors
             var bullet = NetworkSpawner
                 .LocalInstance
                 .InstantiateOnServer(bulletName, _firePoint.position, _firePoint.rotation)
-                .GetComponent<BaseBullet>();
+                .GetComponent<Bullet>();
                 
             var owner = Instances.First(p => p.PlayerId == bulletOwnerPlayerId); 
             
