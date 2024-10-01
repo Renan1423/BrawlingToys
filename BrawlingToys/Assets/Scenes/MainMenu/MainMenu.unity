@@ -2703,7 +2703,7 @@ PrefabInstance:
     - target: {fileID: 940337143702244696, guid: 9f992e528a2b9624d83b89415142b36f,
         type: 3}
       propertyPath: m_text
-      value: Creditos
+      value: "Cr\xE9ditos"
       objectReference: {fileID: 0}
     - target: {fileID: 940337143702244696, guid: 9f992e528a2b9624d83b89415142b36f,
         type: 3}
@@ -3937,7 +3937,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -6554,7 +6554,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2043624023}
+      objectReference: {fileID: 0}
     - target: {fileID: 941043378604926028, guid: 9f992e528a2b9624d83b89415142b36f,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -6998,7 +6998,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 640061435}
+      objectReference: {fileID: 0}
     - target: {fileID: 941043378604926028, guid: 9f992e528a2b9624d83b89415142b36f,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -7125,18 +7125,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 640061433}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &640061435 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8362560228009015145, guid: 9f992e528a2b9624d83b89415142b36f,
-    type: 3}
-  m_PrefabInstance: {fileID: 640061433}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &654243371
 GameObject:
   m_ObjectHideFlags: 0
@@ -11356,7 +11344,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 0}
+  sharedProfile: {fileID: 11400000, guid: dc7768be3324af142b998f8bcf6f8c2f, type: 2}
 --- !u!1 &1132572357
 GameObject:
   m_ObjectHideFlags: 0
@@ -12189,7 +12177,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -18797,18 +18785,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2009849919}
   m_CullTransparentMesh: 1
---- !u!114 &2043624023 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8362560228009015145, guid: 9f992e528a2b9624d83b89415142b36f,
-    type: 3}
-  m_PrefabInstance: {fileID: 611576941}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2065561882
 GameObject:
   m_ObjectHideFlags: 0
@@ -19528,7 +19504,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 9006309072861353409}
+      objectReference: {fileID: 0}
     - target: {fileID: 941043378604926028, guid: 9f992e528a2b9624d83b89415142b36f,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -20134,18 +20110,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 64888420388049325}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9006309072861353409 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8362560228009015145, guid: 9f992e528a2b9624d83b89415142b36f,
-    type: 3}
-  m_PrefabInstance: {fileID: 64888420388049325}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
