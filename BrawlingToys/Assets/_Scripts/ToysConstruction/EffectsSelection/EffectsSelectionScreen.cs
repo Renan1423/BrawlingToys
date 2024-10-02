@@ -30,11 +30,16 @@ public class EffectsSelectionScreen : BaseScreen
     [SerializeField] private InputActionAsset _inputActionAsset; 
     private InputActionMap _gameplayMap; 
 
+    private bool _initialized; 
+
     protected override void OnScreenEnable()
     {
-        if(NetworkManager.Singleton.IsHost)
+        if(!_initialized)
         {
-            GetPlayersReferenceServerRpc(); 
+            _players = MatchManager.LocalInstance.MatchPlayers.ToList(); 
+            DrawScreen();  
+
+            _initialized = true; 
         }
     }
 
@@ -65,35 +70,4 @@ public class EffectsSelectionScreen : BaseScreen
         Debug.Log("Target selected");
         ScreenManager.instance.ToggleScreenByTag(ScreenName, false);
     }
-
-    #region Online Actions
-    
-    [ServerRpc(RequireOwnership = false)]
-    private void GetPlayersReferenceServerRpc()
-    {
-        var playersIds = MatchManager.LocalInstance.MatchPlayers
-            .Select(p => p.PlayerId)
-            .ToArray(); 
-
-        GetPlayersReferenceClientRpc(playersIds); 
-    }
-
-    [ClientRpc]
-    private void GetPlayersReferenceClientRpc(ulong[] playersIds)
-    {
-        foreach (var id in playersIds)
-        {
-            if (NetworkManager.Singleton.ConnectedClients.ContainsKey(id))
-            {
-                var playerNetworkObject = NetworkManager.Singleton.ConnectedClients[id].PlayerObject;
-                var playerReference = playerNetworkObject.GetComponent<Player>(); 
-                
-                _players.Add(playerReference);
-            }
-        }
-
-        DrawScreen(); 
-    }
-
-    #endregion
 }
