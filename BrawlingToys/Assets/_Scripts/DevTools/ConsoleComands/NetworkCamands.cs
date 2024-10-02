@@ -37,12 +37,6 @@ namespace BrawlingToys.DevTools
             GameManager.LocalInstance.ChangeGameState(parseEnum);
         }
 
-        [ConsoleMethod("change-screen", "Call screen manager change")]
-        public static void ChangeScreen(string screenName, bool active)
-        {
-            ScreenManager.instance.ToggleScreenByTag(screenName, active);
-        }
-
         [ConsoleMethod("create-party","Cria a party para outros jogadores se conectarem")]
         public static async void CreateParty()
         {

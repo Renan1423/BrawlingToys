@@ -6,6 +6,7 @@ using TMPro;
 using BrawlingToys.Actors;
 using System;
 using BrawlingToys.UI;
+using BrawlingToys.Managers;
 
 public class SurpriseBoxUI : BaseScreen
 {
@@ -87,8 +88,8 @@ public class SurpriseBoxUI : BaseScreen
     {
         _equipEffectsSelectionScreen.SetDrawnEffect(_currentSurpriseBox.GetBuffDebuffInsideBox());
 
-        _equipEffectsSelectionScreen.gameObject.SetActive(true);
-        this.gameObject.SetActive(false);
+        ScreenManager.instance.ToggleScreenByTag(ScreenName, false); 
+        ScreenManager.instance.ToggleScreenByTag(_equipEffectsSelectionScreen.ScreenName, true); 
     }
 
     public void EnableOpenButton()

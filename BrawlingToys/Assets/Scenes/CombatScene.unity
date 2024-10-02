@@ -292,6 +292,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4898649241711799088, guid: 6a51c4c371a1287479247c259634fefc,
+        type: 3}
+      propertyPath: _inputActionAsset
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 309a1c43b6dfcd14ebec1dc883481dca,
+        type: 3}
     - target: {fileID: 7022797049149472591, guid: 6a51c4c371a1287479247c259634fefc,
         type: 3}
       propertyPath: m_Name
@@ -305,7 +311,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 670978292181088496, guid: 6a51c4c371a1287479247c259634fefc,
+        type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1851521095}
   m_SourcePrefab: {fileID: 100100000, guid: 6a51c4c371a1287479247c259634fefc, type: 3}
 --- !u!224 &214220230 stripped
 RectTransform:
@@ -700,11 +710,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2438555879348923289, guid: 17bf36d01030cc44baabcb10d5806d2d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2438555879348923289, guid: 17bf36d01030cc44baabcb10d5806d2d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2438555879348923289, guid: 17bf36d01030cc44baabcb10d5806d2d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 698465145}
+    - target: {fileID: 2438555879348923289, guid: 17bf36d01030cc44baabcb10d5806d2d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2438555879348923289, guid: 17bf36d01030cc44baabcb10d5806d2d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenEquipPartScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 2438555879348923289, guid: 17bf36d01030cc44baabcb10d5806d2d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SurpriseBoxUI, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2927929818102961190, guid: 17bf36d01030cc44baabcb10d5806d2d,
         type: 3}
       propertyPath: GlobalObjectIdHash
       value: 1495668435
       objectReference: {fileID: 0}
+    - target: {fileID: 3039803912391038058, guid: 17bf36d01030cc44baabcb10d5806d2d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 698465145}
+    - target: {fileID: 3039803912391038058, guid: 17bf36d01030cc44baabcb10d5806d2d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenCurrentSurpriseBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089737400523099661, guid: 17bf36d01030cc44baabcb10d5806d2d,
+        type: 3}
+      propertyPath: _equipEffectsSelectionScreen
+      value: 
+      objectReference: {fileID: 1851521094}
     - target: {fileID: 8531661819145346014, guid: 17bf36d01030cc44baabcb10d5806d2d,
         type: 3}
       propertyPath: m_Name
@@ -854,6 +909,18 @@ Transform:
   - {fileID: 1131073090}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &698465145 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4089737400523099661, guid: 17bf36d01030cc44baabcb10d5806d2d,
+    type: 3}
+  m_PrefabInstance: {fileID: 344191025}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96c350d5e61cae4f89a54290f89381b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &709341030
 GameObject:
   m_ObjectHideFlags: 0
@@ -2249,6 +2316,40 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1851521091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 670978292181088496, guid: 6a51c4c371a1287479247c259634fefc,
+    type: 3}
+  m_PrefabInstance: {fileID: 214220229}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1851521094 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4898649241711799088, guid: 6a51c4c371a1287479247c259634fefc,
+    type: 3}
+  m_PrefabInstance: {fileID: 214220229}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851521091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b92056d54769f48aaeacc9e84b1e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1851521095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851521091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8dfb06b4d6fab44f951311f14d590d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dontDestroyOnLoad: 0
+  _renderTextureCamPrefab: {fileID: 5829606174907727212, guid: 93516c6b57d87b246a5f49f61755510e,
+    type: 3}
+  _renderTextureCamParentTransPos: {x: 0, y: 0, z: 0}
 --- !u!1001 &1923573662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2568,6 +2669,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1565650601}
     m_Modifications:
+    - target: {fileID: 640321156798744507, guid: 7973f1a5e6d921c4ab93faed5f011cae,
+        type: 3}
+      propertyPath: <ExitStateType>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2422031514135482343, guid: 7973f1a5e6d921c4ab93faed5f011cae,
         type: 3}
       propertyPath: m_Name

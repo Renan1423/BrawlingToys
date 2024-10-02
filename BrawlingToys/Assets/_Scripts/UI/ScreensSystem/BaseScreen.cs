@@ -1,15 +1,22 @@
 using System.Collections;
 using UnityEngine;
 using BrawlingToys.Managers;
+using Unity.Netcode;
 
 namespace BrawlingToys.UI
 {
-    public abstract class BaseScreen : MonoBehaviour
+    public abstract class BaseScreen : NetworkBehaviour
     {
+        [Header("References")]
+
+        [SerializeField] private GameObject _graphicContainer; 
+        
+        [field:Header("Tags")]
+        
         [field: SerializeField]
         public string ScreenName { get; private set; }
 
-        [Header("Game Manager Itegration")]
+        [Header("Game Manager Integration")]
 
         [Header("Enter")]
         [SerializeField] private bool _canChangeGameStateOnEnter;
@@ -23,17 +30,30 @@ namespace BrawlingToys.UI
         [field: SerializeField]
         public GameStateType ExitStateType { get; private set; }
 
+        public bool GraphicIsActive { get; private set; }
+
         protected void Start()
         {   
             ScreenManager.instance.OnToggleAnyScreen += ScreenManager_OnToggleAnyScreen;
-            gameObject.SetActive(false);
+            
+            _graphicContainer.SetActive(false);
+            GraphicIsActive = false; 
         }
 
         protected virtual void ScreenManager_OnToggleAnyScreen(object sender, ScreenManager.ToggleAnyScreenEventArgs e) 
         {
             if (e.screenName == ScreenName) 
             {
-                Debug.Log("BaseScreen: Validou o nome da tela");
+                CheckGameManagerCallbacks(); 
+
+                _graphicContainer.SetActive(e.active);
+                GraphicIsActive = e.active; 
+
+                CheckMethodsCallbacks(); 
+            }
+
+            void CheckGameManagerCallbacks()
+            {
                 if (e.active && _canChangeGameStateOnEnter)
                 {
                     GameManager.LocalInstance.ChangeGameState(EnterStateType);
@@ -43,10 +63,18 @@ namespace BrawlingToys.UI
                 {
                     GameManager.LocalInstance.ChangeGameState(ExitStateType);
                 }
+            }
 
-                this.gameObject.SetActive(e.active);
+            void CheckMethodsCallbacks()
+            {
                 if (e.active)
-                    OnScreenEnable();
+                {
+                    OnScreenEnable(); 
+                }
+                else
+                {
+                    OnScreenDisabled(); 
+                }
             }
         }
 
@@ -62,9 +90,14 @@ namespace BrawlingToys.UI
             gameObject.SetActive(false);
         }
 
-        protected virtual void OnScreenEnable() 
+        protected virtual void OnScreenEnable()
         {
-            return;
+            return; 
+        }
+
+        protected virtual void OnScreenDisabled()
+        {
+            return; 
         }
     }
 }

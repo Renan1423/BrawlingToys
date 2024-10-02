@@ -35,7 +35,8 @@ namespace BrawlingToys.Managers
         private void SubscribeEvents()
         {
             NetworkManager.Singleton.OnClientConnectedCallback += UpdateMatchInfoDictionary; 
-            GameManager.LocalInstance.OnGameStateChange.AddListener(TryResetMatch); 
+            
+            GameManager.LocalInstance.OnGameStateChange.AddListener(TrySetupCombatState); 
         }
 
         private void UnsubscribeEvents()
@@ -86,7 +87,7 @@ namespace BrawlingToys.Managers
             Debug.Log($"Player: {player.PlayerId} was inited on server");
         }
 
-        private void TryResetMatch(GameStateType newGameState)
+        private void TrySetupCombatState(GameStateType newGameState)
         {
             if (newGameState == GameStateType.Combat && NetworkManager.Singleton.IsHost)
             {
@@ -107,7 +108,7 @@ namespace BrawlingToys.Managers
 
         public void RegisterKill(Player player)
         {
-            Debug.Log($"Register kill, killer: {player.PlayerId}");
+            //Debug.Log($"Register kill, killer: {player.PlayerId}");
             if (player == null)
                 return;
 

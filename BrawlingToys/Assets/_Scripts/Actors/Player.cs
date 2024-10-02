@@ -76,24 +76,21 @@ namespace BrawlingToys.Actors
         // Damageable padrão, retirar
         public int Health { get; set; }
 
-        
-
         private void Awake()
         {
+            Debug.Log("Awake");
             _stateFactory.InitializeStates(this);
         }
 
         private void OnEnable()
         {
+            Debug.Log("Enable");
             InitializePlayer();
-        }
-
-        private void Start()
-        {
         }
 
         public override void OnNetworkSpawn()
         {
+            Debug.Log("Network Spawn");
             PlayerId = OwnerClientId; 
             
             var playerInstances = GameObject.FindObjectsOfType<Player>(); 

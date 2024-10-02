@@ -1228,8 +1228,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _rig: {fileID: 8344952857166226115}
-  dashDuration: 0.2
-  impulsePower: 200
+  impulsePower: 50
 --- !u!114 &1567318420048852312
 MonoBehaviour:
   m_ObjectHideFlags: 0
