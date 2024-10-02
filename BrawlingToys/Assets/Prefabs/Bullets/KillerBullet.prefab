@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5604318287895115508}
   - component: {fileID: 1825819529898651070}
   - component: {fileID: 5924645351248853003}
-  - component: {fileID: 1530339109089290411}
-  - component: {fileID: 5874353216846054459}
+  - component: {fileID: 2032048689435670599}
+  - component: {fileID: 2117558178579347876}
   m_Layer: 8
   m_Name: KillerBullet
   m_TagString: Untagged
@@ -100,9 +100,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   lifespan: 0.75
+  range: 1
   ground:
     serializedVersion: 2
     m_Bits: 128
+  PlayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &5924645351248853003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,7 +127,7 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &1530339109089290411
+--- !u!114 &2032048689435670599
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,7 +136,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8186449526752570169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: 374ba8a5b62065a4089bd3dc8acc23de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SyncPositionX: 1
@@ -147,13 +151,13 @@ MonoBehaviour:
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
-  UseQuaternionSynchronization: 0
-  UseQuaternionCompression: 0
-  UseHalfFloatPrecision: 0
+  UseQuaternionSynchronization: 1
+  UseQuaternionCompression: 1
+  UseHalfFloatPrecision: 1
   InLocalSpace: 0
-  Interpolate: 1
-  SlerpPosition: 0
---- !u!114 &5874353216846054459
+  Interpolate: 0
+  SlerpPosition: 1
+--- !u!114 &2117558178579347876
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

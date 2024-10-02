@@ -7,16 +7,16 @@ namespace BrawlingToys.Actors
     {
         protected override void EnterState()
         {
-            _player._animations.PlayAnimation(PlayerAnimations.AnimationType.MeleeAttack);
-            _player._animations.OnAnimationEnd.AddListener(WhenMeleeEnds);
-            _player._cooldowns.meleeTimer.Start();
+            _player.Animations.PlayAnimation(PlayerAnimations.AnimationType.MeleeAttack);
+            _player.Animations.OnAnimationEnd.AddListener(WhenMeleeEnds);
+            _player.Cooldowns.meleeTimer.Start();
 
             // Aplicar for�a no player na dire��o de movimento
         }
 
         protected override void ExitState()
         {
-            _player._animations.ResetEvents();
+            _player.Animations.ResetEvents();
         }
 
         public override void UpdateState()
@@ -44,7 +44,7 @@ namespace BrawlingToys.Actors
 
         private void WhenMeleeEnds()
         {
-            _player.TransitionToState(_player._stateFactory.GetState(StateFactory.StateType.Idle));
+            _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Idle));
         }
     }
 }

@@ -1481,8 +1481,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _graphicContainer: {fileID: 7118974855566854950}
   <ScreenName>k__BackingField: SupriseBox
-  _canChangeGameStateOnEnter: 0
-  <EnterStateType>k__BackingField: 0
+  _canChangeGameStateOnEnter: 1
+  <EnterStateType>k__BackingField: 1
   _canChangeGameStateOnExit: 0
   <ExitStateType>k__BackingField: 0
   _titleText: {fileID: 1406259692299590542}

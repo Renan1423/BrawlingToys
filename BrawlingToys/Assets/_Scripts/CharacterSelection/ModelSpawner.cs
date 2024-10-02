@@ -1,13 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using BrawlingToys.DesignPatterns;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
-using BrawlingToys.DesignPatterns;
 
-public class ModelSpawner : Singleton<ModelSpawner>
+public class ModelSpawner : ContextSingleton<ModelSpawner>
 {
     [Header("Render Texture Camera")]
     [SerializeField]

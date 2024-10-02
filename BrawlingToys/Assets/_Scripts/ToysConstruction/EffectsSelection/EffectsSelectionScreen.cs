@@ -7,6 +7,7 @@ using BrawlingToys.UI;
 using BrawlingToys.Managers;
 using Unity.Netcode;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 public class EffectsSelectionScreen : BaseScreen
 {
@@ -24,19 +25,27 @@ public class EffectsSelectionScreen : BaseScreen
     //Variable created for prototype reasons only!
     private Stats _playerStats;
 
+    [Header("Inputs")]
+
+    [SerializeField] private InputActionAsset _inputActionAsset; 
+    private InputActionMap _gameplayMap; 
+
     protected override void OnScreenEnable()
     {
-        GetPlayersReferenceServerRpc(); 
-        GetPlayersInformation();
+        if(NetworkManager.Singleton.IsHost)
+        {
+            GetPlayersReferenceServerRpc(); 
+        }
     }
 
-    public void GetPlayersInformation()
+
+    public void DrawScreen()
     {
         //We must gather the player informations using the multiplayer features. This is only for prototype purpose
         for (int i = 0; i < _players.Count; i++)
         {
             string playerName = "Player " + i;
-            SpawnPlayerInfo(_drawnEffect, _players[i]._stats, playerName, _playerCharacterAssetRef, new GameObject[0]);
+            SpawnPlayerInfo(_drawnEffect, _players[i].Stats, playerName, _playerCharacterAssetRef, new GameObject[0]);
         }
     }
 
@@ -57,6 +66,8 @@ public class EffectsSelectionScreen : BaseScreen
         ScreenManager.instance.ToggleScreenByTag(ScreenName, false);
     }
 
+    #region Online Actions
+    
     [ServerRpc(RequireOwnership = false)]
     private void GetPlayersReferenceServerRpc()
     {
@@ -80,5 +91,9 @@ public class EffectsSelectionScreen : BaseScreen
                 _players.Add(playerReference);
             }
         }
+
+        DrawScreen(); 
     }
+
+    #endregion
 }

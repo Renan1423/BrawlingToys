@@ -35,7 +35,8 @@ namespace BrawlingToys.Managers
         private void SubscribeEvents()
         {
             NetworkManager.Singleton.OnClientConnectedCallback += UpdateMatchInfoDictionary; 
-            GameManager.LocalInstance.OnGameStateChange.AddListener(TryResetMatch); 
+            
+            GameManager.LocalInstance.OnGameStateChange.AddListener(TrySetupCombatState); 
         }
 
         private void UnsubscribeEvents()
@@ -86,7 +87,7 @@ namespace BrawlingToys.Managers
             Debug.Log($"Player: {player.PlayerId} was inited on server");
         }
 
-        private void TryResetMatch(GameStateType newGameState)
+        private void TrySetupCombatState(GameStateType newGameState)
         {
             if (newGameState == GameStateType.Combat && NetworkManager.Singleton.IsHost)
             {
@@ -107,7 +108,7 @@ namespace BrawlingToys.Managers
 
         public void RegisterKill(Player player)
         {
-            Debug.Log($"Register kill, killer: {player}");
+            //Debug.Log($"Register kill, killer: {player.PlayerId}");
             if (player == null)
                 return;
 
@@ -116,7 +117,7 @@ namespace BrawlingToys.Managers
 
         public void RegisterDeath(Player player)
         {
-            Debug.Log("Register Death");
+            Debug.Log($"Register Death, dead: {player.PlayerId}");
             _playerMatchInfo[player].IsSurvivor = false;
 
             _deadPlayersCount++;
@@ -127,13 +128,6 @@ namespace BrawlingToys.Managers
         {
             if(MatchIsEnded())
             {
-                // foreach (Player player in _playerMatchInfo.Keys)
-                // {
-                //     player.OnPlayerInitialize.RemoveListener(AddPlayerMatchInfo);
-                //     player.OnPlayerKill.RemoveListener(RegisterKill);
-                //     player.OnPlayerDeath.RemoveListener(RegisterDeath);
-                // }
-
                 CallResultScreenServerRpc(); 
             }
 
@@ -172,8 +166,6 @@ namespace BrawlingToys.Managers
         [ClientRpc]
         private void EnablePlayersClientRpc()
         {
-            Debug.Log("Chaves: " + _playerMatchInfo.Keys.ToArray().Length);
-            
             foreach (var player in MatchPlayers)
             {
                 player.gameObject.SetActive(true); 

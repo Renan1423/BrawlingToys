@@ -5,43 +5,34 @@ namespace BrawlingToys.Actors
 {
     public class DashState : State
     {
-        [SerializeField] float dashDuration = 0;
+        [SerializeField] private Rigidbody _rig; 
+        
+        [Space]
+        
         [SerializeField] float impulsePower = 20f;
 
         private Vector3 dashDirection;
 
-        private PhysicUtil physicUtil;
-
         protected override void EnterState()
         {
-            _player._animations.PlayAnimation(PlayerAnimations.AnimationType.Dash);
-            _player._cooldowns.dashTimer.Start();
-            physicUtil = new PhysicUtil(dashDuration);
+            _player.Animations.PlayAnimation(PlayerAnimations.AnimationType.Dash);
+            _player.Cooldowns.dashTimer.Start();
 
-            // Aplicar força no player na direção de movimento
-            float movementMagnitude = _player._inputs.GetMovementVectorNormalized().magnitude;
-            Vector3 movementDirection = new Vector3(_player._inputs.GetMovementVectorNormalized().x, 0,
-                _player._inputs.GetMovementVectorNormalized().y);
+            // Aplicar forï¿½a no player na direï¿½ï¿½o de movimento
+            float movementMagnitude = _player.Inputs.GetMovementVectorNormalized().magnitude;
+            Vector3 movementDirection = new Vector3(_player.Inputs.GetMovementVectorNormalized().x, 0,
+                _player.Inputs.GetMovementVectorNormalized().y);
 
             dashDirection = movementMagnitude > 0 ? movementDirection : Vector3.forward;
 
-            physicUtil.Timer.Start();
+            _player.Animations.OnAnimationAction.AddListener(() => _player.Rig.AddForce(impulsePower * dashDirection, ForceMode.Impulse));
+            _player.Animations.OnAnimationEnd.AddListener(WhenDashEnds);
         }
 
         protected override void ExitState()
         {
             dashDirection = Vector3.zero;
-            physicUtil.Timer.Stop();
-        }
-
-        public override void UpdateState()
-        {
-            physicUtil.AddForce(_player.transform, dashDirection, impulsePower * _player._stats.MoveSpeed, Time.deltaTime);
-
-            if (physicUtil.Timer.IsFinished)
-            {
-                WhenDashEnds();
-            }
+            _player.Animations.ResetEvents();
         }
 
         protected override void HandleShoot(object sender, EventArgs e)
@@ -56,12 +47,12 @@ namespace BrawlingToys.Actors
 
         protected override void HandleDash(object sender, EventArgs e)
         {
-            // Previne de dar outro dashe antes do término de um.
+            // Previne de dar outro dashe antes do tï¿½rmino de um.
         }
 
         private void WhenDashEnds()
         {
-            _player.TransitionToState(_player._stateFactory.GetState(StateFactory.StateType.Idle));
+            _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Idle));
         }
     }
 }

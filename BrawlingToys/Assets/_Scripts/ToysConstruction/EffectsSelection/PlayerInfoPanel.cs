@@ -33,7 +33,7 @@ public class PlayerInfoPanel : MonoBehaviour
 
         CreateEffectIcons(playerStats);
 
-        ModelSpawner.instance.SpawnModelWithRenderTexture(characterAsset, _modelRawImage);
+        ModelSpawner.Instance.SpawnModelWithRenderTexture(characterAsset, _modelRawImage);
     }
 
     private void CreateEffectIcons(Stats playerStats)

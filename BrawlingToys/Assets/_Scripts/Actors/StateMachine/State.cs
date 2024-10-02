@@ -24,10 +24,10 @@ namespace BrawlingToys.Actors
         /// </summary>
         public void Enter()
         {
-            _player._inputs.OnMoveAction += HandleMovement;
-            _player._inputs.OnShootAction += HandleShoot;
-            _player._inputs.OnMeleeAction += HandleMelee;
-            _player._inputs.OnDashAction += HandleDash;
+            _player.Inputs.OnMoveAction += HandleMovement;
+            _player.Inputs.OnShootAction += HandleShoot;
+            _player.Inputs.OnMeleeAction += HandleMelee;
+            _player.Inputs.OnDashAction += HandleDash;
 
             OnEnter?.Invoke();
 
@@ -36,10 +36,10 @@ namespace BrawlingToys.Actors
 
         public void Exit()
         {
-            _player._inputs.OnMoveAction -= HandleMovement;
-            _player._inputs.OnShootAction -= HandleShoot;
-            _player._inputs.OnMeleeAction -= HandleMelee;
-            _player._inputs.OnDashAction -= HandleDash;
+            _player.Inputs.OnMoveAction -= HandleMovement;
+            _player.Inputs.OnShootAction -= HandleShoot;
+            _player.Inputs.OnMeleeAction -= HandleMelee;
+            _player.Inputs.OnDashAction -= HandleDash;
 
             OnExit?.Invoke();
 
@@ -75,24 +75,23 @@ namespace BrawlingToys.Actors
 
         protected virtual void HandleShoot(object sender, System.EventArgs e)
         {
-            if (_player._cooldowns.reloadTimer.IsRunning)
+            if (_player.Cooldowns.reloadTimer.IsRunning)
             {
                 // Som de reload
-                Debug.Log("Reload");
             }
             else
             {
-                if (!_player._cooldowns.fireRateTimer.IsRunning)
+                if (!_player.Cooldowns.fireRateTimer.IsRunning)
                 {
                     _player._shootCommand.Execute();
-                    _player._cooldowns.reloadTimer.Start();
+                    _player.Cooldowns.reloadTimer.Start();
                 }
             }
         }
 
         protected virtual void HandleMelee(object sender, System.EventArgs e)
         {
-            if(_player._cooldowns.meleeTimer.IsRunning)
+            if(_player.Cooldowns.meleeTimer.IsRunning)
             {
                 // Som de fail
                 Debug.Log("Melee est� em cooldown");
@@ -106,14 +105,14 @@ namespace BrawlingToys.Actors
 
         protected virtual void HandleDash(object sender, System.EventArgs e)
         {
-            if (_player._cooldowns.dashTimer.IsRunning)
+            if (_player.Cooldowns.dashTimer.IsRunning)
             {
                 // Som de fail
                 Debug.Log("Dash est� em cooldown");
             }
             else
             {
-                _player.TransitionToState(_player._stateFactory.GetState(StateFactory.StateType.Dash));
+                _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Dash));
             }
         }
 
@@ -121,7 +120,7 @@ namespace BrawlingToys.Actors
         {
             // Checar imortalidade :
 
-            _player.TransitionToState(_player._stateFactory.GetState(StateFactory.StateType.Die));
+            _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Die));
         }
     }
 }

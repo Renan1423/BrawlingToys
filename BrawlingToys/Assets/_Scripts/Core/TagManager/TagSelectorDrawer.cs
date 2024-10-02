@@ -5,6 +5,8 @@ namespace BrawlingToys.Core
 {
     public class TagSelectorAttribute : PropertyAttribute { }
 
+    #if UNITY_EDITOR
+
     [CustomPropertyDrawer(typeof(TagSelectorAttribute))]
     public class TagSelectorDrawer : PropertyDrawer
     {
@@ -34,4 +36,6 @@ namespace BrawlingToys.Core
             return tagsArray;
         }
     }
+
+    #endif
 }

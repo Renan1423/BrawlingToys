@@ -9,19 +9,19 @@ namespace BrawlingToys.Actors
         {
             if (_player.IsOwner)
             {
-                _player._inputs.TogglePlayerMap(false);
+                _player.Inputs.TogglePlayerMap(false);
             }
 
+            _player.OnPlayerKill?.Invoke(_player.MyKiller);
             _player.OnPlayerDeath?.Invoke(_player);
-            _player.OnPlayerKill?.Invoke(_player.myKiller);
 
-            _player._animations.PlayAnimation(PlayerAnimations.AnimationType.Die);
-            _player._animations.OnAnimationEnd.AddListener(WhenAnimationEnd);
+            _player.Animations.PlayAnimation(PlayerAnimations.AnimationType.Die);
+            _player.Animations.OnAnimationEnd.AddListener(WhenAnimationEnd);
         }
 
         protected override void ExitState()
         {
-            _player._animations.ResetEvents();
+            _player.Animations.ResetEvents();
         }
 
         protected override void HandleShoot(object sender, EventArgs e)
