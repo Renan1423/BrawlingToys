@@ -3728,6 +3728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 328588086}
   - component: {fileID: 328588087}
+  - component: {fileID: 328588088}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: MainMenu
@@ -3767,12 +3768,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab4bb17d814955b4080095481d500e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _graphicContainer: {fileID: 0}
   <ScreenName>k__BackingField: MainMenu
   _canChangeGameStateOnEnter: 0
   <EnterStateType>k__BackingField: 0
   _canChangeGameStateOnExit: 0
   <ExitStateType>k__BackingField: 0
   _mainMenuCamAnimHandler: {fileID: 296039717}
+--- !u!114 &328588088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328588085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 3045260567
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &333388903
 GameObject:
   m_ObjectHideFlags: 0
@@ -13817,6 +13839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53a45ac07a57cea408a1a3b0b0ed8916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _graphicContainer: {fileID: 0}
   <ScreenName>k__BackingField: Credits
   _canChangeGameStateOnEnter: 0
   <EnterStateType>k__BackingField: 0
