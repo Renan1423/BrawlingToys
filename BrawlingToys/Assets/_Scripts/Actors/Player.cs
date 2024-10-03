@@ -107,6 +107,8 @@ namespace BrawlingToys.Actors
 
             _cooldowns.UpdateCooldowns();
 
+            _inputs.GetMovementVectorNormalized();
+
             if (Application.isFocused && IsOwner)
                 HandleAim();
 

@@ -31,6 +31,7 @@ namespace BrawlingToys.Actors
 
         protected override void ExitState()
         {
+            _player.Rig.velocity = Vector3.zero;
             dashDirection = Vector3.zero;
             _player.Animations.ResetEvents();
         }
