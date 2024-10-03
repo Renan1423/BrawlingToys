@@ -1,33 +1,15 @@
 using BrawlingToys.Network;
-using UnityEngine;
 
 namespace BrawlingToys.Actors
 {
-    public class KnockbackCommand : IHitCommand
+    public class KnockbackCommand : HitCommand
     {
-        private GameObject _hitSender;
-
-        public void Execute(Hitable target)
+        protected override void HitPlayer(PlayerHit playerHit)
         {
-            switch (target.GetTargetType())
-            {
-                case (HitableType.Player):
-                    target.GetComponent<PlayerHit>().PlayerKnockback();
-                    break;
-                case (HitableType.Wall):
-                    //
-                    break;
-            }
         }
 
-        public GameObject GetSender()
+        protected override void HitWall()
         {
-            return _hitSender;
-        }
-
-        public void SetSender(GameObject sender)
-        {
-            _hitSender = sender;
         }
     }
 }

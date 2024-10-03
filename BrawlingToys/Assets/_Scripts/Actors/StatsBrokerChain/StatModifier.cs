@@ -61,9 +61,9 @@ namespace BrawlingToys.Actors
     public class HitEffectModifier : StatModifier
     {
         private readonly StatType _type;
-        private readonly Func<IHitCommand, IHitCommand> operation;
+        private readonly Func<HitCommand, HitCommand> operation;
 
-        public HitEffectModifier(StatType type, Func<IHitCommand, IHitCommand> operation, float duration) : base(duration)
+        public HitEffectModifier(StatType type, Func<HitCommand, HitCommand> operation, float duration) : base(duration)
         {
             _type = type;
             this.operation = operation;

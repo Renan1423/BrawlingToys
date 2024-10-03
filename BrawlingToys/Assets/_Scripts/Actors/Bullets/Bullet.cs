@@ -49,7 +49,7 @@ namespace BrawlingToys.Actors
 
         private void Move()
         {
-            if(IsOwner) _rb.velocity = _speed * Time.deltaTime * _direction;
+            if(IsOwner) _rb.velocity = _speed * _direction;
         }
 
         private void EnableGravity()

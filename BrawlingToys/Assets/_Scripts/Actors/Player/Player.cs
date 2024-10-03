@@ -122,6 +122,7 @@ namespace BrawlingToys.Actors
         {
             TransitionToState(_stateFactory.GetState(StateFactory.StateType.Idle));
 
+            _baseStatsSO.defaultHitEffect = new KillCommand();
             _mediator = new StatsMediator();
             _stats = new Stats(_mediator, _baseStatsSO);
 

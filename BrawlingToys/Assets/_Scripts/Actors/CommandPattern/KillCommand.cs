@@ -2,21 +2,15 @@ using UnityEngine;
 
 namespace BrawlingToys.Actors
 {
-    public class KillCommand : IHitCommand
+    public class KillCommand : HitCommand
     {
-        private GameObject _hitSender;
-
-        public void Execute(Hitable target)
+        protected override void HitPlayer(PlayerHit playerHit)
         {
-            switch (target.GetTargetType())
-            {
-                case(HitableType.Player) :
-                    target.GetComponent<PlayerHit>().PlayerDie();
-                    break;
-                case(HitableType.Wall) :
-                    // 
-                    break;
-            }
+            playerHit.PlayerDie();
+        }
+
+        protected override void HitWall()
+        {
         }
     }
 }

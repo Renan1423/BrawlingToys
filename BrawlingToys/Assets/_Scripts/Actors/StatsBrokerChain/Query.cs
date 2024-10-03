@@ -14,9 +14,9 @@ namespace BrawlingToys.Actors
 
         public readonly StatType StatType; // Type of stat that gets mutated by everything in the chain
         public float Value; // Value that gets mutated by everything in the chain
-        public IHitCommand HitEffect;
+        public HitCommand HitEffect;
 
-        public Query(StatType statType, float value, IHitCommand hitEffect = null)
+        public Query(StatType statType, float value, HitCommand hitEffect = null)
         {
             StatType = statType;
             Value = value;

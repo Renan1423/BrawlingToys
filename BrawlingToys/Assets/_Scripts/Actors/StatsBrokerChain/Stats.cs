@@ -97,7 +97,7 @@ namespace BrawlingToys.Actors
             }
         }
 
-        public IHitCommand CurrentHitEffector
+        public HitCommand CurrentHitEffector
         {
             get
             {

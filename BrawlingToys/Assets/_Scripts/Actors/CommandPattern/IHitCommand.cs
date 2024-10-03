@@ -1,5 +1,11 @@
-using BrawlingToys.Actors;
 using UnityEngine;
-public interface IHitCommand {
-    void Execute(Hitable target);
+
+namespace BrawlingToys.Actors
+{
+    public interface IHitCommand
+    {
+        public void Execute(Hitable target);
+        public GameObject GetBullet();
+        public void SetBullet(GameObject bullet);
+    }
 }
