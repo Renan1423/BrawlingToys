@@ -35,19 +35,18 @@ namespace BrawlingToys.UI
         protected void Start()
         {   
             ScreenManager.instance.OnToggleAnyScreen += ScreenManager_OnToggleAnyScreen;
-            
-            _graphicContainer.SetActive(false);
-            GraphicIsActive = false; 
+
+            ToggleGraphicContainer(false);
+
         }
 
         protected virtual void ScreenManager_OnToggleAnyScreen(object sender, ScreenManager.ToggleAnyScreenEventArgs e) 
         {
             if (e.screenName == ScreenName) 
             {
-                CheckGameManagerCallbacks(); 
+                CheckGameManagerCallbacks();
 
-                _graphicContainer.SetActive(e.active);
-                GraphicIsActive = e.active; 
+                ToggleGraphicContainer(e.active);
 
                 CheckMethodsCallbacks(); 
             }
@@ -87,7 +86,19 @@ namespace BrawlingToys.UI
         {
             yield return new WaitForSeconds(delayToClose);
 
-            gameObject.SetActive(false);
+            ToggleGraphicContainer(false);
+        }
+
+        private void ToggleGraphicContainer(bool active) 
+        {
+            if (_graphicContainer == null) 
+            {
+                Debug.LogWarning(gameObject.name + ": graphicContainer is null!");
+                return;
+            }
+
+            _graphicContainer.SetActive(active);
+            GraphicIsActive = active;
         }
 
         protected virtual void OnScreenEnable()

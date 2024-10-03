@@ -521,6 +521,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7400047780797739858}
   - component: {fileID: 4263807041227594201}
+  - component: {fileID: 8303208974435083156}
   m_Layer: 0
   m_Name: QuestionScreen
   m_TagString: Untagged
@@ -570,6 +571,27 @@ MonoBehaviour:
   _questionTextShadow: {fileID: 0}
   _yesButton: {fileID: 5540506307201952895}
   _noButton: {fileID: 1271742477927925887}
+--- !u!95 &8303208974435083156
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4008028035091246845}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f0b309c48ac0d5946b5dcf4c9dcb7c74, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4376552723821090257
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,6 +829,7 @@ GameObject:
   - component: {fileID: 2754231433159627093}
   - component: {fileID: 7753650980747503838}
   - component: {fileID: 7097217364865925108}
+  - component: {fileID: 4650564532151505413}
   m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
@@ -874,6 +897,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &4650564532151505413
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7844065757240424342}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8348403687405050831
 GameObject:
   m_ObjectHideFlags: 0
