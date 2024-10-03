@@ -7,9 +7,17 @@ namespace BrawlingToys.Actors
     {
         private GameObject _hitSender;
 
-        public void Execute(IHitable target)
+        public void Execute(Hitable target)
         {
-            target.GetHit(GetSender(), this);
+            switch (target.GetTargetType())
+            {
+                case (HitableType.Player):
+                    target.GetComponent<PlayerHit>().PlayerKnockback();
+                    break;
+                case (HitableType.Wall):
+                    //
+                    break;
+            }
         }
 
         public GameObject GetSender()

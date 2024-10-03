@@ -33,6 +33,7 @@ namespace BrawlingToys.Actors
         public Player MyKiller { get => _myKiller; }
         public Rigidbody Rig { get => _rig; }
         public StateFactory StateFactory { get => _stateFactory; }
+        public State CurrentState { get => _currentState; }
 
         #endregion
 
@@ -47,7 +48,8 @@ namespace BrawlingToys.Actors
         
         [Header("State Stuffs: ")]
         [SerializeField] private StateFactory _stateFactory;
-        public State _currentState = null, _previousState = null;
+        [SerializeField] private State _currentState = null;
+        [SerializeField] private State _previousState = null;
 
         [Header("Aim Stuff: ")]
         [SerializeField] private LayerMask _groundLayerMask;
@@ -174,7 +176,7 @@ namespace BrawlingToys.Actors
         // Esse método vai ficar assim e a gente gerencia a invencibilidade no outro script (State)
         public void Damage(Player sender)////////////////////
         {
-            Debug.Log("Damege");
+            Debug.Log("Damage");
             _myKiller = sender;
             DieServerRpc(); 
         }

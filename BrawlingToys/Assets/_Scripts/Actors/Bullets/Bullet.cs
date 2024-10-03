@@ -59,7 +59,7 @@ namespace BrawlingToys.Actors
 
         public void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.TryGetComponent(out IHitable hitable) && ValidCollision(other))
+            if (other.gameObject.TryGetComponent(out Hitable hitable) && ValidCollision(other))
             {
                 hitable.GetHit(_bulletOwner.gameObject, _bulletOwner.Stats.CurrentHitEffector);
             }

@@ -83,7 +83,7 @@ namespace BrawlingToys.Actors
             {
                 if (!_player.Cooldowns.fireRateTimer.IsRunning)
                 {
-                    _player._shootCommand.Execute();
+                    //_player._shootCommand.Execute();
                     _player.Cooldowns.reloadTimer.Start();
                 }
             }
