@@ -522,6 +522,7 @@ GameObject:
   - component: {fileID: 7400047780797739858}
   - component: {fileID: 4263807041227594201}
   - component: {fileID: 8303208974435083156}
+  - component: {fileID: 7854610247639983222}
   m_Layer: 0
   m_Name: QuestionScreen
   m_TagString: Untagged
@@ -562,6 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92bd12a7664c57440b8842586baadb34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _graphicContainer: {fileID: 0}
   <ScreenName>k__BackingField: QuestionScreen
   _canChangeGameStateOnEnter: 0
   <EnterStateType>k__BackingField: 0
@@ -581,7 +583,7 @@ Animator:
   m_GameObject: {fileID: 4008028035091246845}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f0b309c48ac0d5946b5dcf4c9dcb7c74, type: 2}
+  m_Controller: {fileID: 9100000, guid: 80fdf69b3b9a7e34a867b6ea5740b3b7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -592,6 +594,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7854610247639983222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4008028035091246845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &4376552723821090257
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,7 +853,7 @@ GameObject:
   - component: {fileID: 7097217364865925108}
   - component: {fileID: 4650564532151505413}
   m_Layer: 0
-  m_Name: Panel
+  m_Name: Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
