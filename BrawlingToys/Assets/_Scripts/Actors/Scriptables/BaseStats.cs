@@ -16,5 +16,5 @@ public class BaseStats : ScriptableObject
     public float reloadTime = 10;
     public float fireRate = 10;
     public float bulletAmount = 1;
-    public HitCommand defaultHitEffect;
+    public HitCommand defaultHitEffect = new KillCommand();
 }

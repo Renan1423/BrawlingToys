@@ -1,4 +1,4 @@
-using BrawlingToys.Network;
+using UnityEngine;
 
 namespace BrawlingToys.Actors
 {
@@ -6,6 +6,7 @@ namespace BrawlingToys.Actors
     {
         protected override void HitPlayer(PlayerHit playerHit)
         {
+            playerHit.PlayerKnockback(GetBullet());
         }
 
         protected override void HitWall()
@@ -13,4 +14,3 @@ namespace BrawlingToys.Actors
         }
     }
 }
-

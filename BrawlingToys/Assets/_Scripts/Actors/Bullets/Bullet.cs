@@ -6,6 +6,9 @@ namespace BrawlingToys.Actors
 {
     public class Bullet : NetworkBehaviour
     {
+        public float Speed { get => _speed; }
+        public Rigidbody Rb { get => _rb; }
+
         [SerializeField] private float _speed = 1f;
         [SerializeField] private float _lifespan = 1f;
 
@@ -39,7 +42,7 @@ namespace BrawlingToys.Actors
 
         private void FixedUpdate()
         {
-            Move();
+            MoveBehaviour();
         }
 
         public void Initialize(Player bulletOwner)
@@ -47,9 +50,18 @@ namespace BrawlingToys.Actors
             _bulletOwner = bulletOwner;
         }
 
-        private void Move()
+        private void MoveBehaviour()
         {
-            if(IsOwner) _rb.velocity = _speed * _direction;
+            // PlayerWeapon possui Stats e avisa como a bala deve se mover
+            // if (IsOwner) _bulletOwner.Weapon.MoveBehaviour();
+
+            if (IsOwner) _rb.velocity = _speed * _direction;
+        }
+
+        private void DestroyEffect()
+        {
+            // PlayerWeapon possui Stats e avisa qual efeito a bala deve ter quando for destruida
+            // if (IsOwner) _bulletOwner.Weapon.DestroyEffect();
         }
 
         private void EnableGravity()
@@ -62,6 +74,11 @@ namespace BrawlingToys.Actors
             if (other.gameObject.TryGetComponent(out Hitable hitable) && ValidCollision(other))
             {
                 hitable.GetHit(_bulletOwner.gameObject, _bulletOwner.Stats.CurrentHitEffector);
+            }
+
+            if (other.CompareTag("Ground"))
+            {
+                DestroyBulletServerRpc();
             }
         } 
 
@@ -89,6 +106,7 @@ namespace BrawlingToys.Actors
         [ClientRpc]
         protected void DestroyBulletClientRpc()
         {
+            DestroyEffect();
             Destroy(gameObject);
         }
     }

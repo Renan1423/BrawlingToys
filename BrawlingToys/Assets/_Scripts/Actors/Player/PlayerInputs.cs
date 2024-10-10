@@ -14,6 +14,8 @@ namespace BrawlingToys.Actors
         /// através de eventos, quando ações (inputs) do PlayerInputSystem forem performadas.
         /// </summary>
 
+        public bool IsActive { get; private set; }
+
         public event EventHandler OnShootAction;
         public event EventHandler OnMeleeAction;
         public event EventHandler OnDashAction;
@@ -52,6 +54,8 @@ namespace BrawlingToys.Actors
 
         public void TogglePlayerMap(bool val)
         {
+            IsActive = val;
+
             if(val)
                 EnablePlayerMap();
             else

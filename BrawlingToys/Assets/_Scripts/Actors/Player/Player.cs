@@ -31,7 +31,7 @@ namespace BrawlingToys.Actors
         public PlayerCooldownController Cooldowns { get => _cooldowns; }
         public Stats Stats { get => _stats; }
         public Player MyKiller { get => _myKiller; }
-        public Rigidbody Rig { get => _rig; }
+        public Rigidbody Rb { get => _rb; }
         public StateFactory StateFactory { get => _stateFactory; }
         public State CurrentState { get => _currentState; }
 
@@ -43,7 +43,7 @@ namespace BrawlingToys.Actors
         [SerializeField] private PlayerCooldownController _cooldowns;
         [SerializeField] private Stats _stats;
         [SerializeField] private Player _myKiller;
-        [SerializeField] private Rigidbody _rig;
+        [SerializeField] private Rigidbody _rb;
         //public PlayerWeapon weapon;
         
         [Header("State Stuffs: ")]
@@ -51,17 +51,11 @@ namespace BrawlingToys.Actors
         [SerializeField] private State _currentState = null;
         [SerializeField] private State _previousState = null;
 
-        [Header("Aim Stuff: ")]
+        [Header("Weapon Stuff: ")]
         [SerializeField] private LayerMask _groundLayerMask;
+        [SerializeField] private Transform _firePoint; // Instancia a bala nesse game object
         private RaycastHit hitInfo;
         private float aimSmoothRate = 50f;
-
-        [Header("Damage Stuffs: ")]
-        [SerializeField] private Transform _firePoint; // Instancia a bala nesse game object
-        [SerializeField] private float _knockbackDuration;
-        [SerializeField] private float _knockbackPower;
-        private Vector3 _knockbackDirection = Vector3.zero;
-        private PhysicUtil _knockback;
 
         private StatsMediator _mediator;
 
@@ -71,11 +65,12 @@ namespace BrawlingToys.Actors
         private void Awake()
         {
             _stateFactory.InitializeStates(this);
+            InitializePlayer();
         }
 
         private void OnEnable()
         {
-            InitializePlayer();
+            TransitionToState(_stateFactory.GetState(StateFactory.StateType.Idle));
         }
 
         public override void OnNetworkSpawn()
@@ -98,15 +93,6 @@ namespace BrawlingToys.Actors
 
             if (Application.isFocused && IsOwner)
                 HandleAim();
-
-            if (_knockback.Timer.IsRunning)
-            {
-                if (IsOwner)
-                {
-                    _inputs.TogglePlayerMap(false);
-                    _knockback.AddForce(transform, _knockbackDirection, _knockbackPower, Time.deltaTime);
-                }
-            }
         }
 
         private void FixedUpdate()
@@ -120,8 +106,6 @@ namespace BrawlingToys.Actors
         // e possivelmente modifica��es de buffs e debuffs.
         private void InitializePlayer()
         {
-            TransitionToState(_stateFactory.GetState(StateFactory.StateType.Idle));
-
             _baseStatsSO.defaultHitEffect = new KillCommand();
             _mediator = new StatsMediator();
             _stats = new Stats(_mediator, _baseStatsSO);
@@ -129,13 +113,6 @@ namespace BrawlingToys.Actors
             _cooldowns = new PlayerCooldownController(this);
             _cooldowns.Initialize();
 
-            _knockback = new(_knockbackDuration);
-            
-            if (IsOwner)
-            {
-                _knockback.Timer.OnTimerStop += _inputs.EnablePlayerMap;
-            }
-    
             OnPlayerInitialize?.Invoke(this);
         }
 
@@ -154,16 +131,9 @@ namespace BrawlingToys.Actors
             _currentState.Enter();
         }
 
-        public void DieInCurrentState()
-        {
-            if (_currentState == null) return;
-
-            _currentState.HandleDie();
-        }
-
         private void HandleAim()
         {
-            if (_knockback.Timer.IsRunning)
+            if (_inputs.IsActive)
                 return;
 
             Ray ray = Camera.main.ScreenPointToRay(_inputs.GetLookVector());
@@ -172,50 +142,6 @@ namespace BrawlingToys.Actors
                 transform.forward = Vector3.Slerp(transform.forward, hitInfo.point - transform.position, aimSmoothRate * Time.deltaTime);
                 OnUpdateAimRotation?.Invoke(this, transform.forward);
             }
-        }
-
-        // Esse método vai ficar assim e a gente gerencia a invencibilidade no outro script (State)
-        public void Damage(Player sender)////////////////////
-        {
-            Debug.Log("Damage");
-            _myKiller = sender;
-            DieServerRpc(); 
-        }
-
-        public void Knockback(GameObject sender)//////////////////////
-        {
-            KnockBackServerRpc(sender.transform.forward); 
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = _aimColor;
-            Gizmos.DrawSphere(hitInfo.point, .5f);
-        }
-
-        [ServerRpc(RequireOwnership = false)]
-        private void DieServerRpc()
-        {
-            DieClientRpc(); 
-        }
-
-        [ClientRpc]
-        private void DieClientRpc()
-        {
-            DieInCurrentState(); 
-        }
-
-        [ServerRpc(RequireOwnership = false)]
-        private void KnockBackServerRpc(Vector3 senderForward)
-        {
-            KnockBackClientRpc(senderForward); 
-        }
-
-        [ClientRpc]
-        private void KnockBackClientRpc(Vector3 senderForward)
-        {
-            _knockback.Timer.Start();
-            _knockbackDirection = senderForward;
         }
 
         [ServerRpc(RequireOwnership = false)]
@@ -229,6 +155,12 @@ namespace BrawlingToys.Actors
             var owner = Instances.First(p => p.PlayerId == bulletOwnerPlayerId); 
             
             bullet.Initialize(owner); 
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = _aimColor;
+            Gizmos.DrawSphere(hitInfo.point, .5f);
         }
     }
 }

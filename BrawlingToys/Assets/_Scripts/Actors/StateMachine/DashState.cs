@@ -25,7 +25,7 @@ namespace BrawlingToys.Actors
 
             dashDirection = movementMagnitude > 0 ? movementDirection : Vector3.forward;
 
-            _player.Animations.OnAnimationAction.AddListener(() => _player.Rig.AddForce(impulsePower * dashDirection, ForceMode.Impulse));
+            _player.Animations.OnAnimationAction.AddListener(() => _player.Rb.AddForce(impulsePower * dashDirection, ForceMode.Impulse));
             _player.Animations.OnAnimationEnd.AddListener(WhenDashEnds);
         }
 

@@ -2,9 +2,9 @@
 
 namespace BrawlingToys.Actors
 {
-    public class HitCommand : MonoBehaviour, IHitCommand
+    public class HitCommand : IHitCommand
     {
-        protected GameObject _hitBullet;
+        protected Bullet _hitBullet;
 
         public void Execute(Hitable target)
         {
@@ -19,12 +19,12 @@ namespace BrawlingToys.Actors
             }
         }
 
-        public GameObject GetBullet()
+        public Bullet GetBullet()
         {
             return _hitBullet;
         }
 
-        public void SetBullet(GameObject bullet)
+        public void SetBullet(Bullet bullet)
         {
             _hitBullet = bullet;
         }

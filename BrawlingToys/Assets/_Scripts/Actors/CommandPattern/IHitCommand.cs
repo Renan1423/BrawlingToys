@@ -5,7 +5,7 @@ namespace BrawlingToys.Actors
     public interface IHitCommand
     {
         public void Execute(Hitable target);
-        public GameObject GetBullet();
-        public void SetBullet(GameObject bullet);
+        public Bullet GetBullet();
+        public void SetBullet(Bullet bullet);
     }
 }
