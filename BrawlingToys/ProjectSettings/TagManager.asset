@@ -8,6 +8,7 @@ TagManager:
   - ResultsUI
   - SceneTransition
   - MainMenu
+  - Ground
   layers:
   - Default
   - TransparentFX

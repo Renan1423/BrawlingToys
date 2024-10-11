@@ -129,18 +129,14 @@ MonoBehaviour:
   _inputs: {fileID: 8132426246734092638}
   _animations: {fileID: 5725714426884926404}
   _myKiller: {fileID: 0}
-  _rig: {fileID: 8344952857166226115}
+  _rb: {fileID: 8344952857166226115}
   _stateFactory: {fileID: 5179218893500982180}
   _currentState: {fileID: 0}
   _previousState: {fileID: 0}
-  _meleeRadius: 1
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 128
   _firePoint: {fileID: 1099555426125489184}
-  _knockbackDuration: 0.1
-  _knockbackPower: 25
-  _meleeColor: {r: 0, g: 1, b: 0, a: 0.5882353}
   _aimColor: {r: 1, g: 0, b: 0, a: 0.78431374}
 --- !u!114 &5364803754556521178
 MonoBehaviour:
@@ -1227,9 +1223,7 @@ MonoBehaviour:
   OnExit:
     m_PersistentCalls:
       m_Calls: []
-  _rig: {fileID: 8344952857166226115}
-  dashDuration: 0.2
-  impulsePower: 200
+  impulsePower: 20
 --- !u!114 &1567318420048852312
 MonoBehaviour:
   m_ObjectHideFlags: 0

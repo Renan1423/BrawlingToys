@@ -68,17 +68,17 @@ namespace BrawlingToys.Actors
             InitializePlayer();
         }
 
-        private void OnEnable()
-        {
-            TransitionToState(_stateFactory.GetState(StateFactory.StateType.Idle));
-        }
-
         public override void OnNetworkSpawn()
         {
             PlayerId = OwnerClientId; 
             
             var playerInstances = GameObject.FindObjectsOfType<Player>(); 
             Instances = playerInstances.ToList(); 
+        }
+
+        private void Start()
+        {
+            TransitionToState(_stateFactory.GetState(StateFactory.StateType.Idle));
         }
 
         private void Update()
@@ -133,7 +133,7 @@ namespace BrawlingToys.Actors
 
         private void HandleAim()
         {
-            if (_inputs.IsActive)
+            if (!_inputs.IsActive)
                 return;
 
             Ray ray = Camera.main.ScreenPointToRay(_inputs.GetLookVector());

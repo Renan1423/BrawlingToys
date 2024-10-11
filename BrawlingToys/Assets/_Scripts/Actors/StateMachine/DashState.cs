@@ -5,10 +5,6 @@ namespace BrawlingToys.Actors
 {
     public class DashState : State
     {
-        [SerializeField] private Rigidbody _rig; 
-        
-        [Space]
-        
         [SerializeField] float impulsePower = 20f;
 
         private Vector3 dashDirection;
@@ -19,19 +15,25 @@ namespace BrawlingToys.Actors
             _player.Cooldowns.dashTimer.Start();
 
             // Aplicar for�a no player na dire��o de movimento
-            float movementMagnitude = _player.Inputs.GetMovementVectorNormalized().magnitude;
+            float movementMagnitude = _player.Inputs.GetMovementVectorNormalized().sqrMagnitude;
             Vector3 movementDirection = new Vector3(_player.Inputs.GetMovementVectorNormalized().x, 0,
                 _player.Inputs.GetMovementVectorNormalized().y);
 
-            dashDirection = movementMagnitude > 0 ? movementDirection : Vector3.forward;
+            dashDirection = movementMagnitude > 0 ? movementDirection : _player.transform.forward;
 
-            _player.Animations.OnAnimationAction.AddListener(() => _player.Rb.AddForce(impulsePower * dashDirection, ForceMode.Impulse));
+            _player.Animations.OnAnimationAction.AddListener(() =>
+            {
+                _player.Rb.velocity = Vector3.zero;
+                _player.Rb.AddForce(impulsePower * dashDirection, ForceMode.Impulse);
+            });
+
             _player.Animations.OnAnimationEnd.AddListener(WhenDashEnds);
         }
 
         protected override void ExitState()
         {
             dashDirection = Vector3.zero;
+            _player.Rb.velocity = Vector3.zero;
             _player.Animations.ResetEvents();
         }
 
