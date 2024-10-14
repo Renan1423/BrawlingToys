@@ -44,4 +44,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ff328a0957a5744ae8960211fcfc36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs: []
+  inputs:
+  - keyCode: 330
+    sprites:
+    - {fileID: 21300000, guid: 59bc8bbab9c0fec418f06d20ae213642, type: 3}
+  - keyCode: 304
+    sprites:
+    - {fileID: 21300000, guid: 46acb87e06d99ad4aad2de95541bc3a7, type: 3}
+    - {fileID: 21300000, guid: 726682b82f2f723498574b3402f89e5b, type: 3}
+  - keyCode: 331
+    sprites:
+    - {fileID: 21300000, guid: 3012be239c054304eb5bd1dd71603d56, type: 3}
+  - keyCode: 13
+    sprites:
+    - {fileID: 21300000, guid: d83577de960babd45a9ab93d3cba2638, type: 3}
+    - {fileID: 21300000, guid: a2b3a385d676d4444b289cdb5bcbe32b, type: 3}
+  - keyCode: 8
+    sprites:
+    - {fileID: 21300000, guid: a32ff9d2f43107f44adfb8a7605b5db9, type: 3}
+  - keyCode: 332
+    sprites:
+    - {fileID: 21300000, guid: ad01c1c75bd8bcc4e9882c7022e3f0ac, type: 3}
+  - keyCode: 323
+    sprites:
+    - {fileID: 21300000, guid: c9db0140dc0befb489f1090a6e79019d, type: 3}
+    - {fileID: 21300000, guid: 979e21c94d924f44493ecc0657884569, type: 3}
+  - keyCode: 324
+    sprites:
+    - {fileID: 21300000, guid: 9f791e1591b0b7949a97ae7e45e64e52, type: 3}
+    - {fileID: 21300000, guid: c887a2e247adcc74aac6066f2e87ba51, type: 3}
+  - keyCode: 349
+    sprites:
+    - {fileID: 21300000, guid: 8040cf5975904bf499d441614eb9d917, type: 3}
+    - {fileID: 21300000, guid: 8a63137862bd2734ba28dda4eafa77d3, type: 3}
+    - {fileID: 21300000, guid: fc9c2531e8214834aaf13ffc32471c07, type: 3}
+    - {fileID: 21300000, guid: 16a6abf63cc9ad0408e9af5363fa24e0, type: 3}

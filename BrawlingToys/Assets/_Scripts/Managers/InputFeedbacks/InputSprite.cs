@@ -21,31 +21,48 @@ namespace BrawlingToys.Managers
         private float _animationTimeLimit = 10f;
         private int _animationIndex = 0;
         [SerializeField]
-        private Vector2 _inputSize = new Vector2(9f, 9f);
+        private Vector2 _keyInputSize = new Vector2(160f, 80f);
+        [SerializeField]
+        private Vector2 _gamepadInputSize = new Vector2(80f, 80f);
 
         private RectTransform rectTrans;
 
         private void OnEnable()
         {
+            StartCoroutine(SetupDelegates());
+        }
+
+        private IEnumerator SetupDelegates() 
+        {
+            yield return new WaitForSeconds(0.01f);
+
             InputController.instance.OnGamepadUsed += OnGamepadUsed;
             InputController.instance.OnKeyboardUsed += OnKeyboardUsed;
+
+            if (InputController.instance.IsUsingGamepad)
+                OnGamepadUsed();
+            else
+                OnKeyboardUsed();
         }
 
         private void OnGamepadUsed() 
         {
             _sprites = InputController.instance.inputsDictionary[_gamepadCode];
+
+            rectTrans = _spr.GetComponent<RectTransform>();
+            rectTrans.sizeDelta = _gamepadInputSize;
         }
 
         private void OnKeyboardUsed() 
         {
             _sprites = InputController.instance.inputsDictionary[_keyCode];
+
+            rectTrans = _spr.GetComponent<RectTransform>();
+            rectTrans.sizeDelta = _keyInputSize;
         }
 
         private void Start()
         {
-            rectTrans = GetComponent<RectTransform>();
-            rectTrans.sizeDelta = _inputSize;
-
             _animationIndex = 0;
 
             if (_sprites != null)
