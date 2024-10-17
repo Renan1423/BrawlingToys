@@ -1,32 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 
 namespace BrawlingToys.UI
 {
-    public class CodeInputValidator : MonoBehaviour
+    public class NameInputValidator : MonoBehaviour
     {
         [SerializeField]
-        private TMP_InputField _codeText;
+        private TMP_InputField _nameInputField;
         [SerializeField]
         private Animator _errorAnim;
 
-        public void ValidateCode() 
+        public void ValidateName() 
         {
-            _codeText.text = _codeText.text.ToUpper();
-
-            _codeText.text = new string(_codeText.text.ToCharArray()
+            _nameInputField.text = new string(_nameInputField.text.ToCharArray()
                 .Where(c => !char.IsWhiteSpace(c))
                     .ToArray());
         }
 
-        public bool CheckCodeValidation(string roomCode) 
+        public bool CheckNameValidation() 
         {
-            ValidateCode();
+            ValidateName();
 
-            bool validationResult = _codeText.text.ToUpper() == roomCode.ToUpper();
+            bool validationResult = _nameInputField.text != "";
 
             if (!validationResult)
                 _errorAnim.SetTrigger("Show");

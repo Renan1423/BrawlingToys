@@ -62,6 +62,7 @@ MonoBehaviour:
   - keyCode: 8
     sprites:
     - {fileID: 21300000, guid: a32ff9d2f43107f44adfb8a7605b5db9, type: 3}
+    - {fileID: 21300000, guid: 48749ba1ac6a0214e81e3cbc02ff1d98, type: 3}
   - keyCode: 332
     sprites:
     - {fileID: 21300000, guid: ad01c1c75bd8bcc4e9882c7022e3f0ac, type: 3}

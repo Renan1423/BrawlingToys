@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5358048172182825832}
   - component: {fileID: 5113106194054501336}
   - component: {fileID: 3267801498034280142}
+  - component: {fileID: 6082093855792920590}
   - component: {fileID: 8358049223778837960}
   m_Layer: 5
   m_Name: HostButton
@@ -93,6 +94,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6082093855792920590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441064994265010874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683d38864e999e84f8bb6aba24e50919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttonImage: {fileID: 2048014042795639443}
+  _buttonNormalColor: {r: 0, g: 0.78431374, b: 0, a: 1}
+  _buttonSelectedColor: {r: 0, g: 1, b: 0, a: 1}
+  _buttonPressedMultiplyColor: {r: 1, g: 0, b: 0, a: 1}
+  _buttonDisabledColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
 --- !u!95 &8358049223778837960
 Animator:
   serializedVersion: 5
@@ -172,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.016759118, b: 0.3584906, a: 0.3137255}
+  m_Color: {r: 0, g: 0.023221934, b: 0.5283019, a: 0.3137255}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
