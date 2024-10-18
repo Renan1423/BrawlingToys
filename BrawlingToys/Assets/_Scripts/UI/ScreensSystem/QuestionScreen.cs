@@ -36,7 +36,7 @@ namespace BrawlingToys.UI
 
         private void AnswerSelected()
         {
-            CloseScreen(0f);
+            CloseScreen(0.15f);
         }
     }
 }

@@ -32,12 +32,15 @@ namespace BrawlingToys.UI
 
         public bool GraphicIsActive { get; private set; }
 
+        [Header("Auto Activate")]
+        [SerializeField]
+        private bool _autoActivate;
+
         protected void Start()
         {   
             ScreenManager.instance.OnToggleAnyScreen += ScreenManager_OnToggleAnyScreen;
-
-            ToggleGraphicContainer(false);
-
+            
+            ToggleGraphicContainer(_autoActivate);
         }
 
         protected virtual void ScreenManager_OnToggleAnyScreen(object sender, ScreenManager.ToggleAnyScreenEventArgs e) 

@@ -6,6 +6,7 @@
         Building,
         Combat,
         Score,
-        FinalScreen
+        FinalScreen,
+        Tutorial
     }
 }
