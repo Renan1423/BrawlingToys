@@ -36,6 +36,14 @@ namespace BrawlingToys.UI
         [SerializeField]
         private bool _autoActivate;
 
+        [Header("Animation")]
+        [SerializeField]
+        private bool _performAnimationOnClose;
+        [SerializeField]
+        private Animator _anim;
+        [SerializeField]
+        private string _closeTrigger = "Close";
+
         protected void Start()
         {   
             ScreenManager.instance.OnToggleAnyScreen += ScreenManager_OnToggleAnyScreen;
@@ -87,6 +95,9 @@ namespace BrawlingToys.UI
 
         private IEnumerator CloseScreenCoroutine(float delayToClose) 
         {
+            if (_anim != null && _performAnimationOnClose)
+                _anim.SetTrigger(_closeTrigger);
+
             yield return new WaitForSeconds(delayToClose);
 
             ToggleGraphicContainer(false);

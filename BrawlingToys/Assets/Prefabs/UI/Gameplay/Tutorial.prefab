@@ -1877,7 +1877,9 @@ MonoBehaviour:
   _canChangeGameStateOnExit: 0
   <ExitStateType>k__BackingField: 0
   _autoActivate: 1
+  _performAnimationOnClose: 1
   _anim: {fileID: 2212090046550920147}
+  _closeTrigger: Close
 --- !u!114 &4049547814216425849
 MonoBehaviour:
   m_ObjectHideFlags: 0
