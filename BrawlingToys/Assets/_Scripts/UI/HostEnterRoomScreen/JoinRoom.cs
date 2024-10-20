@@ -48,16 +48,13 @@ namespace BrawlingToys.UI
 
         public void OnJoinParty() 
         {
+            //Join Party Server RPC não é chamado
             JoinPartyServerRpc();
         }
 
         [ServerRpc(RequireOwnership = false)]
         private void JoinPartyServerRpc() 
         {
-            GameObject playerClientDataGO = NetworkSpawner.LocalInstance.InstantiateOnServer("PlayerClientData", Vector3.zero, Quaternion.identity);
-            PlayerClientData playerClientData = playerClientDataGO.GetComponent<PlayerClientData>();
-            playerClientData.SetPlayerData(NetworkManager.LocalClientId, _nameInputValidator.InputFieldText);
-
             JoinPartyClientRpc();
         }
 
@@ -65,6 +62,11 @@ namespace BrawlingToys.UI
         private void JoinPartyClientRpc() 
         {
             ScreenManager.instance.ToggleScreenByTag(TagManager.CreateRoomMenu.CLIENT_WAITING_ROOM, true);
+
+            GameObject playerClientDataGO = NetworkSpawner.LocalInstance.InstantiateOnServer("PlayerClientData", Vector3.zero, Quaternion.identity);
+            playerClientDataGO.name = _nameInputValidator.InputFieldText + "PlayerClientData";
+            PlayerClientData playerClientData = playerClientDataGO.GetComponent<PlayerClientData>();
+            playerClientData.SetPlayerData(NetworkManager.LocalClientId, _nameInputValidator.InputFieldText);
 
             CloseScreen(0.25f);
         }

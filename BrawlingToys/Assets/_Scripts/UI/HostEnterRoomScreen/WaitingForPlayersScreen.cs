@@ -65,7 +65,8 @@ namespace BrawlingToys.UI
 
                 playerPref.gameObject.SetActive(false);
 
-                AddPlayer(playerClientData.PlayerUsername);
+                if(playerClientData != null)
+                    AddPlayer(playerClientData.PlayerUsername);
             }
         }
 
