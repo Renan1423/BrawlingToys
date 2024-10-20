@@ -8,9 +8,6 @@ namespace BrawlingToys.UI
     {
         [Space(10)]
 
-        [SerializeField]
-        private Animator _anim;
-
         private bool _isClosing;
 
         public void CloseTutorial() 
@@ -20,7 +17,6 @@ namespace BrawlingToys.UI
 
             _isClosing = true;
 
-            _anim.SetTrigger("Close");
             CloseScreen(0.25f);
         }
     }

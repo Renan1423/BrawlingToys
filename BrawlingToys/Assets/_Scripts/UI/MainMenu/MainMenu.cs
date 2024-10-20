@@ -29,7 +29,7 @@ namespace BrawlingToys.UI
         {
             yield return new WaitForSeconds(1f);
 
-            LevelManager.instance.LoadNextLevel();
+            LevelManager.LocalInstance.LoadNextLevel();
             CloseScreen(0f);
         }
 

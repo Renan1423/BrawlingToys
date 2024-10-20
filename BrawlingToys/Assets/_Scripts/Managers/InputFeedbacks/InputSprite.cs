@@ -32,6 +32,12 @@ namespace BrawlingToys.Managers
             StartCoroutine(SetupDelegates());
         }
 
+        private void OnDisable()
+        {
+            InputController.instance.OnGamepadUsed -= OnGamepadUsed;
+            InputController.instance.OnKeyboardUsed -= OnKeyboardUsed;
+        }
+
         private IEnumerator SetupDelegates() 
         {
             yield return new WaitForSeconds(0.01f);

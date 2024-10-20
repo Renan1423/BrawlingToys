@@ -43,7 +43,7 @@ namespace BrawlingToys.Network
                     alloc.ConnectionData
                 ); 
 
-                NetworkManager.Singleton.StartHost(); 
+                NetworkManager.Singleton.StartHost();
 
                 OnNewPlayerConnected?.Invoke();
 

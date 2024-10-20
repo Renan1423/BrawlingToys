@@ -31,7 +31,7 @@ namespace BrawlingToys.Network
 
         private void Start()
         {
-            Debug.Log(GetComponent<NetworkObject>().NetworkManager);
+            //Debug.Log(GetComponent<NetworkObject>().NetworkManager);
         }
 
         private void GenerateNetworkDictionary()

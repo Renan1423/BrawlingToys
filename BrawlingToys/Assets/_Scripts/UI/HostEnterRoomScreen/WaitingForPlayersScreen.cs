@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using BrawlingToys.Network;
+using BrawlingToys.Actors;
+using BrawlingToys.Managers;
+using Unity.Netcode;
+using System;
+using TMPro;
 
 namespace BrawlingToys.UI
 {
@@ -14,6 +20,8 @@ namespace BrawlingToys.UI
         private List<WaitingPlayer> _waitingPlayerPanels;
         [SerializeField]
         private Button _playButton;
+        [SerializeField]
+        private TextMeshProUGUI _partyCodeText;
 
         private int _playersCount;
 
@@ -22,9 +30,48 @@ namespace BrawlingToys.UI
             RemoveAllPlayers();
         }
 
+        public void InitializeWaitingRoom(string partyCode, string hostPlayerName)
+        {
+            if (!IsServer)
+                return;
+
+            ValidadeMatch();
+
+            _partyCodeText.text = "Código da sala: " + partyCode;
+            NetworkManager.Singleton.OnClientConnectedCallback += OnNewClientConnected;
+            AddPlayer(hostPlayerName);
+        }
+
+        protected override void CloseScreen(float delayToClose)
+        {
+            base.CloseScreen(delayToClose);
+
+            NetworkManager.Singleton.OnClientConnectedCallback -= OnNewClientConnected;
+        }
+
+        private void OnNewClientConnected(ulong clientId) 
+        {
+            if (NetworkManager.Singleton.IsHost) 
+            {
+                var client = NetworkManager.Singleton.ConnectedClients.GetValueOrDefault(clientId);
+                var playerPref = client.PlayerObject;
+
+                List<PlayerClientData> playerClientDatas = new List<PlayerClientData>(FindObjectsOfType<PlayerClientData>());
+                Debug.Log("Found Client Datas: " + playerClientDatas);
+
+                PlayerClientData playerClientData = playerClientDatas.Find(cd => cd.PlayerID == clientId);
+
+                PlayerClientDatasManager.LocalInstance.AddPlayerClientData(playerClientData);
+
+                playerPref.gameObject.SetActive(false);
+
+                AddPlayer(playerClientData.PlayerUsername);
+            }
+        }
+
         public void AddPlayer(string playerName) 
         {
-            _waitingPlayerPanels[_playersCount].AddPlayer(_playersCount, playerName);
+            _waitingPlayerPanels[_playersCount].AddPlayer(_playersCount + 1, playerName);
             _playersCount++;
             ValidadeMatch();
         }
