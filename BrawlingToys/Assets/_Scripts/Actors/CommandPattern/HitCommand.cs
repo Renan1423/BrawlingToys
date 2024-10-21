@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace BrawlingToys.Actors
+﻿namespace BrawlingToys.Actors
 {
     public class HitCommand : IHitCommand
     {
