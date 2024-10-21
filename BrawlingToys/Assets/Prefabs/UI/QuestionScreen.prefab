@@ -617,6 +617,51 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6082093855792920590, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: _buttonImage
+      value: 
+      objectReference: {fileID: 3053514099228131685}
+    - target: {fileID: 6082093855792920590, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: _buttonNormalColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082093855792920590, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: _buttonNormalColor.r
+      value: 0.78431374
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082093855792920590, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: _buttonDisabledColor.b
+      value: 0.5754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082093855792920590, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: _buttonDisabledColor.g
+      value: 0.5754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082093855792920590, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: _buttonDisabledColor.r
+      value: 0.5754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082093855792920590, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: _buttonSelectedColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082093855792920590, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: _buttonSelectedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082093855792920590, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: _buttonPressedMultiplyColor.g
+      value: 0.56976867
+      objectReference: {fileID: 0}
     - target: {fileID: 8179293635037053830, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -637,6 +682,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3053514099228131685 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2048014042795639443, guid: 9e6f7be87bd72244983ca45a06b00be3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3894561509119575030}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &8959875596793948318 stripped

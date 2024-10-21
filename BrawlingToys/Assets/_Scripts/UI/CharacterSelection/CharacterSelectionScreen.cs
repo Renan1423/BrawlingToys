@@ -15,6 +15,7 @@ namespace BrawlingToys.UI
         public string CharacterName;
         public AssetReference CharacterModel;
         public Sprite CharacterIcon;
+        public Color CharacterColor;
     }
 
     [System.Serializable]
@@ -38,17 +39,21 @@ namespace BrawlingToys.UI
         private List<CharacterSelectionData> _playableCharacters;
         private List<CharacterButton> _characterButtons;
         private ChosenCharacterData _chosenCharacter;
-        private int _selectedCharacterIndex;
+        private int _selectedCharacterIndex = -1;
 
-        [Space(10)]
+        [Space(20)]
 
         [Header("UI")]
         [SerializeField]
         private RawImage _characterDisplayRawImage;
         [SerializeField]
+        private Animator _characterDisplayAnim;
+        [SerializeField]
         private TextMeshProUGUI _characterNameText;
+        [SerializeField]
+        private BackgroundColorChanger _backgroundColorChanger;
 
-        [Space(10)]
+        [Space(20)]
 
         [Header("Buttons")]
         [SerializeField]
@@ -100,6 +105,9 @@ namespace BrawlingToys.UI
 
         public void ShowCharacter(int characterIndex) 
         {
+            if (_selectedCharacterIndex == characterIndex)
+                return;
+
             if (!ModelSpawner.Instance.HasActiveRenderTextureCamera())
                 ModelSpawner.Instance.SpawnRenderTextureModelWithNewCamera(_playableCharacters[characterIndex].CharacterModel, 
                     _characterDisplayRawImage);
@@ -110,6 +118,9 @@ namespace BrawlingToys.UI
 
             _characterNameText.text = _playableCharacters[characterIndex].CharacterName;
             _selectedCharacterIndex = characterIndex;
+
+            _backgroundColorChanger.SetBackgroundColor(_playableCharacters[characterIndex].CharacterColor, 0.25f);
+            _characterDisplayAnim.SetTrigger("Show");
         }
 
         public void SelectCharacter() 
@@ -126,6 +137,8 @@ namespace BrawlingToys.UI
             
             CharacterSelectionData character = _playableCharacters[_selectedCharacterIndex];
             _chosenCharacter = new ChosenCharacterData(character.CharacterName, chosenCharacterModel, character.CharacterIcon);
+
+            _backgroundColorChanger.ResetBackgroundColor(0.25f);
 
             OpenNextScreen();
         }

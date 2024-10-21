@@ -20,14 +20,14 @@ namespace BrawlingToys.UI
             _characterIconImage.sprite = characterIcon;
         }
 
-        public void OnSelected()
+        public void OnClickCharacter() 
         {
-
+            _selectionScreen.SelectCharacter();
         }
 
-        public void OnClick() 
-        { 
-            
+        public void OnHoverCharacter() 
+        {
+            _selectionScreen.ShowCharacter(_characterIndex);
         }
     }
 }
