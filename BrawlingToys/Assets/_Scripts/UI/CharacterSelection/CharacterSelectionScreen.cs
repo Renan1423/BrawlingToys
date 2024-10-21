@@ -96,7 +96,7 @@ namespace BrawlingToys.UI
 
                 Navigation nav = new Navigation();
                 nav.mode = Navigation.Mode.Explicit;
-                nav.selectOnRight = (i < _characterButtons.Count) ? _characterButtons[i + 1].GetComponent<Button>() : _characterButtons[0].GetComponent<Button>();
+                nav.selectOnRight = (i < _characterButtons.Count - 1) ? _characterButtons[i + 1].GetComponent<Button>() : _characterButtons[0].GetComponent<Button>();
                 nav.selectOnLeft = (i > 0) ? _characterButtons[i - 1].GetComponent<Button>() : _characterButtons[^1].GetComponent<Button>();
 
                 btn.navigation = nav;

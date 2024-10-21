@@ -49,18 +49,26 @@ namespace BrawlingToys.UI
         public void OnJoinParty() 
         {
             //Join Party Server RPC não é chamado
+            Debug.Log("OnJoinParty Called!");
+            if (NetworkManager.Singleton.IsClient || NetworkManager.Singleton.IsHost) 
+            {
+                Debug.Log("Is connected!!!");
+            }
             JoinPartyServerRpc();
         }
 
         [ServerRpc(RequireOwnership = false)]
         private void JoinPartyServerRpc() 
         {
+            Debug.Log("OnJoinPartyServerRPC Called!");
             JoinPartyClientRpc();
         }
 
         [ClientRpc]
         private void JoinPartyClientRpc() 
         {
+            Debug.Log("OnJoinPartyClientRPC Called!");
+
             ScreenManager.instance.ToggleScreenByTag(TagManager.CreateRoomMenu.CLIENT_WAITING_ROOM, true);
 
             GameObject playerClientDataGO = NetworkSpawner.LocalInstance.InstantiateOnServer("PlayerClientData", Vector3.zero, Quaternion.identity);

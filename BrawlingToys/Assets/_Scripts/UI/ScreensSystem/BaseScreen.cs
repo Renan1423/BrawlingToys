@@ -51,6 +51,15 @@ namespace BrawlingToys.UI
             ToggleGraphicContainer(_autoActivate);
         }
 
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            ScreenManager.instance.OnToggleAnyScreen -= ScreenManager_OnToggleAnyScreen;
+        }
+
+
+
         protected virtual void ScreenManager_OnToggleAnyScreen(object sender, ScreenManager.ToggleAnyScreenEventArgs e) 
         {
             if (e.screenName == ScreenName) 
