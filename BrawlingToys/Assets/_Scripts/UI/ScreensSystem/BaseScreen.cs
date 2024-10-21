@@ -44,7 +44,7 @@ namespace BrawlingToys.UI
         [SerializeField]
         private string _closeTrigger = "Close";
 
-        protected void Start()
+        protected virtual void Start()
         {   
             ScreenManager.instance.OnToggleAnyScreen += ScreenManager_OnToggleAnyScreen;
             
