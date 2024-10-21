@@ -8,6 +8,7 @@ public class RenderTextureCamera : MonoBehaviour
     private Camera _cam;
     [SerializeField]
     private Transform _modelParentTrans;
+    public GameObject ChildModel { get; private set; }
 
     public RenderTexture SetupRenderTextureCamera()
     {
@@ -18,4 +19,9 @@ public class RenderTextureCamera : MonoBehaviour
     }
 
     public Transform GetModelParentTransform() => _modelParentTrans;
+
+    public void SetChildModel(GameObject model) 
+    {
+        ChildModel = model;
+    }
 }

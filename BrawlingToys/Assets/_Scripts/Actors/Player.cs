@@ -107,8 +107,12 @@ namespace BrawlingToys.Actors
 
             _cooldowns.UpdateCooldowns();
 
+
             if (Application.isFocused && IsOwner)
+            {
+                _inputs.GetMovementVectorNormalized();
                 HandleAim();
+            }
 
             if (_knockback.Timer.IsRunning)
             {
