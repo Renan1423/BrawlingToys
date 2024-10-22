@@ -78,23 +78,22 @@ namespace BrawlingToys.Actors
 
         private void Awake()
         {
-            Debug.Log("Awake");
             _stateFactory.InitializeStates(this);
         }
 
         private void OnEnable()
         {
-            Debug.Log("Enable");
             InitializePlayer();
         }
 
         public override void OnNetworkSpawn()
         {
-            Debug.Log("Network Spawn");
             PlayerId = OwnerClientId; 
             
             var playerInstances = GameObject.FindObjectsOfType<Player>(); 
             Instances = playerInstances.ToList(); 
+
+            gameObject.SetActive(false); 
         }
 
         private void Update()

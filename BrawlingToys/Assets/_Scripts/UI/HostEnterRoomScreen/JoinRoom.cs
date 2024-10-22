@@ -6,6 +6,7 @@ using BrawlingToys.Network;
 using BrawlingToys.Core;
 using BrawlingToys.Actors;
 using Unity.Netcode;
+using System;
 
 namespace BrawlingToys.UI
 {
@@ -18,6 +19,8 @@ namespace BrawlingToys.UI
 
         [SerializeField]
         private GameObject _playerClientDataPrefab;
+
+        public event Action<PlayerClientData> OnNewPlayerJoined; 
 
         public void Join() 
         {
@@ -48,20 +51,32 @@ namespace BrawlingToys.UI
 
         public void OnJoinParty() 
         {
-            //Join Party Server RPC não é chamado
-            Debug.Log("OnJoinParty Called!");
-            if (NetworkManager.Singleton.IsClient || NetworkManager.Singleton.IsHost) 
+            StartCoroutine(Action()); 
+
+            IEnumerator Action()
             {
-                Debug.Log("Is connected!!!");
+                yield return new WaitUntil(
+                    () => GetComponent<NetworkObject>().IsSpawned 
+                    && NetworkManager.Singleton.IsListening); 
+
+                ScreenManager.instance.ToggleScreenByTag(ScreenName, false);
+                ScreenManager.instance.ToggleScreenByTag(TagManager.CreateRoomMenu.CLIENT_WAITING_ROOM, true);
+                
+                JoinPartyServerRpc(_nameInputValidator.InputFieldText, NetworkManager.LocalClientId);
             }
-            JoinPartyServerRpc();
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void JoinPartyServerRpc() 
+        private void JoinPartyServerRpc(string playerName, ulong playerId) 
         {
-            Debug.Log("OnJoinPartyServerRPC Called!");
-            JoinPartyClientRpc();
+            var clientDataGO = NetworkSpawner.LocalInstance.InstantiateOnServer("PlayerClientData", Vector3.zero, Quaternion.identity); 
+            clientDataGO.name = $"Player Client Data - {playerName}"; 
+
+            var clientData = clientDataGO.GetComponent<PlayerClientData>();
+
+            clientData.SetPlayerData(playerId, playerName); 
+
+            OnNewPlayerJoined?.Invoke(clientData); 
         }
 
         [ClientRpc]
@@ -69,14 +84,13 @@ namespace BrawlingToys.UI
         {
             Debug.Log("OnJoinPartyClientRPC Called!");
 
-            ScreenManager.instance.ToggleScreenByTag(TagManager.CreateRoomMenu.CLIENT_WAITING_ROOM, true);
 
-            GameObject playerClientDataGO = NetworkSpawner.LocalInstance.InstantiateOnServer("PlayerClientData", Vector3.zero, Quaternion.identity);
-            playerClientDataGO.name = _nameInputValidator.InputFieldText + "PlayerClientData";
-            PlayerClientData playerClientData = playerClientDataGO.GetComponent<PlayerClientData>();
-            playerClientData.SetPlayerData(NetworkManager.LocalClientId, _nameInputValidator.InputFieldText);
+            // GameObject playerClientDataGO = NetworkSpawner.LocalInstance.InstantiateOnServer("PlayerClientData", Vector3.zero, Quaternion.identity);
+            // playerClientDataGO.name = _nameInputValidator.InputFieldText + "PlayerClientData";
+            // PlayerClientData playerClientData = playerClientDataGO.GetComponent<PlayerClientData>();
+            // playerClientData.SetPlayerData(NetworkManager.LocalClientId, _nameInputValidator.InputFieldText);
 
-            CloseScreen(0.25f);
+            //CloseScreen(0.25f);
         }
     }
 }

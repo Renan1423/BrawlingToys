@@ -75,6 +75,8 @@ namespace BrawlingToys.Actors
 
         protected virtual void HandleShoot(object sender, System.EventArgs e)
         {
+            if(!gameObject.activeInHierarchy) return; 
+            
             if (_player.Cooldowns.reloadTimer.IsRunning)
             {
                 // Som de reload
@@ -83,6 +85,7 @@ namespace BrawlingToys.Actors
             {
                 if (!_player.Cooldowns.fireRateTimer.IsRunning)
                 {
+                    Debug.Log(gameObject.name);
                     _player._shootCommand.Execute();
                     _player.Cooldowns.reloadTimer.Start();
                 }
