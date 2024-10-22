@@ -59,10 +59,15 @@ namespace BrawlingToys.UI
                     () => GetComponent<NetworkObject>().IsSpawned 
                     && NetworkManager.Singleton.IsListening); 
 
-                ScreenManager.instance.ToggleScreenByTag(ScreenName, false);
                 ScreenManager.instance.ToggleScreenByTag(TagManager.CreateRoomMenu.CLIENT_WAITING_ROOM, true);
-                
+
+                var client = NetworkManager.Singleton.LocalClient;
+                var playerPref = client.PlayerObject;
+                playerPref.gameObject.SetActive(false);
+
                 JoinPartyServerRpc(_nameInputValidator.InputFieldText, NetworkManager.LocalClientId);
+
+                CloseScreen(0.25f);
             }
         }
 
@@ -70,20 +75,22 @@ namespace BrawlingToys.UI
         private void JoinPartyServerRpc(string playerName, ulong playerId) 
         {
             var clientDataGO = NetworkSpawner.LocalInstance.InstantiateOnServer("PlayerClientData", Vector3.zero, Quaternion.identity); 
-            clientDataGO.name = $"Player Client Data - {playerName}"; 
+            clientDataGO.name = $"{playerName}PlayerClientData"; 
 
             var clientData = clientDataGO.GetComponent<PlayerClientData>();
 
-            clientData.SetPlayerData(playerId, playerName); 
+            clientData.SetPlayerData(playerId, playerName);
 
-            OnNewPlayerJoined?.Invoke(clientData); 
+            JoinPartyClientRpc();
         }
 
         [ClientRpc]
         private void JoinPartyClientRpc() 
         {
             Debug.Log("OnJoinPartyClientRPC Called!");
+            PlayerClientData playerClientData = FindObjectOfType<PlayerClientData>();
 
+            OnNewPlayerJoined?.Invoke(playerClientData);
 
             // GameObject playerClientDataGO = NetworkSpawner.LocalInstance.InstantiateOnServer("PlayerClientData", Vector3.zero, Quaternion.identity);
             // playerClientDataGO.name = _nameInputValidator.InputFieldText + "PlayerClientData";

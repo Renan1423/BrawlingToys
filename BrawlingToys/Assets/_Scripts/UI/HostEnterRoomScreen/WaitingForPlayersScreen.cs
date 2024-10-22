@@ -14,6 +14,11 @@ namespace BrawlingToys.UI
     public class WaitingForPlayersScreen : BaseScreen
     {
         [Space(20)]
+        [Header("References")]
+        [SerializeField]
+        private JoinRoom _joinRoom;
+
+        [Space(20)]
 
         [Header("Waiting For Players Screen")]
         [SerializeField]
@@ -39,6 +44,7 @@ namespace BrawlingToys.UI
 
             _partyCodeText.text = "Código da sala: " + partyCode;
             NetworkManager.Singleton.OnClientConnectedCallback += OnNewClientConnected;
+            _joinRoom.OnNewPlayerJoined += OnNewPlayerJoined;
             AddPlayer(hostPlayerName);
         }
 
@@ -47,6 +53,7 @@ namespace BrawlingToys.UI
             base.CloseScreen(delayToClose);
 
             NetworkManager.Singleton.OnClientConnectedCallback -= OnNewClientConnected;
+            _joinRoom.OnNewPlayerJoined -= OnNewPlayerJoined;
         }
 
         private void OnNewClientConnected(ulong clientId) 
@@ -57,17 +64,21 @@ namespace BrawlingToys.UI
                 var playerPref = client.PlayerObject;
 
                 List<PlayerClientData> playerClientDatas = new List<PlayerClientData>(FindObjectsOfType<PlayerClientData>());
-                Debug.Log("Found Client Datas: " + playerClientDatas);
 
                 PlayerClientData playerClientData = playerClientDatas.Find(cd => cd.PlayerID == clientId);
 
-                PlayerClientDatasManager.LocalInstance.AddPlayerClientData(playerClientData);
-
                 playerPref.gameObject.SetActive(false);
 
-                if(playerClientData != null)
-                    AddPlayer(playerClientData.PlayerUsername);
+                OnNewPlayerJoined(playerClientData);
             }
+        }
+
+        public void OnNewPlayerJoined(PlayerClientData playerClientData) 
+        {
+            PlayerClientDatasManager.LocalInstance.AddPlayerClientData(playerClientData);
+
+            if (playerClientData != null)
+                AddPlayer(playerClientData.PlayerUsername);
         }
 
         public void AddPlayer(string playerName) 
@@ -103,6 +114,24 @@ namespace BrawlingToys.UI
         private void ValidadeMatch() 
         {
             _playButton.interactable = (_playersCount > 1);
+        }
+
+        public void PlayGame() 
+        {
+            PlayGameServerRpc();
+            LevelManager.LoadNextLevelNetwork();
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void PlayGameServerRpc() 
+        {
+            PlayerGameClientRpc();
+        }
+
+        [ClientRpc]
+        private void PlayerGameClientRpc() 
+        {
+            LevelManager.StartNetworkSceneTransition();
         }
     }
 }
