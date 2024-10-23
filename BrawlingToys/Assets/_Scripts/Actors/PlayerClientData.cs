@@ -9,7 +9,11 @@ namespace BrawlingToys.Actors
     {
         public string PlayerUsername { get; private set; }
         public ulong PlayerID { get; private set; }
+
+        //Selected Character
+        public string SelectedCharacterName { get; private set; }
         public GameObject SelectedCharacterPrefab { get; private set; }
+        public Sprite SelectedCharacterSprite { get; private set; }
 
         public void SetPlayerData(ulong playerId, string userName) 
         {
@@ -17,9 +21,9 @@ namespace BrawlingToys.Actors
             PlayerUsername = userName;
         }
 
-        public void SetPlayerCharacter(GameObject selectedCharacterPrefab) 
+        public void SetPlayerCharacter(string characterName, GameObject characterModelPrefab, Sprite characterIcon) 
         {
-            SelectedCharacterPrefab = selectedCharacterPrefab;
+            SelectedCharacterPrefab = characterModelPrefab;
         }
     }
 }

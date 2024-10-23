@@ -143,6 +143,11 @@ namespace BrawlingToys.UI
             OpenNextScreen();
         }
 
+        public ChosenCharacterData GetChosenCharacterData() 
+        {
+            return _chosenCharacter;
+        }
+
         private void OpenNextScreen() 
         {
             ScreenManager.instance.ToggleScreenByTag(TagManager.CreateRoomMenu.HOST_ENTER_SELECTION, true);

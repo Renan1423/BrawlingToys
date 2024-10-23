@@ -18,7 +18,7 @@ namespace BrawlingToys.UI
         private NameInputValidator _nameInputValidator;
 
         [SerializeField]
-        private GameObject _playerClientDataPrefab;
+        private CharacterSelectionScreen _characterSelectionScreen;
 
         public event Action<PlayerClientData> OnNewPlayerJoined; 
 
@@ -80,6 +80,10 @@ namespace BrawlingToys.UI
             var clientData = clientDataGO.GetComponent<PlayerClientData>();
 
             clientData.SetPlayerData(playerId, playerName);
+            ChosenCharacterData playerCharacter = _characterSelectionScreen.GetChosenCharacterData();
+            clientData.SetPlayerCharacter(playerCharacter.CharacterName,
+                playerCharacter.ChosenCharacterPrefab,
+                playerCharacter.CharacterIcon);
 
             JoinPartyClientRpc();
         }

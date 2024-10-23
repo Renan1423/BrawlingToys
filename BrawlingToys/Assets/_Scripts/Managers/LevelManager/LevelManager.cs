@@ -46,6 +46,10 @@ namespace BrawlingToys.Managers
         {
             StartCoroutine(LoadLevelCoroutine(SceneManager.GetActiveScene().buildIndex + 1));
         }
+        public void LoadPreviousLevel()
+        {
+            StartCoroutine(LoadLevelCoroutine(SceneManager.GetActiveScene().buildIndex - 1));
+        }
 
         private IEnumerator LoadLevelCoroutine(int level)
         {

@@ -18,7 +18,7 @@ namespace BrawlingToys.UI
         [SerializeField]
         private NameInputValidator _nameInputValidator;
         [SerializeField]
-        private GameObject _playerClientDataPrefab;
+        private CharacterSelectionScreen _characterSelectionScreen;
 
         public void CreateRoom()
         {
@@ -38,6 +38,10 @@ namespace BrawlingToys.UI
             PlayerClientData playerClientData = playerClientDataGO.GetComponent<PlayerClientData>();
 
             playerClientData.SetPlayerData(NetworkManager.LocalClientId, _nameInputValidator.InputFieldText);
+            ChosenCharacterData playerCharacter = _characterSelectionScreen.GetChosenCharacterData();
+            playerClientData.SetPlayerCharacter(playerCharacter.CharacterName, 
+                playerCharacter.ChosenCharacterPrefab, 
+                playerCharacter.CharacterIcon);
 
             PlayerClientDatasManager.LocalInstance.AddPlayerClientData(playerClientData);
 

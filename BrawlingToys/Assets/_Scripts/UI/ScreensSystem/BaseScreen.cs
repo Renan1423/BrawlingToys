@@ -32,6 +32,12 @@ namespace BrawlingToys.UI
 
         public bool GraphicIsActive { get; private set; }
 
+        [Header("Previous Screen")]
+        [SerializeField]
+        private string _previousScreenName;
+        [SerializeField]
+        private float _previousScreenTransitionDelay = 0.25f;
+
         [Header("Auto Activate")]
         [SerializeField]
         private bool _autoActivate;
@@ -132,6 +138,12 @@ namespace BrawlingToys.UI
         protected virtual void OnScreenDisabled()
         {
             return; 
+        }
+
+        public virtual void ReturnToPreviousScreen() 
+        {
+            ScreenManager.instance.ToggleScreenByTag(_previousScreenName, true);
+            CloseScreen(_previousScreenTransitionDelay);
         }
     }
 }
