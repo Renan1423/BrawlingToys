@@ -960,6 +960,7 @@ GameObject:
   - component: {fileID: 5943012977831470898}
   - component: {fileID: 671930220915619101}
   - component: {fileID: 5725714426884926404}
+  - component: {fileID: 3526526022927923864}
   m_Layer: 6
   m_Name: PlayerVisual
   m_TagString: Untagged
@@ -1025,6 +1026,20 @@ MonoBehaviour:
   OnAnimationEnd:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3526526022927923864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8950152009952239513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097da4caaf0453949ace0b29a00ae8cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _positionToSpawn: {fileID: 3248957072609162509}
+  _skinnedMeshRenderers: []
 --- !u!1 &9066835223822736270
 GameObject:
   m_ObjectHideFlags: 0
@@ -1223,7 +1238,12 @@ MonoBehaviour:
   OnExit:
     m_PersistentCalls:
       m_Calls: []
-  impulsePower: 20
+  _impulsePower: 20
+  _dashDistance: 2
+  rayYOffset: 0.5
+  _obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1567318420048852312
 MonoBehaviour:
   m_ObjectHideFlags: 0

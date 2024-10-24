@@ -660,6 +660,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7533054071774273164}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 367791a40dab5c646a1e9205a8ca767d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2674560309845574412}
   m_SourcePrefab: {fileID: 100100000, guid: 367791a40dab5c646a1e9205a8ca767d, type: 3}
 --- !u!1 &6011633383899259747 stripped
 GameObject:
@@ -707,6 +711,21 @@ MonoBehaviour:
   OnAnimationEnd:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2674560309845574412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6011633383899259747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097da4caaf0453949ace0b29a00ae8cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _positionToSpawn: {fileID: 4051995872950914358}
+  _skinnedMeshRenderers: []
+  _material: {fileID: 2100000, guid: ffb08210d420de44cbea45ebea0294b1, type: 2}
 --- !u!4 &6351848002050701785 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 367791a40dab5c646a1e9205a8ca767d,
