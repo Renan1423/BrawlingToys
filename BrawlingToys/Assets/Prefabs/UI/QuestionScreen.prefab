@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Voc\xEA quer fechar o jogo?"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4253ce7aa5c6a704eb675e096f55b0a8, type: 2}
-  m_sharedMaterial: {fileID: -8317234271421154819, guid: 4253ce7aa5c6a704eb675e096f55b0a8,
+  m_fontAsset: {fileID: 11400000, guid: 471525c8d6c515845983cfea1f4d8315, type: 2}
+  m_sharedMaterial: {fileID: 5375145381976712372, guid: 471525c8d6c515845983cfea1f4d8315,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -93,13 +93,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 90
-  m_fontSizeBase: 90
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -325,6 +325,8 @@ MonoBehaviour:
   <EnterStateType>k__BackingField: 0
   _canChangeGameStateOnExit: 0
   <ExitStateType>k__BackingField: 0
+  _previousScreenName: 
+  _previousScreenTransitionDelay: 0.25
   _autoActivate: 0
   _performAnimationOnClose: 1
   _anim: {fileID: 5663861045591483373}
@@ -455,7 +457,7 @@ PrefabInstance:
     - target: {fileID: 12692437951438108, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 220
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 1441064994265010874, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
@@ -480,7 +482,7 @@ PrefabInstance:
     - target: {fileID: 2094667274981600470, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 230
+      value: 260
       objectReference: {fileID: 0}
     - target: {fileID: 3073630396821567826, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
@@ -496,6 +498,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: "N\xE3o"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442778289400949599, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: m_margin.x
+      value: -145.27441
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442778289400949599, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: m_margin.z
+      value: -132.69482
       objectReference: {fileID: 0}
     - target: {fileID: 4442778289400949599, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
@@ -535,7 +547,7 @@ PrefabInstance:
     - target: {fileID: 5358048172182825832, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 220
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 5358048172182825832, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
@@ -665,7 +677,7 @@ PrefabInstance:
     - target: {fileID: 8179293635037053830, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 220
+      value: 250
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -713,7 +725,7 @@ PrefabInstance:
     - target: {fileID: 12692437951438108, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 220
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 1441064994265010874, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
@@ -733,7 +745,7 @@ PrefabInstance:
     - target: {fileID: 2094667274981600470, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 230
+      value: 260
       objectReference: {fileID: 0}
     - target: {fileID: 3073630396821567826, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
@@ -749,6 +761,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: Sim
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442778289400949599, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: m_margin.x
+      value: -144.80957
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442778289400949599, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: m_margin.z
+      value: -132.42627
       objectReference: {fileID: 0}
     - target: {fileID: 4442778289400949599, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
@@ -788,7 +810,7 @@ PrefabInstance:
     - target: {fileID: 5358048172182825832, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 220
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 5358048172182825832, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
@@ -873,7 +895,7 @@ PrefabInstance:
     - target: {fileID: 8179293635037053830, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 220
+      value: 250
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
