@@ -1,6 +1,11 @@
 fileFormatVersion: 2
-guid: 75daef590d94b5c489ce35852ce326a9
+<<<<<<<< HEAD:BrawlingToys/Assets/_Assets/Sprites/Inputs/mrbreakfasts_free_prompts-main/CHANGE_NOTES.md.meta
+guid: 0ebba10743b7d14469c8d78d3f56b55e
 TextScriptImporter:
+========
+guid: e078021e006d8684c80a3ca4e1bac2a4
+PrefabImporter:
+>>>>>>>> Development-Combate:BrawlingToys/Assets/Prefabs/Player/PlayerMecha.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

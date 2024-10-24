@@ -1,17 +1,22 @@
+using BrawlingToys.Core;
 using System;
+using System.Threading;
 using UnityEngine;
 
 namespace BrawlingToys.Actors
 {
     public class DashState : State
     {
-        [SerializeField] private Rigidbody _rig; 
-        
-        [Space]
-        
-        [SerializeField] float impulsePower = 20f;
+        [SerializeField] private float _impulsePower = 20.0f;
+        [SerializeField] private float _dashDistance = 2.0f;
 
-        private Vector3 dashDirection;
+        [SerializeField] private float rayYOffset = .5f;
+        [SerializeField] private LayerMask _obstacleLayers;
+
+        private float _finalDashDistance = 0f;
+        private float _traveledDistance = 0f;
+        private Vector3 _dashDirection;
+        private RaycastHit hitInfo;
 
         protected override void EnterState()
         {
@@ -19,21 +24,46 @@ namespace BrawlingToys.Actors
             _player.Cooldowns.dashTimer.Start();
 
             // Aplicar for�a no player na dire��o de movimento
-            float movementMagnitude = _player.Inputs.GetMovementVectorNormalized().magnitude;
+            float movementMagnitude = _player.Inputs.GetMovementVectorNormalized().sqrMagnitude;
             Vector3 movementDirection = new Vector3(_player.Inputs.GetMovementVectorNormalized().x, 0,
                 _player.Inputs.GetMovementVectorNormalized().y);
 
-            dashDirection = movementMagnitude > 0 ? movementDirection : Vector3.forward;
+            _dashDirection = movementMagnitude > 0 ? movementDirection : _player.transform.forward;
 
-            _player.Animations.OnAnimationAction.AddListener(() => _player.Rig.AddForce(impulsePower * dashDirection, ForceMode.Impulse));
-            _player.Animations.OnAnimationEnd.AddListener(WhenDashEnds);
+            _finalDashDistance = _dashDistance;
+
+            Physics.Raycast(new Vector3(_player.transform.position.x, _player.transform.position.y + rayYOffset, _player.transform.position.z),
+                _dashDirection, out hitInfo, _dashDistance, _obstacleLayers);
+            if(hitInfo.collider != null )
+            {
+                _finalDashDistance = Vector3.Distance(_player.transform.position, hitInfo.point);
+            }
         }
 
         protected override void ExitState()
         {
-            _player.Rig.velocity = Vector3.zero;
-            dashDirection = Vector3.zero;
+            _dashDirection = Vector3.zero;
+            _player.Rb.velocity = Vector3.zero;
+            _traveledDistance = 0f;
             _player.Animations.ResetEvents();
+        }
+
+        public override void UpdateState()
+        {
+            if(_traveledDistance <= _finalDashDistance)
+            {
+                _traveledDistance += _impulsePower * Time.deltaTime;
+                _player.Rb.velocity = _impulsePower * _dashDirection;
+            }
+            else
+            {
+                _traveledDistance = 0f;
+                _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Idle));
+            }
+        }
+
+        public override void FixedUpdateState()
+        {
         }
 
         protected override void HandleShoot(object sender, EventArgs e)
@@ -49,11 +79,6 @@ namespace BrawlingToys.Actors
         protected override void HandleDash(object sender, EventArgs e)
         {
             // Previne de dar outro dashe antes do t�rmino de um.
-        }
-
-        private void WhenDashEnds()
-        {
-            _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Idle));
         }
     }
 }

@@ -24,7 +24,7 @@ namespace BrawlingToys.Actors
             // Logica de verifica��o se acertou algo no caminho:
             // Se for bullet : aplica parry,
             // Se for player : aplica knockback;
-            _player._meleeCommand.Execute();
+            //_player._meleeCommand.Execute();
         }
 
         protected override void HandleShoot(object sender, EventArgs e)

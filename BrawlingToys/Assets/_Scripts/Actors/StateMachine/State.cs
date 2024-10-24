@@ -83,7 +83,7 @@ namespace BrawlingToys.Actors
             {
                 if (!_player.Cooldowns.fireRateTimer.IsRunning)
                 {
-                    _player._shootCommand.Execute();
+                    _player.Weapon.SpawnBulletServerRpc("Bullet", _player.PlayerId);
                     _player.Cooldowns.reloadTimer.Start();
                 }
             }

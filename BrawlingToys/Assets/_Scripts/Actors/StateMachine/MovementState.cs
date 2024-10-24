@@ -63,12 +63,12 @@ namespace BrawlingToys.Actors
                 _player.Inputs.GetMovementVectorNormalized().y);
 
             _currentVelocity = moveDirection * _currentSpeed;
-            _currentVelocity.y = _player.Rig.velocity.y;
+            _currentVelocity.y = _player.Rb.velocity.y;
         }
 
         private void SetVelocity()
         {
-            _player.Rig.velocity = _currentVelocity;
+            _player.Rb.velocity = _currentVelocity;
         }
     }
 }

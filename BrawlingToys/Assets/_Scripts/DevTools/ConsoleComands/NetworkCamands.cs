@@ -80,7 +80,7 @@ namespace BrawlingToys.DevTools
         public static void KillPlayer(ulong playerId)
         {
             var player = MatchManager.LocalInstance.MatchPlayers.FirstOrDefault(p => p.PlayerId == playerId); 
-            player.Damage(null); 
+            //player.Damage(null); 
         }
     }
 }
