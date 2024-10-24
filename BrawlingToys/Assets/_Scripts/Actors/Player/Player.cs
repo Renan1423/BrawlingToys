@@ -54,6 +54,11 @@ namespace BrawlingToys.Actors
         [Header("Weapon Stuff: ")]
         [SerializeField] private LayerMask _groundLayerMask;
         [SerializeField] private Transform _firePoint; // Instancia a bala nesse game object
+
+        [Space]
+
+        [SerializeField] private NetworkWeaponShooter _networkWeaponShooter; 
+
         private RaycastHit _hitInfo;
         private float _aimSmoothRate = 50f;
         private PlayerWeapon _weapon;
@@ -114,7 +119,7 @@ namespace BrawlingToys.Actors
             _cooldowns = new(this);
             _cooldowns.Initialize();
 
-            _weapon = new(this, _firePoint, _aimSmoothRate, _groundLayerMask);
+            _weapon = new(this, _firePoint, _aimSmoothRate, _groundLayerMask, _networkWeaponShooter);
 
             OnPlayerInitialize?.Invoke(this);
         }

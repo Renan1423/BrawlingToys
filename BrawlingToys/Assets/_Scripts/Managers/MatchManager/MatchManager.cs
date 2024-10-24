@@ -10,6 +10,9 @@ namespace BrawlingToys.Managers
 {
     public class MatchManager : NetworkSingleton<MatchManager>
     {
+        [SerializeField]
+        private GameObject _playerPrefab; 
+        
         private Dictionary<Player, PlayerRoundInfo> _playerMatchInfo = new();
         private int _deadPlayersCount = 0;
 
@@ -19,6 +22,8 @@ namespace BrawlingToys.Managers
         } }
 
         public Dictionary<Player, PlayerRoundInfo> PlayerMatchInfo { get => _playerMatchInfo; }
+
+        private bool _playersSpawned = false; 
 
         private void Start()
         {
@@ -59,7 +64,6 @@ namespace BrawlingToys.Managers
 
             var player = playerPref.GetComponent<Player>(); 
 
-            //player.OnPlayerInitialize.AddListener(AddPlayerMatchInfo);
             player.OnPlayerKill.AddListener(RegisterKill);
             player.OnPlayerDeath.AddListener(RegisterDeath);
 
@@ -83,20 +87,15 @@ namespace BrawlingToys.Managers
                     .ToArray();
 
             SyncMatchPlayersServerRpc(serializedIds, serializedKills, serializedSurvivals); 
-
-            Debug.Log($"Player: {player.PlayerId} was inited on server");
         }
 
         private void TrySetupCombatState(GameStateType newGameState)
         {
             if (newGameState == GameStateType.Combat && NetworkManager.Singleton.IsHost)
             {
-                ResetMatchInfoServerRpc(); 
+                if(!_playersSpawned) SpawnPlayerPrefsServerRpc(); 
                 
-                var serializedIds = _playerMatchInfo
-                    .Select(p => p.Key.PlayerId)
-                    .ToArray(); 
-
+                ResetMatchInfoServerRpc(); 
                 EnablePlayersServerRpc(); 
             }
         }
@@ -133,6 +132,21 @@ namespace BrawlingToys.Managers
 
             bool MatchIsEnded() => _playerMatchInfo.Count - _deadPlayersCount <= 1; 
         }
+
+        [ServerRpc]
+        private void SpawnPlayerPrefsServerRpc()
+        {
+            var clientIds = NetworkManager.Singleton.ConnectedClientsIds; 
+            
+            foreach (var clientId in clientIds)
+            {
+                var playerInstance = Instantiate(_playerPrefab);
+
+                playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
+            }
+
+            _playersSpawned = true; 
+        } 
 
         [ServerRpc(RequireOwnership = false)]
         private void CallResultScreenServerRpc()

@@ -18,12 +18,17 @@ namespace BrawlingToys.Actors
         private LayerMask _groundLayerMask;
         private RaycastHit _hitInfo;
 
-        public PlayerWeapon(Player player, Transform firePoint, float aimSmoothRate, LayerMask groundLayerMask)
+        private NetworkWeaponShooter _networkShooter; 
+
+        public PlayerWeapon(Player player, Transform firePoint, float aimSmoothRate, LayerMask groundLayerMask, NetworkWeaponShooter networkShooter)
         {
             _player = player;
             _firePoint = firePoint;
             _aimSmoothRate = aimSmoothRate;
             _groundLayerMask = groundLayerMask;
+            
+            _networkShooter = networkShooter; 
+            _networkShooter.Init(_firePoint); 
         }
 
         public void Update()
@@ -45,17 +50,7 @@ namespace BrawlingToys.Actors
             }
         }
 
-        [ServerRpc(RequireOwnership = false)]
-        public void SpawnBulletServerRpc(string bulletName, ulong bulletOwnerPlayerId)
-        {
-            var bullet = NetworkSpawner
-                .LocalInstance
-                .InstantiateOnServer(bulletName, _firePoint.position, _firePoint.rotation)
-                .GetComponent<Bullet>();
-
-            var owner = Player.Instances.First(p => p.PlayerId == bulletOwnerPlayerId);
-
-            bullet.Initialize(owner);
-        }
+        public void Shoot(ulong ownerPlayerId) 
+        => _networkShooter.SpawnBullet("Bullet", ownerPlayerId);
     }
 }

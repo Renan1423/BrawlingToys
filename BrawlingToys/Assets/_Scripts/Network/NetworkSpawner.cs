@@ -50,6 +50,7 @@ namespace BrawlingToys.Network
 
         /// <summary>
         /// Instantiate the object on server, for every connected client.
+        /// This can ONLY be called by the SERVER/HOST!
         /// </summary>
         /// <param name="gameObjectName">The name of the object to spawn.</param>
         /// <param name="position">The position to spawn the object at.</param>
