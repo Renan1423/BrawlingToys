@@ -2,12 +2,13 @@
     "name": "BrawlingToys.Actors",
     "rootNamespace": "BrawlingToys.Actors",
     "references": [
+        "GUID:8087d854c1f812e4b9a74437dfc524e0",
         "GUID:1491147abca9d7d4bb7105af628b223e",
         "GUID:75469ad4d38634e559750d17036d5f7c",
         "GUID:232f118339904344b99737a42fdc06f3",
         "GUID:51f07e88ca493b04c81a8ac24c02c43b",
         "GUID:f161c3dd7acddb64f8d0bfa8c6ec4e07",
-        "GUID:8087d854c1f812e4b9a74437dfc524e0"
+        "GUID:1c4ad647caebd714583cf8b7511f1123"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
