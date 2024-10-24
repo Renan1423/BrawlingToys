@@ -13,6 +13,10 @@ namespace BrawlingToys.UI
         private TMP_InputField _nameInputField;
         [SerializeField]
         private Animator _errorAnim;
+        [SerializeField]
+        private Animator _inputFieldAnim;
+
+        public string InputFieldText => _nameInputField.text;
 
         public void ValidateName() 
         {
@@ -27,8 +31,11 @@ namespace BrawlingToys.UI
 
             bool validationResult = _nameInputField.text != "";
 
-            if (!validationResult)
+            if (!validationResult) 
+            {
                 _errorAnim.SetTrigger("Show");
+                _inputFieldAnim.SetTrigger("Error");
+            }
 
             return validationResult;
         }

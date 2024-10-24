@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu/MainMenu.unity
     guid: c57837c0aa115f14781f0822f3000139
   - enabled: 1
+    path: Assets/Scenes/Lobby/RoomCreation.unity
+    guid: d4aedf6008e554e4a9af44ed28050465
+  - enabled: 1
     path: Assets/Scenes/CombatScene.unity
     guid: 407bb343612ac6f49a2fb9ad33e23a00
-  - enabled: 0
-    path: Assets/Scenes/GameplayScene.unity
-    guid: 54959bd2579ea06479fc863796d01413
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: d48c3fa9db9076b48aa659bd2865f068,
       type: 2}

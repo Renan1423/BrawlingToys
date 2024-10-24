@@ -16,5 +16,11 @@ namespace BrawlingToys.UI
         {
             instance = this;
         }
+
+        private void OnDestroy()
+        {
+            if (instance == this)
+                instance = null;
+        }
     }
 }
