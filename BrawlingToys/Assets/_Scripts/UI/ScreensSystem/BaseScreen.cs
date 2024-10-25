@@ -16,7 +16,7 @@ namespace BrawlingToys.UI
         [field: SerializeField]
         public string ScreenName { get; private set; }
 
-        [Header("Game Manager Itegration")]
+        [Header("Game Manager Integration")]
 
         [Header("Enter")]
         [SerializeField] private bool _canChangeGameStateOnEnter;
@@ -30,24 +30,51 @@ namespace BrawlingToys.UI
         [field: SerializeField]
         public GameStateType ExitStateType { get; private set; }
 
-        protected void Start()
+        public bool GraphicIsActive { get; private set; }
+
+        [Header("Previous Screen")]
+        [SerializeField]
+        private string _previousScreenName;
+        [SerializeField]
+        private float _previousScreenTransitionDelay = 0.25f;
+
+        [Header("Auto Activate")]
+        [SerializeField]
+        private bool _autoActivate;
+
+        [Header("Animation")]
+        [SerializeField]
+        private bool _performAnimationOnClose;
+        [SerializeField]
+        private Animator _anim;
+        [SerializeField]
+        private string _closeTrigger = "Close";
+
+        protected virtual void Start()
         {   
             ScreenManager.instance.OnToggleAnyScreen += ScreenManager_OnToggleAnyScreen;
-            _graphicContainer.SetActive(false);
+            
+            ToggleGraphicContainer(_autoActivate);
         }
+
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            ScreenManager.instance.OnToggleAnyScreen -= ScreenManager_OnToggleAnyScreen;
+        }
+
+
 
         protected virtual void ScreenManager_OnToggleAnyScreen(object sender, ScreenManager.ToggleAnyScreenEventArgs e) 
         {
             if (e.screenName == ScreenName) 
             {
-                CheckGameManagerCallbacks(); 
+                CheckGameManagerCallbacks();
 
-                _graphicContainer.SetActive(e.active);
+                ToggleGraphicContainer(e.active);
 
-                if (e.active)
-                {
-                    OnScreenEnable(); 
-                }
+                CheckMethodsCallbacks(); 
             }
 
             void CheckGameManagerCallbacks()
@@ -62,6 +89,18 @@ namespace BrawlingToys.UI
                     GameManager.LocalInstance.ChangeGameState(ExitStateType);
                 }
             }
+
+            void CheckMethodsCallbacks()
+            {
+                if (e.active)
+                {
+                    OnScreenEnable(); 
+                }
+                else
+                {
+                    OnScreenDisabled(); 
+                }
+            }
         }
 
         protected virtual void CloseScreen(float delayToClose) 
@@ -71,14 +110,40 @@ namespace BrawlingToys.UI
 
         private IEnumerator CloseScreenCoroutine(float delayToClose) 
         {
+            if (_anim != null && _performAnimationOnClose)
+                _anim.SetTrigger(_closeTrigger);
+
             yield return new WaitForSeconds(delayToClose);
 
-            gameObject.SetActive(false);
+            ToggleGraphicContainer(false);
+        }
+
+        private void ToggleGraphicContainer(bool active) 
+        {
+            if (_graphicContainer == null) 
+            {
+                Debug.LogWarning(gameObject.name + ": graphicContainer is null!");
+                return;
+            }
+
+            _graphicContainer.SetActive(active);
+            GraphicIsActive = active;
         }
 
         protected virtual void OnScreenEnable()
         {
             return; 
+        }
+
+        protected virtual void OnScreenDisabled()
+        {
+            return; 
+        }
+
+        public virtual void ReturnToPreviousScreen() 
+        {
+            ScreenManager.instance.ToggleScreenByTag(_previousScreenName, true);
+            CloseScreen(_previousScreenTransitionDelay);
         }
     }
 }

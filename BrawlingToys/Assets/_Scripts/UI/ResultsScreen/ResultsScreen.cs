@@ -39,7 +39,6 @@ namespace BrawlingToys.UI
                 StartCoroutine(WaitForCloseScreen());
             }
             
-
             void CallSyncRpc()
             {
                 var serializedIds = _playersRoundInfo
@@ -56,6 +55,7 @@ namespace BrawlingToys.UI
                     .Select(i => i.IsSurvivor)
                     .ToArray();
 
+                Debug.Log("Callign Sync");
                 SyncPlayersInfoServerRpc(serializedIds, serializedKills, serializedSurvivals); 
             }
         }
@@ -73,6 +73,7 @@ namespace BrawlingToys.UI
 
         public void InitializeScreen()
         {
+            Debug.Log("Init");
             _connectedPlayerScoresUIs = new List<PlayerScore>();
             int playerAmount = _playersRoundInfo.Count;
 
@@ -113,7 +114,7 @@ namespace BrawlingToys.UI
         {
             yield return new WaitForSeconds(_timeToBackToGame); 
 
-            CloseScreenServerRpc(); 
+            ChangeToNextScreenServerRpc(); 
         }
 
         #region Network Actions
@@ -173,15 +174,16 @@ namespace BrawlingToys.UI
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void CloseScreenServerRpc()
+        private void ChangeToNextScreenServerRpc()
         {
-            CloseScreenClientRpc(); 
+            ChangeToNextScreenClientRpc(); 
         }
 
         [ClientRpc]
-        private void CloseScreenClientRpc()
+        private void ChangeToNextScreenClientRpc()
         {
             ScreenManager.instance.ToggleScreenByTag(ScreenName, false); 
+            ScreenManager.instance.ToggleScreenByTag("SupriseBox", true); 
         }
 
         #endregion

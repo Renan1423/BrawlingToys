@@ -1481,17 +1481,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _graphicContainer: {fileID: 7118974855566854950}
   <ScreenName>k__BackingField: SupriseBox
-  _canChangeGameStateOnEnter: 0
-  <EnterStateType>k__BackingField: 0
+  _canChangeGameStateOnEnter: 1
+  <EnterStateType>k__BackingField: 1
   _canChangeGameStateOnExit: 0
   <ExitStateType>k__BackingField: 0
+  _autoActivate: 0
+  _performAnimationOnClose: 0
+  _anim: {fileID: 7550011892471414312}
+  _closeTrigger: Close
   _titleText: {fileID: 1406259692299590542}
   _partNameText: {fileID: 1461121492448554605}
   _partDescriptionText: {fileID: 22000024705140854}
   _partIconImage: {fileID: 3906597791634192097}
   _openBoxButton: {fileID: 8172346878411004811}
   _equipBoxButton: {fileID: 6063551293853607679}
-  _anim: {fileID: 7550011892471414312}
+  _surpriseBoxUiAnim: {fileID: 7550011892471414312}
   _equipEffectsSelectionScreen: {fileID: 0}
 --- !u!114 &2927929818102961190
 MonoBehaviour:

@@ -24,7 +24,7 @@ namespace BrawlingToys.Actors
 
         private void Update()
         {
-            if (_knockbackTimer.IsRunning)
+            if (_knockbackTimer != null && _knockbackTimer.IsRunning)
             {
                 _knockbackTimer.Tick(Time.deltaTime);
             }
@@ -33,6 +33,7 @@ namespace BrawlingToys.Actors
         public override void GetHit(GameObject sender, IHitCommand hitCommand)
         {
             base.GetHit(sender, hitCommand);
+            DieServerRpc(); 
         }
 
         public override HitableType GetTargetType()

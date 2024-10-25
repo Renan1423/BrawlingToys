@@ -2,10 +2,11 @@
 {
     public enum GameStateType
     {
-        Connection,
+        Loading,
         Building,
         Combat,
         Score,
-        FinalScreen
+        FinalScreen,
+        Tutorial
     }
 }

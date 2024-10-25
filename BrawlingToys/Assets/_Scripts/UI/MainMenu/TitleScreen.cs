@@ -4,13 +4,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.LowLevel;
+using BrawlingToys.Managers;
+using BrawlingToys.Core;
 
 namespace BrawlingToys.UI
 {
     public class TitleScreen : MonoBehaviour
     {
         [SerializeField]
-        private GameObject _mainMenu;
+        private Animator _anim;
 
         private void OnEnable()
         {
@@ -44,8 +46,19 @@ namespace BrawlingToys.UI
 
         private void CloseTitleScreen() 
         {
-            _mainMenu.SetActive(true);
+            ScreenManager.instance.ToggleScreenByTag(TagManager.MainMenu.MAIN_MENU, true);
+            _anim.SetTrigger("Close");
+
+            StartCoroutine(CloseTitleScreenCoroutine());
+        }
+
+        private IEnumerator CloseTitleScreenCoroutine() 
+        {
+            yield return new WaitForSeconds(0.5f);
+
             this.gameObject.SetActive(false);
         }
+
+
     }
 }

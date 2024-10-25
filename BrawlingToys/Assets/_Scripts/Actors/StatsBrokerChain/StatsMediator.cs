@@ -10,6 +10,8 @@ namespace BrawlingToys.Actors
 
         public EventHandler<Query> Queries;
 
+        public EventHandler<List<ModifierScriptable>> OnMediatorChange; 
+
         // Whenever we want to know about specific stats modifier we can perform a query.
         // Invoke all of the queries that we've stored inside of that queries variable.
         public void PerformQuery(object sender, Query query) => Queries?.Invoke(sender, query);
@@ -35,6 +37,8 @@ namespace BrawlingToys.Actors
                 _appliedModifiers = new List<ModifierScriptable>();
 
             _appliedModifiers.Add(modifierSo);
+
+            OnMediatorChange?.Invoke(this, _appliedModifiers); 
         }
 
         public void Update(float deltaTime)
