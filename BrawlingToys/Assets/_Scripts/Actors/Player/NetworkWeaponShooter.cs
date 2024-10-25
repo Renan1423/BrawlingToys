@@ -23,16 +23,25 @@ namespace BrawlingToys.Actors
         [ServerRpc(RequireOwnership = false)]
         private void SpawnBulletServerRpc(string bulletName, ulong bulletOwnerPlayerId)
         {
-            if(!_initialized) throw new Exception("NetworkWeaponShooter was not initialized!"); 
-            
+            if (!_initialized) throw new Exception("NetworkWeaponShooter was not initialized!");
+
             var bullet = NetworkSpawner
                 .LocalInstance
                 .InstantiateOnServer(bulletName, _firePoint.position, _firePoint.rotation)
                 .GetComponent<Bullet>();
 
-            var owner = Player.Instances.First(p => p.PlayerId == bulletOwnerPlayerId);
+            InitBulletClientRpc(bulletOwnerPlayerId, bullet.NetworkObjectId);
+        }
 
+        [ClientRpc]
+        private void InitBulletClientRpc(ulong bulletOwnerPlayerId, ulong bulletNetworkObjectId)
+        {
+            var bullet = NetworkManager.Singleton.SpawnManager.SpawnedObjects[bulletNetworkObjectId].GetComponent<Bullet>();
+
+            var owner = Player.Instances.First(p => p.PlayerId == bulletOwnerPlayerId);
             bullet.Initialize(owner);
+
+            Debug.Log(owner.PlayerId);
         }
     }
 }

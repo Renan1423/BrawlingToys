@@ -1,6 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 using BrawlingToys.Core;
+using System.Linq;
 
 namespace BrawlingToys.Actors
 {
@@ -84,25 +85,18 @@ namespace BrawlingToys.Actors
 
         protected bool ValidCollision(Collider other)
         {
-            if (!IsOwner) return false; 
-            Debug.Log($"Is the same: {other.gameObject == _bulletOwner.gameObject} - Collision: {other.gameObject} - Owner: {_bulletOwner.gameObject}");
+            //if (!IsOwner) return false; 
             if (other.gameObject == _bulletOwner.gameObject) return false;
 
             return true; 
         }
 
-        /// <summary>
-        /// Server call to destroy the bullet on all connected clients
-        /// </summary>
         [ServerRpc(RequireOwnership = false)]
         protected void DestroyBulletServerRpc()
         {
             DestroyBulletClientRpc();
         }
 
-        /// <summary>
-        /// Destroy the bullet in current client
-        /// </summary>
         [ClientRpc]
         protected void DestroyBulletClientRpc()
         {
