@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using BrawlingToys.Actors;
-using BrawlingToys.UI;
 using BrawlingToys.Managers;
 using Unity.Netcode;
 using System.Linq;
@@ -43,7 +41,6 @@ namespace BrawlingToys.UI
 
         public void DrawScreen()
         {
-            //We must gather the player informations using the multiplayer features. This is only for prototype purpose
             for (int i = 0; i < _players.Count; i++)
             {
                 string playerName = "Player " + i;
@@ -64,7 +61,6 @@ namespace BrawlingToys.UI
 
         public void OnTargetSelected(PlayerInfoPanel playerInfoPanel)
         {
-            Debug.Log("Target selected");
             ScreenManager.instance.ToggleScreenByTag(ScreenName, false);
         }
 

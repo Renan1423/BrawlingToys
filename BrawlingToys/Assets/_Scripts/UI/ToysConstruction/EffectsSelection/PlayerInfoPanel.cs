@@ -55,7 +55,7 @@ namespace BrawlingToys.UI
         {
             _onClicked?.Invoke(this);
 
-            //_playerStats.Mediator.AddModifier(_effectToApply);
+            _playerStats.Mediator.AddModifier(_effectToApply);
         }
     }
 }

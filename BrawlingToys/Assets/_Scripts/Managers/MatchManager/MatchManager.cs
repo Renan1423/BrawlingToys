@@ -16,85 +16,72 @@ namespace BrawlingToys.Managers
         private Dictionary<Player, PlayerRoundInfo> _playerMatchInfo = new();
         private int _deadPlayersCount = 0;
 
+        private bool _playersSpawned = false;
+
         public Player[] MatchPlayers { get 
         {            
             return _playerMatchInfo.Keys.ToArray();  
         } }
 
         public Dictionary<Player, PlayerRoundInfo> PlayerMatchInfo { get => _playerMatchInfo; }
-
-        private bool _playersSpawned = false; 
+        
+        public event Action OnPlayersSpawned; 
 
         private void Start()
         {
             SubscribeEvents(); 
         }
 
-        public override void OnDestroy()
-        {
-            UnsubscribeEvents(); 
-            
-            base.OnDestroy();
-        }
-
         private void SubscribeEvents()
         {
-            NetworkManager.Singleton.OnClientConnectedCallback += UpdateMatchInfoDictionary; 
-            
             GameManager.LocalInstance.OnGameStateChange.AddListener(TrySetupCombatState); 
         }
 
-        private void UnsubscribeEvents()
+        private void GeneratePlayersRoundInfo()
         {
-            if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsHost)
+            foreach (var clientId in NetworkManager.Singleton.ConnectedClientsIds)
             {
-                NetworkManager.Singleton.OnClientConnectedCallback -= UpdateMatchInfoDictionary;
-            }
-        }
+                var client = NetworkManager.Singleton.ConnectedClients.GetValueOrDefault(clientId); 
+                var playerPref = client.PlayerObject; 
 
-        private void UpdateMatchInfoDictionary(ulong clientId)
-        {
-            if(NetworkManager.Singleton.IsHost) AddClientPlayerToDic(clientId);
-        }
+                var player = playerPref.GetComponent<Player>(); 
 
-        private void AddClientPlayerToDic(ulong clientId)
-        {
-            var client = NetworkManager.Singleton.ConnectedClients.GetValueOrDefault(clientId); 
-            var playerPref = client.PlayerObject; 
+                player.OnPlayerKill.AddListener(RegisterKill);
+                player.OnPlayerDeath.AddListener(RegisterDeath);
 
-            var player = playerPref.GetComponent<Player>(); 
+                var roundInfo = new PlayerRoundInfo(0, true); 
 
-            player.OnPlayerKill.AddListener(RegisterKill);
-            player.OnPlayerDeath.AddListener(RegisterDeath);
+                _playerMatchInfo.Add(player, roundInfo);
 
-            var roundInfo = new PlayerRoundInfo(0, true); 
-
-            _playerMatchInfo.Add(player, roundInfo);
-
-            var serializedIds = _playerMatchInfo
-                    .Keys
-                    .Select(p => p.PlayerId)
-                    .ToArray();
-            
-            var serializedKills = _playerMatchInfo
-                    .Values
-                    .Select(i => i.KillsAmount)
-                    .ToArray(); 
+                var serializedIds = _playerMatchInfo
+                        .Keys
+                        .Select(p => p.PlayerId)
+                        .ToArray();
                 
-                var serializedSurvivals = _playerMatchInfo
-                    .Values
-                    .Select(i => i.IsSurvivor)
-                    .ToArray();
+                var serializedKills = _playerMatchInfo
+                        .Values
+                        .Select(i => i.KillsAmount)
+                        .ToArray(); 
+                    
+                    var serializedSurvivals = _playerMatchInfo
+                        .Values
+                        .Select(i => i.IsSurvivor)
+                        .ToArray();
 
-            SyncMatchPlayersServerRpc(serializedIds, serializedKills, serializedSurvivals); 
+                SyncMatchPlayersServerRpc(serializedIds, serializedKills, serializedSurvivals); 
+            }
         }
 
         private void TrySetupCombatState(GameStateType newGameState)
         {
             if (newGameState == GameStateType.Combat && NetworkManager.Singleton.IsHost)
             {
-                if(!_playersSpawned) SpawnPlayerPrefsServerRpc(); 
-                
+                if(!_playersSpawned)
+                {
+                    SpawnPlayerPrefsServerRpc();
+                    GeneratePlayersRoundInfo();  
+                }
+
                 ResetMatchInfoServerRpc(); 
                 EnablePlayersServerRpc(); 
             }
@@ -146,6 +133,7 @@ namespace BrawlingToys.Managers
             }
 
             _playersSpawned = true; 
+            OnPlayersSpawned?.Invoke(); 
         } 
 
         [ServerRpc(RequireOwnership = false)]
