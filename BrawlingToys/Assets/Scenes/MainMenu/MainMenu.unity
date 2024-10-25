@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18343024, g: 0.2273641, b: 0.29633886, a: 1}
+  m_IndirectSpecularColor: {r: 0.18342996, g: 0.2273635, b: 0.29633802, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5819,13 +5819,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 941043378604926028, guid: 9f992e528a2b9624d83b89415142b36f,
         type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 941043378604926028, guid: 9f992e528a2b9624d83b89415142b36f,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 941043378604926028, guid: 9f992e528a2b9624d83b89415142b36f,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 941043378604926028, guid: 9f992e528a2b9624d83b89415142b36f,
         type: 3}
@@ -5836,7 +5841,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 611576943}
     - target: {fileID: 941043378604926028, guid: 9f992e528a2b9624d83b89415142b36f,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -5855,7 +5860,7 @@ PrefabInstance:
     - target: {fileID: 941043378604926028, guid: 9f992e528a2b9624d83b89415142b36f,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlayFeedbacks
+      value: OnHoverDrawer
       objectReference: {fileID: 0}
     - target: {fileID: 941043378604926028, guid: 9f992e528a2b9624d83b89415142b36f,
         type: 3}
@@ -5865,7 +5870,7 @@ PrefabInstance:
     - target: {fileID: 941043378604926028, guid: 9f992e528a2b9624d83b89415142b36f,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MoreMountains.Feedbacks.MMF_Player, MoreMountains.Feedbacks
+      value: BrawlingToys.UI.DrawerButton, BrawlingToys.UI
       objectReference: {fileID: 0}
     - target: {fileID: 941043378604926028, guid: 9f992e528a2b9624d83b89415142b36f,
         type: 3}
@@ -5952,6 +5957,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8238717522562082860, guid: 9f992e528a2b9624d83b89415142b36f,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238717522562082860, guid: 9f992e528a2b9624d83b89415142b36f,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238717522562082860, guid: 9f992e528a2b9624d83b89415142b36f,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238717522562082860, guid: 9f992e528a2b9624d83b89415142b36f,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5963,6 +5988,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 611576941}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &611576943 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 973184209635329263, guid: 9f992e528a2b9624d83b89415142b36f,
+    type: 3}
+  m_PrefabInstance: {fileID: 611576941}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4c07b2ed188b64bb881964e2c97654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &626803966
 GameObject:
   m_ObjectHideFlags: 0
