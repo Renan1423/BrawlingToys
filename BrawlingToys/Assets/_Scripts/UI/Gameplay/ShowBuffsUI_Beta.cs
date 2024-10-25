@@ -33,9 +33,9 @@ namespace BrawlingToys.UI
             var baseText = "Buffs: {buff01} - {buff02} - {buff03}";
             
             var finalText = baseText
-                .Replace("{buff01}", appliedBuffs.Count >= 1 ? appliedBuffs[0].ToString() : "N/D")  
-                .Replace("{buff02}", appliedBuffs.Count >= 2 ? appliedBuffs[1].ToString() : "N/D")
-                .Replace("{buff03}", appliedBuffs.Count == 3 ? appliedBuffs[2].ToString() : "N/D");
+                .Replace("{buff01}", appliedBuffs.Count >= 1 ? appliedBuffs[0].EffectName : "N/D")  
+                .Replace("{buff02}", appliedBuffs.Count >= 2 ? appliedBuffs[1].EffectName : "N/D")
+                .Replace("{buff03}", appliedBuffs.Count == 3 ? appliedBuffs[2].EffectName : "N/D");
 
             _buffText.SetText(finalText);   
         }

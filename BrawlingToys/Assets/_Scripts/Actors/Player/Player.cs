@@ -71,6 +71,18 @@ namespace BrawlingToys.Actors
             InitializePlayer();
         }
 
+        private void OnEnable()
+        {
+            if(PlayerEnableOnDeathState())
+            {
+                var idle = StateFactory.GetState(StateFactory.StateType.Idle); 
+                TransitionToState(idle); 
+            }
+
+            bool PlayerEnableOnDeathState() => 
+            _currentState.GetType() == typeof(DieState); 
+        }
+
         public override void OnNetworkSpawn()
         {
             PlayerId = OwnerClientId; 

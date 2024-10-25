@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.InputSystem;
+using Unity.Netcode;
 using BrawlingToys.Actors;
 using BrawlingToys.Managers;
-using Unity.Netcode;
-using System.Linq;
-using UnityEngine.InputSystem;
+using BrawlingToys.Core; 
 
 namespace BrawlingToys.UI
 {
@@ -30,37 +31,74 @@ namespace BrawlingToys.UI
         [SerializeField] private InputActionAsset _inputActionAsset;
         private InputActionMap _gameplayMap;
 
+        [Header("DBs")]
+
+        [SerializeField] private ModifiersDB _allModifiersDB;
+
+        private List<PlayerInfoPanel> _currentPanels = new(); 
+        private bool _panelsInstantiated = false; 
+
         protected override void OnScreenEnable()
         {
-            if (NetworkManager.Singleton.IsHost)
+            if (NetworkManager.Singleton.IsHost && _players.Count == 0)
             {
                 GetPlayersReferenceServerRpc();
             }
-        }
 
+            DrawScreen(); 
+        }
 
         public void DrawScreen()
         {
             for (int i = 0; i < _players.Count; i++)
             {
-                string playerName = "Player " + i;
-                SpawnPlayerInfo(_drawnEffect, _players[i].Stats, playerName, _playerCharacterAssetRef, new GameObject[0]);
+                var player = _players[i]; 
+
+                Debug.Log(i);
+
+                string playerName = "Player " + (player.PlayerId + 1);
+                SpawnPlayerInfo(player, playerName, _playerCharacterAssetRef, new GameObject[0]);
             }
+
+            _panelsInstantiated = true; 
         }
 
-        public void SpawnPlayerInfo(ModifierScriptable effectToApply, Stats playerStats, string playerName, AssetReference characterAsset, GameObject[] effectsGo)
+        public void SpawnPlayerInfo(Player player, string playerName, AssetReference characterAsset, GameObject[] effectsGo)
+        {
+            var playerInfo = _panelsInstantiated 
+                ? GetPlayerPanel(player) 
+                : GeneratePanel();
+
+            playerInfo.FillInfoPanel(player, playerName, characterAsset, effectsGo);
+            playerInfo.GetPlayerInfoClickEvent().AddListener(OnTargetSelected);
+        }
+
+        private PlayerInfoPanel GeneratePanel()
         {
             GameObject playerInfoGo = Instantiate(_playerInfoPrefab, _playerInfoHorizontalLayout);
             PlayerInfoPanel playerInfo = playerInfoGo.GetComponent<PlayerInfoPanel>();
 
-            playerInfo.FillInfoPanel(effectToApply, playerStats, playerName, characterAsset, effectsGo);
-            playerInfo.GetPlayerInfoClickEvent().AddListener(OnTargetSelected);
+            _currentPanels.Add(playerInfo); 
+
+            return playerInfo; 
+        }
+
+        private PlayerInfoPanel GetPlayerPanel(Player player)
+        {
+            var panel = _currentPanels
+                .First(p => p.Player.PlayerId == player.PlayerId);
+
+            return panel;  
         }
 
         public void SetDrawnEffect(ModifierScriptable drawnEffect) => _drawnEffect = drawnEffect;
 
         public void OnTargetSelected(PlayerInfoPanel playerInfoPanel)
         {
+            var playerSelected = playerInfoPanel.Player; 
+            
+            SetModifierToPlayerServerRpc(playerSelected.PlayerId, _drawnEffect.Tag); 
+            
             ScreenManager.instance.ToggleScreenByTag(ScreenName, false);
         }
 
@@ -69,28 +107,34 @@ namespace BrawlingToys.UI
         [ServerRpc(RequireOwnership = false)]
         private void GetPlayersReferenceServerRpc()
         {
-            var playersIds = MatchManager.LocalInstance.MatchPlayers
-                .Select(p => p.PlayerId)
-                .ToArray();
-
-            GetPlayersReferenceClientRpc(playersIds);
+            GetPlayersReferenceClientRpc();
         }
 
         [ClientRpc]
-        private void GetPlayersReferenceClientRpc(ulong[] playersIds)
+        private void GetPlayersReferenceClientRpc()
         {
-            foreach (var id in playersIds)
+            foreach (var player in MatchManager.LocalInstance.MatchPlayers)
             {
-                if (NetworkManager.Singleton.ConnectedClients.ContainsKey(id))
-                {
-                    var playerNetworkObject = NetworkManager.Singleton.ConnectedClients[id].PlayerObject;
-                    var playerReference = playerNetworkObject.GetComponent<Player>();
-
-                    _players.Add(playerReference);
-                }
+                _players.Add(player);
             }
+        }
 
-            DrawScreen();
+        [ServerRpc(RequireOwnership = false)]
+        private void SetModifierToPlayerServerRpc(ulong playerID, string modifierTag)
+        {
+            SetModifierToPlayerClientRpc(playerID, modifierTag); 
+        }
+
+        [ClientRpc]
+        private void SetModifierToPlayerClientRpc(ulong playerID, string modifierTag)
+        {
+            var player = MatchManager.LocalInstance.MatchPlayers
+                .First(p => p.PlayerId == playerID);
+            var modifier = _allModifiersDB.GetCurrentDataBase()
+                .First(m => m.Tag.Equals(modifierTag)); 
+
+            Debug.Log($"Adding modifier: {modifier.Tag} To {player.PlayerId}");
+            player.Stats.Mediator.AddModifier(modifier); 
         }
 
         #endregion

@@ -87,11 +87,6 @@ namespace BrawlingToys.Managers
             }
         }
 
-        public void AddPlayerMatchInfo(Player player)
-        {
-            _playerMatchInfo.Add(player, new PlayerRoundInfo(0, true));
-        }
-
         public void RegisterKill(Player player)
         {
             //Debug.Log($"Register kill, killer: {player.PlayerId}");
@@ -133,8 +128,14 @@ namespace BrawlingToys.Managers
             }
 
             _playersSpawned = true; 
-            OnPlayersSpawned?.Invoke(); 
+            CallPlayerSpawnCallbacksClientRpc(); 
         } 
+
+        [ClientRpc]
+        private void CallPlayerSpawnCallbacksClientRpc()
+        {
+            OnPlayersSpawned?.Invoke(); 
+        }
 
         [ServerRpc(RequireOwnership = false)]
         private void CallResultScreenServerRpc()

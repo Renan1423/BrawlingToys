@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87d277230eda50408158074804779c8, type: 3}
   m_Name: MoveSpeedModifierSO
   m_EditorClassIdentifier: 
-  <Tag>k__BackingField: 
+  <Tag>k__BackingField: speed_decresse
   <ModifierType>k__BackingField: 0
   <EffectName>k__BackingField: Speed Buff
   <EffectDescription>k__BackingField: Decrease speed
