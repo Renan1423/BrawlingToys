@@ -137,6 +137,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _firePoint: {fileID: 1099555426125489184}
+  _meleeMaxDistance: 4
+  _meleeRange: {x: 1, y: 2, z: 1}
   _aimColor: {r: 1, g: 0, b: 0, a: 0.78431374}
 --- !u!114 &5364803754556521178
 MonoBehaviour:
@@ -1566,8 +1568,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097da4caaf0453949ace0b29a00ae8cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _positionToSpawn: {fileID: 3248957072609162509}
-  _skinnedMeshRenderers: []
 --- !u!1 &9066835223822736270
 GameObject:
   m_ObjectHideFlags: 0

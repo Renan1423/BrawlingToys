@@ -69,6 +69,11 @@ namespace BrawlingToys.Actors
             _rb.useGravity = true;
         }
 
+        public void Parry(Player player) {
+            _bulletOwner = player;
+            transform.forward = player.transform.forward;
+        }
+
         public void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.TryGetComponent(out Hitable hitable) && ValidCollision(other))

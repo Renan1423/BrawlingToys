@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerBaseStatsSO
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  meleeCooldown: 5
+  meleeCooldown: 1
   dashCooldown: 2
   dashAmount: 1
   reloadTime: 1

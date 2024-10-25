@@ -148,6 +148,11 @@ PrefabInstance:
       propertyPath: _animations
       value: 
       objectReference: {fileID: 7533054071774273164}
+    - target: {fileID: 5795996904641135164, guid: 155eaddf20873d14e819af738b052291,
+        type: 3}
+      propertyPath: _meleeMaxDistance
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6692511618108721376, guid: 155eaddf20873d14e819af738b052291,
         type: 3}
       propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.size
@@ -723,9 +728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097da4caaf0453949ace0b29a00ae8cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _positionToSpawn: {fileID: 4051995872950914358}
-  _skinnedMeshRenderers: []
-  _material: {fileID: 2100000, guid: ffb08210d420de44cbea45ebea0294b1, type: 2}
 --- !u!4 &6351848002050701785 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 367791a40dab5c646a1e9205a8ca767d,

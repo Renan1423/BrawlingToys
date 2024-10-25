@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using System.Collections.Generic;
 using System.Linq;
 using BrawlingToys.Network;
+using DG.Tweening;
 
 namespace BrawlingToys.Actors
 {
@@ -34,6 +35,8 @@ namespace BrawlingToys.Actors
         public StateFactory StateFactory { get => _stateFactory; }
         public State CurrentState { get => _currentState; }
         public PlayerWeapon Weapon { get => _weapon; }
+        public float MeleeMaxDistance { get => _meleeMaxDistance; }
+        public Vector3 MeleeRange { get => _meleeRange; }
 
         #endregion
 
@@ -44,7 +47,6 @@ namespace BrawlingToys.Actors
         [SerializeField] private Stats _stats;
         [SerializeField] private Player _myKiller;
         [SerializeField] private Rigidbody _rb;
-        //public PlayerWeapon weapon;
         
         [Header("State Stuffs: ")]
         [SerializeField] private StateFactory _stateFactory;
@@ -57,6 +59,10 @@ namespace BrawlingToys.Actors
         private RaycastHit _hitInfo;
         private float _aimSmoothRate = 50f;
         private PlayerWeapon _weapon;
+
+        [Header("Melee Stuff: ")]
+        [SerializeField] private float _meleeMaxDistance;
+        [SerializeField] private Vector3 _meleeRange;
 
         private StatsMediator _mediator;
 

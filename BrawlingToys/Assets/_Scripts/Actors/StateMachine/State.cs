@@ -99,7 +99,7 @@ namespace BrawlingToys.Actors
             else
             {
                 Debug.Log("State.HandleMelee");
-                //_player.TransitionToState(_player._stateFactory.GetState(StateFactory.StateType.MeleeAttack));
+                _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.MeleeAttack));
             }
         }
 

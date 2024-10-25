@@ -69,6 +69,20 @@ namespace BrawlingToys.Actors
             KnockBackServerRpc(hitBullet.transform.forward);
         }
 
+        public void PlayerKnockback(Player hitPlayer) {
+            _knockbackPower = hitPlayer.Rb.velocity.magnitude;
+            _knockbackDuration = hitPlayer.Rb.mass / _player.Rb.mass;
+
+            _knockbackTimer = new CountdownTimer(_knockbackDuration);
+
+            if (IsOwner) {
+                _knockbackTimer.OnTimerStart = () => _player.Inputs.TogglePlayerMap(false);
+                _knockbackTimer.OnTimerStop = () => _player.Inputs.TogglePlayerMap(true);
+            }
+
+            KnockBackServerRpc(hitPlayer.transform.forward);
+        }
+
         private void ApplyKnockback(Vector3 bulletFoward)
         {
             _knockbackTimer.Start();

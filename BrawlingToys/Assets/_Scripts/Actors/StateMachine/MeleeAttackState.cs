@@ -1,12 +1,9 @@
 using System;
 using UnityEngine;
 
-namespace BrawlingToys.Actors
-{
-    public class MeleeAttackState : State
-    {
-        protected override void EnterState()
-        {
+namespace BrawlingToys.Actors {
+    public class MeleeAttackState : State {
+        protected override void EnterState() {
             _player.Animations.PlayAnimation(PlayerAnimations.AnimationType.MeleeAttack);
             _player.Animations.OnAnimationEnd.AddListener(WhenMeleeEnds);
             _player.Cooldowns.meleeTimer.Start();
@@ -14,36 +11,38 @@ namespace BrawlingToys.Actors
             // Aplicar for�a no player na dire��o de movimento
         }
 
-        protected override void ExitState()
-        {
+        protected override void ExitState() {
             _player.Animations.ResetEvents();
         }
 
-        public override void UpdateState()
-        {
+        public override void UpdateState() {
             // Logica de verifica��o se acertou algo no caminho:
-            // Se for bullet : aplica parry,
-            // Se for player : aplica knockback;
-            //_player._meleeCommand.Execute();
+            if (Physics.BoxCast(new(_player.transform.position.x, 1f, _player.transform.position.z), _player.MeleeRange, _player.transform.forward, out RaycastHit hit, _player.transform.rotation, _player.MeleeMaxDistance)) {
+
+                // Se for bullet : aplica parry,
+                if (hit.collider.TryGetComponent(out Bullet bullet)) {
+                    bullet.Parry(_player);
+                // Se for player : aplica knockback;
+                } else if (hit.collider.TryGetComponent(out PlayerHit player)) {
+                    Debug.Log($"Acertei o player '{hit.collider.gameObject.name}' a uma distância de {hit.distance}");
+                    player.PlayerKnockback(_player);
+                }
+            }
         }
 
-        protected override void HandleShoot(object sender, EventArgs e)
-        {
+        protected override void HandleShoot(object sender, EventArgs e) {
             // Previne atirar durante um melee.
         }
 
-        protected override void HandleMelee(object sender, EventArgs e)
-        {
+        protected override void HandleMelee(object sender, EventArgs e) {
             // Previne ataque melee durante um melee.
         }
 
-        protected override void HandleDash(object sender, EventArgs e)
-        {
+        protected override void HandleDash(object sender, EventArgs e) {
             // Previne de dar outro dashe antes do t�rmino de um.
         }
 
-        private void WhenMeleeEnds()
-        {
+        private void WhenMeleeEnds() {
             _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Idle));
         }
     }
