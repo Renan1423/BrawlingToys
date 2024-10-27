@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 36335533}
   - component: {fileID: 36335534}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Invisible wall Z
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2543,7 +2543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1225510670}
   - component: {fileID: 1225510671}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Invisible wall X
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2930,7 +2930,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1338067489}
   - component: {fileID: 1338067490}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 'Invisible wall -Z '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2983,7 +2983,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1352103318}
   - component: {fileID: 1352103319}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 'Invisible wall -X '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
