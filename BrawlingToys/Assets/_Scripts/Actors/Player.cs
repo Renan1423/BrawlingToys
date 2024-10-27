@@ -76,6 +76,9 @@ namespace BrawlingToys.Actors
         // Damageable padrão, retirar
         public int Health { get; set; }
 
+        public delegate void TakeDamage(int currentHealth);
+        public TakeDamage OnTakeDamage;
+
         private void Awake()
         {
             _stateFactory.InitializeStates(this);
@@ -206,6 +209,7 @@ namespace BrawlingToys.Actors
         {
             Debug.Log("Damege");
             _myKiller = sender;
+            OnTakeDamage?.Invoke(Health);
             DieServerRpc(); 
         }
 
