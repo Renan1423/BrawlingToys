@@ -7542,6 +7542,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LegoBlock
       objectReference: {fileID: 0}
+    - target: {fileID: 7746495246721926530, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
