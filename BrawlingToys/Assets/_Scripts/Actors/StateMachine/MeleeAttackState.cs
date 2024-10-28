@@ -3,7 +3,14 @@ using UnityEngine;
 
 namespace BrawlingToys.Actors {
     public class MeleeAttackState : State {
+
+        [SerializeField] private Vector3 meleeOffset = Vector3.zero;
+        [SerializeField] private Vector3 boxExtents = Vector3.zero;
+
         protected override void EnterState() {
+
+            //meleeOffset = new Vector3()
+
             _player.Animations.PlayAnimation(PlayerAnimations.AnimationType.MeleeAttack);
             _player.Animations.OnAnimationEnd.AddListener(WhenMeleeEnds);
             _player.Cooldowns.meleeTimer.Start();
@@ -17,17 +24,18 @@ namespace BrawlingToys.Actors {
 
         public override void UpdateState() {
             // Logica de verifica��o se acertou algo no caminho:
-            if (Physics.BoxCast(new(_player.transform.position.x, 1f, _player.transform.position.z), _player.MeleeRange, _player.transform.forward, out RaycastHit hit, _player.transform.rotation, _player.MeleeMaxDistance)) {
+            //if (Physics.BoxCast(, 
+            //    , _player.transform.forward, out RaycastHit hit, _player.transform.rotation, _player.BaseStatsSO.meleeRange)) {
 
-                // Se for bullet : aplica parry,
-                if (hit.collider.TryGetComponent(out Bullet bullet)) {
-                    bullet.Parry(_player);
-                // Se for player : aplica knockback;
-                } else if (hit.collider.TryGetComponent(out PlayerHit player)) {
-                    Debug.Log($"Acertei o player '{hit.collider.gameObject.name}' a uma distância de {hit.distance}");
-                    player.PlayerKnockback(_player);
-                }
-            }
+            //    // Se for bullet : aplica parry,
+            //    if (hit.collider.TryGetComponent(out Bullet bullet)) {
+            //        bullet.Parry(_player);
+            //    // Se for player : aplica knockback;
+            //    } else if (hit.collider.TryGetComponent(out PlayerHit player)) {
+            //        Debug.Log($"Acertei o player '{hit.collider.gameObject.name}' a uma distância de {hit.distance}");
+            //        player.PlayerKnockback(_player);
+            //    }
+            //}
         }
 
         protected override void HandleShoot(object sender, EventArgs e) {

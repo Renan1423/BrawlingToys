@@ -17,4 +17,7 @@ public class BaseStats : ScriptableObject
     public float fireRate = 10;
     public float bulletAmount = 1;
     public HitCommand defaultHitEffect = new KillCommand();
+
+    [Header("Melee Stats")]
+    public float meleeRange = 1f;
 }
