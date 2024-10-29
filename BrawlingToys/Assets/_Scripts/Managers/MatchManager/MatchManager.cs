@@ -80,6 +80,7 @@ namespace BrawlingToys.Managers
                 {
                     SpawnPlayerPrefsServerRpc();
                     GeneratePlayersRoundInfo();  
+                    CallPlayerSpawnCallbacksClientRpc(); 
                 }
 
                 ResetMatchInfoServerRpc(); 
@@ -128,7 +129,6 @@ namespace BrawlingToys.Managers
             }
 
             _playersSpawned = true; 
-            CallPlayerSpawnCallbacksClientRpc(); 
         } 
 
         [ClientRpc]

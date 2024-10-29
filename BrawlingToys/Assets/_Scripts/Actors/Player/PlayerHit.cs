@@ -33,6 +33,7 @@ namespace BrawlingToys.Actors
         public override void GetHit(GameObject sender, IHitCommand hitCommand)
         {
             base.GetHit(sender, hitCommand);
+            
             DieServerRpc(); 
         }
 

@@ -337,8 +337,14 @@ MonoBehaviour:
   <ScreenName>k__BackingField: ResultScreen
   _canChangeGameStateOnEnter: 1
   <EnterStateType>k__BackingField: 3
-  _canChangeGameStateOnExit: 1
+  _canChangeGameStateOnExit: 0
   <ExitStateType>k__BackingField: 2
+  _previousScreenName: 
+  _previousScreenTransitionDelay: 0.25
+  _autoActivate: 0
+  _performAnimationOnClose: 0
+  _anim: {fileID: 0}
+  _closeTrigger: Close
   _requiredScoreToWin: 10
   _playerScorePrefab: {fileID: 2955837845293887084, guid: 54e60bdc6f8d2f146a100c1b322e4995,
     type: 3}

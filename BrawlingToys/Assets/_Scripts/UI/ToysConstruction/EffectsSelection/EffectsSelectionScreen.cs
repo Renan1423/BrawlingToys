@@ -23,13 +23,6 @@ namespace BrawlingToys.UI
         private ModifierScriptable _drawnEffect;
         [SerializeField]
         private List<Player> _players;
-        //Variable created for prototype reasons only!
-        private Stats _playerStats;
-
-        [Header("Inputs")]
-
-        [SerializeField] private InputActionAsset _inputActionAsset;
-        private InputActionMap _gameplayMap;
 
         [Header("DBs")]
 
@@ -38,14 +31,28 @@ namespace BrawlingToys.UI
         private List<PlayerInfoPanel> _currentPanels = new(); 
         private bool _panelsInstantiated = false; 
 
+        private void Awake()
+        {
+            MatchManager.LocalInstance.OnPlayersSpawned += InitPlayers; 
+        }
+
+        public override void OnDestroy()
+        {
+            base.OnDestroy(); 
+            MatchManager.LocalInstance.OnPlayersSpawned -= InitPlayers; 
+        }
+        
         protected override void OnScreenEnable()
+        {
+            DrawScreen();
+        }
+
+        private void InitPlayers()
         {
             if (NetworkManager.Singleton.IsHost && _players.Count == 0)
             {
                 GetPlayersReferenceServerRpc();
             }
-
-            DrawScreen(); 
         }
 
         public void DrawScreen()
