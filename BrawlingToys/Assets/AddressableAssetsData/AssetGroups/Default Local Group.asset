@@ -41,6 +41,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - PrototypeCharacter
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e95bc8128fc87d24096e8b836e90d0f5
+    m_Address: Assets/_ScriptableObjects/Modifiers/CoudownReduceModifierSO.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BuffDebuff
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 201f26c357ad10342b245e4c63266640, type: 2}
   m_SchemaSet:

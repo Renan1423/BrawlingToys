@@ -1,7 +1,8 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerAnimations : MonoBehaviour
+public class PlayerAnimations : NetworkBehaviour
 {
     public enum AnimationType
     {
@@ -42,9 +43,10 @@ public class PlayerAnimations : MonoBehaviour
         }
     }
 
-    public void Play(string name)
+    public void Play(string stateName)
     {
-        animator.Play(name, -1, 0f);
+        Debug.Log(stateName);
+        SetAnimatorStateServerRpc(stateName); 
     }
 
     public void StartAnimation()
@@ -71,5 +73,17 @@ public class PlayerAnimations : MonoBehaviour
     {
         OnAnimationAction.RemoveAllListeners();
         OnAnimationEnd.RemoveAllListeners();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SetAnimatorStateServerRpc(string stateName)
+    {
+        SetAnimatorStateClientRpc(stateName); 
+    }
+
+    [ClientRpc]
+    private void SetAnimatorStateClientRpc(string stateName)
+    {
+        animator.Play(stateName, -1, 0f);
     }
 }
