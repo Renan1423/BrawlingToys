@@ -66,6 +66,7 @@ namespace BrawlingToys.UI
 
             int randomIndex = Random.Range(0, foundScriptables.Count);
             ModifierScriptable selectedBuffDebuff = foundScriptables[randomIndex];
+            Debug.Log("Modifier: " + selectedBuffDebuff.Tag);
 
             BuildSurpriseBox(selectedBuffDebuff);
 

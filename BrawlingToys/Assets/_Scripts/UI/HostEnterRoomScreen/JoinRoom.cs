@@ -61,10 +61,6 @@ namespace BrawlingToys.UI
 
                 ScreenManager.instance.ToggleScreenByTag(TagManager.CreateRoomMenu.CLIENT_WAITING_ROOM, true);
 
-                var client = NetworkManager.Singleton.LocalClient;
-                var playerPref = client.PlayerObject;
-                playerPref.gameObject.SetActive(false);
-
                 JoinPartyServerRpc(_nameInputValidator.InputFieldText, NetworkManager.LocalClientId);
 
                 CloseScreen(0.25f);

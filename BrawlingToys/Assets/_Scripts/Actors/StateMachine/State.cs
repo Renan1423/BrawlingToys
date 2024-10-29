@@ -75,8 +75,6 @@ namespace BrawlingToys.Actors
 
         protected virtual void HandleShoot(object sender, System.EventArgs e)
         {
-            if(!gameObject.activeInHierarchy) return; 
-            
             if (_player.Cooldowns.reloadTimer.IsRunning)
             {
                 // Som de reload
@@ -85,8 +83,7 @@ namespace BrawlingToys.Actors
             {
                 if (!_player.Cooldowns.fireRateTimer.IsRunning)
                 {
-                    Debug.Log(gameObject.name);
-                    _player._shootCommand.Execute();
+                    _player.Weapon.Shoot(_player.PlayerId);
                     _player.Cooldowns.reloadTimer.Start();
                 }
             }
@@ -102,7 +99,7 @@ namespace BrawlingToys.Actors
             else
             {
                 Debug.Log("State.HandleMelee");
-                //_player.TransitionToState(_player._stateFactory.GetState(StateFactory.StateType.MeleeAttack));
+                _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.MeleeAttack));
             }
         }
 

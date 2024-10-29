@@ -11,7 +11,7 @@ namespace BrawlingToys.Actors
         ReloadTime,
         FireRate,
         BulletAmount,
-        Bullet
+        HitCommand
     }
 
     public class Stats
@@ -97,14 +97,14 @@ namespace BrawlingToys.Actors
             }
         }
 
-        public GameObject CurrentBullet
+        public HitCommand CurrentHitEffector
         {
             get
             {
                 // return value with modifiers applied
-                var query = new Query(StatType.Bullet, 0, _baseStats.defaultBullet);
+                var query = new Query(StatType.HitCommand, 0, _baseStats.defaultHitEffect);
                 _mediator.PerformQuery(this, query);
-                return query.BulletEffect;
+                return query.HitEffect;
             }
         }
 

@@ -2,6 +2,7 @@
     "name": "BrawlingToys.Actors",
     "rootNamespace": "BrawlingToys.Actors",
     "references": [
+        "GUID:8087d854c1f812e4b9a74437dfc524e0",
         "GUID:1491147abca9d7d4bb7105af628b223e",
         "GUID:75469ad4d38634e559750d17036d5f7c",
         "GUID:232f118339904344b99737a42fdc06f3",

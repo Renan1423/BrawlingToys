@@ -7,6 +7,7 @@ namespace BrawlingToys.Actors
         protected override void EnterState()
         {
             _player.Animations.PlayAnimation(PlayerAnimations.AnimationType.Idle);
+            _player.Inputs.GetMovementVectorNormalized();
         }
 
         protected override void HandleMovement(object sender, Vector2 inputVector)

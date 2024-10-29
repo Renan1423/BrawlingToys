@@ -8,6 +8,8 @@ TagManager:
   - ResultsUI
   - SceneTransition
   - MainMenu
+  - Ground
+  - Bullet
   layers:
   - Default
   - TransparentFX

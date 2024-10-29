@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
 using BrawlingToys.Actors;
 using TMPro;
+using Unity.Netcode;
+using BrawlingToys.Managers;
+using System.Linq;
 
 namespace BrawlingToys.UI
 {
     public class PlayerInfoPanel : MonoBehaviour
     {
-        private ModifierScriptable _effectToApply;
-        private Stats _playerStats;
+        private Player _player;
         [SerializeField]
         private TextMeshProUGUI _playerName;
         [SerializeField]
@@ -22,10 +22,11 @@ namespace BrawlingToys.UI
         [SerializeField]
         private UnityEvent<PlayerInfoPanel> _onClicked;
 
-        public void FillInfoPanel(ModifierScriptable effectToApply, Stats playerStats, string playerName, AssetReference characterAsset, GameObject[] effectsGo)
+        public Player Player { get => _player; }
+
+        public void FillInfoPanel( Player player, string playerName, AssetReference characterAsset, GameObject[] effectsGo)
         {
-            _effectToApply = effectToApply;
-            _playerStats = playerStats;
+            _player = player;
             _playerName.text = playerName;
 
             foreach (GameObject go in effectsGo)
@@ -33,7 +34,7 @@ namespace BrawlingToys.UI
                 go.transform.SetParent(_effectsHorizontalLayout);
             }
 
-            CreateEffectIcons(playerStats);
+            CreateEffectIcons(_player.Stats);
 
             ModelSpawner.Instance.SpawnRenderTextureModelWithNewCamera(characterAsset, _modelRawImage);
         }
@@ -54,8 +55,6 @@ namespace BrawlingToys.UI
         public void OnPlayerInfoPanelClicked()
         {
             _onClicked?.Invoke(this);
-
-            //_playerStats.Mediator.AddModifier(_effectToApply);
         }
     }
 }
