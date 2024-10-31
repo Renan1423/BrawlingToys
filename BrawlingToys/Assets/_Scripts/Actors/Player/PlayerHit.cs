@@ -13,6 +13,7 @@ namespace BrawlingToys.Actors
 
         public Player Player { get => _player; }
         public int CurrentLife { get => _currentLife; }
+        public int MaxLife { get => _maxLife; }
 
         private Player _player;
         private int _maxLife = 0;

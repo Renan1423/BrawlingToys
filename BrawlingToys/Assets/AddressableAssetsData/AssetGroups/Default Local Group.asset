@@ -35,6 +35,24 @@ MonoBehaviour:
     m_SerializedLabels:
     - PlayerPrototype
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf3258e3e2702164fbead8c3b9b35443
+    m_Address: Assets/Prefabs/Player/CharacterModels/MechaModel.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PlayerCharacter
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a92434ee534c7f1459a65cbb85ed4231
+    m_Address: Assets/Prefabs/Player/CharacterModels/BearModel.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PlayerCharacter
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 07e9115e51e086e4a866b1368f605d6a
+    m_Address: Assets/Prefabs/Player/CharacterModels/TinSoldierModel.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PlayerCharacter
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 201f26c357ad10342b245e4c63266640, type: 2}
   m_SchemaSet:
