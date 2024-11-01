@@ -11,6 +11,9 @@ namespace BrawlingToys.UI
 
         public void DisableHealthPoint() 
         {
+            if (!anim)
+                return;
+
             anim.SetTrigger("Disable");
         }
     }

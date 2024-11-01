@@ -27,6 +27,7 @@ namespace BrawlingToys.Core
             public const string ROOM_SETTINGS = "RoomSettings";
             public const string CLIENT_WAITING_ROOM = "ClientWaiting";
             public const string CHARACTER_SELECTION = "CharacterSelection";
+            public const string COMBAT_SETTINGS = "CombatSettings";
         }
     }
 }

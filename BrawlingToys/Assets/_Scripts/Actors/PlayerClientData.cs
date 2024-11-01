@@ -15,6 +15,12 @@ namespace BrawlingToys.Actors
         public GameObject SelectedCharacterPrefab { get; private set; }
         public Sprite SelectedCharacterSprite { get; private set; }
 
+        //CombatSettings
+        public float BuffSpawnChance { get; private set; }
+        public float DebuffSpawnChance { get; private set; }
+        public int PlayerLife { get; private set; }
+        public int RequiredPointsToWin { get; private set; }
+
         public void SetPlayerData(ulong playerId, string userName) 
         {
             PlayerID = playerId;
@@ -24,6 +30,14 @@ namespace BrawlingToys.Actors
         public void SetPlayerCharacter(string characterName, GameObject characterModelPrefab, Sprite characterIcon) 
         {
             SelectedCharacterPrefab = characterModelPrefab;
+        }
+
+        public void SetCombatSettings(float buffSpawnChance, float debuffSpawnChance, int playerLife, int requiredPointsToWin) 
+        {
+            BuffSpawnChance = buffSpawnChance;
+            DebuffSpawnChance = debuffSpawnChance;
+            PlayerLife = playerLife;
+            RequiredPointsToWin = requiredPointsToWin;
         }
     }
 }
