@@ -15,6 +15,9 @@ namespace BrawlingToys.UI
         {
             base.ShowPlayerCombatHud(newGameState);
 
+            if (NetworkManager.LocalClient.PlayerObject == null)
+                return;
+
             Player player = NetworkManager.LocalClient.PlayerObject.GetComponent<Player>();
 
             if (player.Stats.Mediator.GetAppliedModifiers() == null)
@@ -23,6 +26,14 @@ namespace BrawlingToys.UI
             foreach (ModifierScriptable mod in player.Stats.Mediator.GetAppliedModifiers())
             {
                 EffectIconGenerator.instance.CreateEffectIcon(mod, _buffsHorizontalLayout);
+            }
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.H)) 
+            {
+                ShowPlayerCombatHud(GameStateType.Combat);
             }
         }
 
