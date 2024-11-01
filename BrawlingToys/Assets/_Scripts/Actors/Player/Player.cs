@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
 using System.Linq;
+using MoreMountains.Feedbacks;
 
 namespace BrawlingToys.Actors
 {
@@ -31,6 +32,7 @@ namespace BrawlingToys.Actors
         public StateFactory StateFactory { get => _stateFactory; }
         public State CurrentState { get => _currentState; }
         public PlayerWeapon Weapon { get => _weapon; }
+        public MMFeedbacks ShootFeedback { get => _shootFeedback; }
 
         #endregion
 
@@ -51,6 +53,7 @@ namespace BrawlingToys.Actors
         [Header("Weapon Stuff: ")]
         [SerializeField] private LayerMask _groundLayerMask;
         [SerializeField] private Transform _firePoint; // Instancia a bala nesse game object
+        [SerializeField] private MMFeedbacks _shootFeedback;
 
         [Space]
 
