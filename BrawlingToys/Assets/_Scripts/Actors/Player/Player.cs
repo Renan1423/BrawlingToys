@@ -121,7 +121,6 @@ namespace BrawlingToys.Actors
         // e possivelmente modifica��es de buffs e debuffs.
         private void InitializePlayer()
         {
-            _baseStatsSO.defaultHitEffect = new();
             _mediator = new();
             _stats = new(_mediator, _baseStatsSO);
 
