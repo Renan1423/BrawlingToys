@@ -19,6 +19,8 @@ namespace BrawlingToys.UI
         private NameInputValidator _nameInputValidator;
         [SerializeField]
         private CharacterSelectionScreen _characterSelectionScreen;
+        [SerializeField]
+        private CombatSettingsScreen _combatSettingsScreen;
 
         public void CreateRoom()
         {
@@ -37,11 +39,17 @@ namespace BrawlingToys.UI
             playerClientDataGO.name = _nameInputValidator.InputFieldText + "PlayerClientData";
             PlayerClientData playerClientData = playerClientDataGO.GetComponent<PlayerClientData>();
 
+            //Gathering player data
             playerClientData.SetPlayerData(NetworkManager.LocalClientId, _nameInputValidator.InputFieldText);
+
             ChosenCharacterData playerCharacter = _characterSelectionScreen.GetChosenCharacterData();
             playerClientData.SetPlayerCharacter(playerCharacter.CharacterName, 
                 playerCharacter.ChosenCharacterPrefab, 
                 playerCharacter.CharacterIcon);
+
+            CombatSettings combatSettings = _combatSettingsScreen.GetCombatSettings();
+            playerClientData.SetCombatSettings(combatSettings.BuffSpawnChance, combatSettings.DebuffSpawnChance,
+                combatSettings.PlayerLife, combatSettings.RequiredPointsToWin);
 
             PlayerClientDatasManager.LocalInstance.AddPlayerClientData(playerClientData);
 
@@ -74,6 +82,13 @@ namespace BrawlingToys.UI
             {
                 Debug.Log("Erro ao criar a party");
             }
+        }
+
+        public void OpenCombatSettingsScreen() 
+        {
+            ScreenManager.instance.ToggleScreenByTag(TagManager.CreateRoomMenu.COMBAT_SETTINGS, true);
+
+            CloseScreen(0.25f);
         }
     }
 }
