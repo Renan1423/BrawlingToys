@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: adc7e2010e430884aa9ee7c24309c32b
+guid: 0206ac90cfd595e47ae486116f72f6c0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dados
+    second: {fileID: 2100000, guid: b88328dd25d5b7d45b14dd1f4bdd9a26, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

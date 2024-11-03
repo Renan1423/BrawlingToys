@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: adc7e2010e430884aa9ee7c24309c32b
+guid: 762b696e588b54441b9630e86639fb6e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ArmarioBebe
+    second: {fileID: 2100000, guid: a108b42ebfa765c4ca4a839cb2c4fd5c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

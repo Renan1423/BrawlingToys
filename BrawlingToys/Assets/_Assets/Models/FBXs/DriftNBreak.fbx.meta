@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: adc7e2010e430884aa9ee7c24309c32b
+guid: efc8448d9d0b2d14facfe89121e6e9ac
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DriftNBreakBase
+    second: {fileID: 2100000, guid: 53791d5e6b9f69d4ead399a19bc0fb81, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RodaDriftNBreak
+    second: {fileID: 2100000, guid: ce659e34e944d9b4e90627ba59e79a93, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -1,9 +1,39 @@
 fileFormatVersion: 2
-guid: adc7e2010e430884aa9ee7c24309c32b
+guid: 1742afd7df856924a952c9365af7ef0f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aguagarrafa
+    second: {fileID: 2100000, guid: b3a862f29c786144aa0cc0e7717aeea8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: basegarrafa
+    second: {fileID: 2100000, guid: eb49839274be21c46ad0443e4cd3dccc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: garrafa
+    second: {fileID: 2100000, guid: c19fc17c9e01d37468f6cc30be08f98c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: materialbarcogarrafa
+    second: {fileID: 2100000, guid: 55083dcb8818f0940b5c91d56d17c349, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: materialvela
+    second: {fileID: 2100000, guid: 748994149c938f344bf619134747fa1d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rolhagarrafa
+    second: {fileID: 2100000, guid: 097068e4c61793c41a83201801b77e4e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

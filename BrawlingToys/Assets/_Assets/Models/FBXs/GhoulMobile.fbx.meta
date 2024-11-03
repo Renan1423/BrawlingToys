@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: adc7e2010e430884aa9ee7c24309c32b
+guid: eee583731bac4df41b48641c6009e9b7
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GhoulMobileChassi
+    second: {fileID: 2100000, guid: 2dde026427062044c8788e973a990b80, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RodaGhoulMobile
+    second: {fileID: 2100000, guid: 9489f1fc23b51274b955b31a5d063955, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

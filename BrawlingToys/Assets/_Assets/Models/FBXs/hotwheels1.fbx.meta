@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: adc7e2010e430884aa9ee7c24309c32b
+guid: 7cd607ab79719124988a8f4171fd30e7
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pintura carro vermelho
+    second: {fileID: 2100000, guid: bdba08e90e6e44749b809e8715dff0ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pintura da parte de tras do carro material
+    second: {fileID: 2100000, guid: cd5769920e5314f418127492f6518d28, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

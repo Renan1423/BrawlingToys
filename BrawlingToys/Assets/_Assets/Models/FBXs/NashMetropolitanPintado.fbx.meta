@@ -1,9 +1,24 @@
 fileFormatVersion: 2
-guid: adc7e2010e430884aa9ee7c24309c32b
+guid: d7c5cca4346d46341ada6402fd36fe32
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: ba29e0dcac20db24da0c5c5aba183e39, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: roda_dianteira_nash
+    second: {fileID: 2100000, guid: 7f21f3cc6b2370743a7c26e47a2de0b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: roda_traseira_nash
+    second: {fileID: 2100000, guid: 7f21f3cc6b2370743a7c26e47a2de0b6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
