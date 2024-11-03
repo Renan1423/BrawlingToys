@@ -1859,7 +1859,7 @@ PrefabInstance:
     - target: {fileID: 5503888098182596532, guid: 517033d06d89bac41bd46875cb129a20,
         type: 3}
       propertyPath: m_Name
-      value: StepParticles
+      value: StepVFX
       objectReference: {fileID: 0}
     - target: {fileID: 9089467409627976367, guid: 517033d06d89bac41bd46875cb129a20,
         type: 3}
@@ -17884,6 +17884,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3289665447978764789}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &6920016980935706939
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 623871423355946901, guid: 4cfe14b333782c3448057f9081e11a28,
+        type: 3}
+      propertyPath: m_Name
+      value: MuzzleFlashVFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935879014665651093, guid: 4cfe14b333782c3448057f9081e11a28,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935879014665651093, guid: 4cfe14b333782c3448057f9081e11a28,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935879014665651093, guid: 4cfe14b333782c3448057f9081e11a28,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935879014665651093, guid: 4cfe14b333782c3448057f9081e11a28,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935879014665651093, guid: 4cfe14b333782c3448057f9081e11a28,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935879014665651093, guid: 4cfe14b333782c3448057f9081e11a28,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935879014665651093, guid: 4cfe14b333782c3448057f9081e11a28,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935879014665651093, guid: 4cfe14b333782c3448057f9081e11a28,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935879014665651093, guid: 4cfe14b333782c3448057f9081e11a28,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935879014665651093, guid: 4cfe14b333782c3448057f9081e11a28,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4cfe14b333782c3448057f9081e11a28, type: 3}
 --- !u!1 &6937310078409747485
 GameObject:
   m_ObjectHideFlags: 0
@@ -20399,7 +20467,7 @@ PrefabInstance:
     - target: {fileID: 8387917348822627862, guid: 7f89e4ec557d4ff4c880b6434f942a78,
         type: 3}
       propertyPath: m_Name
-      value: DashParticles
+      value: DashVFX
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21316,3 +21384,4 @@ SceneRoots:
   - {fileID: 351974366}
   - {fileID: 1415490847}
   - {fileID: 8560586840556554441}
+  - {fileID: 6920016980935706939}
