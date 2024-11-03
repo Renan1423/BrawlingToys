@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using MoreMountains.Feedbacks;
 
 namespace BrawlingToys.UI
 {
@@ -20,22 +21,32 @@ namespace BrawlingToys.UI
         [SerializeField]
         private TextMeshProUGUI _playerIdText;
         [SerializeField]
+        private Image _playerIdImage;
+        [SerializeField]
         private Image _playerIcon;
+        [SerializeField]
+        private Image _scorePanel;
         private List<ScorePoint> _scorePoints;
+        [SerializeField]
+        private MMF_Player _feedbacks;
 
-        public void FillPlayerScoreInfo(int requiredScoreToWin, int playerNumberId)
+        public void FillPlayerScoreInfo(int requiredScoreToWin, int playerNumberId, PlayerScoreColorPallete playerColorPallete)
         {
             _scorePoints = new List<ScorePoint>();
+            _scorePanel.color = playerColorPallete.BaseColor;
 
             for (int i = 0; i < requiredScoreToWin; i++)
             {
                 GameObject scorePointGo = Instantiate(_scorePointPrefab, _scorePointsHorizontalLayout);
                 ScorePoint scorePoint = scorePointGo.GetComponent<ScorePoint>();
                 scorePoint.ToggleScorePoint(false);
+                scorePoint.FilledImage.color = playerColorPallete.LightColor;
+                scorePoint._UnfilledImage.color = playerColorPallete.DarkColor;
                 _scorePoints.Add(scorePoint);
             }
 
             _playerIdText.text = "P" + (playerNumberId + 1);
+            _playerIdImage.color = playerColorPallete.BaseColor;
         }
 
         public void AddScore(int scoreToAdd, ResultsScreen resultsScreen)
@@ -53,6 +64,7 @@ namespace BrawlingToys.UI
             {
                 _scorePoints[score].ToggleScorePoint(true);
                 score++;
+                _feedbacks.PlayFeedbacks();
 
                 yield return new WaitForSeconds(0.25f);
             }

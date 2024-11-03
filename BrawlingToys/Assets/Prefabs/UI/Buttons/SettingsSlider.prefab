@@ -1727,9 +1727,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-    3'
+  m_text: 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 471525c8d6c515845983cfea1f4d8315, type: 2}
   m_sharedMaterial: {fileID: 5375145381976712372, guid: 471525c8d6c515845983cfea1f4d8315,
@@ -1793,7 +1791,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 32.029144, y: 0, z: 44.682587, w: 0}
+  m_margin: {x: 32.029144, y: 0, z: 44.682587, w: -78.31843}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

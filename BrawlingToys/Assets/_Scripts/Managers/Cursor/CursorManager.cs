@@ -12,9 +12,14 @@ namespace BrawlingToys.Managers
         [SerializeField]
         private Texture2D _gameplayCursor;
 
-        private void Start()
+        protected override void Awake()
         {
+            base.Awake();
+
             GameManager.LocalInstance.OnGameStateChange.AddListener(OnGameStateChanged);
+
+            Texture2D cursorTex = _uiCursor;
+            Cursor.SetCursor(cursorTex, Vector2.zero, CursorMode.Auto);
         }
 
         public override void OnDestroy()
