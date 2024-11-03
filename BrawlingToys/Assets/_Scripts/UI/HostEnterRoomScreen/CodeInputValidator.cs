@@ -12,6 +12,10 @@ namespace BrawlingToys.UI
         private TMP_InputField _codeText;
         [SerializeField]
         private Animator _errorAnim;
+        [SerializeField]
+        private Animator _inputFieldAnim;
+
+        public string InputFieldText => _codeText.text;
 
         public void ValidateCode() 
         {
@@ -22,16 +26,10 @@ namespace BrawlingToys.UI
                     .ToArray());
         }
 
-        public bool CheckCodeValidation(string roomCode) 
+        public void ShowCodeInputFieldError() 
         {
-            ValidateCode();
-
-            bool validationResult = _codeText.text.ToUpper() == roomCode.ToUpper();
-
-            if (!validationResult)
-                _errorAnim.SetTrigger("Show");
-
-            return validationResult;
+            _errorAnim.SetTrigger("Show");
+            _inputFieldAnim.SetTrigger("Error");
         }
     }
 }

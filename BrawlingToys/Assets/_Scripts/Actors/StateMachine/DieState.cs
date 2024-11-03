@@ -11,7 +11,7 @@ namespace BrawlingToys.Actors
             {
                 _player.Inputs.TogglePlayerMap(false);
             }
-
+            
             _player.OnPlayerKill?.Invoke(_player.MyKiller);
             _player.OnPlayerDeath?.Invoke(_player);
 

@@ -426,8 +426,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Criar Sala
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4253ce7aa5c6a704eb675e096f55b0a8, type: 2}
-  m_sharedMaterial: {fileID: -8317234271421154819, guid: 4253ce7aa5c6a704eb675e096f55b0a8,
+  m_fontAsset: {fileID: 11400000, guid: 2be9fceb266bc724786156eea7f4c9e7, type: 2}
+  m_sharedMaterial: {fileID: -2417963885856537884, guid: 2be9fceb266bc724786156eea7f4c9e7,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -452,8 +452,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 140
-  m_fontSizeBase: 140
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

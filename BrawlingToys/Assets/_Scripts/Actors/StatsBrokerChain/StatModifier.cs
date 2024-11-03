@@ -58,12 +58,12 @@ namespace BrawlingToys.Actors
         }
     }
 
-    public class BulletModifier : StatModifier
+    public class HitEffectModifier : StatModifier
     {
         private readonly StatType _type;
-        private readonly Func<GameObject, GameObject> operation;
+        private readonly Func<HitCommand, HitCommand> operation;
 
-        public BulletModifier(StatType type, Func<GameObject, GameObject> operation, float duration) : base(duration)
+        public HitEffectModifier(StatType type, Func<HitCommand, HitCommand> operation, float duration) : base(duration)
         {
             _type = type;
             this.operation = operation;
@@ -73,7 +73,7 @@ namespace BrawlingToys.Actors
         {
             if (query.StatType == _type)
             {
-                query.BulletEffect = operation(query.BulletEffect);
+                query.HitEffect = operation(query.HitEffect);
             }
         }
     }

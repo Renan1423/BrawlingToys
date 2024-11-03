@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Voc\xEA quer fechar o jogo?"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4253ce7aa5c6a704eb675e096f55b0a8, type: 2}
-  m_sharedMaterial: {fileID: -8317234271421154819, guid: 4253ce7aa5c6a704eb675e096f55b0a8,
+  m_fontAsset: {fileID: 11400000, guid: 471525c8d6c515845983cfea1f4d8315, type: 2}
+  m_sharedMaterial: {fileID: 5375145381976712372, guid: 471525c8d6c515845983cfea1f4d8315,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -93,13 +93,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 90
-  m_fontSizeBase: 90
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -219,8 +219,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7324798871100002881}
+  - component: {fileID: 5663861045591483373}
   m_Layer: 0
-  m_Name: GraphicContainer
+  m_Name: GraphicsContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -247,6 +248,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &5663861045591483373
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2818229518475818840}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6af94f9d121e36f48b807a7cc289e66e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4008028035091246845
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +279,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7400047780797739858}
   - component: {fileID: 4263807041227594201}
-  - component: {fileID: 8303208974435083156}
   - component: {fileID: 7854610247639983222}
   m_Layer: 0
   m_Name: QuestionScreen
@@ -304,32 +325,16 @@ MonoBehaviour:
   <EnterStateType>k__BackingField: 0
   _canChangeGameStateOnExit: 0
   <ExitStateType>k__BackingField: 0
+  _previousScreenName: 
+  _previousScreenTransitionDelay: 0.25
   _autoActivate: 0
+  _performAnimationOnClose: 1
+  _anim: {fileID: 5663861045591483373}
+  _closeTrigger: Close
   _questionText: {fileID: 2066712358406609593}
   _questionTextShadow: {fileID: 0}
   _yesButton: {fileID: 6349697653156089221}
   _noButton: {fileID: 1969712584892994872}
---- !u!95 &8303208974435083156
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4008028035091246845}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 80fdf69b3b9a7e34a867b6ea5740b3b7, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7854610247639983222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,7 +366,7 @@ GameObject:
   - component: {fileID: 2754231433159627093}
   - component: {fileID: 7753650980747503838}
   - component: {fileID: 7097217364865925108}
-  - component: {fileID: 4650564532151505413}
+  - component: {fileID: 7436168160361795319}
   m_Layer: 0
   m_Name: Container
   m_TagString: Untagged
@@ -429,7 +434,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!225 &4650564532151505413
+--- !u!225 &7436168160361795319
 CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -452,7 +457,7 @@ PrefabInstance:
     - target: {fileID: 12692437951438108, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 220
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 1441064994265010874, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
@@ -477,7 +482,7 @@ PrefabInstance:
     - target: {fileID: 2094667274981600470, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 230
+      value: 260
       objectReference: {fileID: 0}
     - target: {fileID: 3073630396821567826, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
@@ -493,6 +498,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: "N\xE3o"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442778289400949599, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: m_margin.x
+      value: -145.27441
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442778289400949599, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: m_margin.z
+      value: -132.69482
       objectReference: {fileID: 0}
     - target: {fileID: 4442778289400949599, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
@@ -532,7 +547,7 @@ PrefabInstance:
     - target: {fileID: 5358048172182825832, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 220
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 5358048172182825832, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
@@ -614,10 +629,55 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6082093855792920590, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: _buttonImage
+      value: 
+      objectReference: {fileID: 3053514099228131685}
+    - target: {fileID: 6082093855792920590, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: _buttonNormalColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082093855792920590, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: _buttonNormalColor.r
+      value: 0.78431374
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082093855792920590, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: _buttonDisabledColor.b
+      value: 0.5754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082093855792920590, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: _buttonDisabledColor.g
+      value: 0.5754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082093855792920590, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: _buttonDisabledColor.r
+      value: 0.5754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082093855792920590, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: _buttonSelectedColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082093855792920590, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: _buttonSelectedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082093855792920590, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: _buttonPressedMultiplyColor.g
+      value: 0.56976867
+      objectReference: {fileID: 0}
     - target: {fileID: 8179293635037053830, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 220
+      value: 250
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -634,6 +694,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3053514099228131685 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2048014042795639443, guid: 9e6f7be87bd72244983ca45a06b00be3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3894561509119575030}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &8959875596793948318 stripped
@@ -653,7 +725,7 @@ PrefabInstance:
     - target: {fileID: 12692437951438108, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 220
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 1441064994265010874, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
@@ -673,7 +745,7 @@ PrefabInstance:
     - target: {fileID: 2094667274981600470, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 230
+      value: 260
       objectReference: {fileID: 0}
     - target: {fileID: 3073630396821567826, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
@@ -689,6 +761,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: Sim
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442778289400949599, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: m_margin.x
+      value: -144.80957
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442778289400949599, guid: 9e6f7be87bd72244983ca45a06b00be3,
+        type: 3}
+      propertyPath: m_margin.z
+      value: -132.42627
       objectReference: {fileID: 0}
     - target: {fileID: 4442778289400949599, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
@@ -728,7 +810,7 @@ PrefabInstance:
     - target: {fileID: 5358048172182825832, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 220
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 5358048172182825832, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
@@ -813,7 +895,7 @@ PrefabInstance:
     - target: {fileID: 8179293635037053830, guid: 9e6f7be87bd72244983ca45a06b00be3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 220
+      value: 250
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

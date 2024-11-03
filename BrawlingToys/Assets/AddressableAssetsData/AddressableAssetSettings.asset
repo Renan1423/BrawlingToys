@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 14730fd3aa093204fb57087e814e5cf1
   m_currentHash:
     serializedVersion: 2
-    Hash: ac0b77945b5da62cdd8db4d1168260b1
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -90,6 +90,7 @@ MonoBehaviour:
     - BuffDebuff
     - PrototypeCharacter
     - PlayerPrototype
+    - PlayerCharacter
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 805d141bd5ad9534881ef5e08559a866, type: 2}

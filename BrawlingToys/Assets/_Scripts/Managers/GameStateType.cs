@@ -2,7 +2,7 @@
 {
     public enum GameStateType
     {
-        Connection,
+        Loading,
         Building,
         Combat,
         Score,
