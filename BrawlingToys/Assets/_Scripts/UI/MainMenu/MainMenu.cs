@@ -50,7 +50,7 @@ namespace BrawlingToys.UI
         {
             QuestionScreen questionScreen = GameplayUiContainer.instance.QuestionScreen;
             ScreenManager.instance.ToggleScreenByTag(TagManager.MainMenu.QUESTION_SCREEN, true);
-            questionScreen.InitQuestion("Você quer fechar o jogo?", QuitGame, CloseQuestionScreen);
+            questionScreen.InitQuestion("VocÃª quer fechar o jogo?", QuitGame, CloseQuestionScreen);
         }
 
         private void QuitGame()
