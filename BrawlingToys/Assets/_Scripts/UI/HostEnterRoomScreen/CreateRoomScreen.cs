@@ -6,6 +6,7 @@ using BrawlingToys.Network;
 using BrawlingToys.Core;
 using BrawlingToys.Actors;
 using Unity.Netcode;
+using UnityEngine.UI;
 
 namespace BrawlingToys.UI
 {
@@ -21,11 +22,21 @@ namespace BrawlingToys.UI
         private CharacterSelectionScreen _characterSelectionScreen;
         [SerializeField]
         private CombatSettingsScreen _combatSettingsScreen;
+        [SerializeField]
+        private Button _createPartyButton;
+        [SerializeField]
+        private Button _settingsButton;
+
+        protected override void OnScreenEnable()
+        {
+            ToggleButtons(true);
+        }
 
         public void CreateRoom()
         {
             if (_nameInputValidator.CheckNameValidation())
             {
+                ToggleButtons(false);
                 CreateParty(OnPartyCreated);
             }
         }
@@ -80,6 +91,7 @@ namespace BrawlingToys.UI
             }
             else
             {
+                ToggleButtons(true);
                 Debug.Log("Erro ao criar a party");
             }
         }
@@ -89,6 +101,12 @@ namespace BrawlingToys.UI
             ScreenManager.instance.ToggleScreenByTag(TagManager.CreateRoomMenu.COMBAT_SETTINGS, true);
 
             CloseScreen(0.25f);
+        }
+
+        private void ToggleButtons(bool result) 
+        {
+            _createPartyButton.interactable = result;
+            _settingsButton.interactable = result;
         }
     }
 }
