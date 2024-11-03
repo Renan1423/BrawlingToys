@@ -7,11 +7,19 @@ using System.Collections;
 
 namespace BrawlingToys.UI
 {
+    [System.Serializable]
+    public struct PlayerScoreColorPallete 
+    {
+        public Color BaseColor;
+        public Color DarkColor;
+        public Color LightColor;
+    }
+
     public class ResultsScreen : BaseScreen
     {
         [Header("Results Screen parameters")]
         [SerializeField]
-        private int _requiredScoreToWin = 10;
+        private PlayerScoreColorPallete[] _playersColors;
 
         [Header("References")]
         [SerializeField]
@@ -82,9 +90,11 @@ namespace BrawlingToys.UI
                 GameObject playerScoreGo = Instantiate(_playerScorePrefab, _scoreVerticalLayout);
                 PlayerScore playerScore = playerScoreGo.GetComponent<PlayerScore>();
 
-                var playerIdKey = _playersRoundInfo.Keys.ToArray()[i]; 
+                var playerIdKey = _playersRoundInfo.Keys.ToArray()[i];
 
-                playerScore.FillPlayerScoreInfo(_requiredScoreToWin, (int) playerIdKey);
+                int requiredScoreToWin = GetRequiredScoreToWin();
+
+                playerScore.FillPlayerScoreInfo(requiredScoreToWin, (int) playerIdKey, _playersColors[i]);
                 _connectedPlayerScoresUIs.Add(playerScore);
             }
         }
@@ -108,7 +118,7 @@ namespace BrawlingToys.UI
             ulong GetCastedIndex(int i) => (ulong) i;  
         }
 
-        public int GetRequiredScoreToWin() => _requiredScoreToWin;
+        public int GetRequiredScoreToWin() => PlayerClientDatasManager.LocalInstance.PlayerClientDatas[0].RequiredPointsToWin;
 
         private IEnumerator WaitForCloseScreen()
         {

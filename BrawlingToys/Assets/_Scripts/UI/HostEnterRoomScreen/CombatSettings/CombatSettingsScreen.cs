@@ -97,5 +97,15 @@ namespace BrawlingToys.UI
         {
             outputText.text = sliderValue.ToString();
         }
+
+        public void AddLifeValue(int value) 
+        {
+            playersLifeSlider.value += value;
+        }
+
+        public void AddRequiredPointsValue(int value) 
+        {
+            requiredPointsToWinSlider.value += value;
+        }
     }
 }

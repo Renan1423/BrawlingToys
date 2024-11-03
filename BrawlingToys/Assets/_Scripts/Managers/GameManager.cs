@@ -10,10 +10,12 @@ namespace BrawlingToys.Managers
 
         [HideInInspector]
         public UnityEvent<GameStateType> OnGameStateChange = new();
+        [SerializeField]
+        private GameStateType _initialState = GameStateType.Combat;
 
         private void Start()
         {
-            ChangeGameState(GameStateType.Combat); 
+            ChangeGameState(_initialState); 
         }
 
         public void ChangeGameState(GameStateType newGameState)

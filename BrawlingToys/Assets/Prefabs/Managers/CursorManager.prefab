@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29521afb63fbfa74b8b38ef2b80deafb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isGlobal: 1
+  _isGlobal: 0
   _uiCursor: {fileID: 2800000, guid: 4627f85357119ff44a9ce2ed1f49d9d4, type: 3}
   _gameplayCursor: {fileID: 2800000, guid: 9320ab323eb6a9d4bbea56e2fb9bc147, type: 3}
 --- !u!114 &4418549488448923622
