@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3825007480570611768}
   - component: {fileID: 8274331076797950041}
   m_Layer: 0
-  m_Name: StepParticles
+  m_Name: StepVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
