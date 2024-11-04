@@ -1872,10 +1872,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _graphicContainer: {fileID: 4255329527379694499}
   <ScreenName>k__BackingField: Tutorial
-  _canChangeGameStateOnEnter: 0
-  <EnterStateType>k__BackingField: 0
-  _canChangeGameStateOnExit: 0
-  <ExitStateType>k__BackingField: 0
+  _canChangeGameStateOnEnter: 1
+  <EnterStateType>k__BackingField: 5
+  _canChangeGameStateOnExit: 1
+  <ExitStateType>k__BackingField: 2
   _previousScreenName: 
   _previousScreenTransitionDelay: 0.25
   _autoActivate: 1
