@@ -13,8 +13,6 @@ namespace BrawlingToys.Actors
         [SerializeField] private float rayYOffset = .5f;
         [SerializeField] private LayerMask _obstacleLayers;
 
-        [SerializeField] private Transform _dashFeedback;
-
         private float _finalDashDistance = 0f;
         private float _traveledDistance = 0f;
         private Vector3 _dashDirection;
@@ -40,8 +38,6 @@ namespace BrawlingToys.Actors
             {
                 _finalDashDistance = Vector3.Distance(_player.transform.position, hitInfo.point);
             }
-
-            _dashFeedback.forward = _dashDirection;
         }
 
         protected override void ExitState()

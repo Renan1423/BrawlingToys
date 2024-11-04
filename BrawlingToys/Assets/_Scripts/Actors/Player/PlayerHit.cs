@@ -56,6 +56,7 @@ namespace BrawlingToys.Actors
             if (_knockbackTimer != null && _knockbackTimer.IsRunning)
                 _knockbackTimer.Tick(Time.deltaTime);
 
+
             if (_invulnerabilityTimer.IsRunning)
                 _invulnerabilityTimer.Tick(Time.deltaTime);
         }
@@ -80,8 +81,6 @@ namespace BrawlingToys.Actors
             
             if(_currentLife <= 0)
                 DieServerRpc();
-            else
-                _invulnerabilityTimer.Start();
         }
 
         private void DieInCurrentState()
