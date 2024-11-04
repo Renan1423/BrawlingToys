@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9989574}
   - component: {fileID: 9989575}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 10351053}
   - component: {fileID: 10351054}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra T
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 13179696}
   - component: {fileID: 13179697}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra G
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,6 +293,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 907331410}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -509,7 +514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 35403130}
   - component: {fileID: 35403131}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra U
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -614,6 +619,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1109982641}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -829,7 +839,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 75832226}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Piso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -862,7 +872,7 @@ GameObject:
   m_Component:
   - component: {fileID: 104115257}
   - component: {fileID: 104115258}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1061,7 +1071,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 127218395}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco Amarelo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1095,7 +1105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 130807912}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blocos Laranja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1192,7 +1202,7 @@ GameObject:
   - component: {fileID: 151767680}
   - component: {fileID: 151767679}
   - component: {fileID: 151767678}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1308,7 +1318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 154616616}
   - component: {fileID: 154616617}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra Q
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1360,6 +1370,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1595355931}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1475,6 +1490,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2048256351}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1585,6 +1605,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 907331410}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1700,6 +1725,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1570559776}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1989,7 +2019,7 @@ GameObject:
   m_Component:
   - component: {fileID: 238370133}
   - component: {fileID: 238370134}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra S
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2041,6 +2071,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2015763101}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2153,7 +2188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 264005641}
   - component: {fileID: 264005642}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra Z
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2205,6 +2240,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1015692924}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2320,6 +2360,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1695447193}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -2470,6 +2515,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 939153256}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -2607,7 +2657,7 @@ GameObject:
   m_Component:
   - component: {fileID: 375600023}
   - component: {fileID: 375600024}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra F
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2761,7 +2811,7 @@ GameObject:
   - component: {fileID: 409280806}
   - component: {fileID: 409280808}
   - component: {fileID: 409280807}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Colliders diagonais
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2833,6 +2883,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1109982641}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3326,6 +3381,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: cercado de bebe
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 24053240466616547be6cb67d45ba75f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3795,6 +3855,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 127218395}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3910,6 +3975,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2048256351}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4120,7 +4190,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 616532276}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco verde (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4153,6 +4223,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1457697776}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -4303,6 +4378,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1109982641}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4420,7 +4500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 632648306}
   - component: {fileID: 632648307}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra W
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4472,6 +4552,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1695447193}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -4721,6 +4806,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 939153256}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -4856,6 +4946,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1457697776}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -5314,6 +5409,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 923109393}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -5518,6 +5618,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2034202305}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5634,7 +5739,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 813971664}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco verde (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5667,6 +5772,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1878205569}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -5804,7 +5914,7 @@ GameObject:
   m_Component:
   - component: {fileID: 855981818}
   - component: {fileID: 855981819}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra N
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5955,6 +6065,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1635540690}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6071,7 +6186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 907331410}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco Azul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6105,7 +6220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 923109393}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco Rosa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6217,7 +6332,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 939153256}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco amarelo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6252,7 +6367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 954799275}
   - component: {fileID: 954799276}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6305,7 +6420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 967613018}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blocos Amarelo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6370,6 +6485,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1015692924}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6485,6 +6605,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1490838730}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6699,6 +6824,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1457697776}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -6852,7 +6982,7 @@ GameObject:
   - component: {fileID: 1011937163}
   - component: {fileID: 1011937165}
   - component: {fileID: 1011937164}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Colliders diagonais (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6925,7 +7055,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1015692924}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco Amarelo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6960,7 +7090,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1017682008}
   - component: {fileID: 1017682009}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra I
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7012,6 +7142,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1635540690}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7127,6 +7262,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1595355931}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7244,7 +7384,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1093897821}
   - component: {fileID: 1093897822}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7397,7 +7537,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1100786283}
   - component: {fileID: 1100786284}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7499,7 +7639,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1109982641}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco Azul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7532,6 +7672,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 616532276}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -7682,6 +7827,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2034202305}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7902,6 +8052,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 813971664}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -8053,7 +8208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1184411580}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cercado
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8088,7 +8243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1222773964}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blocos Azul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8176,7 +8331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1225804887}
   - component: {fileID: 1225804888}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra Y
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8329,7 +8484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1235591912}
   - component: {fileID: 1235591913}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra V
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8381,6 +8536,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 813971664}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -8532,7 +8692,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1244226380}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blocos de Lego
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8571,6 +8731,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1683559104}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -8708,7 +8873,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1276413741}
   - component: {fileID: 1276413742}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra H
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8844,6 +9009,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1570559776}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8959,6 +9129,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 127218395}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9173,6 +9348,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2048256351}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9283,6 +9463,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2015763101}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9395,7 +9580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1315758003}
   - component: {fileID: 1315758004}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9601,7 +9786,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1350192946}
   - component: {fileID: 1350192947}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra X
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9951,6 +10136,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 923109393}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -10086,6 +10276,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1015692924}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10202,7 +10397,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1421349618}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco Vermelho (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10340,6 +10535,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1490838730}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10456,7 +10656,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1457697776}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco verde
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10489,6 +10689,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 907331410}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10604,6 +10809,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 939153256}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -10739,6 +10949,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1421349618}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10850,7 +11065,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1490838730}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco Laranja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10883,6 +11098,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1595355931}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10998,6 +11218,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1490838730}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11113,6 +11338,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 127218395}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11327,6 +11557,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 923109393}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -11462,6 +11697,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2015763101}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11573,7 +11813,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1570559776}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco Laranja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11732,7 +11972,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1589941738}
   - component: {fileID: 1589941739}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BoxColliderTatame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11785,7 +12025,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1595355931}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco Laranja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11917,6 +12157,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1570559776}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12033,7 +12278,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1635540690}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco Amarelo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12066,6 +12311,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1878205569}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -12404,6 +12654,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1683559104}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -12546,7 +12801,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1660287615
 Transform:
   m_ObjectHideFlags: 0
@@ -12575,7 +12830,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1683559104}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco Roxa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12609,7 +12864,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1695447193}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco verde (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12644,7 +12899,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1710566534}
   - component: {fileID: 1710566535}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra K
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12698,7 +12953,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1716240477}
   - component: {fileID: 1716240478}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra P
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12750,6 +13005,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1695447193}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -12900,6 +13160,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 616532276}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -13151,7 +13416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1784878320}
   - component: {fileID: 1784878321}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13321,6 +13586,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1421349618}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13503,6 +13773,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1878205569}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -13903,6 +14178,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1635540690}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14020,7 +14300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1861319470}
   - component: {fileID: 1861319471}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra E
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14116,6 +14396,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 813971664}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -14266,6 +14551,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1421349618}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14377,7 +14667,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1878205569}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco Laranja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14412,7 +14702,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1878779209}
   - component: {fileID: 1878779210}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14777,6 +15067,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tatame
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7424a1f1d8cbac04fbed1d5b4457ce29,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14827,6 +15122,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2034202305}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14943,7 +15243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2015763101}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco Vermelho
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14977,7 +15277,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2031925788}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blocos Vermelho
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15011,7 +15311,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2034202305}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco Azul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15045,7 +15345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2044643905}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blocos Verde
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15179,7 +15479,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2048256351}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bloco Vermelho (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15212,6 +15512,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1683559104}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -15354,7 +15659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2132620341}
   - component: {fileID: 2132620342}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Letra J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15406,6 +15711,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 616532276}
     m_Modifications:
+    - target: {fileID: 3894676866691283471, guid: 2488f75304d373a4f940de38de5eae89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4084003223943086177, guid: 2488f75304d373a4f940de38de5eae89,
         type: 3}
       propertyPath: m_LocalScale.x
