@@ -8,6 +8,7 @@ namespace BrawlingToys.Actors
         public UnityEvent OnStep;
 
         [SerializeField] private float _accel, _deAccel;
+        [SerializeField] private Transform _stepFeedback;
 
         private float _currentSpeed;
         private Vector3 _currentVelocity;
@@ -30,6 +31,8 @@ namespace BrawlingToys.Actors
         {
             CalculateVelocity();
             SetVelocity();
+
+            _stepFeedback.forward = -1 * _currentVelocity;
 
             if (_currentSpeed < .01f)
             {

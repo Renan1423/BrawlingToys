@@ -54,11 +54,7 @@ namespace BrawlingToys.Actors
         [SerializeField] private LayerMask _groundLayerMask;
         [SerializeField] private Transform _firePoint; // Instancia a bala nesse game object
         [SerializeField] private MMFeedbacks _shootFeedback;
-
-        [Space]
-
         [SerializeField] private NetworkWeaponShooter _networkWeaponShooter; 
-
         private RaycastHit _hitInfo;
         private float _aimSmoothRate = 50f;
         private PlayerWeapon _weapon;
