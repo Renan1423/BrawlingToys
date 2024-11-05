@@ -35,12 +35,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - PlayerModel
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3d9444b08cba18545a3b7a9ee474ef61
-    m_Address: Assets/Prefabs/Player/PlayerMecha.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PlayerModel
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 201f26c357ad10342b245e4c63266640, type: 2}
   m_SchemaSet:
