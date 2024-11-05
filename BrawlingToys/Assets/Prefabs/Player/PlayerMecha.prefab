@@ -30,6 +30,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1127725970599290894, guid: 155eaddf20873d14e819af738b052291,
         type: 3}
+      propertyPath: managedReferences[1210590969770541059].Velocity.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127725970599290894, guid: 155eaddf20873d14e819af738b052291,
+        type: 3}
+      propertyPath: managedReferences[1210590969770541059].Velocity.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127725970599290894, guid: 155eaddf20873d14e819af738b052291,
+        type: 3}
+      propertyPath: managedReferences[1210590969770541059].Velocity.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127725970599290894, guid: 155eaddf20873d14e819af738b052291,
+        type: 3}
       propertyPath: managedReferences[1210591001823412224].UniformScaling
       value: 1
       objectReference: {fileID: 0}
@@ -56,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 1127725970599290894, guid: 155eaddf20873d14e819af738b052291,
         type: 3}
       propertyPath: managedReferences[1210591001823412224].AnimateScaleTweenX.Curve.m_Curve.Array.data[1].value
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1127725970599290894, guid: 155eaddf20873d14e819af738b052291,
         type: 3}
@@ -123,8 +138,7 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 951099334
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8018189972314924964, guid: 155eaddf20873d14e819af738b052291, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

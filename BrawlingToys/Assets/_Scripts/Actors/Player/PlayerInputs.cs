@@ -15,6 +15,7 @@ namespace BrawlingToys.Actors
         /// </summary>
 
         public bool IsActive { get; private set; }
+        public PlayerInputActions PlayerInputActions { get => _playerInputActions; }
 
         public event EventHandler OnShootAction;
         public event EventHandler OnMeleeAction;
