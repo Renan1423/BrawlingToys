@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2168082519888390785
+--- !u!1001 &1676665414202585127
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,77 +8,77 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5932333950670632424}
     m_Modifications:
-    - target: {fileID: 3484274899224120624, guid: a4516b63d4b8f1943b7611587114f189,
-        type: 3}
-      propertyPath: m_Name
-      value: MechaModel
-      objectReference: {fileID: 0}
-    - target: {fileID: 4256307521983092618, guid: a4516b63d4b8f1943b7611587114f189,
+    - target: {fileID: 2716515298874497330, guid: ef155c6fcb197cd4994c946d7894af79,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4256307521983092618, guid: a4516b63d4b8f1943b7611587114f189,
+    - target: {fileID: 2716515298874497330, guid: ef155c6fcb197cd4994c946d7894af79,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.76
+      value: 2.761
       objectReference: {fileID: 0}
-    - target: {fileID: 4256307521983092618, guid: a4516b63d4b8f1943b7611587114f189,
+    - target: {fileID: 2716515298874497330, guid: ef155c6fcb197cd4994c946d7894af79,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4256307521983092618, guid: a4516b63d4b8f1943b7611587114f189,
+    - target: {fileID: 2716515298874497330, guid: ef155c6fcb197cd4994c946d7894af79,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4256307521983092618, guid: a4516b63d4b8f1943b7611587114f189,
+    - target: {fileID: 2716515298874497330, guid: ef155c6fcb197cd4994c946d7894af79,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4256307521983092618, guid: a4516b63d4b8f1943b7611587114f189,
+    - target: {fileID: 2716515298874497330, guid: ef155c6fcb197cd4994c946d7894af79,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4256307521983092618, guid: a4516b63d4b8f1943b7611587114f189,
+    - target: {fileID: 2716515298874497330, guid: ef155c6fcb197cd4994c946d7894af79,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4256307521983092618, guid: a4516b63d4b8f1943b7611587114f189,
+    - target: {fileID: 2716515298874497330, guid: ef155c6fcb197cd4994c946d7894af79,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4256307521983092618, guid: a4516b63d4b8f1943b7611587114f189,
+    - target: {fileID: 2716515298874497330, guid: ef155c6fcb197cd4994c946d7894af79,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4256307521983092618, guid: a4516b63d4b8f1943b7611587114f189,
+    - target: {fileID: 2716515298874497330, guid: ef155c6fcb197cd4994c946d7894af79,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3384684819431834504, guid: ef155c6fcb197cd4994c946d7894af79,
+        type: 3}
+      propertyPath: m_Name
+      value: SoldadinhoModel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a4516b63d4b8f1943b7611587114f189, type: 3}
---- !u!4 &2668350564664769803 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4256307521983092618, guid: a4516b63d4b8f1943b7611587114f189,
-    type: 3}
-  m_PrefabInstance: {fileID: 2168082519888390785}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &6693359898870965870 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: ef155c6fcb197cd4994c946d7894af79, type: 3}
+--- !u!95 &1901762691884020708 stripped
 Animator:
-  m_CorrespondingSourceObject: {fileID: 4824767858332536047, guid: a4516b63d4b8f1943b7611587114f189,
+  m_CorrespondingSourceObject: {fileID: 945999292654158787, guid: ef155c6fcb197cd4994c946d7894af79,
     type: 3}
-  m_PrefabInstance: {fileID: 2168082519888390785}
+  m_PrefabInstance: {fileID: 1676665414202585127}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3672604175695243541 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2716515298874497330, guid: ef155c6fcb197cd4994c946d7894af79,
+    type: 3}
+  m_PrefabInstance: {fileID: 1676665414202585127}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9139197268558081536
 PrefabInstance:
@@ -92,11 +92,11 @@ PrefabInstance:
         type: 3}
       propertyPath: managedReferences[1210591001823412224].AnimateScaleTarget
       value: 
-      objectReference: {fileID: 2668350564664769803}
+      objectReference: {fileID: 3672604175695243541}
     - target: {fileID: 1172481498366530268, guid: 155eaddf20873d14e819af738b052291,
         type: 3}
       propertyPath: m_Name
-      value: PlayerMecha
+      value: PlayerSoldadinho
       objectReference: {fileID: 0}
     - target: {fileID: 3248957072609162509, guid: 155eaddf20873d14e819af738b052291,
         type: 3}
@@ -152,12 +152,12 @@ PrefabInstance:
         type: 3}
       propertyPath: managedReferences[412819453087842308].AnimateScaleTarget
       value: 
-      objectReference: {fileID: 2668350564664769803}
+      objectReference: {fileID: 3672604175695243541}
     - target: {fileID: 3766866760485035240, guid: 155eaddf20873d14e819af738b052291,
         type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 6693359898870965870}
+      objectReference: {fileID: 1901762691884020708}
     - target: {fileID: 5364803754556521178, guid: 155eaddf20873d14e819af738b052291,
         type: 3}
       propertyPath: GlobalObjectIdHash
@@ -169,7 +169,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3208552168624331752, guid: 155eaddf20873d14e819af738b052291,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2668350564664769803}
+      addedObject: {fileID: 3672604175695243541}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 155eaddf20873d14e819af738b052291, type: 3}
 --- !u!4 &5932333950670632424 stripped

@@ -46,6 +46,7 @@ MonoBehaviour:
   m_GroupAssets:
   - {fileID: 11400000, guid: 43afa8834ccd19542a3b51313d7ad2b0, type: 2}
   - {fileID: 11400000, guid: 438d87052d9578342a4106cf927cd7cd, type: 2}
+  - {fileID: 11400000, guid: 62d6a7db344b0b14ba1baaa82802d2ee, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -91,6 +92,7 @@ MonoBehaviour:
     - PrototypeCharacter
     - PlayerPrototype
     - PlayerCharacter
+    - PlayerModel
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 805d141bd5ad9534881ef5e08559a866, type: 2}
