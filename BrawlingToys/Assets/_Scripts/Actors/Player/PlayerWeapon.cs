@@ -5,7 +5,8 @@ namespace BrawlingToys.Actors
 {
     public class PlayerWeapon
     {
-        public event EventHandler<Vector3> OnUpdateAimRotation;
+        public event EventHandler<Vector2> OnUpdateCursorPosition;
+        public event EventHandler<float> OnBulletPowerChange;
 
         private Player _player;
         private Transform _firePoint;
@@ -15,7 +16,10 @@ namespace BrawlingToys.Actors
         private LayerMask _groundLayerMask;
         private RaycastHit _hitInfo;
 
-        private NetworkWeaponShooter _networkShooter; 
+        private NetworkWeaponShooter _networkShooter;
+
+        private float _bulletPower = 0;
+        private float _maxBulletPower = 1f;
 
         public PlayerWeapon(Player player, Transform firePoint, float aimSmoothRate, LayerMask groundLayerMask, NetworkWeaponShooter networkShooter)
         {
@@ -30,7 +34,20 @@ namespace BrawlingToys.Actors
 
         public void Update()
         {
+            OnUpdateCursorPosition?.Invoke(this, _player.Inputs.GetLookVector());
             HandleAim();
+
+            if (_player.Inputs.PlayerInputActions.PlayerMap.Shoot.IsPressed())
+            {
+                if (_bulletPower >= _maxBulletPower)
+                    return;
+                _bulletPower += Time.deltaTime;
+            }
+            else
+                _bulletPower = 0;
+
+            // Evento para atualizar HUD
+            OnBulletPowerChange?.Invoke(this, _bulletPower/_maxBulletPower);
         }
 
         private void HandleAim()
@@ -43,11 +60,12 @@ namespace BrawlingToys.Actors
             {
                 _player.transform.forward = Vector3.Slerp(_player.transform.forward, _hitInfo.point - _player.transform.position, 
                     _aimSmoothRate * Time.deltaTime);
-                OnUpdateAimRotation?.Invoke(this, _player.transform.forward);
             }
         }
 
-        public void Shoot(ulong ownerPlayerId) 
-        => _networkShooter.SpawnBullet("Bullet", ownerPlayerId);
+        public void Shoot(ulong ownerPlayerId)
+        {
+            _networkShooter.SpawnBullet("Bullet", ownerPlayerId, _bulletPower);
+        }
     }
 }

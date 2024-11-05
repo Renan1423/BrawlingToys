@@ -38,11 +38,12 @@ namespace BrawlingToys.Actors
 
         [SerializeField] private BaseStats _baseStatsSO;
         [SerializeField] private PlayerInputs _inputs;
-        [SerializeField] private PlayerAnimations _animations;
+        [SerializeField] private GameObject _animationsGameObject;
         [SerializeField] private PlayerCooldownController _cooldowns;
         [SerializeField] private Stats _stats;
         [SerializeField] private Player _myKiller;
         [SerializeField] private Rigidbody _rb;
+        private PlayerAnimations _animations;
         //public PlayerWeapon weapon;
         
         [Header("State Stuffs: ")]
@@ -120,6 +121,7 @@ namespace BrawlingToys.Actors
         // e possivelmente modifica��es de buffs e debuffs.
         private void InitializePlayer()
         {
+            _animations = GetComponentInChildren<PlayerAnimations>();
             _mediator = new();
             _stats = new(_mediator, _baseStatsSO);
 

@@ -9,8 +9,6 @@ public class BaseStats : ScriptableObject
     public float meleeCooldown = 10;
     public float dashCooldown = 10;
     public float dashAmount = 1;
-    //VFX to play
-    //Sound to play
 
     [Header("Weapon Stats")]
     public float reloadTime = 10;
