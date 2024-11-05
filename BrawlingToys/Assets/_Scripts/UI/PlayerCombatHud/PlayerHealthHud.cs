@@ -34,9 +34,10 @@ namespace BrawlingToys.UI
         {
             base.ShowPlayerCombatHud(newGameState);
 
-            PlayerHit playerHit = NetworkManager.LocalClient.PlayerObject.GetComponent<PlayerHit>();
+            //PlayerHit playerHit = NetworkManager.LocalClient.PlayerObject.GetComponent<PlayerHit>();
 
-            ShowHealthHud(playerHit.MaxLife);
+            //if(playerHit != null)
+            //    ShowHealthHud(playerHit.MaxLife);
         }
 
         private void ShowHealthHud(int playerHealth)

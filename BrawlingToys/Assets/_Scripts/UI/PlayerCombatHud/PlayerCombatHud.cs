@@ -20,6 +20,7 @@ namespace BrawlingToys.UI
 
         public virtual void ShowPlayerCombatHud(GameStateType newGameState) 
         {
+            return;
             if (newGameState != GameStateType.Combat)
                 return;
         }
