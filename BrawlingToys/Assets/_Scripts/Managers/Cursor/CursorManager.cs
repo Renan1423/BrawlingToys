@@ -28,7 +28,7 @@ namespace BrawlingToys.Managers
         {
             Texture2D cursorTex = (newGameState == GameStateType.Combat) ? _gameplayCursor : _uiCursor;
 
-            Cursor.SetCursor(cursorTex, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(cursorTex, new Vector2(32, 32), CursorMode.Auto);
         }
     }
 }
