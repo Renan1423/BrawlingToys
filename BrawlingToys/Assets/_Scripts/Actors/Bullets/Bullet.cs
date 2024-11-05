@@ -18,6 +18,7 @@ namespace BrawlingToys.Actors
 
         private CountdownTimer _timer;
         private Rigidbody _rb;
+        private float _bulletPower = 1f;
         private Vector3 _direction;
         private Player _bulletOwner;
 
@@ -25,20 +26,20 @@ namespace BrawlingToys.Actors
         {
             _rb = GetComponent<Rigidbody>();
 
-            _timer = new CountdownTimer(_lifespan);
-            _timer.Start();
+            //_timer = new CountdownTimer(_lifespan);
+            //_timer.Start();
         }
 
         private void Update()
         {
             _direction = transform.forward;
 
-            _timer.Tick(Time.deltaTime);
+            //_timer.Tick(Time.deltaTime);
 
-            if (!_rb.useGravity && _timer.IsFinished)
-            {
-                EnableGravity();
-            }
+            //if (!_rb.useGravity && _timer.IsFinished)
+            //{
+            //    EnableGravity();
+            //}
         }
 
         private void FixedUpdate()
@@ -46,9 +47,10 @@ namespace BrawlingToys.Actors
             MoveBehaviour();
         }
 
-        public void Initialize(Player bulletOwner)
+        public void Initialize(Player bulletOwner, float bulletPower)
         {
             _bulletOwner = bulletOwner;
+            _bulletPower = bulletPower;
         }
 
         private void MoveBehaviour()
@@ -56,7 +58,7 @@ namespace BrawlingToys.Actors
             // PlayerWeapon possui Stats e avisa como a bala deve se mover
             // if (IsOwner) _bulletOwner.Weapon.MoveBehaviour();
 
-            if (IsOwner) _rb.velocity = _speed * _direction;
+            if (IsOwner) _rb.velocity = _speed * _bulletPower * _direction;
         }
 
         private void DestroyEffect()

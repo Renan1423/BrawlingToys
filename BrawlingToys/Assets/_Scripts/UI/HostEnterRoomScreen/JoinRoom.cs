@@ -19,6 +19,8 @@ namespace BrawlingToys.UI
 
         [SerializeField]
         private CharacterSelectionScreen _characterSelectionScreen;
+        [SerializeField]
+        private CombatSettingsScreen _combatSettingsScreen;
 
         public event Action<PlayerClientData> OnNewPlayerJoined; 
 
@@ -76,10 +78,15 @@ namespace BrawlingToys.UI
             var clientData = clientDataGO.GetComponent<PlayerClientData>();
 
             clientData.SetPlayerData(playerId, playerName);
+
             ChosenCharacterData playerCharacter = _characterSelectionScreen.GetChosenCharacterData();
             clientData.SetPlayerCharacter(playerCharacter.CharacterName,
                 playerCharacter.ChosenCharacterPrefab,
                 playerCharacter.CharacterIcon);
+
+            CombatSettings combatSettings = _combatSettingsScreen.GetCombatSettings();
+            clientData.SetCombatSettings(combatSettings.BuffSpawnChance, combatSettings.DebuffSpawnChance,
+                combatSettings.PlayerLife, combatSettings.RequiredPointsToWin);
 
             JoinPartyClientRpc();
         }

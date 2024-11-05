@@ -15,6 +15,7 @@ namespace BrawlingToys.Actors
         /// </summary>
 
         public bool IsActive { get; private set; }
+        public PlayerInputActions PlayerInputActions { get => _playerInputActions; }
 
         public event EventHandler OnShootAction;
         public event EventHandler OnMeleeAction;
@@ -47,7 +48,7 @@ namespace BrawlingToys.Actors
             TogglePlayerMap(true);
 
             _playerInputActions.PlayerMap.Move.performed += MovePerformed;
-            _playerInputActions.PlayerMap.Shoot.performed += ShootPerformed;
+            _playerInputActions.PlayerMap.Shoot.canceled += ShootPerformed;
             _playerInputActions.PlayerMap.Melee.performed += MeleePerformed;
             _playerInputActions.PlayerMap.Dash.performed += DashPerformed;
         }

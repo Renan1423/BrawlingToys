@@ -6,6 +6,7 @@ using BrawlingToys.Network;
 using BrawlingToys.Core;
 using BrawlingToys.Actors;
 using Unity.Netcode;
+using UnityEngine.UI;
 
 namespace BrawlingToys.UI
 {
@@ -19,11 +20,23 @@ namespace BrawlingToys.UI
         private NameInputValidator _nameInputValidator;
         [SerializeField]
         private CharacterSelectionScreen _characterSelectionScreen;
+        [SerializeField]
+        private CombatSettingsScreen _combatSettingsScreen;
+        [SerializeField]
+        private Button _createPartyButton;
+        [SerializeField]
+        private Button _settingsButton;
+
+        protected override void OnScreenEnable()
+        {
+            ToggleButtons(true);
+        }
 
         public void CreateRoom()
         {
             if (_nameInputValidator.CheckNameValidation())
             {
+                //ToggleButtons(false);
                 CreateParty(OnPartyCreated);
             }
         }
@@ -37,11 +50,17 @@ namespace BrawlingToys.UI
             playerClientDataGO.name = _nameInputValidator.InputFieldText + "PlayerClientData";
             PlayerClientData playerClientData = playerClientDataGO.GetComponent<PlayerClientData>();
 
+            //Gathering player data
             playerClientData.SetPlayerData(NetworkManager.LocalClientId, _nameInputValidator.InputFieldText);
+
             ChosenCharacterData playerCharacter = _characterSelectionScreen.GetChosenCharacterData();
             playerClientData.SetPlayerCharacter(playerCharacter.CharacterName, 
                 playerCharacter.ChosenCharacterPrefab, 
                 playerCharacter.CharacterIcon);
+
+            CombatSettings combatSettings = _combatSettingsScreen.GetCombatSettings();
+            playerClientData.SetCombatSettings(combatSettings.BuffSpawnChance, combatSettings.DebuffSpawnChance,
+                combatSettings.PlayerLife, combatSettings.RequiredPointsToWin);
 
             PlayerClientDatasManager.LocalInstance.AddPlayerClientData(playerClientData);
 
@@ -72,8 +91,22 @@ namespace BrawlingToys.UI
             }
             else
             {
+                ToggleButtons(true);
                 Debug.Log("Erro ao criar a party");
             }
+        }
+
+        public void OpenCombatSettingsScreen() 
+        {
+            ScreenManager.instance.ToggleScreenByTag(TagManager.CreateRoomMenu.COMBAT_SETTINGS, true);
+
+            CloseScreen(0.25f);
+        }
+
+        private void ToggleButtons(bool result) 
+        {
+            _createPartyButton.interactable = result;
+            _settingsButton.interactable = result;
         }
     }
 }

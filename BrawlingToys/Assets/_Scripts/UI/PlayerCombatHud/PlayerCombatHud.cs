@@ -6,7 +6,7 @@ using BrawlingToys.Managers;
 
 namespace BrawlingToys.UI
 {
-    public class PlayerCombatHud : NetworkBehaviour
+    public abstract class PlayerCombatHud : NetworkBehaviour
     {
         protected virtual void OnEnable()
         {
