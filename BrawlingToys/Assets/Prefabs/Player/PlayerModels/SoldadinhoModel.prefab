@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8730814726895528432, guid: 8f5599f6bf678cf4595963b7fd0b7f38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8f5599f6bf678cf4595963b7fd0b7f38,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -58,10 +63,80 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7994374794092652554, guid: 8f5599f6bf678cf4595963b7fd0b7f38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7152108469983945391, guid: 8f5599f6bf678cf4595963b7fd0b7f38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -5679419751401947788, guid: 8f5599f6bf678cf4595963b7fd0b7f38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 8f5599f6bf678cf4595963b7fd0b7f38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -3613765442664502964, guid: 8f5599f6bf678cf4595963b7fd0b7f38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -2169266197902182342, guid: 8f5599f6bf678cf4595963b7fd0b7f38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1058179426877016480, guid: 8f5599f6bf678cf4595963b7fd0b7f38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 18203997343771891, guid: 8f5599f6bf678cf4595963b7fd0b7f38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8f5599f6bf678cf4595963b7fd0b7f38,
         type: 3}
       propertyPath: m_Name
       value: SoldadinhoModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8f5599f6bf678cf4595963b7fd0b7f38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 936663387053269721, guid: 8f5599f6bf678cf4595963b7fd0b7f38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5266281194414446787, guid: 8f5599f6bf678cf4595963b7fd0b7f38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036213049465896255, guid: 8f5599f6bf678cf4595963b7fd0b7f38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434792335206367239, guid: 8f5599f6bf678cf4595963b7fd0b7f38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513859187771203891, guid: 8f5599f6bf678cf4595963b7fd0b7f38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

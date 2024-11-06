@@ -18,6 +18,12 @@ namespace BrawlingToys.UI
             _player.Weapon.OnBulletPowerChange += PlayerWeapon_OnBulletPowerChange;
         }
 
+        private void OnDisable()
+        {
+            _player.Weapon.OnUpdateCursorPosition -= PlayerWeapon_OnUpdateCursorPosition;
+            _player.Weapon.OnBulletPowerChange -= PlayerWeapon_OnBulletPowerChange;
+        }
+
         private void PlayerWeapon_OnUpdateCursorPosition(object sender, Vector2 e)
         {
             _image.rectTransform.position = e;

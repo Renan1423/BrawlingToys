@@ -22,10 +22,10 @@ namespace BrawlingToys.UI
     public struct ChosenCharacterData
     {
         public string CharacterName { get; private set; }
-        public GameObject ChosenCharacterPrefab { get; private set; }
+        public AssetReference ChosenCharacterPrefab { get; private set; }
         public Sprite CharacterIcon { get; private set; }
 
-        public ChosenCharacterData(string characterName, GameObject chosenCharacterPrefab, Sprite characterIcon)
+        public ChosenCharacterData(string characterName, AssetReference chosenCharacterPrefab, Sprite characterIcon)
         {
             CharacterName = characterName;
             ChosenCharacterPrefab = chosenCharacterPrefab;
@@ -132,11 +132,8 @@ namespace BrawlingToys.UI
 
         private void ConfirmCharacterSelection() 
         {
-            //Getting the character model with the skins applied
-            GameObject chosenCharacterModel = ModelSpawner.Instance.GetRenderTextureCameraChildModel(0);
-            
             CharacterSelectionData character = _playableCharacters[_selectedCharacterIndex];
-            _chosenCharacter = new ChosenCharacterData(character.CharacterName, chosenCharacterModel, character.CharacterIcon);
+            _chosenCharacter = new ChosenCharacterData(character.CharacterName, character.CharacterModel, character.CharacterIcon);
 
             _backgroundColorChanger.ResetBackgroundColor(0.25f);
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.AddressableAssets;
 
 namespace BrawlingToys.Actors
 {
@@ -12,7 +13,7 @@ namespace BrawlingToys.Actors
 
         //Selected Character
         public string SelectedCharacterName { get; private set; }
-        public GameObject SelectedCharacterPrefab { get; private set; }
+        public AssetReference SelectedCharacterPrefab { get; private set; }
         public Sprite SelectedCharacterSprite { get; private set; }
 
         //CombatSettings
@@ -21,13 +22,18 @@ namespace BrawlingToys.Actors
         public int PlayerLife { get; private set; }
         public int RequiredPointsToWin { get; private set; }
 
+        private void Awake()
+        {
+            DontDestroyOnLoad(this);
+        }
+
         public void SetPlayerData(ulong playerId, string userName) 
         {
             PlayerID = playerId;
             PlayerUsername = userName;
         }
 
-        public void SetPlayerCharacter(string characterName, GameObject characterModelPrefab, Sprite characterIcon) 
+        public void SetPlayerCharacter(string characterName, AssetReference characterModelPrefab, Sprite characterIcon) 
         {
             SelectedCharacterPrefab = characterModelPrefab;
         }

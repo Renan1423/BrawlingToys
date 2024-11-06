@@ -17,26 +17,26 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 3afde47e68febb042b6dcd5a9d685750
   m_SerializeEntries:
-  - m_GUID: 072c4ca31bfcd4641adb995691dacc66
-    m_Address: Assets/Prefabs/Player/PlayerMarionete.prefab
+  - m_GUID: a4516b63d4b8f1943b7611587114f189
+    m_Address: Assets/Prefabs/Player/PlayerModels/MechaModel.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - PlayerModel
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cce3de87e65dcba4da65199e058482b8
-    m_Address: Assets/Prefabs/Player/PlayerSoldadinho.prefab
+  - m_GUID: ef155c6fcb197cd4994c946d7894af79
+    m_Address: Assets/Prefabs/Player/PlayerModels/SoldadinhoModel.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - PlayerModel
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2da63c0b2bb98044c9f96e4aabb1818e
-    m_Address: Assets/Prefabs/Player/PlayerUrsinho.prefab
+  - m_GUID: 21c8593567d69d34f9567acb8fd9a47f
+    m_Address: Assets/Prefabs/Player/PlayerModels/MarioneteModel.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - PlayerModel
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3d9444b08cba18545a3b7a9ee474ef61
-    m_Address: Assets/Prefabs/Player/PlayerMecha.prefab
+  - m_GUID: 5be0a73cd47eb394a8c374ad8706d96e
+    m_Address: Assets/Prefabs/Player/PlayerModels/UrsinhoModel.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - PlayerModel
