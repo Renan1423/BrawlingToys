@@ -16,18 +16,18 @@ namespace BrawlingToys.UI
 
         protected override void OnEnable()
         {
-            base.OnEnable();
+            //base.OnEnable();
 
-            PlayerHit player = NetworkManager.LocalClient.PlayerObject.GetComponent<PlayerHit>();
-            player.OnPlayerLifeChange.AddListener(UpdateHealthHud);
+            //PlayerHit player = NetworkManager.LocalClient.PlayerObject.GetComponent<PlayerHit>();
+            //player.OnPlayerLifeChange.AddListener(UpdateHealthHud);
         }
 
         protected override void OnDisable()
         {
-            base.OnDisable();
+            //base.OnDisable();
 
-            PlayerHit player = NetworkManager.LocalClient.PlayerObject.GetComponent<PlayerHit>();
-            player.OnPlayerLifeChange.RemoveListener(UpdateHealthHud);
+            //PlayerHit player = NetworkManager.LocalClient.PlayerObject.GetComponent<PlayerHit>();
+            //player.OnPlayerLifeChange.RemoveListener(UpdateHealthHud);
         }
 
         public override void ShowPlayerCombatHud(GameStateType newGameState)

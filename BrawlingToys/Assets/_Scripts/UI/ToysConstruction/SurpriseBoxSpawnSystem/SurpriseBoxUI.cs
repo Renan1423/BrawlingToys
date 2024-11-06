@@ -39,6 +39,24 @@ namespace BrawlingToys.UI
         [SerializeField]
         private EffectsSelectionScreen _equipEffectsSelectionScreen;
 
+        protected override void Start()
+        {
+            base.Start();
+            GameManager.LocalInstance.OnGameStateChange.AddListener(TryEnableScreen);
+        }
+
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
+            //GameManager.LocalInstance.OnGameStateChange.RemoveListener(TryEnableScreen);
+        }
+
+        private void TryEnableScreen(GameStateType newGameState)
+        {
+            if(newGameState == GameStateType.Building)
+                ScreenManager.instance.ToggleScreenByTag(ScreenName, true);
+        }
+
         protected override void OnScreenEnable()
         {
             ResetSurpriseBoxUi();

@@ -115,7 +115,7 @@ namespace BrawlingToys.UI
 
             yield return new WaitForSeconds(delayToClose);
 
-            ToggleGraphicContainer(false);
+            ScreenManager.instance.ToggleScreenByTag(ScreenName, false);
         }
 
         private void ToggleGraphicContainer(bool active) 

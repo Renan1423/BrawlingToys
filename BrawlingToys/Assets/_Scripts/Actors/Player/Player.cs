@@ -43,6 +43,7 @@ namespace BrawlingToys.Actors
         [SerializeField] private Stats _stats;
         [SerializeField] private Player _myKiller;
         [SerializeField] private Rigidbody _rb;
+        [SerializeField] private PlayerSpawnSelectedModel _spawnSelectedModel;
         private PlayerAnimations _animations;
         //public PlayerWeapon weapon;
         
@@ -80,7 +81,24 @@ namespace BrawlingToys.Actors
             }
 
             bool PlayerEnableOnDeathState() => 
-            _currentState.GetType() == typeof(DieState); 
+            _currentState.GetType() == typeof(DieState);
+
+            _spawnSelectedModel.OnModelLoaded += SpawnSelectedModel_OnModelLoaded;
+        }
+
+        private void OnDisable()
+        {
+            _spawnSelectedModel.OnModelLoaded -= SpawnSelectedModel_OnModelLoaded;
+        }
+
+        private void SpawnSelectedModel_OnModelLoaded()
+        {
+            _animations = _animationsGameObject.GetComponentInChildren<PlayerAnimations>();
+            TransitionToState(_stateFactory.GetState(StateFactory.StateType.Idle));
+        }
+
+        private void Start()
+        {
         }
 
         public override void OnNetworkSpawn()
@@ -89,11 +107,6 @@ namespace BrawlingToys.Actors
             
             var playerInstances = GameObject.FindObjectsOfType<Player>(); 
             Instances = playerInstances.ToList(); 
-        }
-
-        private void Start()
-        {
-            TransitionToState(_stateFactory.GetState(StateFactory.StateType.Idle));
         }
 
         private void Update()
@@ -121,7 +134,6 @@ namespace BrawlingToys.Actors
         // e possivelmente modifica��es de buffs e debuffs.
         private void InitializePlayer()
         {
-            _animations = GetComponentInChildren<PlayerAnimations>();
             _mediator = new();
             _stats = new(_mediator, _baseStatsSO);
 
