@@ -43,7 +43,7 @@ namespace BrawlingToys.Actors
         [SerializeField] private Stats _stats;
         [SerializeField] private Player _myKiller;
         [SerializeField] private Rigidbody _rb;
-        [SerializeField] private PlayerSpawnSelectedModel _spawnSelectedModel;
+        //[SerializeField] private PlayerSpawnSelectedModel _spawnSelectedModel;
         private PlayerAnimations _animations;
         //public PlayerWeapon weapon;
         
@@ -70,7 +70,7 @@ namespace BrawlingToys.Actors
         {
             _stateFactory.InitializeStates(this);
             InitializePlayer();
-            _spawnSelectedModel.OnModelLoaded += SpawnSelectedModel_OnModelLoaded;
+            //_spawnSelectedModel.OnModelLoaded += SpawnSelectedModel_OnModelLoaded;
         }
 
         private void OnEnable()
@@ -84,15 +84,12 @@ namespace BrawlingToys.Actors
             bool PlayerEnableOnDeathState() => 
             _currentState.GetType() == typeof(DieState);
 
-            Debug.Log("CU");
-            _spawnSelectedModel.OnModelLoaded += SpawnSelectedModel_OnModelLoaded;
+            //_spawnSelectedModel.OnModelLoaded += SpawnSelectedModel_OnModelLoaded;
         }
 
         private void OnDisable()
         {
-            Debug.Log("CU2");
-
-            _spawnSelectedModel.OnModelLoaded -= SpawnSelectedModel_OnModelLoaded;
+            //_spawnSelectedModel.OnModelLoaded -= SpawnSelectedModel_OnModelLoaded;
         }
 
         private void SpawnSelectedModel_OnModelLoaded()
@@ -103,6 +100,7 @@ namespace BrawlingToys.Actors
 
         private void Start()
         {
+            TransitionToState(_stateFactory.GetState(StateFactory.StateType.Idle));
         }
 
         public override void OnNetworkSpawn()
@@ -138,6 +136,7 @@ namespace BrawlingToys.Actors
         // e possivelmente modifica��es de buffs e debuffs.
         private void InitializePlayer()
         {
+            _animations = GetComponentInChildren<PlayerAnimations>();
             _mediator = new();
             _stats = new(_mediator, _baseStatsSO);
 

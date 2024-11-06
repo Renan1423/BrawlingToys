@@ -45,9 +45,8 @@ public class PlayerAnimations : NetworkBehaviour
 
     public void Play(string stateName)
     {
-        animator.Play(stateName, -1, 0f);
-        //Debug.Log(stateName);
-        //SetAnimatorStateServerRpc(stateName); 
+        Debug.Log(stateName);
+        SetAnimatorStateServerRpc(stateName);
     }
 
     public void StartAnimation()
@@ -85,6 +84,6 @@ public class PlayerAnimations : NetworkBehaviour
     [ClientRpc]
     private void SetAnimatorStateClientRpc(string stateName)
     {
-        //animator.Play(stateName, -1, 0f);
+        animator.Play(stateName, -1, 0f);
     }
 }

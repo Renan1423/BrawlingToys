@@ -98,6 +98,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerMecha
       objectReference: {fileID: 0}
+    - target: {fileID: 3208552168624331752, guid: 155eaddf20873d14e819af738b052291,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3248957072609162509, guid: 155eaddf20873d14e819af738b052291,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -158,6 +163,11 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 6693359898870965870}
+    - target: {fileID: 4209555525401773390, guid: 155eaddf20873d14e819af738b052291,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5364803754556521178, guid: 155eaddf20873d14e819af738b052291,
         type: 3}
       propertyPath: GlobalObjectIdHash
