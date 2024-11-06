@@ -70,6 +70,7 @@ namespace BrawlingToys.Actors
         {
             _stateFactory.InitializeStates(this);
             InitializePlayer();
+            _spawnSelectedModel.OnModelLoaded += SpawnSelectedModel_OnModelLoaded;
         }
 
         private void OnEnable()
@@ -83,17 +84,20 @@ namespace BrawlingToys.Actors
             bool PlayerEnableOnDeathState() => 
             _currentState.GetType() == typeof(DieState);
 
+            Debug.Log("CU");
             _spawnSelectedModel.OnModelLoaded += SpawnSelectedModel_OnModelLoaded;
         }
 
         private void OnDisable()
         {
+            Debug.Log("CU2");
+
             _spawnSelectedModel.OnModelLoaded -= SpawnSelectedModel_OnModelLoaded;
         }
 
         private void SpawnSelectedModel_OnModelLoaded()
         {
-            _animations = _animationsGameObject.GetComponentInChildren<PlayerAnimations>();
+            _animations = GetComponentInChildren<PlayerAnimations>();
             TransitionToState(_stateFactory.GetState(StateFactory.StateType.Idle));
         }
 
