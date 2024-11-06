@@ -19,9 +19,9 @@ namespace BrawlingToys.UI
         [SerializeField] GameObject[] _spawnPoints;
          private Dictionary<Player, PlayerRoundInfo> _playerMatchInfo = new();
 
-        private void Awake()
+        private void Start()
         {
-            OnScreenEnable();
+            OnScreenEnable();    
         }
 
         protected override async void OnScreenEnable()

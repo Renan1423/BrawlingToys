@@ -65,6 +65,16 @@ MonoBehaviour:
     m_SerializedLabels:
     - PlayerCharacter
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 92530c962ff0a17439eb0f6024a3d3bc
+    m_Address: Assets/Prefabs/Maps/Autorama.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0d65390960a85f5468f6d7ca4b72e348
+    m_Address: Assets/Prefabs/Maps/Recreio.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 201f26c357ad10342b245e4c63266640, type: 2}
   m_SchemaSet:
