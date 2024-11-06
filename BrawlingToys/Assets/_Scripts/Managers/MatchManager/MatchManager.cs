@@ -29,7 +29,8 @@ namespace BrawlingToys.Managers
 
         private void Start()
         {
-            SubscribeEvents(); 
+            SubscribeEvents();
+            MusicManager.Instance.ChangeMusic(1);
         }
 
         private void SubscribeEvents()
