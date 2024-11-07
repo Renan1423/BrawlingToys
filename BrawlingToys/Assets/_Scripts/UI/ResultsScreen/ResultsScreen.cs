@@ -69,14 +69,6 @@ namespace BrawlingToys.UI
             }
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.R)) 
-            {
-                ScreenManager.instance.ToggleScreenByTag("ResultScreen", true);
-            }
-        }
-
         private void DrawGraphics()
         {
             if (!_initialized)
@@ -126,7 +118,7 @@ namespace BrawlingToys.UI
 
             Debug.Log($"Index: {playerIndex} - Score {score}");
 
-            _connectedPlayerScoresUIs[playerIndex].AddScore(score + 5, this, CheckScoresUpdated);
+            _connectedPlayerScoresUIs[playerIndex].AddScore(score, this, CheckScoresUpdated);
 
             ulong GetCastedIndex(int i) => (ulong)i;
 
