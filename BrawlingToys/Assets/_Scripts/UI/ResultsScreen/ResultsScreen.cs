@@ -29,18 +29,19 @@ namespace BrawlingToys.UI
 
         [Header("Settings")]
 
-        [SerializeField] private float _timeToBackToGame = 7f; 
-
         private List<PlayerScore> _connectedPlayerScoresUIs;
 
         private Dictionary<ulong, PlayerRoundInfo> _playersRoundInfo = new(); 
 
         private bool _initialized = false;
+        private bool _updatedScore = false;
 
         protected override void OnScreenEnable()
         {
             if(NetworkManager.Singleton.IsHost)
             {
+                _updatedScore = false;
+
                 ServerGetPlayersRoundInfo();
                 CallSyncRpc(); 
                 DrawGraphics(); 
@@ -65,6 +66,14 @@ namespace BrawlingToys.UI
 
                 Debug.Log("Callign Sync");
                 SyncPlayersInfoServerRpc(serializedIds, serializedKills, serializedSurvivals); 
+            }
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.R)) 
+            {
+                ScreenManager.instance.ToggleScreenByTag("ResultScreen", true);
             }
         }
 
@@ -101,28 +110,44 @@ namespace BrawlingToys.UI
 
         public void UpdateScores()
         {
-            for (int i = 0; i < _playersRoundInfo.Count; i++)
+            int i = 0;
+
+            UpdatePlayerScore(i);
+        }
+
+        private void UpdatePlayerScore(int playerIndex) 
+        {
+            var index = GetCastedIndex(playerIndex);
+            var roundInfo = _playersRoundInfo[index];
+
+            var score = roundInfo.IsSurvivor
+            ? roundInfo.KillsAmount + 1
+            : roundInfo.KillsAmount;
+
+            Debug.Log($"Index: {playerIndex} - Score {score}");
+
+            _connectedPlayerScoresUIs[playerIndex].AddScore(score + 5, this, CheckScoresUpdated);
+
+            ulong GetCastedIndex(int i) => (ulong)i;
+
+            void CheckScoresUpdated()
             {
-                var index = GetCastedIndex(i); 
-                var roundInfo = _playersRoundInfo[index]; 
-                
-                var score = roundInfo.IsSurvivor 
-                ? roundInfo.KillsAmount + 1 
-                : roundInfo.KillsAmount;
+                playerIndex++;
 
-                Debug.Log($"Index: {i} - Score {score}");
+                _updatedScore = (playerIndex > _playersRoundInfo.Count - 1);
 
-                _connectedPlayerScoresUIs[i].AddScore(score, this);
+                if (_updatedScore)
+                    return;
+                else
+                    UpdatePlayerScore(playerIndex);
             }
-
-            ulong GetCastedIndex(int i) => (ulong) i;  
         }
 
         public int GetRequiredScoreToWin() => PlayerClientDatasManager.LocalInstance.PlayerClientDatas[0].RequiredPointsToWin;
 
         private IEnumerator WaitForCloseScreen()
         {
-            yield return new WaitForSeconds(_timeToBackToGame); 
+            yield return new WaitUntil(() => _updatedScore == true);
 
             ChangeToNextScreenServerRpc(); 
         }

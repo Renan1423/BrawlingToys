@@ -345,7 +345,25 @@ MonoBehaviour:
   _performAnimationOnClose: 0
   _anim: {fileID: 0}
   _closeTrigger: Close
-  _requiredScoreToWin: 10
+  _playersColors:
+  - BaseColor: {r: 0.3254902, g: 0.5137255, b: 0.7019608, a: 1}
+    DarkColor: {r: 0.19215688, g: 0.37254903, b: 0.5372549, a: 1}
+    LightColor: {r: 0.5529412, g: 0.7686275, b: 0.98823535, a: 1}
+  - BaseColor: {r: 0.7019608, g: 0.32549024, b: 0.33507472, a: 1}
+    DarkColor: {r: 0.5372549, g: 0.19215684, b: 0.20853819, a: 1}
+    LightColor: {r: 0.9882353, g: 0.5529412, b: 0.57772857, a: 1}
+  - BaseColor: {r: 0.46274513, g: 0.6509804, b: 0.3137255, a: 1}
+    DarkColor: {r: 0.32156864, g: 0.49411768, b: 0.18431373, a: 1}
+    LightColor: {r: 0.7137255, g: 0.9450981, b: 0.54509807, a: 1}
+  - BaseColor: {r: 0.6117647, g: 0.5686275, b: 0.20784315, a: 1}
+    DarkColor: {r: 0.45098042, g: 0.4156863, b: 0.10588236, a: 1}
+    LightColor: {r: 0.9450981, g: 0.8862746, b: 0.41960788, a: 1}
+  - BaseColor: {r: 0.47450984, g: 0.38823533, b: 0.7137255, a: 1}
+    DarkColor: {r: 0.32941177, g: 0.2509804, b: 0.56078434, a: 1}
+    LightColor: {r: 0.73333335, g: 0.63529414, b: 0.9960785, a: 1}
+  - BaseColor: {r: 0.7137255, g: 0.3882353, b: 0.70927763, a: 1}
+    DarkColor: {r: 0.55633557, g: 0.2509804, b: 0.56078434, a: 1}
+    LightColor: {r: 0.9902153, g: 0.63529414, b: 0.99607843, a: 1}
   _playerScorePrefab: {fileID: 2955837845293887084, guid: 54e60bdc6f8d2f146a100c1b322e4995,
     type: 3}
   _scoreVerticalLayout: {fileID: 6661237568383389547}

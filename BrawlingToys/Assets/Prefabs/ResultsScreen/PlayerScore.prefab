@@ -488,7 +488,7 @@ MonoBehaviour:
         RandomizeDuration: 0
         RandomDurationMultiplier: {x: 0.5, y: 2}
         UseRange: 0
-        RangeDistance: 15
+        RangeDistance: 30
         UseRangeFalloff: 0
         RangeFalloff:
           serializedVersion: 2
@@ -521,8 +521,8 @@ MonoBehaviour:
         Duration: 0.1
         ResetShakerValuesAfterShake: 1
         ResetTargetValuesAfterShake: 1
-        ShakeSpeed: 20
-        ShakeRange: 50
+        ShakeSpeed: 15
+        ShakeRange: 30
         ShakeMainDirection: {x: 0, y: 1, z: 0}
         RandomizeDirection: 0
         ShakeAltDirection: {x: 0, y: 1, z: 0}
@@ -594,8 +594,8 @@ MonoBehaviour:
   Mode: 0
   TargetTransform: {fileID: 6142939589469477405}
   TargetRectTransform: {fileID: 0}
-  ShakeSpeed: 20
-  ShakeRange: 20
+  ShakeSpeed: 15
+  ShakeRange: 30
   ShakeMainDirection: {x: 0, y: 1, z: 0}
   RandomizeDirection: 1
   ShakeAltDirection: {x: 0, y: 1, z: 0}
