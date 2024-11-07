@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using TMPro;
 using MoreMountains.Feedbacks;
 
@@ -49,12 +50,12 @@ namespace BrawlingToys.UI
             _playerIdImage.color = playerColorPallete.BaseColor;
         }
 
-        public void AddScore(int scoreToAdd, ResultsScreen resultsScreen)
+        public void AddScore(int scoreToAdd, ResultsScreen resultsScreen, UnityAction callback)
         {
-            StartCoroutine(AddScoreCoroutine(scoreToAdd, resultsScreen));
+            StartCoroutine(AddScoreCoroutine(scoreToAdd, resultsScreen, callback));
         }
 
-        private IEnumerator AddScoreCoroutine(int scoreToAdd, ResultsScreen resultsScreen)
+        private IEnumerator AddScoreCoroutine(int scoreToAdd, ResultsScreen resultsScreen, UnityAction callback)
         {
             int finalScore = score + scoreToAdd;
             if (finalScore > resultsScreen.GetRequiredScoreToWin())
@@ -68,6 +69,8 @@ namespace BrawlingToys.UI
 
                 yield return new WaitForSeconds(0.25f);
             }
+
+            callback.Invoke();
         }
     }
 }
