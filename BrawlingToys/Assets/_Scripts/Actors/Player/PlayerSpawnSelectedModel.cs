@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Linq;
 using Unity.Netcode;
@@ -9,40 +10,63 @@ namespace BrawlingToys.Actors
 {
     public class PlayerSpawnSelectedModel : MonoBehaviour
     {
-        private void Start()
+        [SerializeField] private Transform _modelFather; 
+        
+        public Action OnModelSpawed;
+
+        private AsyncOperationHandle<GameObject>? loadedHandle = new();
+
+        public void SetCharacterModel(AssetReference refe)
         {
-            SetCharacterModel();
+            StartCoroutine(SetCharacterModelAsync(refe));
         }
 
-        public void SetCharacterModel()
-        {
-            StartCoroutine(SetCharacterModelAsync());
-        }
-
-        private IEnumerator SetCharacterModelAsync()
+        private IEnumerator SetCharacterModelAsync(AssetReference refe)
         {
             var clientData = GameObject.FindObjectsOfType<PlayerClientData>();
-            var currentClient = clientData.First(c => c.PlayerID == NetworkManager.Singleton.LocalClientId); 
+            var currentClient = clientData.First(c => c.PlayerID == NetworkManager.Singleton.LocalClientId);
 
-            var assetRef = currentClient.SelectedCharacterPrefab;
+            var assetRef = refe; 
 
             if (assetRef != null)
             {
-                var handle = assetRef.LoadAssetAsync<GameObject>();
+                // Log detalhado para verificar o estado do handle antes de tentar carregar o asset
+                Debug.Log($"Tentando carregar o asset '{assetRef.RuntimeKey}'.");
 
-                yield return handle;
-
-                if (handle.Status == AsyncOperationStatus.Succeeded)
+                if (loadedHandle.HasValue && loadedHandle.Value.IsValid())
                 {
-                    var characterModel = handle.Result;
-                    var instance = Instantiate(characterModel, transform);
+                    Debug.LogWarning($"Asset '{assetRef.RuntimeKey}' já foi carregado e está sendo reutilizado. Evitando carregamento duplicado.");
                 }
                 else
                 {
-                    Debug.LogError("Falha ao carregar o asset do Addressable.");
+                    try
+                    {
+                        // Carrega o asset
+                        loadedHandle = assetRef.LoadAssetAsync<GameObject>();
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogError($"Erro ao carregar o asset '{assetRef.RuntimeKey}': {ex.Message}\nStackTrace: {ex.StackTrace}");
+                        yield break;  
+                    }
+                    
+                    Debug.Log($"Carregando o asset '{assetRef.RuntimeKey}'.");
+
+                    yield return loadedHandle.Value;
+
+                    if (loadedHandle.Value.Status == AsyncOperationStatus.Succeeded)
+                    {
+                        var characterModel = loadedHandle.Value.Result;
+                        var instance = Instantiate(characterModel, _modelFather);
+                        Debug.Log($"Modelo de personagem '{assetRef.RuntimeKey}' instanciado com sucesso.");
+                    }
+                    else
+                    {
+                        Debug.LogError($"Falha ao carregar o asset do Addressable: '{assetRef.RuntimeKey}'.");
+                    }
                 }
-                
-                Addressables.Release(handle);
+
+                OnModelSpawed?.Invoke();
             }
             else
             {

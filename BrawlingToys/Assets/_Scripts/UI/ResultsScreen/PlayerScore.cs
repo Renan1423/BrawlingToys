@@ -50,12 +50,8 @@ namespace BrawlingToys.UI
             _playerIdImage.color = playerColorPallete.BaseColor;
         }
 
-        public void AddScore(int scoreToAdd, ResultsScreen resultsScreen, UnityAction callback)
-        {
-            StartCoroutine(AddScoreCoroutine(scoreToAdd, resultsScreen, callback));
-        }
 
-        private IEnumerator AddScoreCoroutine(int scoreToAdd, ResultsScreen resultsScreen, UnityAction callback)
+        public IEnumerator AddScoreCoroutine(int scoreToAdd, ResultsScreen resultsScreen)
         {
             int finalScore = score + scoreToAdd;
             if (finalScore > resultsScreen.GetRequiredScoreToWin())
@@ -69,8 +65,6 @@ namespace BrawlingToys.UI
 
                 yield return new WaitForSeconds(0.25f);
             }
-
-            callback.Invoke();
         }
     }
 }

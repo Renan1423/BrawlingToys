@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Serialization;
 using BrawlingToys.Actors;
 using BrawlingToys.Network;
 using Unity.Netcode;
@@ -129,8 +130,16 @@ namespace BrawlingToys.Managers
                 playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
             }
 
+            SpawnPlayerModelsClientRpc();
+
             _playersSpawned = true; 
-        } 
+        }
+
+        [ClientRpc]
+        private void SpawnPlayerModelsClientRpc()
+        {
+            ModelSpawnManager.Instance.InstantietePlayersModels(); 
+        }
 
         [ClientRpc]
         private void CallPlayerSpawnCallbacksClientRpc()

@@ -38,7 +38,6 @@ namespace BrawlingToys.Actors
 
         [SerializeField] private BaseStats _baseStatsSO;
         [SerializeField] private PlayerInputs _inputs;
-        [SerializeField] private GameObject _animationsGameObject;
         [SerializeField] private PlayerCooldownController _cooldowns;
         [SerializeField] private Stats _stats;
         [SerializeField] private Player _myKiller;
@@ -66,18 +65,22 @@ namespace BrawlingToys.Actors
         [Header("Gizmos Stuff: ")]
         [SerializeField] private Color _aimColor;
 
+        [Header("Animation Settings")]
+
+        [SerializeField] private GameObject _animationsGameObject;
+        [SerializeField] private PlayerSpawnSelectedModel _spawnSelectedModel; 
+
+        private bool _initilized; 
+
         private void Awake()
         {
-            _stateFactory.InitializeStates(this);
-            InitializePlayer();
-
-            var idle = StateFactory.GetState(StateFactory.StateType.Idle); 
-            TransitionToState(idle); 
-            //_spawnSelectedModel.OnModelLoaded += SpawnSelectedModel_OnModelLoaded;
+            _spawnSelectedModel.OnModelSpawed += SpawnSelectedModel_OnModelLoaded;
         }
 
         private void OnEnable()
         {
+            if (!_initilized) return; 
+            
             if(PlayerEnableOnDeathState())
             {
                 var idle = StateFactory.GetState(StateFactory.StateType.Idle); 
@@ -87,22 +90,18 @@ namespace BrawlingToys.Actors
             bool PlayerEnableOnDeathState() => 
             _currentState.GetType() == typeof(DieState);
 
-            //_spawnSelectedModel.OnModelLoaded += SpawnSelectedModel_OnModelLoaded;
         }
 
-        private void OnDisable()
+        public override void OnDestroy()
         {
-            //_spawnSelectedModel.OnModelLoaded -= SpawnSelectedModel_OnModelLoaded;
+            base.OnDestroy();
+            _spawnSelectedModel.OnModelSpawed -= SpawnSelectedModel_OnModelLoaded;
         }
 
         private void SpawnSelectedModel_OnModelLoaded()
         {
-            _animations = GetComponentInChildren<PlayerAnimations>();
-            TransitionToState(_stateFactory.GetState(StateFactory.StateType.Idle));
-        }
-
-        private void Start()
-        {
+            _stateFactory.InitializeStates(this);
+            InitializePlayer();
             TransitionToState(_stateFactory.GetState(StateFactory.StateType.Idle));
         }
 
