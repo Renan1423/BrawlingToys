@@ -70,6 +70,9 @@ namespace BrawlingToys.Actors
         {
             _stateFactory.InitializeStates(this);
             InitializePlayer();
+
+            var idle = StateFactory.GetState(StateFactory.StateType.Idle); 
+            TransitionToState(idle); 
             //_spawnSelectedModel.OnModelLoaded += SpawnSelectedModel_OnModelLoaded;
         }
 

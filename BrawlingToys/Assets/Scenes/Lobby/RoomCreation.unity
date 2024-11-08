@@ -2499,6 +2499,8 @@ MonoBehaviour:
   _performAnimationOnClose: 1
   _anim: {fileID: 1882846352}
   _closeTrigger: Close
+  _playerClientDataPrefab: {fileID: 1756267120378760544, guid: 433c36d0c3c20c344be6765af530cc3a,
+    type: 3}
   _codeInputValidator: {fileID: 1471793638}
   _nameInputValidator: {fileID: 1764379207}
   _characterSelectionScreen: {fileID: 7655690}
@@ -2975,6 +2977,8 @@ MonoBehaviour:
   _performAnimationOnClose: 1
   _anim: {fileID: 907474539}
   _closeTrigger: Close
+  _playerClientData: {fileID: 1756267120378760544, guid: 433c36d0c3c20c344be6765af530cc3a,
+    type: 3}
   _nameInputValidator: {fileID: 138618551}
   _characterSelectionScreen: {fileID: 7655690}
   _combatSettingsScreen: {fileID: 1262741036}
