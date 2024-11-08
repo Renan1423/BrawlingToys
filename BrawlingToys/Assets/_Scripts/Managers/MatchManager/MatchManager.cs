@@ -110,12 +110,12 @@ namespace BrawlingToys.Managers
 
         private void CheckMatchEnd()
         {
-            if(MatchIsEnded())
-            {
-                CallResultScreenServerRpc(); 
+            if(RoundIsEnded())
+            {   
+                FinishRoundServerRpc(); 
             }
 
-            bool MatchIsEnded() => _playerMatchInfo.Count - _deadPlayersCount <= 1; 
+            bool RoundIsEnded() => _playerMatchInfo.Count - _deadPlayersCount <= 1; 
         }
 
         [ServerRpc]
@@ -148,14 +148,19 @@ namespace BrawlingToys.Managers
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void CallResultScreenServerRpc()
+        private void FinishRoundServerRpc()
         {
-            CallResultScreenClientRpc(); 
+            FinishRoundClientRpc(); 
         }
 
         [ClientRpc]
-        private void CallResultScreenClientRpc()
+        private void FinishRoundClientRpc()
         {
+            foreach (var player in MatchPlayers)
+            {
+                player.gameObject.SetActive(false); 
+            }
+            
             ScreenManager.instance.ToggleScreenByTag("ResultScreen", true);
         } 
 
@@ -181,7 +186,6 @@ namespace BrawlingToys.Managers
         {
             foreach (var player in MatchPlayers)
             {
-                Debug.Log("Enable Player");
                 player.gameObject.SetActive(true); 
             }
         }

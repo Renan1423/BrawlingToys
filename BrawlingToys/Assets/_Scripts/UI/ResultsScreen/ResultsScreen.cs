@@ -63,7 +63,6 @@ namespace BrawlingToys.UI
                     .Select(i => i.IsSurvivor)
                     .ToArray();
 
-                Debug.Log("Callign Sync");
                 SyncPlayersInfoServerRpc(serializedIds, serializedKills, serializedSurvivals); 
             }
         }
@@ -102,12 +101,32 @@ namespace BrawlingToys.UI
         {
             for (int i = 0; i < _playersRoundInfo.Count; i++)
             {
-                 yield return UpdatePlayerScore(i);
+                yield return UpdatePlayerScore(i);
             }
 
             yield return new WaitForSeconds(2);
 
-            ChangeToNextScreenServerRpc(); 
+            if(!MatchIsEnded())
+            {
+                ChangeToNextScreenServerRpc(); 
+            }
+            else
+            {
+                if (LocalPlayerIsWinner())
+                {
+                    LevelManager.LocalInstance.LocalLoadSceneByName("WinnerScene"); 
+                }
+                else
+                {
+                    LevelManager.LocalInstance.LocalLoadSceneByName("LoserScene");
+                }
+            }
+
+            bool MatchIsEnded() => _connectedPlayerScoresUIs.Any(ui => ui.Score >= GetRequiredScoreToWin()); 
+
+            bool LocalPlayerIsWinner() => _connectedPlayerScoresUIs
+                .First(ui => ui.PlayerId == NetworkManager.Singleton.LocalClientId)
+                .Score >= GetRequiredScoreToWin(); 
         }
 
         private IEnumerator UpdatePlayerScore(int playerIndex) 

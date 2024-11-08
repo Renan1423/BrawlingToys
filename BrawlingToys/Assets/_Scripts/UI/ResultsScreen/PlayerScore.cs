@@ -11,6 +11,8 @@ namespace BrawlingToys.UI
     public class PlayerScore : MonoBehaviour
     {
         private int score;
+        private ulong playerId; 
+        
         [SerializeField]
         private GameObject _scorePointPrefab;
 
@@ -31,6 +33,9 @@ namespace BrawlingToys.UI
         [SerializeField]
         private MMF_Player _feedbacks;
 
+        public int Score { get => score; }
+        public ulong PlayerId { get => playerId; }
+
         public void FillPlayerScoreInfo(int requiredScoreToWin, int playerNumberId, PlayerScoreColorPallete playerColorPallete)
         {
             _scorePoints = new List<ScorePoint>();
@@ -46,6 +51,8 @@ namespace BrawlingToys.UI
                 _scorePoints.Add(scorePoint);
             }
 
+            playerId = (ulong) playerNumberId; 
+            
             _playerIdText.text = "P" + (playerNumberId + 1);
             _playerIdImage.color = playerColorPallete.BaseColor;
         }
