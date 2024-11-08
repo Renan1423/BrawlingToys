@@ -181,6 +181,7 @@ namespace BrawlingToys.Managers
         {
             foreach (var player in MatchPlayers)
             {
+                Debug.Log("Enable Player");
                 player.gameObject.SetActive(true); 
             }
         }

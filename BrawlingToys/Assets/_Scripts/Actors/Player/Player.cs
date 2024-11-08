@@ -79,6 +79,7 @@ namespace BrawlingToys.Actors
 
         private void OnEnable()
         {
+            Debug.Log($"Initilized: {_initilized}");
             if (!_initilized) return; 
             
             if(PlayerEnableOnDeathState())
@@ -147,6 +148,7 @@ namespace BrawlingToys.Actors
 
             _weapon = new(this, _firePoint, _aimSmoothRate, _groundLayerMask, _networkWeaponShooter);
 
+            _initilized = true; 
             OnPlayerInitialize?.Invoke(this);
         }
 
