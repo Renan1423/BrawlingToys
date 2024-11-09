@@ -53,7 +53,6 @@ namespace BrawlingToys.Actors
             if (query.StatType == _type)
             {
                 query.Value = operation(query.Value);
-                PlayerCooldownController.OnSomeCooldownChange?.Invoke(_type, query.Value);
             }
         }
     }

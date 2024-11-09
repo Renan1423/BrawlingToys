@@ -77,17 +77,41 @@ namespace BrawlingToys.Actors
         {
             if (_player.Cooldowns.reloadTimer.IsRunning)
             {
-                // Som de reload
+                Debug.Log("Reload");
+                return;
             }
-            else
+                
+            if (_player.Cooldowns.fireRateTimer.IsRunning)
             {
-                if (!_player.Cooldowns.fireRateTimer.IsRunning)
-                {
-                    _player.Weapon.Shoot(_player.PlayerId);
-                    _player.ShootFeedback.PlayFeedbacks();
-                    _player.Cooldowns.reloadTimer.Start();
-                }
+                Debug.Log("Fire-Rate...");
+                return;
             }
+
+            _player.Weapon.Shoot(_player.PlayerId);
+            _player.ShootFeedback.PlayFeedbacks();
+
+            _player.Cooldowns.fireRateTimer.Start();
+            if (_player.Stats.ReloadTime <= 0.05f)
+                return;
+            _player.Cooldowns.reloadTimer.Start();
+
+            //if (_player.Cooldowns.reloadTimer.IsRunning)
+            //{
+            //    // Som de reload
+            //}
+            //else
+            //{
+            //    if (!_player.Cooldowns.fireRateTimer.IsRunning)
+            //    {
+            //        _player.Weapon.Shoot(_player.PlayerId);
+            //        _player.Cooldowns.fireRateTimer.Start();
+            //        _player.ShootFeedback.PlayFeedbacks();
+
+            //        if (_player.Cooldowns.reloadTimer.Time <= 0)
+            //            return;
+            //        _player.Cooldowns.reloadTimer.Start();
+            //    }
+            //}
         }
 
         protected virtual void HandleMelee(object sender, System.EventArgs e)

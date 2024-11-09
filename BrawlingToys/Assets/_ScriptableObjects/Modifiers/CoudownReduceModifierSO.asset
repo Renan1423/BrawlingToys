@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: CoudownReduceModifierSO
   m_EditorClassIdentifier: 
   <Tag>k__BackingField: coodown_reduce
-  <ModifierType>k__BackingField: 7
+  <ModifierType>k__BackingField: 4
   <EffectName>k__BackingField: "P\xE1 Pum Tchau"
   <EffectDescription>k__BackingField: Tiros sem cooldown.
   <EffectIcon>k__BackingField: {fileID: 0}
   <EffectType>k__BackingField: 0
-  modificationPercentage: 999
+  modificationPercentage: 0
