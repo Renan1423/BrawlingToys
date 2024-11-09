@@ -17,6 +17,8 @@ namespace BrawlingToys.Actors
 
             _player.Animations.PlayAnimation(PlayerAnimations.AnimationType.Die);
             _player.Animations.OnAnimationEnd.AddListener(WhenAnimationEnd);
+
+            _player.gameObject.SetActive(false);
         }
 
         protected override void ExitState()

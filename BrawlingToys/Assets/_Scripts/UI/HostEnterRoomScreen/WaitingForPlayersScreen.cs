@@ -42,7 +42,7 @@ namespace BrawlingToys.UI
 
             ValidadeMatch();
 
-            _partyCodeText.text = "Código da sala: " + partyCode;
+            _partyCodeText.text = "Cï¿½digo da sala: " + partyCode;
             NetworkManager.Singleton.OnClientConnectedCallback += OnNewClientConnected;
             _joinRoom.OnNewPlayerJoined += OnNewPlayerJoined;
             AddPlayer(hostPlayerName);

@@ -8,19 +8,19 @@ namespace BrawlingToys.Actors
 {
     public class PlayerClientData : NetworkBehaviour
     {
-        public string PlayerUsername { get; private set; }
-        public ulong PlayerID { get; private set; }
+        [field:SerializeField] public string PlayerUsername { get; private set; } 
+        [field:SerializeField] public ulong PlayerID { get; private set; } 
 
         //Selected Character
-        public string SelectedCharacterName { get; private set; }
-        public AssetReference SelectedCharacterPrefab { get; private set; }
-        public Sprite SelectedCharacterSprite { get; private set; }
+        [field:SerializeField] public string SelectedCharacterName { get; private set; } 
+        [field:SerializeField] public AssetReference SelectedCharacterPrefab { get; private set; } 
+        [field:SerializeField] public Sprite SelectedCharacterSprite { get; private set; }
 
         //CombatSettings
-        public float BuffSpawnChance { get; private set; }
-        public float DebuffSpawnChance { get; private set; }
-        public int PlayerLife { get; private set; }
-        public int RequiredPointsToWin { get; private set; }
+        [field:SerializeField] public float BuffSpawnChance { get; private set; }
+        [field:SerializeField] public float DebuffSpawnChance { get; private set; }
+        [field:SerializeField] public int PlayerLife { get; private set; }
+        [field:SerializeField] public int RequiredPointsToWin { get; private set; }
 
         private void Awake()
         {

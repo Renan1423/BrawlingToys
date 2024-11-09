@@ -8,7 +8,7 @@ namespace BrawlingToys.Managers
 {
     public class PlayerClientDatasManager : NetworkSingleton<PlayerClientDatasManager>
     {
-        public List<PlayerClientData> PlayerClientDatas { get; private set; }
+        public List<PlayerClientData> PlayerClientDatas { get; private set; } = new(); 
 
         public void AddPlayerClientData(PlayerClientData playerClientData) 
         {

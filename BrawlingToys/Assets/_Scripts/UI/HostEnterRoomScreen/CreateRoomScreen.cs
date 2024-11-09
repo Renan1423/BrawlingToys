@@ -7,11 +7,16 @@ using BrawlingToys.Core;
 using BrawlingToys.Actors;
 using Unity.Netcode;
 using UnityEngine.UI;
+using System.Linq;
 
 namespace BrawlingToys.UI
 {
     public class CreateRoomScreen : BaseScreen
     {
+        [Header("References")]
+
+        [SerializeField] private GameObject _playerClientData; 
+        
         [Space(20)]
 
         [Header("Create Room Screen")]
@@ -26,7 +31,7 @@ namespace BrawlingToys.UI
         private Button _createPartyButton;
         [SerializeField]
         private Button _settingsButton;
-
+        
         protected override void OnScreenEnable()
         {
             ToggleButtons(true);
@@ -37,38 +42,45 @@ namespace BrawlingToys.UI
             if (_nameInputValidator.CheckNameValidation())
             {
                 //ToggleButtons(false);
-                CreateParty(OnPartyCreated);
+                CreateParty(OnPartyCreatedCallback);
             }
         }
 
-        private void OnPartyCreated(string partyCode) 
+        private void OnPartyCreatedCallback(string partyCode) 
         {
             ScreenManager.instance.ToggleScreenByTag(TagManager.CreateRoomMenu.WAITING_FOR_PLAYERS, true);
 
-            //Creating the player client data
-            GameObject playerClientDataGO = NetworkSpawner.LocalInstance.InstantiateOnServer("PlayerClientData", Vector3.zero, Quaternion.identity);
-            playerClientDataGO.name = _nameInputValidator.InputFieldText + "PlayerClientData";
-            PlayerClientData playerClientData = playerClientDataGO.GetComponent<PlayerClientData>();
+            var playerName = _nameInputValidator.InputFieldText; 
+            var playerId = NetworkManager.LocalClientId; 
+            var characterGUID = _characterSelectionScreen.GetChosenCharacterData().ChosenCharacterPrefab.AssetGUID;
+            
+            JoinPartyServerRpc(playerName, playerId, characterGUID); 
 
-            //Gathering player data
-            playerClientData.SetPlayerData(NetworkManager.LocalClientId, _nameInputValidator.InputFieldText);
-
-            ChosenCharacterData playerCharacter = _characterSelectionScreen.GetChosenCharacterData();
-            playerClientData.SetPlayerCharacter(playerCharacter.CharacterName, 
-                playerCharacter.ChosenCharacterPrefab, 
-                playerCharacter.CharacterIcon);
-
-            CombatSettings combatSettings = _combatSettingsScreen.GetCombatSettings();
-            playerClientData.SetCombatSettings(combatSettings.BuffSpawnChance, combatSettings.DebuffSpawnChance,
-                combatSettings.PlayerLife, combatSettings.RequiredPointsToWin);
-
-            PlayerClientDatasManager.LocalInstance.AddPlayerClientData(playerClientData);
-
-            //Initializing the waiting screen
             WaitingForPlayersScreen waitingForPlayersScreen = FindObjectOfType<WaitingForPlayersScreen>();
             waitingForPlayersScreen.InitializeWaitingRoom(partyCode, _nameInputValidator.InputFieldText);
 
             CloseScreen(0.25f);
+        }
+
+        [ServerRpc]
+        private void JoinPartyServerRpc(string playerName, ulong playerId, string characterAssetGUID)
+        {
+            var clientDataGO = Instantiate(_playerClientData);
+
+            clientDataGO.name = $"{playerName}PlayerClientData"; 
+
+            var clientData = clientDataGO.GetComponent<PlayerClientData>();
+
+            clientData.SetPlayerData(playerId, playerName);
+
+            var playerCharacter = _characterSelectionScreen.PlayableCharacters.First(pc => pc.CharacterModel.AssetGUID == characterAssetGUID); 
+            Debug.Log($"Asset GUID: {playerCharacter.CharacterModel.AssetGUID}");
+
+            clientData.SetPlayerCharacter(playerCharacter.CharacterName,
+                playerCharacter.CharacterModel,
+                playerCharacter.CharacterIcon);
+
+            PlayerClientDatasManager.LocalInstance.AddPlayerClientData(clientData);
         }
 
         public async void CreateParty(UnityEngine.Events.UnityAction<string> callback) 

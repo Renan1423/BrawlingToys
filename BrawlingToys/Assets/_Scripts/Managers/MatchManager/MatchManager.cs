@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Serialization;
 using BrawlingToys.Actors;
 using BrawlingToys.Network;
 using Unity.Netcode;
@@ -30,7 +31,7 @@ namespace BrawlingToys.Managers
         private void Start()
         {
             SubscribeEvents();
-            MusicManager.Instance.ChangeMusic(1);
+            //MusicManager.Instance.ChangeMusic(1);
         }
 
         private void SubscribeEvents()
@@ -109,12 +110,12 @@ namespace BrawlingToys.Managers
 
         private void CheckMatchEnd()
         {
-            if(MatchIsEnded())
-            {
-                CallResultScreenServerRpc(); 
+            if(RoundIsEnded())
+            {   
+                FinishRoundServerRpc(); 
             }
 
-            bool MatchIsEnded() => _playerMatchInfo.Count - _deadPlayersCount <= 1; 
+            bool RoundIsEnded() => _playerMatchInfo.Count - _deadPlayersCount <= 1; 
         }
 
         [ServerRpc]
@@ -129,8 +130,16 @@ namespace BrawlingToys.Managers
                 playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
             }
 
+            SpawnPlayerModelsClientRpc();
+
             _playersSpawned = true; 
-        } 
+        }
+
+        [ClientRpc]
+        private void SpawnPlayerModelsClientRpc()
+        {
+            ModelSpawnManager.Instance.InstantietePlayersModels(); 
+        }
 
         [ClientRpc]
         private void CallPlayerSpawnCallbacksClientRpc()
@@ -139,14 +148,19 @@ namespace BrawlingToys.Managers
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void CallResultScreenServerRpc()
+        private void FinishRoundServerRpc()
         {
-            CallResultScreenClientRpc(); 
+            FinishRoundClientRpc(); 
         }
 
         [ClientRpc]
-        private void CallResultScreenClientRpc()
+        private void FinishRoundClientRpc()
         {
+            foreach (var player in MatchPlayers)
+            {
+                player.gameObject.SetActive(false); 
+            }
+            
             ScreenManager.instance.ToggleScreenByTag("ResultScreen", true);
         } 
 

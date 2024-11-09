@@ -89,5 +89,19 @@ namespace BrawlingToys.Managers
         {
             LocalInstance._sceneTransition.SetTrigger("FadeOut");
         }
+
+        public void LocalLoadSceneByName(string sceneName)
+        {
+            StartCoroutine(Action()); 
+            
+            IEnumerator Action()
+            {
+                StartNetworkSceneTransition();
+
+                yield return new WaitForSeconds(LocalInstance._delayToChanceScene);
+
+                SceneManager.LoadScene(sceneName); 
+            }
+        }
     }
 }
