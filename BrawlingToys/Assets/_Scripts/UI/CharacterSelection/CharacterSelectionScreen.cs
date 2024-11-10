@@ -35,8 +35,8 @@ namespace BrawlingToys.UI
 
     public class CharacterSelectionScreen : BaseScreen
     {
-        [SerializeField]
-        private List<CharacterSelectionData> _playableCharacters;
+        [field: SerializeField]
+        public List<CharacterSelectionData> PlayableCharacters;
         private List<CharacterButton> _characterButtons;
         private ChosenCharacterData _chosenCharacter;
         private int _selectedCharacterIndex = -1;
@@ -71,10 +71,10 @@ namespace BrawlingToys.UI
 
         private void SetupCharacterButtons() 
         {
-            foreach (CharacterSelectionData character in _playableCharacters)
+            foreach (CharacterSelectionData character in PlayableCharacters)
             {
                 GameObject characterButtonGO = Instantiate(_characterButtonPrefab, _buttonsHorizontalLayout);
-                int characterIndex = _playableCharacters.IndexOf(character);
+                int characterIndex = PlayableCharacters.IndexOf(character);
 
                 //Making the setup of the character informations on the button
                 CharacterButton characterButton = characterButtonGO.GetComponent<CharacterButton>();
@@ -108,12 +108,12 @@ namespace BrawlingToys.UI
             if (_selectedCharacterIndex == characterIndex)
                 return;
 
-            _characterModelParent.SpawnCharacterModel(_playableCharacters[characterIndex].CharacterModel);
+            _characterModelParent.SpawnCharacterModel(PlayableCharacters[characterIndex].CharacterModel);
 
-            _characterNameText.text = _playableCharacters[characterIndex].CharacterName;
+            _characterNameText.text = PlayableCharacters[characterIndex].CharacterName;
             _selectedCharacterIndex = characterIndex;
 
-            _backgroundColorChanger.SetBackgroundColor(_playableCharacters[characterIndex].CharacterColor, 0.25f);
+            _backgroundColorChanger.SetBackgroundColor(PlayableCharacters[characterIndex].CharacterColor, 0.25f);
             _characterModelParent.ShowCharacter();
         }
 
@@ -133,7 +133,7 @@ namespace BrawlingToys.UI
         {
             _characterModelParent.ClearCharacterModelContainer();
 
-            CharacterSelectionData character = _playableCharacters[_selectedCharacterIndex];
+            CharacterSelectionData character = PlayableCharacters[_selectedCharacterIndex];
             _chosenCharacter = new ChosenCharacterData(character.CharacterName, character.CharacterModel, character.CharacterIcon);
 
             _backgroundColorChanger.ResetBackgroundColor(0.25f);

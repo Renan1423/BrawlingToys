@@ -180,10 +180,10 @@ MonoBehaviour:
   _performAnimationOnClose: 1
   _anim: {fileID: 1765282245}
   _closeTrigger: Close
-  _playableCharacters:
+  PlayableCharacters:
   - CharacterName: Mecha
     CharacterModel:
-      m_AssetGUID: a4516b63d4b8f1943b7611587114f189
+      m_AssetGUID: 7ea115021c9e06344b7dd26456008c43
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
@@ -191,44 +191,44 @@ MonoBehaviour:
     CharacterColor: {r: 1, g: 0.9607843, b: 0.9647059, a: 1}
   - CharacterName: "Ursinho de Pel\xFAcia"
     CharacterModel:
-      m_AssetGUID: 5be0a73cd47eb394a8c374ad8706d96e
+      m_AssetGUID: 7b757a69d19eddc4ab92211ecb5b699b
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
     CharacterIcon: {fileID: 21300000, guid: 1dc8ed4463f56af478e6eea515d25781, type: 3}
     CharacterColor: {r: 0.98039216, g: 0.77254903, b: 0.8862745, a: 1}
-  - CharacterName: Dinossauro
+  - CharacterName: T-Rex
     CharacterModel:
-      m_AssetGUID: a4516b63d4b8f1943b7611587114f189
+      m_AssetGUID: dd241dd577658c14583a4acccc090535
       m_SubObjectName: 
       m_SubObjectType: 
-      m_EditorAssetChanged: 0
+      m_EditorAssetChanged: 1
     CharacterIcon: {fileID: 21300000, guid: 821ef83604084a64394061d3e69c2056, type: 3}
-    CharacterColor: {r: 0.48380733, g: 1, b: 0.4481132, a: 1}
-  - CharacterName: Soldado de Chumbo
+    CharacterColor: {r: 0.27006942, g: 0.4811321, b: 0.30254063, a: 1}
+  - CharacterName: Soldadinho de Chumbo
     CharacterModel:
-      m_AssetGUID: a4516b63d4b8f1943b7611587114f189
+      m_AssetGUID: 801fa065f2cdd514f9d32116566176a5
       m_SubObjectName: 
       m_SubObjectType: 
-      m_EditorAssetChanged: 0
+      m_EditorAssetChanged: 1
     CharacterIcon: {fileID: 21300000, guid: 0387bfd9709a82c49af857379283945a, type: 3}
     CharacterColor: {r: 0.9098039, g: 0.29803923, b: 0.22745098, a: 1}
   - CharacterName: Boneca de Pano
     CharacterModel:
-      m_AssetGUID: a4516b63d4b8f1943b7611587114f189
+      m_AssetGUID: 185a22524ec386d4e92f6fc345adabde
       m_SubObjectName: 
       m_SubObjectType: 
-      m_EditorAssetChanged: 0
+      m_EditorAssetChanged: 1
     CharacterIcon: {fileID: 21300000, guid: 474bb64dfe56cdd4c9f0dcb95a8029ed, type: 3}
     CharacterColor: {r: 0.47843137, g: 0.8392157, b: 0.79607844, a: 1}
   - CharacterName: Marionete
     CharacterModel:
-      m_AssetGUID: a4516b63d4b8f1943b7611587114f189
+      m_AssetGUID: fb0596a6b9bc6814180c9bd78e537445
       m_SubObjectName: 
       m_SubObjectType: 
-      m_EditorAssetChanged: 0
+      m_EditorAssetChanged: 1
     CharacterIcon: {fileID: 21300000, guid: 1ed4ecf3cf2bf034d90983e47839b385, type: 3}
-    CharacterColor: {r: 0.8392157, g: 0.72602165, b: 0.47843137, a: 1}
+    CharacterColor: {r: 1, g: 0.8980392, b: 0.56078434, a: 1}
   _characterModelParent: {fileID: 662245464}
   _characterNameText: {fileID: 1348301320}
   _backgroundColorChanger: {fileID: 215443614}
@@ -2574,6 +2574,7 @@ MonoBehaviour:
   _performAnimationOnClose: 1
   _anim: {fileID: 1882846352}
   _closeTrigger: Close
+  _playerClientDataPrefab: {fileID: 0}
   _codeInputValidator: {fileID: 1471793638}
   _nameInputValidator: {fileID: 1764379207}
   _characterSelectionScreen: {fileID: 7655690}
@@ -3006,6 +3007,8 @@ MonoBehaviour:
   _performAnimationOnClose: 1
   _anim: {fileID: 907474539}
   _closeTrigger: Close
+  _playerClientData: {fileID: 1756267120378760544, guid: 433c36d0c3c20c344be6765af530cc3a,
+    type: 3}
   _nameInputValidator: {fileID: 138618551}
   _characterSelectionScreen: {fileID: 7655690}
   _combatSettingsScreen: {fileID: 1262741036}

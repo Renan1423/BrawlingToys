@@ -61,7 +61,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 97cb786ec25ee544c842db7ee71ef720,
         type: 3}
       propertyPath: m_Name
-      value: PlayerTrexModel
+      value: TRexPlayerModel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -75,6 +75,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3258801062070564715}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 97cb786ec25ee544c842db7ee71ef720,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6778814471617246453}
   m_SourcePrefab: {fileID: 100100000, guid: 97cb786ec25ee544c842db7ee71ef720, type: 3}
 --- !u!1 &8396930070523282457 stripped
 GameObject:
@@ -122,3 +126,23 @@ MonoBehaviour:
   OnAnimationEnd:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6778814471617246453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8396930070523282457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
