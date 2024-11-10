@@ -4,6 +4,7 @@ using UnityEngine.Events;
 
 public class PlayerAnimations : NetworkBehaviour
 {
+
     public enum AnimationType
     {
         Idle,
@@ -13,10 +14,16 @@ public class PlayerAnimations : NetworkBehaviour
         Die
     }
 
-    [SerializeField] private Animator animator;
+    private Animator animator;
+    [SerializeField] private AnimatorOverrideController controller;
 
     public UnityEvent OnAnimationAction;
     public UnityEvent OnAnimationEnd;
+
+    private void Start() {
+        animator = GetComponent<Animator>();
+        animator.runtimeAnimatorController = controller;
+    }
 
     // Da play na anima��o escolhida com base no AnimationType passado.
     public void PlayAnimation(AnimationType animationType)

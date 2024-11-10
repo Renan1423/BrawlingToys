@@ -11,7 +11,7 @@ namespace BrawlingToys.Actors
         public Rigidbody Rb { get => _rb; }
 
         [SerializeField] private float _speed = 1f;
-        [SerializeField] private float _lifespan = 1f;
+        //[SerializeField] private float _lifespan = 1f;
 
         [SerializeField] private LayerMask _groundMask;
         [SerializeField] private LayerMask _hitableMask;

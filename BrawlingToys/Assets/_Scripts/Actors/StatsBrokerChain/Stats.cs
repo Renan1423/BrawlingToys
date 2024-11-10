@@ -25,92 +25,13 @@ namespace BrawlingToys.Actors
         public StatsMediator Mediator => _mediator;
 
         public float MoveSpeed { get; private set; }
-        //{
-        //    get
-        //    {
-        //        // return value with modifiers applied
-        //        var query = new Query(StatType.MoveSpeed, _baseStats.moveSpeed);
-        //        _mediator.PerformQuery(this, query);
-        //        return query.Value;
-        //    }
-        //}
-
         public float MeleeCooldown { get; private set; }
-        //{
-        //    get
-        //    {
-        //        // return value with modifiers applied
-        //        var query = new Query(StatType.MeleeCooldown, _baseStats.meleeCooldown);
-        //        _mediator.PerformQuery(this, query);
-        //        return query.Value;
-        //    }
-        //}
-
         public float DashCooldown {  get; private set; }
-        //{
-        //    get
-        //    {
-        //        // return value with modifiers applied
-        //        var query = new Query(StatType.DashCooldown, _baseStats.dashCooldown);
-        //        _mediator.PerformQuery(this, query);
-        //        return query.Value;
-        //    }
-        //}
-
         public int DashAmount { get; private set; }
-        //{
-        //    get
-        //    {
-        //        // return value with modifiers applied
-        //        var query = new Query(StatType.DashAmount, _baseStats.dashAmount);
-        //        _mediator.PerformQuery(this, query);
-        //        return Mathf.FloorToInt(query.Value);
-        //    }
-        //}
-
         public float ReloadTime { get; private set; }
-        //{
-        //    get
-        //    {
-        //        // return value with modifiers applied
-        //        var query = new Query(StatType.ReloadTime, _baseStats.reloadTime);
-        //        _mediator.PerformQuery(this, query);
-        //        return query.Value;
-        //    }
-        //}
-
         public float FireRate { get; private set; }
-        //{
-        //    get
-        //    {
-        //        // return value with modifiers applied
-        //        var query = new Query(StatType.FireRate, _baseStats.fireRate);
-        //        _mediator.PerformQuery(this, query);
-        //        return query.Value;
-        //    }
-        //}
-
         public int BulletAmount { get; private set; }
-        //{
-        //    get
-        //    {
-        //        // return value with modifiers applied
-        //        var query = new Query(StatType.FireRate, _baseStats.bulletAmount);
-        //        _mediator.PerformQuery(this, query);
-        //        return Mathf.FloorToInt(query.Value);
-        //    }
-        //}
-
         public HitCommand CurrentHitEffect {  get; private set; }
-        //{
-        //    get
-        //    {
-        //        // return value with modifiers applied
-        //        var query = new Query(StatType.HitCommand, 0, _baseStats.defaultHitEffect);
-        //        _mediator.PerformQuery(this, query);
-        //        return query.HitEffect;
-        //    }
-        //}
 
         public Stats(StatsMediator mediator, BaseStats baseStats)
         {
