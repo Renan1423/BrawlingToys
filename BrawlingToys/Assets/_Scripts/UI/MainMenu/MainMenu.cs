@@ -27,7 +27,7 @@ namespace BrawlingToys.UI
 
         private IEnumerator StartGameWithDelay() 
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2.5f);
 
             LevelManager.LocalInstance.LoadNextLevel();
             CloseScreen(0f);

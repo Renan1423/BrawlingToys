@@ -45,9 +45,7 @@ namespace BrawlingToys.UI
 
         [Header("UI")]
         [SerializeField]
-        private RawImage _characterDisplayRawImage;
-        [SerializeField]
-        private Animator _characterDisplayAnim;
+        private CharacterModelParent _characterModelParent;
         [SerializeField]
         private TextMeshProUGUI _characterNameText;
         [SerializeField]
@@ -105,22 +103,23 @@ namespace BrawlingToys.UI
 
         public void ShowCharacter(int characterIndex) 
         {
+            _characterModelParent.ShowCharacterSelection();
+
             if (_selectedCharacterIndex == characterIndex)
                 return;
 
-            if (!ModelSpawner.Instance.HasActiveRenderTextureCamera())
-                ModelSpawner.Instance.SpawnRenderTextureModelWithNewCamera(_playableCharacters[characterIndex].CharacterModel, 
-                    _characterDisplayRawImage);
-            else
-                ModelSpawner.Instance.ReplaceExistingRenderTextureCamera(0, 
-                    _playableCharacters[characterIndex].CharacterModel,
-                    _characterDisplayRawImage);
+            _characterModelParent.SpawnCharacterModel(_playableCharacters[characterIndex].CharacterModel);
 
             _characterNameText.text = _playableCharacters[characterIndex].CharacterName;
             _selectedCharacterIndex = characterIndex;
 
             _backgroundColorChanger.SetBackgroundColor(_playableCharacters[characterIndex].CharacterColor, 0.25f);
-            _characterDisplayAnim.SetTrigger("Show");
+            _characterModelParent.ShowCharacter();
+        }
+
+        public void ToggleSkinSelection() 
+        {
+            _characterModelParent.ShowSkinSelection();
         }
 
         public void SelectCharacter() 

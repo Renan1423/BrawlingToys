@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Color3_WithOutline
+  m_Name: RoomWall
   m_Shader: {fileID: 4800000, guid: bee44b4a58655ee4cbff107302a3e131, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -32,7 +32,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: f3194fc65078da6478e95dfdcbe82442, type: 3}
+        m_Texture: {fileID: 2800000, guid: 97bbb92f30125124a8715d15eff4e0de, type: 3}
         m_Scale: {x: 30, y: 15}
         m_Offset: {x: 1.5, y: 1.7}
     - _BumpMap:
@@ -137,7 +137,7 @@ Material:
     - _OutlineEnabled: 0
     - _OutlineScale: 1
     - _OutlineSpace: 0
-    - _OutlineWidth: 1.25
+    - _OutlineWidth: 1
     - _OverrideLightmapDir: 0
     - _OverrideShadows: 1
     - _OverrideShadowsEnabled: 1
@@ -146,9 +146,9 @@ Material:
     - _RimEnabled: 0
     - _SecondaryColor: 1
     - _SecondaryColorEnabled: 1
-    - _SelfShadingSize: 0.491
-    - _SelfShadingSizeExtra: 0.5
-    - _ShadowEdgeSize: 0.021
+    - _SelfShadingSize: 0.318
+    - _SelfShadingSizeExtra: 0.154
+    - _ShadowEdgeSize: 0
     - _ShadowEdgeSizeExtra: 0.05
     - _ShadowEdgeSmoothness: 0.01
     - _ShadowFalloff: 0.01
@@ -162,18 +162,18 @@ Material:
     - _UVSec: 0
     - _UnityShadowMode: 1
     - _UnityShadowOcclusion: 0
-    - _UnityShadowPower: 0.442
-    - _UnityShadowSharpness: 7
+    - _UnityShadowPower: 0.3
+    - _UnityShadowSharpness: 7.44
     - _VertexColorsEnabled: 0
     - _VertexExtrusionSmoothNormals: 0
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.24056602, g: 1, b: 0.9418168, a: 1}
-    - _Color: {r: 0.41960788, g: 0.47450984, b: 0.44705886, a: 1}
+    - _BaseColor: {r: 0.5518868, g: 0.9620625, b: 1, a: 1}
+    - _Color: {r: 0.89019614, g: 0.6431373, b: 0.38431376, a: 1}
     - _ColorCelShadow: {r: 0.38581347, g: 0.38787434, b: 0.9622642, a: 1}
-    - _ColorDim: {r: 0.2509804, g: 0.2509804, b: 0.2901961, a: 1}
+    - _ColorDim: {r: 0.8117648, g: 0.3803922, b: 0.6627451, a: 1}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
-    - _ColorDimExtra: {r: 0.85, g: 0.85, b: 0.85, a: 0.85}
+    - _ColorDimExtra: {r: 0.8117648, g: 0.3803922, b: 0.6627451, a: 0.85}
     - _ColorDimSteps: {r: 0.85, g: 0.85, b: 0.85, a: 0.85}
     - _ColorGradient: {r: 0.65, g: 0.65, b: 0.65, a: 1}
     - _ColorSecondary: {r: 1, g: 0.55879205, b: 0, a: 1}
@@ -185,5 +185,5 @@ Material:
     - _FlatSpecularColor: {r: 0.34115633, g: 0.3490566, b: 0.24203454, a: 1}
     - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _UnityShadowColor: {r: 0.65, g: 0.65, b: 0.65, a: 1}
+    - _UnityShadowColor: {r: 0.6981132, g: 0, b: 0.04759875, a: 0.5882353}
   m_BuildTextureStacks: []
