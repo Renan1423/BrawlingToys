@@ -145,7 +145,7 @@ MonoBehaviour:
   _aimColor: {r: 1, g: 0, b: 0, a: 0.78431374}
   _animationsGameObject: {fileID: 8164730093861794146}
   _spawnSelectedModel: {fileID: 7926218235253488649}
-  canModify: 1
+  canModify: 0
   modifier: {fileID: 11400000, guid: cbee54a853e53fb43bfff677437a49f5, type: 2}
 --- !u!114 &7265066918879207376
 MonoBehaviour:

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SlowdownDebufArea : MonoBehaviour
 {
-    [SerializeField] BasicModifierSO BasicModifierSO;
+    [SerializeField] BasicMultiplyModifierSO BasicModifierSO;
 
     private RaycastHit hitInfo;
     private Player playerTarget;

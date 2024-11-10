@@ -34,7 +34,7 @@ namespace BrawlingToys.Actors
                 case StatType.MeleeCooldown:
                     meleeTimer.Reset(_player.Stats.MeleeCooldown);
                     break;
-                case StatType.DashCooldown:
+                case StatType.DashAmount:
                     dashTimer.Reset(_player.Stats.DashCooldown);
                     break;
                 case StatType.ReloadTime:

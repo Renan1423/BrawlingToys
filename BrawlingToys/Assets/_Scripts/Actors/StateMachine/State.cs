@@ -112,18 +112,26 @@ namespace BrawlingToys.Actors
 
         protected virtual void HandleDash(object sender, System.EventArgs e)
         {
-            if (_player.Cooldowns.dashTimer.IsRunning)
+            if (_player.Stats.DashAmount < 1)
+                return;
+
+            if(_player.Cooldowns.dashTimer.Progress >= 1 / _player.Stats.DashAmount)
             {
-                // Som de fail
-                if (_player.Stats.DashAmount > 1) {
-                    return;
-                }
-                Debug.Log("Dash est� em cooldown");
+
             }
-            else
-            {
-                _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Dash));
-            }
+
+            //if (_player.Cooldowns.dashTimer.IsRunning)
+            //{
+            //    // Som de fail
+            //    if (_player.Stats.DashAmount > 1) {
+            //        return;
+            //    }
+            //    Debug.Log("Dash est� em cooldown");
+            //}
+            //else
+            //{
+            //    _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Dash));
+            //}
         }
 
         public virtual void HandleDie()

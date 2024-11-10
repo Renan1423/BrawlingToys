@@ -7,7 +7,6 @@ namespace BrawlingToys.Actors
     {
         MoveSpeed,
         MeleeCooldown,
-        DashCooldown,
         DashAmount,
         ReloadTime,
         FireRate,
@@ -81,11 +80,12 @@ namespace BrawlingToys.Actors
                 case StatType.MeleeCooldown:
                     MeleeCooldown = value;
                     break;
-                case StatType.DashCooldown:
-                    DashCooldown = value;
-                    break;
                 case StatType.DashAmount:
                     DashAmount = Mathf.FloorToInt(value);
+                    if (DashAmount == 1)
+                        DashCooldown = _baseStats.dashCooldown;
+                    else if (DashAmount == 2)
+                        DashCooldown = 2 * _baseStats.dashCooldown;
                     break;
                 case StatType.ReloadTime:
                     ReloadTime = value;
