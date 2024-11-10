@@ -131,10 +131,13 @@ namespace BrawlingToys.UI
 
         private void ConfirmCharacterSelection() 
         {
+            _characterModelParent.ClearCharacterModelContainer();
+
             CharacterSelectionData character = _playableCharacters[_selectedCharacterIndex];
             _chosenCharacter = new ChosenCharacterData(character.CharacterName, character.CharacterModel, character.CharacterIcon);
 
             _backgroundColorChanger.ResetBackgroundColor(0.25f);
+            _selectedCharacterIndex = -1;
 
             OpenNextScreen();
         }

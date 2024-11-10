@@ -29,7 +29,7 @@ namespace BrawlingToys.UI
             return model;
         }
 
-        private void ClearCharacterModelContainer() 
+        public void ClearCharacterModelContainer() 
         {
             for (int i = 0; i < _characterModelContainer.childCount; i++)
             {
