@@ -93,6 +93,7 @@ namespace BrawlingToys.Actors
             _player.Cooldowns.fireRateTimer.Start();
             if (_player.Stats.ReloadTime <= 0.05f)
                 return;
+
             _player.Cooldowns.reloadTimer.Start();
         }
 

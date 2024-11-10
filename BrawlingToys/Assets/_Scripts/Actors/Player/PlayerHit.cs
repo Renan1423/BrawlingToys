@@ -14,6 +14,7 @@ namespace BrawlingToys.Actors
         public Player Player { get => _player; }
         public int CurrentLife { get => _currentLife; }
         public int MaxLife { get => _maxLife; }
+        public float CollateralChance { get => _collateralDamageChance; }
 
         private Player _player;
         private int _maxLife = 0;
@@ -23,6 +24,9 @@ namespace BrawlingToys.Actors
         private CountdownTimer _knockbackTimer;
         [SerializeField] private float _knockbackDuration;
         private float _knockbackPower;
+
+        [Header("Collateral Stuff")]
+        [SerializeField] private float _collateralDamageChance;
 
         [Header("Invulnerability Stuff")]
         [SerializeField] private float _invulnerabilityDuration;
@@ -82,6 +86,15 @@ namespace BrawlingToys.Actors
                 DieServerRpc();
             else
                 _invulnerabilityTimer.Start();
+        }
+
+        public bool PlayerTookCollateralDamage() {
+            float teste = Random.Range(0.0f, 100.0f);
+
+            if (teste <= _collateralDamageChance)
+                return true;
+            else
+                return false;
         }
 
         private void DieInCurrentState()
