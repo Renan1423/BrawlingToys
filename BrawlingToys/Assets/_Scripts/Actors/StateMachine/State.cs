@@ -98,16 +98,16 @@ namespace BrawlingToys.Actors
 
         protected virtual void HandleMelee(object sender, System.EventArgs e)
         {
-            if(_player.Cooldowns.meleeTimer.IsRunning)
-            {
-                // Som de fail
-                Debug.Log("Melee est� em cooldown");
-            }
-            else
-            {
-                Debug.Log("State.HandleMelee");
-                _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.MeleeAttack));
-            }
+            //if(_player.Cooldowns.meleeTimer.IsRunning)
+            //{
+            //    // Som de fail
+            //    Debug.Log("Melee est� em cooldown");
+            //}
+            //else
+            //{
+            //    Debug.Log("State.HandleMelee");
+            //    _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.MeleeAttack));
+            //}
         }
 
         protected virtual void HandleDash(object sender, System.EventArgs e)
@@ -115,23 +115,12 @@ namespace BrawlingToys.Actors
             if (_player.Stats.DashAmount < 1)
                 return;
 
-            if(_player.Cooldowns.dashTimer.Progress >= 1 / _player.Stats.DashAmount)
-            {
+            if (_player.DashCount >= _player.Stats.DashAmount)
+                return;
 
-            }
+            
 
-            //if (_player.Cooldowns.dashTimer.IsRunning)
-            //{
-            //    // Som de fail
-            //    if (_player.Stats.DashAmount > 1) {
-            //        return;
-            //    }
-            //    Debug.Log("Dash est� em cooldown");
-            //}
-            //else
-            //{
-            //    _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Dash));
-            //}
+            _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Dash));
         }
 
         public virtual void HandleDie()
