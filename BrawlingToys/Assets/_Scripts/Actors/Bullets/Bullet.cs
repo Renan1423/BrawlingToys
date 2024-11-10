@@ -81,7 +81,7 @@ namespace BrawlingToys.Actors
         {
             if (other.gameObject.TryGetComponent(out Hitable hitable) && ValidCollision(other))
             {
-                hitable.GetHit(_bulletOwner.gameObject, _bulletOwner.Stats.CurrentHitEffector);
+                hitable.GetHit(_bulletOwner.gameObject, _bulletOwner.Stats.CurrentHitEffect);
             }
 
             if (other.CompareTag("Ground"))

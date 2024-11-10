@@ -68,7 +68,10 @@ namespace BrawlingToys.Actors
         [Header("Animation Settings")]
 
         [SerializeField] private GameObject _animationsGameObject;
-        [SerializeField] private PlayerSpawnSelectedModel _spawnSelectedModel; 
+        [SerializeField] private PlayerSpawnSelectedModel _spawnSelectedModel;
+
+        public bool canModify = false;
+        public ModifierScriptable modifier;
 
         private bool _initilized; 
 
@@ -90,7 +93,6 @@ namespace BrawlingToys.Actors
 
             bool PlayerEnableOnDeathState() => 
             _currentState.GetType() == typeof(DieState);
-
         }
 
         public override void OnDestroy()
@@ -148,6 +150,9 @@ namespace BrawlingToys.Actors
 
             _weapon = new(this, _firePoint, _aimSmoothRate, _groundLayerMask, _networkWeaponShooter);
 
+            if(canModify)
+                ApplyModifier();
+
             _initilized = true; 
             OnPlayerInitialize?.Invoke(this);
         }
@@ -165,6 +170,11 @@ namespace BrawlingToys.Actors
             _previousState = _currentState;
             _currentState = goalState;
             _currentState.Enter();
+        }
+
+        public void ApplyModifier()
+        {
+            _stats.ModifyStat(modifier, _stats.ReloadTime);
         }
 
         private void OnDrawGizmos()
