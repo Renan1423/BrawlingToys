@@ -207,7 +207,7 @@ MonoBehaviour:
     CharacterColor: {r: 0.48380733, g: 1, b: 0.4481132, a: 1}
   - CharacterName: Soldado de Chumbo
     CharacterModel:
-      m_AssetGUID: a4516b63d4b8f1943b7611587114f189
+      m_AssetGUID: ef155c6fcb197cd4994c946d7894af79
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
@@ -223,10 +223,10 @@ MonoBehaviour:
     CharacterColor: {r: 0.47843137, g: 0.8392157, b: 0.79607844, a: 1}
   - CharacterName: Marionete
     CharacterModel:
-      m_AssetGUID: a4516b63d4b8f1943b7611587114f189
+      m_AssetGUID: 21c8593567d69d34f9567acb8fd9a47f
       m_SubObjectName: 
       m_SubObjectType: 
-      m_EditorAssetChanged: 0
+      m_EditorAssetChanged: 1
     CharacterIcon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     CharacterColor: {r: 0.8392157, g: 0.72602165, b: 0.47843137, a: 1}
   _characterDisplayRawImage: {fileID: 608996204}

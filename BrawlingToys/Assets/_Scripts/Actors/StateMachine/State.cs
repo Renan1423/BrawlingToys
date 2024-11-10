@@ -115,6 +115,9 @@ namespace BrawlingToys.Actors
             if (_player.Cooldowns.dashTimer.IsRunning)
             {
                 // Som de fail
+                if (_player.Stats.DashAmount > 1) {
+                    return;
+                }
                 Debug.Log("Dash est� em cooldown");
             }
             else

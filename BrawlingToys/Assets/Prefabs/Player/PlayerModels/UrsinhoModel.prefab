@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f90779e068cd0458a070cc3a857bd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: -4583013625591200571}
+  controller: {fileID: 22100000, guid: bb107ebbf10a89644a2b659f244e1b25, type: 2}
   OnAnimationAction:
     m_PersistentCalls:
       m_Calls: []
