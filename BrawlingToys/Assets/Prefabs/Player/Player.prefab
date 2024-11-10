@@ -146,7 +146,7 @@ MonoBehaviour:
   _animationsGameObject: {fileID: 8164730093861794146}
   _spawnSelectedModel: {fileID: 7926218235253488649}
   canModify: 1
-  modifier: {fileID: 11400000, guid: e95bc8128fc87d24096e8b836e90d0f5, type: 2}
+  modifier: {fileID: 11400000, guid: cbee54a853e53fb43bfff677437a49f5, type: 2}
 --- !u!114 &7265066918879207376
 MonoBehaviour:
   m_ObjectHideFlags: 0

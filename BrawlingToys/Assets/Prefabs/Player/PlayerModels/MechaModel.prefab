@@ -690,6 +690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4824767858332536047}
+  controller: {fileID: 22100000, guid: 0236c9afa4bd3a044b9453620691339d, type: 2}
   OnAnimationAction:
     m_PersistentCalls:
       m_Calls: []

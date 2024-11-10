@@ -14,12 +14,11 @@ public class MusicManager : MonoBehaviour {
     }
 
     private void PlayMyMusic(int musicIndex) {
-        MMSoundManagerSoundPlayEvent.Trigger(_gameMusic[musicIndex], MMSoundManager.MMSoundManagerTracks.Music, this.transform.position, loop: true, persistent: true);
+        MMSoundManagerSoundPlayEvent.Trigger(_gameMusic[musicIndex], MMSoundManager.MMSoundManagerTracks.Music, this.transform.position, loop: true, persistent: true, volume: 0.7f);
     }
 
     private void StopMyMusic() {
-        MMSoundManagerSoundFadeEvent.Trigger(MMSoundManagerSoundFadeEvent.Modes.PlayFade, 0, 1f, 0, MMTweenType.DefaultEaseInCubic);
-        //MMSoundManagerSoundControlEvent.Trigger(MMSoundManagerSoundControlEventTypes.Stop, 0);
+        MMSoundManagerSoundControlEvent.Trigger(MMSoundManagerSoundControlEventTypes.Stop, 0);
     }
 
     public void ChangeMusic(int musicIndex) {

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b87d277230eda50408158074804779c8, type: 3}
-  m_Name: MoveSpeedModifierSO
+  m_Name: DashAmountIncreaseModifierSO
   m_EditorClassIdentifier: 
-  <Tag>k__BackingField: speed_decresse
-  <ModifierType>k__BackingField: 0
-  <EffectName>k__BackingField: Devagar e Sempre
-  <EffectDescription>k__BackingField: Velocidade de movimento cortada pela metade
-  <EffectIcon>k__BackingField: {fileID: 21300000, guid: c80ad57ed81b17d4fab27b9dbb6460de,
+  <Tag>k__BackingField: dash_increase
+  <ModifierType>k__BackingField: 3
+  <EffectName>k__BackingField: "Amarel\xE3o"
+  <EffectDescription>k__BackingField: "Voc\xEA tem 1 dash adicional"
+  <EffectIcon>k__BackingField: {fileID: 21300000, guid: 8e4f8bd3b74357443870075261497a48,
     type: 3}
-  <EffectType>k__BackingField: 1
-  modificationPercentage: 0.5
+  <EffectType>k__BackingField: 0
+  modificationPercentage: 100
