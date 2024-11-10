@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Tag>k__BackingField: speed_decresse
   <ModifierType>k__BackingField: 0
-  <EffectName>k__BackingField: Speed Buff
-  <EffectDescription>k__BackingField: Decrease speed
-  <EffectIcon>k__BackingField: {fileID: 10907, guid: 0000000000000000f000000000000000,
-    type: 0}
-  <EffectType>k__BackingField: 0
+  <EffectName>k__BackingField: Devagar e Sempre
+  <EffectDescription>k__BackingField: Velocidade de movimento cortada pela metade
+  <EffectIcon>k__BackingField: {fileID: 21300000, guid: c80ad57ed81b17d4fab27b9dbb6460de,
+    type: 3}
+  <EffectType>k__BackingField: 1
   modificationPercentage: 0.5

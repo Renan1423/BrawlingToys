@@ -24,6 +24,8 @@ namespace BrawlingToys.Managers
 
             CurrentGameState = newGameState;
             OnGameStateChange?.Invoke(newGameState);
+
+            Debug.Log($"New Game State: {newGameState}");
         }
     }
 }

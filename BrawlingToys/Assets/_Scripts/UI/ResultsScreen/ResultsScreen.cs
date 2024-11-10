@@ -45,7 +45,6 @@ namespace BrawlingToys.UI
                 ServerGetPlayersRoundInfo();
                 CallSyncRpc(); 
                 DrawGraphics(); 
-                StartCoroutine(WaitForCloseScreen());
             }
             
             void CallSyncRpc()
@@ -64,7 +63,6 @@ namespace BrawlingToys.UI
                     .Select(i => i.IsSurvivor)
                     .ToArray();
 
-                Debug.Log("Callign Sync");
                 SyncPlayersInfoServerRpc(serializedIds, serializedKills, serializedSurvivals); 
             }
         }
@@ -77,12 +75,11 @@ namespace BrawlingToys.UI
                 _initialized = true;
             }
 
-            UpdateScores();
+           StartCoroutine(UpdateScores());
         }
 
         public void InitializeScreen()
         {
-            Debug.Log("Init");
             _connectedPlayerScoresUIs = new List<PlayerScore>();
             int playerAmount = _playersRoundInfo.Count;
 
@@ -100,14 +97,39 @@ namespace BrawlingToys.UI
             }
         }
 
-        public void UpdateScores()
+        public IEnumerator UpdateScores()
         {
-            int i = 0;
+            for (int i = 0; i < _playersRoundInfo.Count; i++)
+            {
+                yield return UpdatePlayerScore(i);
+            }
 
-            UpdatePlayerScore(i);
+            yield return new WaitForSeconds(2);
+
+            if(!MatchIsEnded())
+            {
+                ChangeToNextScreenServerRpc(); 
+            }
+            else
+            {
+                if (LocalPlayerIsWinner())
+                {
+                    LevelManager.LocalInstance.LocalLoadSceneByName("WinnerScene"); 
+                }
+                else
+                {
+                    LevelManager.LocalInstance.LocalLoadSceneByName("LoserScene");
+                }
+            }
+
+            bool MatchIsEnded() => _connectedPlayerScoresUIs.Any(ui => ui.Score >= GetRequiredScoreToWin()); 
+
+            bool LocalPlayerIsWinner() => _connectedPlayerScoresUIs
+                .First(ui => ui.PlayerId == NetworkManager.Singleton.LocalClientId)
+                .Score >= GetRequiredScoreToWin(); 
         }
 
-        private void UpdatePlayerScore(int playerIndex) 
+        private IEnumerator UpdatePlayerScore(int playerIndex) 
         {
             var index = GetCastedIndex(playerIndex);
             var roundInfo = _playersRoundInfo[index];
@@ -118,31 +140,13 @@ namespace BrawlingToys.UI
 
             Debug.Log($"Index: {playerIndex} - Score {score}");
 
-            _connectedPlayerScoresUIs[playerIndex].AddScore(score, this, CheckScoresUpdated);
+            yield return _connectedPlayerScoresUIs[playerIndex].AddScoreCoroutine(score, this);
 
             ulong GetCastedIndex(int i) => (ulong)i;
-
-            void CheckScoresUpdated()
-            {
-                playerIndex++;
-
-                _updatedScore = (playerIndex > _playersRoundInfo.Count - 1);
-
-                if (_updatedScore)
-                    return;
-                else
-                    UpdatePlayerScore(playerIndex);
-            }
         }
 
-        public int GetRequiredScoreToWin() => PlayerClientDatasManager.LocalInstance.PlayerClientDatas[0].RequiredPointsToWin;
-
-        private IEnumerator WaitForCloseScreen()
-        {
-            yield return new WaitUntil(() => _updatedScore == true);
-
-            ChangeToNextScreenServerRpc(); 
-        }
+        //public int GetRequiredScoreToWin() => PlayerClientDatasManager.LocalInstance.PlayerClientDatas[0].RequiredPointsToWin;
+        public int GetRequiredScoreToWin() => 10;
 
         #region Network Actions
 

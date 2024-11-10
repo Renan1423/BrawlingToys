@@ -1,13 +1,10 @@
 using BrawlingToys.Core;
-using System;
 using UnityEngine;
 
 namespace BrawlingToys.Actors
 {
     public class PlayerCooldownController
     {
-        public static Action<StatType, float> OnSomeCooldownChange;
-
         private Player _player;
 
         public CountdownTimer meleeTimer;
@@ -22,12 +19,31 @@ namespace BrawlingToys.Actors
 
         public void Initialize()
         {
-            OnSomeCooldownChange = CooldownChange;
+            _player.Stats.OnStatsChanged += Stats_OnStatsChanged;
 
             meleeTimer = new CountdownTimer(_player.Stats.MeleeCooldown);
             dashTimer = new CountdownTimer(_player.Stats.DashCooldown);
             reloadTimer = new CountdownTimer(_player.Stats.ReloadTime);
             fireRateTimer = new CountdownTimer(_player.Stats.FireRate);
+        }
+
+        private void Stats_OnStatsChanged(StatType statType)
+        {
+            switch (statType)
+            {
+                case StatType.MeleeCooldown:
+                    meleeTimer.Reset(_player.Stats.MeleeCooldown);
+                    break;
+                case StatType.DashAmount:
+                    dashTimer.Reset(_player.Stats.DashCooldown);
+                    break;
+                case StatType.ReloadTime:
+                    reloadTimer.Reset(_player.Stats.ReloadTime);
+                    break;
+                case StatType.FireRate:
+                    fireRateTimer.Reset(_player.Stats.FireRate);
+                    break;
+            }
         }
 
         public void UpdateCooldowns()
@@ -50,37 +66,6 @@ namespace BrawlingToys.Actors
             if (fireRateTimer.IsRunning)
             {
                 fireRateTimer.Tick(Time.deltaTime);
-            }
-        }
-
-        private void CooldownChange(StatType statType, float value)
-        {
-            switch (statType)
-            {
-                case StatType.MeleeCooldown:
-                    if (CompareValues(_player.Stats.MeleeCooldown, value))
-                    {
-                        meleeTimer.Reset(value);
-                    }
-                    break;
-                case StatType.DashCooldown:
-                    if (CompareValues(_player.Stats.DashCooldown, value))
-                    {
-                        dashTimer.Reset(value);
-                    }
-                    break;
-                case StatType.ReloadTime:
-                    if (CompareValues(_player.Stats.ReloadTime, value))
-                    {
-                        reloadTimer.Reset(value);
-                    }
-                    break;
-                case StatType.FireRate:
-                    if (CompareValues(_player.Stats.FireRate, value))
-                    {
-                        fireRateTimer.Reset(value);
-                    }
-                    break;
             }
         }
 

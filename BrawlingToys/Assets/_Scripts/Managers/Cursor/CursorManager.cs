@@ -25,8 +25,6 @@ namespace BrawlingToys.Managers
         public override void OnDestroy()
         {
             base.OnDestroy();
-
-            GameManager.LocalInstance.OnGameStateChange.RemoveListener(OnGameStateChanged);
         }
 
         public void OnGameStateChanged(GameStateType newGameState) 

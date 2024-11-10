@@ -11,7 +11,7 @@ namespace BrawlingToys.Actors
         public Rigidbody Rb { get => _rb; }
 
         [SerializeField] private float _speed = 1f;
-        [SerializeField] private float _lifespan = 1f;
+        //[SerializeField] private float _lifespan = 1f;
 
         [SerializeField] private LayerMask _groundMask;
         [SerializeField] private LayerMask _hitableMask;
@@ -81,7 +81,7 @@ namespace BrawlingToys.Actors
         {
             if (other.gameObject.TryGetComponent(out Hitable hitable) && ValidCollision(other))
             {
-                hitable.GetHit(_bulletOwner.gameObject, _bulletOwner.Stats.CurrentHitEffector);
+                hitable.GetHit(_bulletOwner.gameObject, _bulletOwner.Stats.CurrentHitEffect);
             }
 
             if (other.CompareTag("Ground"))

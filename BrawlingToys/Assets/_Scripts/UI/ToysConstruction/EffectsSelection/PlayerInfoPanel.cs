@@ -36,7 +36,7 @@ namespace BrawlingToys.UI
 
             CreateEffectIcons(_player.Stats);
 
-            ModelSpawner.Instance.SpawnRenderTextureModelWithNewCamera(characterAsset, _modelRawImage);
+            //ModelSpawner.Instance.SpawnRenderTextureModelWithNewCamera(characterAsset, _modelRawImage);
         }
 
         private void CreateEffectIcons(Stats playerStats)

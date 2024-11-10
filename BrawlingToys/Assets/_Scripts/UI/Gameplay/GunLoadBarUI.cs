@@ -14,14 +14,19 @@ namespace BrawlingToys.UI
         {
             _image = GetComponent<Image>();
 
-            _player.Weapon.OnUpdateCursorPosition += PlayerWeapon_OnUpdateCursorPosition;
-            _player.Weapon.OnBulletPowerChange += PlayerWeapon_OnBulletPowerChange;
+            _player.OnPlayerInitialize.AddListener(Player_OnPlayerInitilize);
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             _player.Weapon.OnUpdateCursorPosition -= PlayerWeapon_OnUpdateCursorPosition;
             _player.Weapon.OnBulletPowerChange -= PlayerWeapon_OnBulletPowerChange;
+        }
+
+        private void Player_OnPlayerInitilize(Player player)
+        {
+            _player.Weapon.OnUpdateCursorPosition += PlayerWeapon_OnUpdateCursorPosition;
+            _player.Weapon.OnBulletPowerChange += PlayerWeapon_OnBulletPowerChange;
         }
 
         private void PlayerWeapon_OnUpdateCursorPosition(object sender, Vector2 e)

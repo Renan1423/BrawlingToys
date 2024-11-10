@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using BrawlingToys.Managers;
 using BrawlingToys.Network;
@@ -7,11 +6,19 @@ using BrawlingToys.Core;
 using BrawlingToys.Actors;
 using Unity.Netcode;
 using System;
+using UnityEngine.AddressableAssets;
+using System.Linq;
 
 namespace BrawlingToys.UI
 {
     public class JoinRoom : BaseScreen
     {
+        [Header("References")]
+
+        [SerializeField] private GameObject _playerClientDataPrefab; 
+        
+        [Space]
+        
         [SerializeField]
         private CodeInputValidator _codeInputValidator;
         [SerializeField]
@@ -62,49 +69,73 @@ namespace BrawlingToys.UI
                     && NetworkManager.Singleton.IsListening); 
 
                 ScreenManager.instance.ToggleScreenByTag(TagManager.CreateRoomMenu.CLIENT_WAITING_ROOM, true);
-
-                JoinPartyServerRpc(_nameInputValidator.InputFieldText, NetworkManager.LocalClientId);
+                
+                var playerName = _nameInputValidator.InputFieldText; 
+                var playerId = NetworkManager.LocalClientId; 
+                var characterGUID = _characterSelectionScreen.GetChosenCharacterData().ChosenCharacterPrefab.AssetGUID; 
+                
+                JoinPartyServerRpc(playerName, playerId, characterGUID);
 
                 CloseScreen(0.25f);
             }
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void JoinPartyServerRpc(string playerName, ulong playerId) 
+        private void JoinPartyServerRpc(string playerName, ulong playerId, string characterAssetGUID) 
         {
-            var clientDataGO = NetworkSpawner.LocalInstance.InstantiateOnServer("PlayerClientData", Vector3.zero, Quaternion.identity); 
+            MakeClientDataInstance(playerName, playerId, characterAssetGUID); 
+            Debug.Log($"server generating: {playerName}");
+
+            var clients = PlayerClientDatasManager.LocalInstance.PlayerClientDatas; 
+
+            var connectedPlayerIds = clients.Select(c => c.PlayerID).ToArray(); 
+            var connectedPlayerNames = string.Join(";", clients.Select(c => c.PlayerUsername));
+            var connectedPlayerCharacterAssetGUIDs = string.Join(";", clients.Select(c => c.SelectedCharacterPrefab.AssetGUID));
+            
+            Debug.Log($"Calling Rpc to sync: {PlayerClientDatasManager.LocalInstance.PlayerClientDatas.Count} Players");
+            JoinPartyClientRpc(connectedPlayerNames, connectedPlayerIds, connectedPlayerCharacterAssetGUIDs); 
+        }
+
+        [ClientRpc]
+        private void JoinPartyClientRpc(string playerNamesJoined, ulong[] playerIds, string characterAssetGUIDsJoined) 
+        {
+            Debug.Log(playerNamesJoined);
+            var localData = PlayerClientDatasManager.LocalInstance.PlayerClientDatas; 
+            
+            var localDataClientsId = localData.Count == 0 
+            ? new ulong[0]
+            : localData.Select(ld => ld.PlayerID).ToArray(); 
+
+            var playerNames = playerNamesJoined.Split(';');
+            var characterAssetGUIDs = characterAssetGUIDsJoined.Split(';');
+            
+            for (int i = 0; i < playerIds.Length; i++)
+            {
+                if(!localDataClientsId.Contains(playerIds[i]))
+                {
+                    MakeClientDataInstance(playerNames[i], playerIds[i], characterAssetGUIDs[i]); 
+                }
+            }
+        }
+
+        private void MakeClientDataInstance(string playerName, ulong playerId, string characterAssetGUID)
+        {
+            var clientDataGO = Instantiate(_playerClientDataPrefab);
+
             clientDataGO.name = $"{playerName}PlayerClientData"; 
 
             var clientData = clientDataGO.GetComponent<PlayerClientData>();
 
             clientData.SetPlayerData(playerId, playerName);
 
-            ChosenCharacterData playerCharacter = _characterSelectionScreen.GetChosenCharacterData();
+            var playerCharacter = _characterSelectionScreen.PlayableCharacters.First(pc => pc.CharacterModel.AssetGUID == characterAssetGUID); 
+            Debug.Log($"Asset GUID: {playerCharacter.CharacterModel.AssetGUID}");
+
             clientData.SetPlayerCharacter(playerCharacter.CharacterName,
-                playerCharacter.ChosenCharacterPrefab,
+                playerCharacter.CharacterModel,
                 playerCharacter.CharacterIcon);
 
-            CombatSettings combatSettings = _combatSettingsScreen.GetCombatSettings();
-            clientData.SetCombatSettings(combatSettings.BuffSpawnChance, combatSettings.DebuffSpawnChance,
-                combatSettings.PlayerLife, combatSettings.RequiredPointsToWin);
-
-            JoinPartyClientRpc();
-        }
-
-        [ClientRpc]
-        private void JoinPartyClientRpc() 
-        {
-            Debug.Log("OnJoinPartyClientRPC Called!");
-            PlayerClientData playerClientData = FindObjectOfType<PlayerClientData>();
-
-            OnNewPlayerJoined?.Invoke(playerClientData);
-
-            // GameObject playerClientDataGO = NetworkSpawner.LocalInstance.InstantiateOnServer("PlayerClientData", Vector3.zero, Quaternion.identity);
-            // playerClientDataGO.name = _nameInputValidator.InputFieldText + "PlayerClientData";
-            // PlayerClientData playerClientData = playerClientDataGO.GetComponent<PlayerClientData>();
-            // playerClientData.SetPlayerData(NetworkManager.LocalClientId, _nameInputValidator.InputFieldText);
-
-            //CloseScreen(0.25f);
+            OnNewPlayerJoined?.Invoke(clientData);
         }
     }
 }

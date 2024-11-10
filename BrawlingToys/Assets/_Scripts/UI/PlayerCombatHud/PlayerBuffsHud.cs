@@ -23,6 +23,8 @@ namespace BrawlingToys.UI
             if (player.Stats.Mediator.GetAppliedModifiers() == null)
                 return;
 
+            ResetBuffsHud();
+
             foreach (ModifierScriptable mod in player.Stats.Mediator.GetAppliedModifiers())
             {
                 EffectIconGenerator.instance.CreateEffectIcon(mod, _buffsHorizontalLayout);

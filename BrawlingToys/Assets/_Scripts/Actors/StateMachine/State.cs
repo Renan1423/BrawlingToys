@@ -77,17 +77,23 @@ namespace BrawlingToys.Actors
         {
             if (_player.Cooldowns.reloadTimer.IsRunning)
             {
-                // Som de reload
+                Debug.Log("Reload");
+                return;
             }
-            else
+                
+            if (_player.Cooldowns.fireRateTimer.IsRunning)
             {
-                if (!_player.Cooldowns.fireRateTimer.IsRunning)
-                {
-                    _player.Weapon.Shoot(_player.PlayerId);
-                    _player.ShootFeedback.PlayFeedbacks();
-                    _player.Cooldowns.reloadTimer.Start();
-                }
+                Debug.Log("Fire-Rate...");
+                return;
             }
+
+            _player.Weapon.Shoot(_player.PlayerId);
+            _player.ShootFeedback.PlayFeedbacks();
+
+            _player.Cooldowns.fireRateTimer.Start();
+            if (_player.Stats.ReloadTime <= 0.05f)
+                return;
+            _player.Cooldowns.reloadTimer.Start();
         }
 
         protected virtual void HandleMelee(object sender, System.EventArgs e)
@@ -106,15 +112,26 @@ namespace BrawlingToys.Actors
 
         protected virtual void HandleDash(object sender, System.EventArgs e)
         {
-            if (_player.Cooldowns.dashTimer.IsRunning)
+            if (_player.Stats.DashAmount < 1)
+                return;
+
+            if(_player.Cooldowns.dashTimer.Progress >= 1 / _player.Stats.DashAmount)
             {
-                // Som de fail
-                Debug.Log("Dash est� em cooldown");
+
             }
-            else
-            {
-                _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Dash));
-            }
+
+            //if (_player.Cooldowns.dashTimer.IsRunning)
+            //{
+            //    // Som de fail
+            //    if (_player.Stats.DashAmount > 1) {
+            //        return;
+            //    }
+            //    Debug.Log("Dash est� em cooldown");
+            //}
+            //else
+            //{
+            //    _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Dash));
+            //}
         }
 
         public virtual void HandleDie()

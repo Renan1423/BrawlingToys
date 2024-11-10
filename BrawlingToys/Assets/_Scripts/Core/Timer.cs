@@ -5,6 +5,7 @@ namespace BrawlingToys.Core
     public abstract class Timer 
     {
         protected float initialTime;
+        public float InitialTime { get => initialTime; }
         public float Time { get; protected set; }
         public bool IsRunning { get; protected set; }
 

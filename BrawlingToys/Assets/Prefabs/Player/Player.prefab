@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8132426246734092638}
   - component: {fileID: 5795996904641135164}
   - component: {fileID: 7265066918879207376}
+  - component: {fileID: 7926218235253488649}
   - component: {fileID: 5364803754556521178}
   - component: {fileID: 8887600306382948664}
   - component: {fileID: 7122822620576637115}
@@ -130,10 +131,8 @@ MonoBehaviour:
       m_Calls: []
   _baseStatsSO: {fileID: 11400000, guid: 6618a62998fb61d40b1f88e97625350d, type: 2}
   _inputs: {fileID: 8132426246734092638}
-  _animationsGameObject: {fileID: 8164730093861794146}
   _myKiller: {fileID: 0}
   _rb: {fileID: 8344952857166226115}
-  _spawnSelectedModel: {fileID: 4209555525401773390}
   _stateFactory: {fileID: 5179218893500982180}
   _currentState: {fileID: 0}
   _previousState: {fileID: 0}
@@ -144,6 +143,10 @@ MonoBehaviour:
   _shootFeedback: {fileID: 1127725970599290894}
   _networkWeaponShooter: {fileID: 7122822620576637115}
   _aimColor: {r: 1, g: 0, b: 0, a: 0.78431374}
+  _animationsGameObject: {fileID: 8164730093861794146}
+  _spawnSelectedModel: {fileID: 7926218235253488649}
+  canModify: 0
+  modifier: {fileID: 11400000, guid: cbee54a853e53fb43bfff677437a49f5, type: 2}
 --- !u!114 &7265066918879207376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,6 +164,19 @@ MonoBehaviour:
       m_Calls: []
   _knockbackDuration: 0.2
   _invulnerabilityDuration: 0
+--- !u!114 &7926218235253488649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172481498366530268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e941294b4f14de4f969ecda8c378a87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _modelFather: {fileID: 3208552168624331752}
 --- !u!114 &5364803754556521178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11925,7 +11941,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3208552168624331752}
-  - component: {fileID: 4209555525401773390}
   m_Layer: 6
   m_Name: PlayerModel
   m_TagString: Untagged
@@ -11948,28 +11963,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3248957072609162509}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4209555525401773390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8164730093861794146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e941294b4f14de4f969ecda8c378a87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _modelNumber: 0
-  _playerModels:
-  - m_AssetGUID: a4516b63d4b8f1943b7611587114f189
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  - m_AssetGUID: 5be0a73cd47eb394a8c374ad8706d96e
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
 --- !u!1 &8248489401918490513
 GameObject:
   m_ObjectHideFlags: 0
@@ -17810,6 +17803,7 @@ MonoBehaviour:
         m_CallState: 2
   _impulsePower: 100
   _dashDistance: 10
+  _dashAmount: 1
   rayYOffset: 0.5
   _obstacleLayers:
     serializedVersion: 2

@@ -1,7 +1,5 @@
-using BrawlingToys.Network;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
@@ -12,71 +10,68 @@ namespace BrawlingToys.Actors
 {
     public class PlayerSpawnSelectedModel : MonoBehaviour
     {
-        [SerializeField] private int _modelNumber;
-        [SerializeField] private List<AssetReference> _playerModels;
-        AsyncOperationHandle currentPlayerModelOpHandle;
+        [SerializeField] private Transform _modelFather; 
+        
+        public Action OnModelSpawed;
 
-        public event Action OnModelLoaded;
+        private AsyncOperationHandle<GameObject>? loadedHandle = new();
 
-        private void Start()
+        public void SetCharacterModel(AssetReference refe)
         {
-            SetCharacterModel(_modelNumber);
+            StartCoroutine(SetCharacterModelAsync(refe));
         }
 
-        public void SetCharacterModel(int modelIndex)
+        private IEnumerator SetCharacterModelAsync(AssetReference refe)
         {
-            StartCoroutine(SetCharacterModelAsync(modelIndex));
+            var clientData = GameObject.FindObjectsOfType<PlayerClientData>();
+            var currentClient = clientData.First(c => c.PlayerID == NetworkManager.Singleton.LocalClientId);
+
+            var assetRef = refe; 
+
+            if (assetRef != null)
+            {
+                // Log detalhado para verificar o estado do handle antes de tentar carregar o asset
+                Debug.Log($"Tentando carregar o asset '{assetRef.RuntimeKey}'.");
+
+                if (loadedHandle.HasValue && loadedHandle.Value.IsValid())
+                {
+                    Debug.LogWarning($"Asset '{assetRef.RuntimeKey}' já foi carregado e está sendo reutilizado. Evitando carregamento duplicado.");
+                }
+                else
+                {
+                    try
+                    {
+                        // Carrega o asset
+                        loadedHandle = assetRef.LoadAssetAsync<GameObject>();
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogError($"Erro ao carregar o asset '{assetRef.RuntimeKey}': {ex.Message}\nStackTrace: {ex.StackTrace}");
+                        yield break;  
+                    }
+                    
+                    Debug.Log($"Carregando o asset '{assetRef.RuntimeKey}'.");
+
+                    yield return loadedHandle.Value;
+
+                    if (loadedHandle.Value.Status == AsyncOperationStatus.Succeeded)
+                    {
+                        var characterModel = loadedHandle.Value.Result;
+                        var instance = Instantiate(characterModel, _modelFather);
+                        Debug.Log($"Modelo de personagem '{assetRef.RuntimeKey}' instanciado com sucesso.");
+                    }
+                    else
+                    {
+                        Debug.LogError($"Falha ao carregar o asset do Addressable: '{assetRef.RuntimeKey}'.");
+                    }
+                }
+
+                OnModelSpawed?.Invoke();
+            }
+            else
+            {
+                Debug.LogWarning("Referência de asset inválida.");
+            }
         }
-
-        IEnumerator SetCharacterModelAsync(int modelIndex)
-        {
-            if (currentPlayerModelOpHandle.IsValid())
-                Addressables.Release(currentPlayerModelOpHandle);
-
-            var playerModelReference = _playerModels[modelIndex];
-            currentPlayerModelOpHandle = playerModelReference.LoadAssetAsync<GameObject>();
-
-            yield return currentPlayerModelOpHandle;
-
-            Instantiate((GameObject)currentPlayerModelOpHandle.Result, gameObject.transform);
-            OnModelLoaded?.Invoke();
-        }
-
-
-        //public Action OnModelInstantiate;
-
-        //[SerializeField] private Transform _playerModelParent;
-
-        //private void Start()
-        //{
-        //    SetCharacterModel();
-        //}
-
-        //public void SetCharacterModel()
-        //{
-        //    var clientDatas = GameObject.FindObjectsOfType<PlayerClientData>();
-        //    var client = clientDatas.First(cd => cd.PlayerID == NetworkManager.Singleton.LocalClientId);
-
-        //    AssetReference refereceModel = client.SelectedCharacterPrefab;
-        //    AsyncOperationHandle<GameObject> selectedModel = refereceModel.LoadAssetAsync<GameObject>(); ;
-        //    selectedModel.Completed += HandleModelLoaded;
-
-        //    Addressables.Release(selectedModel);
-
-        //}
-
-        //private void HandleModelLoaded(AsyncOperationHandle<GameObject> model)
-        //{
-        //    if (model.Status == AsyncOperationStatus.Succeeded)
-        //    {
-        //        Debug.Log("Modelo Instanciado");
-        //        Instantiate(model.Result, _playerModelParent);
-        //        OnModelInstantiate?.Invoke();
-        //    }
-        //    else
-        //    {
-        //        Debug.LogError("PlayerSpawnSelectedModel: Erro ao carregar modelo de forma assicrona");
-        //    }
-        //}
     }
 }
