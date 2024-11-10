@@ -29,12 +29,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - PlayerModel
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 21c8593567d69d34f9567acb8fd9a47f
-    m_Address: Assets/Prefabs/Player/PlayerModels/MarioneteModel.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PlayerModel
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5be0a73cd47eb394a8c374ad8706d96e
     m_Address: Assets/Prefabs/Player/PlayerModels/UrsinhoModel.prefab
     m_ReadOnly: 0
