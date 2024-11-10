@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Marionete
+  m_Controller: {fileID: 9100000, guid: 25e7141fb8fdfa3448300a7ef00a0837, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: d39691d931c1a7d4a9b49d4b576dd360, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f966aa10a9128d14aa7e4fe825d96a63, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 531777dcf9670a74bb6926040acb86fa, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 073699725f810204d944ba6bbb335bc6, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7338a1bebcbd23642864184db41be47e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 111240fbbff1e464c947c45850961394, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 728119d00b20ca94696f33974049a4ac, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9e7a6ca87cd11e34181105026edbf485, type: 2}
