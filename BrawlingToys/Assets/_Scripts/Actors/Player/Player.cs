@@ -33,6 +33,7 @@ namespace BrawlingToys.Actors
         public State CurrentState { get => _currentState; }
         public PlayerWeapon Weapon { get => _weapon; }
         public MMFeedbacks ShootFeedback { get => _shootFeedback; }
+        public int DashCount { get; set; }
 
         #endregion
 
@@ -42,9 +43,6 @@ namespace BrawlingToys.Actors
         [SerializeField] private Stats _stats;
         [SerializeField] private Player _myKiller;
         [SerializeField] private Rigidbody _rb;
-        //[SerializeField] private PlayerSpawnSelectedModel _spawnSelectedModel;
-        private PlayerAnimations _animations;
-        //public PlayerWeapon weapon;
         
         [Header("State Stuffs: ")]
         [SerializeField] private StateFactory _stateFactory;
@@ -62,18 +60,18 @@ namespace BrawlingToys.Actors
 
         private StatsMediator _mediator;
 
-        [Header("Gizmos Stuff: ")]
-        [SerializeField] private Color _aimColor;
-
         [Header("Animation Settings")]
-
         [SerializeField] private GameObject _animationsGameObject;
         [SerializeField] private PlayerSpawnSelectedModel _spawnSelectedModel;
+
+        [Header("Gizmos Stuff: ")]
+        [SerializeField] private Color _aimColor;
 
         public bool canModify = false;
         public ModifierScriptable modifier;
 
-        private bool _initilized; 
+        private bool _initilized;
+        private PlayerAnimations _animations;
 
         private void Awake()
         {
@@ -141,6 +139,7 @@ namespace BrawlingToys.Actors
         // e possivelmente modifica��es de buffs e debuffs.
         private void InitializePlayer()
         {
+            DashCount = 0;
             _animations = GetComponentInChildren<PlayerAnimations>();
             _mediator = new();
             _stats = new(_mediator, _baseStatsSO);
@@ -174,7 +173,7 @@ namespace BrawlingToys.Actors
 
         public void ApplyModifier()
         {
-            _stats.ModifyStat(modifier, _stats.ReloadTime);
+            _stats.ModifyStat(modifier, _stats.CurrentHitEffect);
         }
 
         private void OnDrawGizmos()

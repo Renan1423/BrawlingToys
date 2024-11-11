@@ -9,7 +9,6 @@ namespace BrawlingToys.Actors
     {
         [SerializeField] private float _impulsePower = 20.0f;
         [SerializeField] private float _dashDistance = 2.0f;
-        [SerializeField] private int _dashAmount = 1;
 
         [SerializeField] private float rayYOffset = .5f;
         [SerializeField] private LayerMask _obstacleLayers;
@@ -23,9 +22,7 @@ namespace BrawlingToys.Actors
 
         protected override void EnterState()
         {
-            _dashAmount = _player.Stats.DashAmount;
             _player.Animations.PlayAnimation(PlayerAnimations.AnimationType.Dash);
-            _player.Cooldowns.dashTimer.Start();
 
             // Aplicar for�a no player na dire��o de movimento
             float movementMagnitude = _player.Inputs.GetMovementVectorNormalized().sqrMagnitude;
@@ -56,16 +53,15 @@ namespace BrawlingToys.Actors
 
         public override void UpdateState()
         {
-            if (_dashAmount < 1) {
+            if (_traveledDistance <= _finalDashDistance)
+            {
+                _traveledDistance += _impulsePower * Time.deltaTime;
+                _player.Rb.velocity = _impulsePower * _dashDirection;
+            }
+            else
+            {
+                _traveledDistance = 0f;
                 _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Idle));
-            } else {
-                if (_traveledDistance <= _finalDashDistance) {
-                    _traveledDistance += _impulsePower * Time.deltaTime;
-                    _player.Rb.velocity = _impulsePower * _dashDirection;
-                } else {
-                    _traveledDistance = 0f;
-                    _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Idle));
-                }
             }
         }
 
