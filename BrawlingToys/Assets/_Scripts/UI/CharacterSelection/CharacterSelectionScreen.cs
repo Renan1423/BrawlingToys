@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
 using UnityEngine;
@@ -34,10 +35,8 @@ namespace BrawlingToys.UI
 
     public class CharacterSelectionScreen : BaseScreen
     {
-        [SerializeField]
-        private List<CharacterSelectionData> _playableCharacters;
-        
-        
+        [field: SerializeField]
+        public List<CharacterSelectionData> PlayableCharacters;
         private List<CharacterButton> _characterButtons;
         private ChosenCharacterData _chosenCharacter;
         private int _selectedCharacterIndex = -1;
@@ -46,9 +45,7 @@ namespace BrawlingToys.UI
 
         [Header("UI")]
         [SerializeField]
-        private RawImage _characterDisplayRawImage;
-        [SerializeField]
-        private Animator _characterDisplayAnim;
+        private CharacterModelParent _characterModelParent;
         [SerializeField]
         private TextMeshProUGUI _characterNameText;
         [SerializeField]
@@ -61,8 +58,6 @@ namespace BrawlingToys.UI
         private GameObject _characterButtonPrefab;
         [SerializeField]
         private Transform _buttonsHorizontalLayout;
-
-        public List<CharacterSelectionData> PlayableCharacters { get => _playableCharacters;  }
 
         protected override void Start()
         {
@@ -108,22 +103,23 @@ namespace BrawlingToys.UI
 
         public void ShowCharacter(int characterIndex) 
         {
+            _characterModelParent.ShowCharacterSelection();
+
             if (_selectedCharacterIndex == characterIndex)
                 return;
 
-            if (!ModelSpawner.Instance.HasActiveRenderTextureCamera())
-                ModelSpawner.Instance.SpawnRenderTextureModelWithNewCamera(PlayableCharacters[characterIndex].CharacterModel, 
-                    _characterDisplayRawImage);
-            else
-                ModelSpawner.Instance.ReplaceExistingRenderTextureCamera(0, 
-                    PlayableCharacters[characterIndex].CharacterModel,
-                    _characterDisplayRawImage);
+            _characterModelParent.SpawnCharacterModel(PlayableCharacters[characterIndex].CharacterModel);
 
             _characterNameText.text = PlayableCharacters[characterIndex].CharacterName;
             _selectedCharacterIndex = characterIndex;
 
             _backgroundColorChanger.SetBackgroundColor(PlayableCharacters[characterIndex].CharacterColor, 0.25f);
-            _characterDisplayAnim.SetTrigger("Show");
+            _characterModelParent.ShowCharacter();
+        }
+
+        public void ToggleSkinSelection() 
+        {
+            _characterModelParent.ShowSkinSelection();
         }
 
         public void SelectCharacter() 
@@ -135,10 +131,13 @@ namespace BrawlingToys.UI
 
         private void ConfirmCharacterSelection() 
         {
+            _characterModelParent.ClearCharacterModelContainer();
+
             CharacterSelectionData character = PlayableCharacters[_selectedCharacterIndex];
             _chosenCharacter = new ChosenCharacterData(character.CharacterName, character.CharacterModel, character.CharacterIcon);
 
             _backgroundColorChanger.ResetBackgroundColor(0.25f);
+            _selectedCharacterIndex = -1;
 
             OpenNextScreen();
         }

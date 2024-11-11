@@ -9,8 +9,6 @@ namespace BrawlingToys.Managers
     {
         [SerializeField]
         private Texture2D _uiCursor;
-        [SerializeField]
-        private Texture2D _gameplayCursor;
 
         protected override void Awake()
         {
@@ -29,8 +27,15 @@ namespace BrawlingToys.Managers
 
         public void OnGameStateChanged(GameStateType newGameState) 
         {
-            Texture2D cursorTex = (newGameState == GameStateType.Combat) ? _gameplayCursor : _uiCursor;
+            if (newGameState == GameStateType.Combat) 
+            {
+                Cursor.visible = false;
+                return;
+            }
+                
+            Texture2D cursorTex = _uiCursor;
 
+            Cursor.visible = true;
             Cursor.SetCursor(cursorTex, new Vector2(32, 32), CursorMode.Auto);
         }
     }

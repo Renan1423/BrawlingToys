@@ -58,10 +58,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1803977172676371348, guid: 9e9dd24bf60244840bb9dc1866a4e08b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: c3d86ffe008c91847add43c558414c89, type: 2}
+    - target: {fileID: -1803977172676371348, guid: 9e9dd24bf60244840bb9dc1866a4e08b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: d6dcba63b92b6144ebe30d152c4c5923, type: 2}
+    - target: {fileID: -1803977172676371348, guid: 9e9dd24bf60244840bb9dc1866a4e08b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 10aec7a5018bddb4ba1c3100beeb0de3, type: 2}
+    - target: {fileID: -1803977172676371348, guid: 9e9dd24bf60244840bb9dc1866a4e08b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1f7e39481d3057a42ba2e0e45bffd80a, type: 2}
     - target: {fileID: 919132149155446097, guid: 9e9dd24bf60244840bb9dc1866a4e08b,
         type: 3}
       propertyPath: m_Name
-      value: PlayerMarioneteModel
+      value: MarionetePlayerModel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -75,6 +95,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2218016677025897592}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9e9dd24bf60244840bb9dc1866a4e08b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6267242453760035451}
   m_SourcePrefab: {fileID: 100100000, guid: 9e9dd24bf60244840bb9dc1866a4e08b, type: 3}
 --- !u!1 &7063730979151652810 stripped
 GameObject:
@@ -122,3 +146,23 @@ MonoBehaviour:
   OnAnimationEnd:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-6267242453760035451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7063730979151652810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
