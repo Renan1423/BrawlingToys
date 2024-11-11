@@ -10,6 +10,9 @@ namespace BrawlingToys.Actors
 
         private Player _player;
         private Transform _firePoint;
+#nullable enable
+        private PlayerHit? _playerHit;
+#nullable disable
 
         private float _aimSmoothRate;
 
@@ -29,7 +32,19 @@ namespace BrawlingToys.Actors
             _groundLayerMask = groundLayerMask;
             
             _networkShooter = networkShooter; 
-            _networkShooter.Init(_firePoint); 
+            _networkShooter.Init(_firePoint);
+
+            _player.Stats.OnStatsChanged += Stats_OnStatsChanged;
+        }
+
+        private void Stats_OnStatsChanged(StatType obj) {
+            if (obj != StatType.HitCommand) {
+                return;
+            }
+
+            if (_player.Stats.CurrentHitEffect is CollateralCommand) {
+                _playerHit = _player.GetComponent<PlayerHit>();
+            }
         }
 
         public void Update()
@@ -63,8 +78,14 @@ namespace BrawlingToys.Actors
             }
         }
 
-        public void Shoot(ulong ownerPlayerId)
-        {
+        public void Shoot(ulong ownerPlayerId) {
+            if (_playerHit != null) {
+                if (_playerHit.PlayerTookCollateralDamage()) {
+                    _playerHit.PlayerDie();
+                    return;
+                }
+            }
+
             _networkShooter.SpawnBullet("Bullet", ownerPlayerId, _bulletPower);
         }
     }

@@ -146,7 +146,7 @@ MonoBehaviour:
   _animationsGameObject: {fileID: 8164730093861794146}
   _spawnSelectedModel: {fileID: 7926218235253488649}
   canModify: 0
-  modifier: {fileID: 11400000, guid: cbee54a853e53fb43bfff677437a49f5, type: 2}
+  modifier: {fileID: 0}
 --- !u!114 &7265066918879207376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +163,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _knockbackDuration: 0.2
+  _collateralDamageChance: 5
   _invulnerabilityDuration: 0
 --- !u!114 &7926218235253488649
 MonoBehaviour:
