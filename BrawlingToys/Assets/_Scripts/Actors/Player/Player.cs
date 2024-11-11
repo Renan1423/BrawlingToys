@@ -33,7 +33,7 @@ namespace BrawlingToys.Actors
         public State CurrentState { get => _currentState; }
         public PlayerWeapon Weapon { get => _weapon; }
         public MMFeedbacks ShootFeedback { get => _shootFeedback; }
-        public int DashCount { get; set; }
+        [field: SerializeField] public int DashCount { get; set; }
 
         #endregion
 

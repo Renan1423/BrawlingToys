@@ -118,10 +118,18 @@ namespace BrawlingToys.Actors
             if (_player.DashCount >= _player.Stats.DashAmount)
                 return;
 
-            
-
-            _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Dash));
-        }
+            switch (_player.DashCount)
+            {
+                case 0:
+                    _player.Cooldowns.dashTimer1.Start();
+                    _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Dash));
+                    break;
+                case 1:
+                    _player.Cooldowns.dashTimer2.Start();
+                    _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Dash));
+                    break;
+            }
+        }  
 
         public virtual void HandleDie()
         {
