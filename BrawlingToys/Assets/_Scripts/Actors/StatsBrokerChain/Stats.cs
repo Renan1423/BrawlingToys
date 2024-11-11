@@ -82,10 +82,6 @@ namespace BrawlingToys.Actors
                     break;
                 case StatType.DashAmount:
                     DashAmount = Mathf.FloorToInt(value);
-                    if (DashAmount == 1)
-                        DashCooldown = _baseStats.dashCooldown;
-                    else if (DashAmount == 2)
-                        DashCooldown = 2 * _baseStats.dashCooldown;
                     break;
                 case StatType.ReloadTime:
                     ReloadTime = value;
