@@ -35,20 +35,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - PlayerPrototype
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5cdd513580689d44481d1f0ba2e21a6f
-    m_Address: DashAmountIncreaseModifierSO
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - BuffDebuff
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e95bc8128fc87d24096e8b836e90d0f5
     m_Address: CoudownReduceModifierSO
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - BuffDebuff
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cbee54a853e53fb43bfff677437a49f5
-    m_Address: DashAmountDecreaseModifierSO
     m_ReadOnly: 0
     m_SerializedLabels:
     - BuffDebuff
