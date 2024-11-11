@@ -173,7 +173,7 @@ namespace BrawlingToys.Actors
 
         public void ApplyModifier()
         {
-            _stats.ModifyStat(modifier, _stats.CurrentHitEffect);
+            _stats.ModifyStat(modifier, 1);
         }
 
         private void OnDrawGizmos()

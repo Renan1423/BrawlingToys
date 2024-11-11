@@ -5027,6 +5027,7 @@ MonoBehaviour:
   OnPlayerDeath:
     m_PersistentCalls:
       m_Calls: []
+  <DashCount>k__BackingField: 0
   _baseStatsSO: {fileID: 11400000, guid: 6618a62998fb61d40b1f88e97625350d, type: 2}
   _inputs: {fileID: 8132426246734092638}
   _myKiller: {fileID: 0}
