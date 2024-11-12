@@ -11,9 +11,9 @@ namespace BrawlingToys.UI
         [SerializeField]
         private Transform _buffsHorizontalLayout;
 
-        public override void ShowPlayerCombatHud(GameStateType newGameState, Player player)
+        public override void ShowPlayerCombatHud(Player player)
         {
-            base.ShowPlayerCombatHud(newGameState, player);
+            base.ShowPlayerCombatHud(player);
 
             if (player.Stats.Mediator.GetAppliedModifiers() == null)
                 return;

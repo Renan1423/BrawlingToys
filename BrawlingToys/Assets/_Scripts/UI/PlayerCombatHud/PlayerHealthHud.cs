@@ -14,9 +14,9 @@ namespace BrawlingToys.UI
         private Transform _hpHorizontalLayout;
         private List<HealthPoint> _hpsList;
 
-        public override void ShowPlayerCombatHud(GameStateType newGameState, Player player)
+        public override void ShowPlayerCombatHud(Player player)
         {
-            base.ShowPlayerCombatHud(newGameState, player);
+            base.ShowPlayerCombatHud(player);
 
             PlayerHit playerHit = NetworkManager.LocalClient.PlayerObject.GetComponent<PlayerHit>();
 
