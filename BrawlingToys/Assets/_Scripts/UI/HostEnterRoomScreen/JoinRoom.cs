@@ -8,6 +8,7 @@ using Unity.Netcode;
 using System;
 using System.Linq;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace BrawlingToys.UI
 {
@@ -87,13 +88,23 @@ namespace BrawlingToys.UI
             
             MakeClientDataInstance(playerInfo); 
 
-            var clients = PlayerClientDatasManager.LocalInstance.PlayerClientDatas; 
+            var clients = PlayerClientDatasManager.LocalInstance.PlayerClientDatas;
 
-            var clientPlayerDataSerialized = clients    
-                .Select(client => client.GetPlayerInfoSerializedData())
-                .ToArray(); 
+            //var clientPlayerDataSerialized = clients    
+            //    .Select(client => client.GetPlayerInfoSerializedData())
+            //    .ToArray(); 
 
-            var playerInfosJSON = JsonConvert.SerializeObject(clientPlayerDataSerialized); 
+            var clientPlayerDataSerialized = new List<NetworkSerializedPlayerInfo>();
+
+            foreach (var client in clients)
+            {
+                clientPlayerDataSerialized.Add(client.GetPlayerInfoSerializedData()); 
+            }
+
+            var playerInfosJSON = JsonConvert.SerializeObject(clientPlayerDataSerialized);
+
+            Debug.Log("pass"); 
+            Debug.Log(playerInfosJSON); 
             
             var matchInfo = clients
                 .First(c => c.PlayerID == 0)

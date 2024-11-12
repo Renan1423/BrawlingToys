@@ -8,6 +8,7 @@ using BrawlingToys.Actors;
 using Unity.Netcode;
 using UnityEngine.UI;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace BrawlingToys.UI
 {
@@ -48,6 +49,7 @@ namespace BrawlingToys.UI
 
         private void OnPartyCreatedCallback(string partyCode) 
         {
+            Debug.Log("PartyCreatedCallback");
             ScreenManager.instance.ToggleScreenByTag(TagManager.CreateRoomMenu.WAITING_FOR_PLAYERS, true);
 
             var playerName = _nameInputValidator.InputFieldText; 
@@ -60,7 +62,7 @@ namespace BrawlingToys.UI
                 characterGUID
             ); 
 
-            var playerInfoJSON = JsonUtility.ToJson(playerInfo); 
+            var playerInfoJSON = JsonConvert.SerializeObject(playerInfo);
 
             var uiMatchData = _combatSettingsScreen.GetCombatSettings(); 
             var matchInfo = new NetworkSerializedMatchInfo(
@@ -83,6 +85,9 @@ namespace BrawlingToys.UI
         [ServerRpc]
         private void JoinPartyServerRpc(string playerInfoJSON, string matchInfoJSON)
         {
+            Debug.Log("ServerRpc"); 
+            Debug.Log(playerInfoJSON); 
+            
             var playerInfo = JsonUtility.FromJson<NetworkSerializedPlayerInfo>(playerInfoJSON); 
             var matchInfo = JsonUtility.FromJson<NetworkSerializedMatchInfo>(matchInfoJSON); 
             
@@ -96,7 +101,8 @@ namespace BrawlingToys.UI
 
             var playerCharacter = _characterSelectionScreen.PlayableCharacters.First(pc => pc.CharacterModel.AssetGUID == playerInfo.CharacterAssetGUID); 
 
-            clientData.SetPlayerCharacter(playerCharacter.CharacterName,
+            clientData.SetPlayerCharacter(
+                playerCharacter.CharacterName,
                 playerCharacter.CharacterModel,
                 playerCharacter.CharacterIcon);
             
