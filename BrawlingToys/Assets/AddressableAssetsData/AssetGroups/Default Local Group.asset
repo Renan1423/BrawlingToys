@@ -41,12 +41,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - BuffDebuff
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: da905feb5339d3b419d3c2fa1d9f5cd8
-    m_Address: CollateralDamageModifierSO
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - BuffDebuff
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 201f26c357ad10342b245e4c63266640, type: 2}
   m_SchemaSet:

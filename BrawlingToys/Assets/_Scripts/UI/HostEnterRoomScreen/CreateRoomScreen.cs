@@ -43,6 +43,7 @@ namespace BrawlingToys.UI
             if (_nameInputValidator.CheckNameValidation())
             {
                 //ToggleButtons(false);
+                Debug.Log("Creating run");
                 CreateParty(OnPartyCreatedCallback);
             }
         }
@@ -50,8 +51,7 @@ namespace BrawlingToys.UI
         private void OnPartyCreatedCallback(string partyCode) 
         {
             Debug.Log("PartyCreatedCallback");
-            ScreenManager.instance.ToggleScreenByTag(TagManager.CreateRoomMenu.WAITING_FOR_PLAYERS, true);
-
+            
             var playerName = _nameInputValidator.InputFieldText; 
             var playerId = NetworkManager.LocalClientId; 
             var characterGUID = _characterSelectionScreen.GetChosenCharacterData().ChosenCharacterPrefab.AssetGUID;
@@ -72,9 +72,11 @@ namespace BrawlingToys.UI
                 uiMatchData.RequiredPointsToWin
             );  
 
-            var matchInfoJSON = JsonUtility.ToJson(matchInfo); 
+            var matchInfoJSON = JsonConvert.SerializeObject(matchInfo); 
             
             JoinPartyServerRpc(playerInfoJSON, matchInfoJSON); 
+
+            ScreenManager.instance.ToggleScreenByTag(TagManager.CreateRoomMenu.WAITING_FOR_PLAYERS, true);
 
             WaitingForPlayersScreen waitingForPlayersScreen = FindObjectOfType<WaitingForPlayersScreen>();
             waitingForPlayersScreen.InitializeWaitingRoom(partyCode, _nameInputValidator.InputFieldText);
@@ -85,11 +87,8 @@ namespace BrawlingToys.UI
         [ServerRpc]
         private void JoinPartyServerRpc(string playerInfoJSON, string matchInfoJSON)
         {
-            Debug.Log("ServerRpc"); 
-            Debug.Log(playerInfoJSON); 
-            
-            var playerInfo = JsonUtility.FromJson<NetworkSerializedPlayerInfo>(playerInfoJSON); 
-            var matchInfo = JsonUtility.FromJson<NetworkSerializedMatchInfo>(matchInfoJSON); 
+            var playerInfo = JsonConvert.DeserializeObject<NetworkSerializedPlayerInfo>(playerInfoJSON); 
+            var matchInfo = JsonConvert.DeserializeObject<NetworkSerializedMatchInfo>(matchInfoJSON); 
             
             var clientDataGO = Instantiate(_playerClientData);
 

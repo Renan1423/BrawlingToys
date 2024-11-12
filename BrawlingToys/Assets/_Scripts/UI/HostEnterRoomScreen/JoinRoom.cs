@@ -72,7 +72,7 @@ namespace BrawlingToys.UI
                 ScreenManager.instance.ToggleScreenByTag(TagManager.CreateRoomMenu.CLIENT_WAITING_ROOM, true);
                 
                 var playerInfo = GenerateSerializedPlayerInfo(); 
-                var playerInfoJSON = JsonUtility.ToJson(playerInfo); 
+                var playerInfoJSON = JsonConvert.SerializeObject(playerInfo); 
                 
                 RegisterClientServerRpc(playerInfoJSON);
 
@@ -83,28 +83,20 @@ namespace BrawlingToys.UI
         [ServerRpc(RequireOwnership = false)]
         private void RegisterClientServerRpc(string playerInfoJSON) 
         {
-            var playerInfo = JsonUtility
-                .FromJson<NetworkSerializedPlayerInfo>(playerInfoJSON); 
+            var playerInfo = JsonConvert
+                .DeserializeObject<NetworkSerializedPlayerInfo>(playerInfoJSON); 
             
             MakeClientDataInstance(playerInfo); 
 
             var clients = PlayerClientDatasManager.LocalInstance.PlayerClientDatas;
 
-            //var clientPlayerDataSerialized = clients    
-            //    .Select(client => client.GetPlayerInfoSerializedData())
-            //    .ToArray(); 
+            var clientPlayerDataSerialized = clients    
+               .Select(client => client.GetPlayerInfoSerializedData())
+               .ToArray(); 
 
-            var clientPlayerDataSerialized = new List<NetworkSerializedPlayerInfo>();
+            var allPlayerInfosJSON = JsonConvert.SerializeObject(clientPlayerDataSerialized);
 
-            foreach (var client in clients)
-            {
-                clientPlayerDataSerialized.Add(client.GetPlayerInfoSerializedData()); 
-            }
-
-            var playerInfosJSON = JsonConvert.SerializeObject(clientPlayerDataSerialized);
-
-            Debug.Log("pass"); 
-            Debug.Log(playerInfosJSON); 
+            Debug.Log(allPlayerInfosJSON); 
             
             var matchInfo = clients
                 .First(c => c.PlayerID == 0)
@@ -112,12 +104,13 @@ namespace BrawlingToys.UI
 
             var matchInfoJSON = JsonConvert.SerializeObject(matchInfo); 
             
-            RegisterClientClientRpc(playerInfoJSON, matchInfoJSON); 
+            RegisterClientClientRpc(allPlayerInfosJSON, matchInfoJSON); 
         }
 
         [ClientRpc]
         private void RegisterClientClientRpc(string playerInfosJSON, string matchInfoJSON) 
         {
+            Debug.Log(playerInfosJSON);
             var playerInfos = JsonConvert
                 .DeserializeObject<NetworkSerializedPlayerInfo[]>(playerInfosJSON);
 
