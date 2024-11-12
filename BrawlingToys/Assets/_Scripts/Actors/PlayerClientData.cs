@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.AddressableAssets;
+using BrawlingToys.Network;
 
 namespace BrawlingToys.Actors
 {
@@ -44,6 +45,29 @@ namespace BrawlingToys.Actors
             DebuffSpawnChance = debuffSpawnChance;
             PlayerLife = playerLife;
             RequiredPointsToWin = requiredPointsToWin;
+        }
+
+        public NetworkSerializedPlayerInfo GetPlayerInfoSerializedData()
+        {
+            var result = new NetworkSerializedPlayerInfo(
+                PlayerUsername,
+                PlayerID,
+                SelectedCharacterPrefab.AssetGUID
+            ); 
+
+            return result; 
+        }
+
+        public NetworkSerializedMatchInfo GetMatchInfoSerializedData()
+        {
+            var result = new NetworkSerializedMatchInfo(
+                BuffSpawnChance,
+                DebuffSpawnChance,
+                PlayerLife,
+                RequiredPointsToWin
+            ); 
+            
+            return result; 
         }
     }
 }

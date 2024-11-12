@@ -53,8 +53,26 @@ namespace BrawlingToys.UI
             var playerName = _nameInputValidator.InputFieldText; 
             var playerId = NetworkManager.LocalClientId; 
             var characterGUID = _characterSelectionScreen.GetChosenCharacterData().ChosenCharacterPrefab.AssetGUID;
+
+            var playerInfo = new NetworkSerializedPlayerInfo(
+                playerName,
+                playerId,
+                characterGUID
+            ); 
+
+            var playerInfoJSON = JsonUtility.ToJson(playerInfo); 
+
+            var uiMatchData = _combatSettingsScreen.GetCombatSettings(); 
+            var matchInfo = new NetworkSerializedMatchInfo(
+                uiMatchData.BuffSpawnChance,
+                uiMatchData.DebuffSpawnChance,
+                uiMatchData.PlayerLife,
+                uiMatchData.RequiredPointsToWin
+            );  
+
+            var matchInfoJSON = JsonUtility.ToJson(matchInfo); 
             
-            JoinPartyServerRpc(playerName, playerId, characterGUID); 
+            JoinPartyServerRpc(playerInfoJSON, matchInfoJSON); 
 
             WaitingForPlayersScreen waitingForPlayersScreen = FindObjectOfType<WaitingForPlayersScreen>();
             waitingForPlayersScreen.InitializeWaitingRoom(partyCode, _nameInputValidator.InputFieldText);
@@ -63,22 +81,31 @@ namespace BrawlingToys.UI
         }
 
         [ServerRpc]
-        private void JoinPartyServerRpc(string playerName, ulong playerId, string characterAssetGUID)
+        private void JoinPartyServerRpc(string playerInfoJSON, string matchInfoJSON)
         {
+            var playerInfo = JsonUtility.FromJson<NetworkSerializedPlayerInfo>(playerInfoJSON); 
+            var matchInfo = JsonUtility.FromJson<NetworkSerializedMatchInfo>(matchInfoJSON); 
+            
             var clientDataGO = Instantiate(_playerClientData);
 
-            clientDataGO.name = $"{playerName}PlayerClientData"; 
+            clientDataGO.name = $"{playerInfo.PlayerName}PlayerClientData"; 
 
             var clientData = clientDataGO.GetComponent<PlayerClientData>();
 
-            clientData.SetPlayerData(playerId, playerName);
+            clientData.SetPlayerData(playerInfo.PlayerId, playerInfo.PlayerName);
 
-            var playerCharacter = _characterSelectionScreen.PlayableCharacters.First(pc => pc.CharacterModel.AssetGUID == characterAssetGUID); 
-            Debug.Log($"Asset GUID: {playerCharacter.CharacterModel.AssetGUID}");
+            var playerCharacter = _characterSelectionScreen.PlayableCharacters.First(pc => pc.CharacterModel.AssetGUID == playerInfo.CharacterAssetGUID); 
 
             clientData.SetPlayerCharacter(playerCharacter.CharacterName,
                 playerCharacter.CharacterModel,
                 playerCharacter.CharacterIcon);
+            
+            clientData.SetCombatSettings(
+                buffSpawnChance: matchInfo.BuffSpawnChance,
+                debuffSpawnChance: matchInfo.DebuffSpawnChance,
+                playerLife: matchInfo.PlayerLife,
+                requiredPointsToWin: matchInfo.RequiredPointsToWin
+            ); 
 
             PlayerClientDatasManager.LocalInstance.AddPlayerClientData(clientData);
         }
