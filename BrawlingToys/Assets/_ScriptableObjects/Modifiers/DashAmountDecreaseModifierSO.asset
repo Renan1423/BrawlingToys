@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b87d277230eda50408158074804779c8, type: 3}
+  m_Script: {fileID: 11500000, guid: caf10240f6a7a564f99809f8491c3f93, type: 3}
   m_Name: DashAmountDecreaseModifierSO
   m_EditorClassIdentifier: 
-  <Tag>k__BackingField: dash_decrease
-  <ModifierType>k__BackingField: 3
+  <Tag>k__BackingField: dashAmount_decrease
+  <ModifierType>k__BackingField: 2
   <EffectName>k__BackingField: "Voc\xEA n\xE3o \xE9 todo mundo"
-  <EffectDescription>k__BackingField: "Voc\xEA tem 1 dash a menos"
+  <EffectDescription>k__BackingField: Remove um dash
   <EffectIcon>k__BackingField: {fileID: 21300000, guid: c38ec5942e27d834e8c8e357ef973ef6,
     type: 3}
   <EffectType>k__BackingField: 1
-  modificationPercentage: 0
+  modificationAddtion: -1
