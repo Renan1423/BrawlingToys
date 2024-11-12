@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caf10240f6a7a564f99809f8491c3f93, type: 3}
   m_Name: DashAmountDecreaseModifierSO
   m_EditorClassIdentifier: 
-  <Tag>k__BackingField: 
-  <ModifierType>k__BackingField: 0
-  <EffectName>k__BackingField: 
-  <EffectDescription>k__BackingField: 
-  <EffectIcon>k__BackingField: {fileID: 0}
-  <EffectType>k__BackingField: 0
-  modificationAddtion: 0
+  <Tag>k__BackingField: dashAmount_decrease
+  <ModifierType>k__BackingField: 2
+  <EffectName>k__BackingField: "Voc\xEA n\xE3o \xE9 todo mundo"
+  <EffectDescription>k__BackingField: Remove um dash
+  <EffectIcon>k__BackingField: {fileID: 21300000, guid: c38ec5942e27d834e8c8e357ef973ef6,
+    type: 3}
+  <EffectType>k__BackingField: 1
+  modificationAddtion: -1
