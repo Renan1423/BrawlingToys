@@ -10,12 +10,11 @@ namespace BrawlingToys.Actors
         public Rigidbody Rb { get => _rb; }
 
         [SerializeField] private float _speed = 1f;
-        //[SerializeField] private float _lifespan = 1f;
+        [SerializeField] private float _gravityScale = 0.5f;
 
         [SerializeField] private LayerMask _groundMask;
         [SerializeField] private LayerMask _hitableMask;
 
-        private CountdownTimer _timer;
         private Rigidbody _rb;
         private float _bulletPower = 1f;
         private Vector3 _direction;
@@ -32,13 +31,6 @@ namespace BrawlingToys.Actors
         private void Update()
         {
             _direction = transform.forward;
-
-            //_timer.Tick(Time.deltaTime);
-
-            //if (!_rb.useGravity && _timer.IsFinished)
-            //{
-            //    EnableGravity();
-            //}
         }
 
         private void FixedUpdate()
@@ -57,7 +49,7 @@ namespace BrawlingToys.Actors
             // PlayerWeapon possui Stats e avisa como a bala deve se mover
             // if (IsOwner) _bulletOwner.Weapon.MoveBehaviour();
 
-            if (IsOwner) _rb.velocity = _speed * _bulletPower * _direction;
+            if (IsOwner) _rb.velocity = (_speed * _bulletPower * _direction) + _gravityScale * Physics.gravity;
         }
 
         private void DestroyEffect()

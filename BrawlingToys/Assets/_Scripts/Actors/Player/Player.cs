@@ -33,7 +33,7 @@ namespace BrawlingToys.Actors
         public State CurrentState { get => _currentState; }
         public PlayerWeapon Weapon { get => _weapon; }
         public MMFeedbacks ShootFeedback { get => _shootFeedback; }
-        public int DashCount { get; set; }
+        [field: SerializeField] public int DashCount { get; set; }
 
         #endregion
 
@@ -173,7 +173,7 @@ namespace BrawlingToys.Actors
 
         public void ApplyModifier()
         {
-            _stats.ModifyStat(modifier, _stats.CurrentHitEffect);
+            _stats.ModifyStat(modifier, 1);
         }
 
         private void OnDrawGizmos()

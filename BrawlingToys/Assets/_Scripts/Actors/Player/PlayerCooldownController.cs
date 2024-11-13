@@ -53,30 +53,12 @@ namespace BrawlingToys.Actors
 
         public void UpdateCooldowns()
         {
-            if (meleeTimer.IsRunning)
-            {
-                meleeTimer.Tick(Time.deltaTime);
-            }
-
-            if (dashTimer1.IsRunning)
-            {
-                dashTimer1.Tick(Time.deltaTime);
-            }
-
-            if (dashTimer2.IsRunning)
-            {
-                dashTimer2.Tick(Time.deltaTime);
-            }
-
-            if (reloadTimer.IsRunning)
-            {
-                reloadTimer.Tick(Time.deltaTime);
-            }
-
-            if (fireRateTimer.IsRunning)
-            {
-                fireRateTimer.Tick(Time.deltaTime);
-            }
+            meleeTimer.Tick(Time.deltaTime);
+            dashTimer1.Tick(Time.deltaTime);
+            dashTimer2.Tick(Time.deltaTime);
+            dashTimer2.Tick(Time.deltaTime);
+            reloadTimer.Tick(Time.deltaTime);
+            fireRateTimer.Tick(Time.deltaTime);
         }
 
         private bool CompareValues(float currentValue, float newValue)

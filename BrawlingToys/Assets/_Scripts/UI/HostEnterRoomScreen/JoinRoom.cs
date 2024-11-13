@@ -135,6 +135,11 @@ namespace BrawlingToys.UI
                 playerCharacter.CharacterModel,
                 playerCharacter.CharacterIcon);
 
+            var combatSettings = _combatSettingsScreen.GetCombatSettings();
+
+            clientData.SetCombatSettings(combatSettings.BuffSpawnChance, combatSettings.DebuffSpawnChance,
+                combatSettings.PlayerLife, combatSettings.RequiredPointsToWin);
+
             OnNewPlayerJoined?.Invoke(clientData);
         }
     }
