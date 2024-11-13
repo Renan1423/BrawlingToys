@@ -8,7 +8,6 @@ using BrawlingToys.Actors;
 using Unity.Netcode;
 using UnityEngine.UI;
 using System.Linq;
-using Newtonsoft.Json;
 
 namespace BrawlingToys.UI
 {
@@ -42,41 +41,22 @@ namespace BrawlingToys.UI
         {
             if (_nameInputValidator.CheckNameValidation())
             {
-                //ToggleButtons(false);
-                Debug.Log("Creating run");
+                if(!Debug.isDebugBuild)
+                    ToggleButtons(false);
+
                 CreateParty(OnPartyCreatedCallback);
             }
         }
 
         private void OnPartyCreatedCallback(string partyCode) 
         {
-            Debug.Log("PartyCreatedCallback");
-            
+            ScreenManager.instance.ToggleScreenByTag(TagManager.CreateRoomMenu.WAITING_FOR_PLAYERS, true);
+
             var playerName = _nameInputValidator.InputFieldText; 
             var playerId = NetworkManager.LocalClientId; 
             var characterGUID = _characterSelectionScreen.GetChosenCharacterData().ChosenCharacterPrefab.AssetGUID;
-
-            var playerInfo = new NetworkSerializedPlayerInfo(
-                playerName,
-                playerId,
-                characterGUID
-            ); 
-
-            var playerInfoJSON = JsonConvert.SerializeObject(playerInfo);
-
-            var uiMatchData = _combatSettingsScreen.GetCombatSettings(); 
-            var matchInfo = new NetworkSerializedMatchInfo(
-                uiMatchData.BuffSpawnChance,
-                uiMatchData.DebuffSpawnChance,
-                uiMatchData.PlayerLife,
-                uiMatchData.RequiredPointsToWin
-            );  
-
-            var matchInfoJSON = JsonConvert.SerializeObject(matchInfo); 
             
-            JoinPartyServerRpc(playerInfoJSON, matchInfoJSON); 
-
-            ScreenManager.instance.ToggleScreenByTag(TagManager.CreateRoomMenu.WAITING_FOR_PLAYERS, true);
+            JoinPartyServerRpc(playerName, playerId, characterGUID); 
 
             WaitingForPlayersScreen waitingForPlayersScreen = FindObjectOfType<WaitingForPlayersScreen>();
             waitingForPlayersScreen.InitializeWaitingRoom(partyCode, _nameInputValidator.InputFieldText);
@@ -85,37 +65,22 @@ namespace BrawlingToys.UI
         }
 
         [ServerRpc]
-        private void JoinPartyServerRpc(string playerInfoJSON, string matchInfoJSON)
+        private void JoinPartyServerRpc(string playerName, ulong playerId, string characterAssetGUID)
         {
-            var playerInfo = JsonConvert.DeserializeObject<NetworkSerializedPlayerInfo>(playerInfoJSON); 
-            var matchInfo = JsonConvert.DeserializeObject<NetworkSerializedMatchInfo>(matchInfoJSON); 
-            
             var clientDataGO = Instantiate(_playerClientData);
 
-            clientDataGO.name = $"{playerInfo.PlayerName}PlayerClientData"; 
+            clientDataGO.name = $"{playerName}PlayerClientData"; 
 
             var clientData = clientDataGO.GetComponent<PlayerClientData>();
 
-            clientData.SetPlayerData(playerInfo.PlayerId, playerInfo.PlayerName);
+            clientData.SetPlayerData(playerId, playerName);
 
-            var playerCharacter = _characterSelectionScreen.PlayableCharacters.First(pc => pc.CharacterModel.AssetGUID == playerInfo.CharacterAssetGUID); 
+            var playerCharacter = _characterSelectionScreen.PlayableCharacters.First(pc => pc.CharacterModel.AssetGUID == characterAssetGUID); 
+            Debug.Log($"Asset GUID: {playerCharacter.CharacterModel.AssetGUID}");
 
-            clientData.SetPlayerCharacter(
-                playerCharacter.CharacterName,
+            clientData.SetPlayerCharacter(playerCharacter.CharacterName,
                 playerCharacter.CharacterModel,
                 playerCharacter.CharacterIcon);
-            
-            clientData.SetCombatSettings(
-                buffSpawnChance: matchInfo.BuffSpawnChance,
-                debuffSpawnChance: matchInfo.DebuffSpawnChance,
-                playerLife: matchInfo.PlayerLife,
-                requiredPointsToWin: matchInfo.RequiredPointsToWin
-            ); 
-
-            var combatSettings = _combatSettingsScreen.GetCombatSettings();
-
-            clientData.SetCombatSettings(combatSettings.BuffSpawnChance, combatSettings.DebuffSpawnChance,
-                combatSettings.PlayerLife, combatSettings.RequiredPointsToWin);
 
             PlayerClientDatasManager.LocalInstance.AddPlayerClientData(clientData);
         }
