@@ -112,6 +112,11 @@ namespace BrawlingToys.UI
                 requiredPointsToWin: matchInfo.RequiredPointsToWin
             ); 
 
+            var combatSettings = _combatSettingsScreen.GetCombatSettings();
+
+            clientData.SetCombatSettings(combatSettings.BuffSpawnChance, combatSettings.DebuffSpawnChance,
+                combatSettings.PlayerLife, combatSettings.RequiredPointsToWin);
+
             PlayerClientDatasManager.LocalInstance.AddPlayerClientData(clientData);
         }
 

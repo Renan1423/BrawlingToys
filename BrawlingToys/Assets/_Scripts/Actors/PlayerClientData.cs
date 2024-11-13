@@ -36,7 +36,9 @@ namespace BrawlingToys.Actors
 
         public void SetPlayerCharacter(string characterName, AssetReference characterModelPrefab, Sprite characterIcon) 
         {
+            SelectedCharacterName = characterName;
             SelectedCharacterPrefab = characterModelPrefab;
+            SelectedCharacterSprite = characterIcon;
         }
 
         public void SetCombatSettings(float buffSpawnChance, float debuffSpawnChance, int playerLife, int requiredPointsToWin) 

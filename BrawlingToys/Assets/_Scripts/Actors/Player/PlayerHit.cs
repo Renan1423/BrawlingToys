@@ -17,7 +17,7 @@ namespace BrawlingToys.Actors
         public float CollateralChance { get => _collateralDamageChance; }
 
         private Player _player;
-        private int _maxLife = 0;
+        private int _maxLife = 1;
         private int _currentLife;
 
         [Header("Knockback Stuff")]
@@ -118,6 +118,12 @@ namespace BrawlingToys.Actors
             }
 
             KnockBackServerRpc(hitBullet.transform.forward);
+        }
+
+        public void SetPlayerMaxLife(int value) 
+        {
+            _maxLife = value;
+            ResetHitStats();
         }
 
         //public void PlayerKnockback(Player hitPlayer) {

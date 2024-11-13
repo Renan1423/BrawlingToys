@@ -12,6 +12,7 @@ namespace BrawlingToys.Actors
 
         private float _currentSpeed;
         private Vector3 _currentVelocity;
+        private Vector3 _stepFeedbackOffset = new Vector3(0, 0, 0.1f);
 
         protected override void EnterState()
         {
@@ -31,13 +32,11 @@ namespace BrawlingToys.Actors
         {
             CalculateVelocity();
             SetVelocity();
-
-            _stepFeedback.forward = -1 * _currentVelocity;
-
+            
             if (_currentSpeed < .01f)
-            {
                 _player.TransitionToState(_player.StateFactory.GetState(StateFactory.StateType.Idle));
-            }
+            
+            _stepFeedback.forward = (-1 * _currentVelocity) + _stepFeedbackOffset;
         }
 
         public override void FixedUpdateState()
