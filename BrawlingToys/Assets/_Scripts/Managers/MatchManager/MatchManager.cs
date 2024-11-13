@@ -82,6 +82,7 @@ namespace BrawlingToys.Managers
                 {
                     SpawnPlayerPrefsServerRpc();
                     GeneratePlayersRoundInfo();
+                    ApplyMatchSettingsServerRpc(); 
                     CallPlayerSpawnCallbacksClientRpc();
                 }
 
@@ -131,9 +132,28 @@ namespace BrawlingToys.Managers
             }
 
             SpawnPlayerModelsClientRpc();
-            SetupPlayerHealthClientRpc();
 
             _playersSpawned = true;
+        }
+
+        [ServerRpc]
+        private void ApplyMatchSettingsServerRpc()
+        {
+            var hostClientData = PlayerClientDatasManager.LocalInstance.PlayerClientDatas
+                .First(cd => cd.PlayerID == 0); 
+
+            var livesToApply = hostClientData.PlayerLife; 
+            ApplyPlayerMaxLivesClientRpc(livesToApply); 
+        }
+
+        [ClientRpc]
+        private void ApplyPlayerMaxLivesClientRpc(int livesToApply)
+        {
+            var localPlayerGO = MatchPlayers
+                .First(p => p.PlayerId == NetworkManager.Singleton.LocalClientId); 
+
+            var hit = localPlayerGO.GetComponent<PlayerHit>();
+            hit.SetPlayerMaxLife(livesToApply);  
         }
 
         [ClientRpc]
@@ -146,16 +166,6 @@ namespace BrawlingToys.Managers
         private void CallPlayerSpawnCallbacksClientRpc()
         {
             OnPlayersSpawned?.Invoke();
-        }
-
-        [ClientRpc]
-        private void SetupPlayerHealthClientRpc() 
-        {
-            Player _localPlayer = Player.Instances.First(p => p.IsOwner);
-            PlayerClientData clientData = PlayerClientDatasManager.LocalInstance.PlayerClientDatas.First(p => p.PlayerID == _localPlayer.PlayerId);
-
-            PlayerHit ph = _localPlayer.GetComponent<PlayerHit>();
-            ph.SetPlayerMaxLife(clientData.PlayerLife);
         }
 
         [ServerRpc(RequireOwnership = false)]

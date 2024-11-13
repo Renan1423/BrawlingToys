@@ -123,7 +123,8 @@ namespace BrawlingToys.Actors
         public void SetPlayerMaxLife(int value) 
         {
             _maxLife = value;
-            ResetHitStats();
+            _currentLife = _maxLife; 
+            // ResetHitStats();
         }
 
         //public void PlayerKnockback(Player hitPlayer) {

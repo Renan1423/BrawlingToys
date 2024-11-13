@@ -168,8 +168,6 @@ namespace BrawlingToys.UI
             var totalClientsPlaying = MatchManager.LocalInstance.MatchPlayers.Length;
             var totalClientsFinished = _serverCompletedSelectionClients;
 
-            Debug.Log(totalClientsFinished); 
-
             Debug.Log($"Total clients finished: {totalClientsFinished} - Total clients player: {totalClientsPlaying}"); 
 
             if(totalClientsPlaying == totalClientsFinished)
@@ -182,6 +180,7 @@ namespace BrawlingToys.UI
         private void CloseScreenClientRpc()
         {
             ScreenManager.instance.ToggleScreenByTag(ScreenName, false);
+            _serverCompletedSelectionClients = 0; 
         }
 
         #endregion
