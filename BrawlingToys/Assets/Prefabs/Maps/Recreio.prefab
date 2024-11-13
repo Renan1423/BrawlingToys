@@ -1907,8 +1907,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3987561224527748595}
   - {fileID: 6774989145177319691}
+  - {fileID: 3987561224527748595}
   - {fileID: 7557988198887784949}
   - {fileID: 4090649199097663659}
   - {fileID: 3660089863996945041}
@@ -1979,7 +1979,7 @@ GameObject:
   - component: {fileID: 6774989145177319691}
   m_Layer: 0
   m_Name: SpawnPoints
-  m_TagString: Untagged
+  m_TagString: Spawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

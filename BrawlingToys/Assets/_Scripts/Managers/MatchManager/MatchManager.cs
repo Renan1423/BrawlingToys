@@ -6,6 +6,7 @@ using BrawlingToys.Actors;
 using BrawlingToys.Network;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace BrawlingToys.Managers
 {
@@ -118,6 +119,7 @@ namespace BrawlingToys.Managers
             bool RoundIsEnded() => _playerMatchInfo.Count - _deadPlayersCount <= 1; 
         }
 
+        
         [ServerRpc]
         private void SpawnPlayerPrefsServerRpc()
         {
