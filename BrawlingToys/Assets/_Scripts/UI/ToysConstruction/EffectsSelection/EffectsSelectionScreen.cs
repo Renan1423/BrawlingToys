@@ -51,6 +51,7 @@ namespace BrawlingToys.UI
         
         protected override void OnScreenEnable()
         {
+            Debug.Log("Enable"); 
             _serverCompletedSelectionClients = 0;
             DrawScreen();
         }
@@ -166,6 +167,8 @@ namespace BrawlingToys.UI
 
             var totalClientsPlaying = MatchManager.LocalInstance.MatchPlayers.Length;
             var totalClientsFinished = _serverCompletedSelectionClients;
+
+            Debug.Log(totalClientsFinished); 
 
             Debug.Log($"Total clients finished: {totalClientsFinished} - Total clients player: {totalClientsPlaying}"); 
 
