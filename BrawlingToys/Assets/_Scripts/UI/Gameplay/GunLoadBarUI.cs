@@ -1,10 +1,11 @@
 using UnityEngine;
 using BrawlingToys.Actors;
 using UnityEngine.UI;
+using Unity.Netcode;
 
 namespace BrawlingToys.UI
 {
-    public class GunLoadBarUI : MonoBehaviour
+    public class GunLoadBarUI : NetworkBehaviour
     {
         [SerializeField] private Player _player;
 
@@ -15,13 +16,22 @@ namespace BrawlingToys.UI
 
         private void Start()
         {
+            if (!IsOwner)
+            {
+                Destroy(gameObject); 
+                return;
+            }
+
             _player.OnPlayerInitialize.AddListener(Player_OnPlayerInitilize);
         }
 
-        private void OnDestroy()
+        public override void OnDestroy()
         {
-            _player.Weapon.OnUpdateCursorPosition -= PlayerWeapon_OnUpdateCursorPosition;
-            _player.Weapon.OnBulletPowerChange -= PlayerWeapon_OnBulletPowerChange;
+            if(IsOwner)
+            {
+                _player.Weapon.OnUpdateCursorPosition -= PlayerWeapon_OnUpdateCursorPosition;
+                _player.Weapon.OnBulletPowerChange -= PlayerWeapon_OnBulletPowerChange;
+            }
         }
 
         private void Player_OnPlayerInitilize(Player player)
