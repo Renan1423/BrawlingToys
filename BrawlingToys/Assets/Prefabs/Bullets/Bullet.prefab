@@ -102,14 +102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7804986951b1aa41b3f923e05aa2a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 25
-  _gravityScale: 0.15
-  _groundMask:
-    serializedVersion: 2
-    m_Bits: 128
-  _hitableMask:
-    serializedVersion: 2
-    m_Bits: 576
+  _constSpeed: 15
+  _buffSpeed: 15
+  _gravityScale: 0.035
 --- !u!114 &7370898667392008511
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -126,7 +126,7 @@ namespace BrawlingToys.Managers
 
             foreach (var clientId in clientIds)
             {
-                var playerInstance = Instantiate(_playerPrefab);
+                var playerInstance = Instantiate(_playerPrefab, new Vector3(0f, 2f, 0f), Quaternion.identity);
 
                 playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
             }
