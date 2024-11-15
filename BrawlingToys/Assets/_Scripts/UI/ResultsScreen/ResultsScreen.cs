@@ -146,7 +146,7 @@ namespace BrawlingToys.UI
         }
 
         //public int GetRequiredScoreToWin() => PlayerClientDatasManager.LocalInstance.PlayerClientDatas[0].RequiredPointsToWin;
-        public int GetRequiredScoreToWin() => 10;
+        public int GetRequiredScoreToWin() => 15;
 
         #region Network Actions
 
