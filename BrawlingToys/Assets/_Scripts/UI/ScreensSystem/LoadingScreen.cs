@@ -30,29 +30,38 @@ namespace BrawlingToys.UI
 
         protected override async void OnScreenEnable()
         {
-            await CanStartNewRoundAlternate();
+            await CanStartNewRound();
             SpawnMapAndGetPoints();
             Instantiate(bonecoTeste, _spawnPoints[0]);
+        }
 
+        public void SpawnMapAndGetPoints(){
+            if (_currentMap != null){
+                Destroy(_currentMap);
+                _currentMap = null;
+            }
+            _currentMap = Instantiate(_currentMapHandle.Result);
+            GetSpawnPoints(_currentMap);
+        }
+        
+        //Método criado para fins de teste
+        public async void RnadimoizaMap(){
+            await RandomizeMap();
         }
 
         private void GetSpawnPoints(GameObject map){
+            _spawnPoints.Clear();
             Transform _spawns = map.transform.GetChild(0);
             foreach (Transform spawn in _spawns){
                 if (spawn.tag == "Spawn") { _spawnPoints.Add(spawn); }
             }
         }
 
-        private void SpawnMapAndGetPoints(){
-            if (_currentMap != null){
-                _currentMap = null;
-            }
-            _currentMap = Instantiate(_currentMapHandle.Result);
-            GetSpawnPoints(_currentMap);
-        }
-
 
     #region Métodos assíncronos 
+        /*
+        Randomiza o mapa a ser instanciado a partir de uma List<AssetReference>
+        */
         private async Task RandomizeMap(){
             try
             { 
@@ -74,6 +83,7 @@ namespace BrawlingToys.UI
             }
         }
 
+        //Este método checaria se os players foram carregados assincronamente com sucesso
         private async Task ArePlayersLoaded(){
             try
             {
@@ -84,22 +94,16 @@ namespace BrawlingToys.UI
 
             }
         }
-
+        //Este método checaria se os players foram instanciados na cena com sucesso
         private async Task ArePlayersSpawned(){
 
         }
 
+        /*
+        Checa se as três Tasks assíncronas (randomização de mapa, carregamento de jogadores e 
+        instanciação de jogadores) foram completadas antes de devolver true ou false
+        */
         private async Task<bool> CanStartNewRound(){
-            try{
-            await Task.WhenAll(RandomizeMap(), ArePlayersLoaded(), ArePlayersSpawned());
-            return true;
-
-            } catch (System.Exception){
-                throw;
-            }
-        }
-
-        private async Task<bool> CanStartNewRoundAlternate(){
             bool isMapLoaded = await TryAsyncTask(RandomizeMap, "Randomização de mapas");
             bool arePlayersLoaded = await TryAsyncTask(ArePlayersLoaded, "Carregamento de jogadores");
             bool arePlayersSpawned = await TryAsyncTask(ArePlayersSpawned, "Instanciação de jogadores");
@@ -111,6 +115,11 @@ namespace BrawlingToys.UI
             }
         }
 
+        /*
+        Checa se uma Task assíncrona foi realizada com sucesso antes de devolver true ou false.
+        Após uma tentativa falha, dá um delay de 500ms antes de tentar novamente; depois de três
+        tentativas retorna false.
+        */
         private async Task<bool> TryAsyncTask(Func<Task> taskFunc, string taskName){
         for (int attempt = 1; attempt <= 3; attempt++)
         {
