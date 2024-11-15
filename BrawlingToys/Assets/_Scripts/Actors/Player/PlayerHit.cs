@@ -68,6 +68,8 @@ namespace BrawlingToys.Actors
         {
             if (_invulnerabilityTimer.IsRunning)
                 return;
+            
+            _player.MyKiller = sender.GetComponent<Player>(); // Gambiarra sinsitra para pegar a ref do killer, dps se for ter a vida do jogaodor mudar isso :) 
             base.GetHit(sender, hitCommand);
         }
 
@@ -80,7 +82,7 @@ namespace BrawlingToys.Actors
         public void PlayerDie()
         {
             _currentLife--;
-            OnPlayerLifeChange?.Invoke(_currentLife);
+            OnPlayerLifeChange?.Invoke(_currentLife); 
             
             if(_currentLife <= 0)
                 DieServerRpc();
