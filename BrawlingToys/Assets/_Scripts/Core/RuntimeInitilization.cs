@@ -42,8 +42,8 @@ namespace BrawlingToys.Core
         {
             #if !UNITY_EDITOR
                 Application.targetFrameRate = 25; 
-                QualitySettings.shadows = ShadowQuality.Disable;
-                QualitySettings.SetQualityLevel(4);
+                //QualitySettings.shadows = ShadowQuality.Disable;
+                //QualitySettings.SetQualityLevel(4);
             #endif
         }
     }

@@ -68,6 +68,8 @@ namespace BrawlingToys.Actors
         {
             if (_invulnerabilityTimer.IsRunning)
                 return;
+            
+            _player.MyKiller = sender.GetComponent<Player>();
             base.GetHit(sender, hitCommand);
         }
 
