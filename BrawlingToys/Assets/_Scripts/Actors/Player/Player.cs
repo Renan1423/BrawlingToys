@@ -179,7 +179,7 @@ namespace BrawlingToys.Actors
         private void OnDrawGizmos()
         {
             Gizmos.color = _aimColor;
-            Gizmos.DrawSphere(_hitInfo.point, .5f);
+            Gizmos.DrawSphere(_weapon.HitInfo.point, .5f);
         }
     }
 }
