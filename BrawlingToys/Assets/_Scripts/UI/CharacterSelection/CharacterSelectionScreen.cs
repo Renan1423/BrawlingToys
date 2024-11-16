@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.AddressableAssets;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -13,7 +12,7 @@ namespace BrawlingToys.UI
     public struct CharacterSelectionData
     {
         public string CharacterName;
-        public AssetReference CharacterModel;
+        public GameObject CharacterModel;
         public Sprite CharacterIcon;
         public Color CharacterColor;
     }
@@ -22,10 +21,10 @@ namespace BrawlingToys.UI
     public struct ChosenCharacterData
     {
         public string CharacterName { get; private set; }
-        public AssetReference ChosenCharacterPrefab { get; private set; }
+        public GameObject ChosenCharacterPrefab { get; private set; }
         public Sprite CharacterIcon { get; private set; }
 
-        public ChosenCharacterData(string characterName, AssetReference chosenCharacterPrefab, Sprite characterIcon)
+        public ChosenCharacterData(string characterName, GameObject chosenCharacterPrefab, Sprite characterIcon)
         {
             CharacterName = characterName;
             ChosenCharacterPrefab = chosenCharacterPrefab;
@@ -154,12 +153,5 @@ namespace BrawlingToys.UI
         }
 
         private void CancelCharacterSelection() { }
-
-
-        //Triggers the position of the RawImage that shows the character's entire body
-        public void ToggleSkinView() 
-        { 
-            
-        }
     }
 }

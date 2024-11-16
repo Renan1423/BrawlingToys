@@ -153,7 +153,7 @@ namespace BrawlingToys.UI
             clientData.SetPlayerData(playerInfo.PlayerId, playerInfo.PlayerName);
 
             var playerCharacter = _characterSelectionScreen.PlayableCharacters
-                .First(pc => pc.CharacterModel.AssetGUID == playerInfo.CharacterAssetGUID); 
+                .First(pc => pc.CharacterModel.name == playerInfo.CharacterAssetName); 
 
             clientData.SetPlayerCharacter(playerCharacter.CharacterName,
                 playerCharacter.CharacterModel,
@@ -178,7 +178,7 @@ namespace BrawlingToys.UI
             clientData.SetPlayerData(playerInfo.PlayerId, playerInfo.PlayerName);
 
             var playerCharacter = _characterSelectionScreen.PlayableCharacters
-                .First(pc => pc.CharacterModel.AssetGUID == playerInfo.CharacterAssetGUID); 
+                .First(pc => pc.CharacterModel.name == playerInfo.CharacterAssetName); 
 
             clientData.SetPlayerCharacter(playerCharacter.CharacterName,
                 playerCharacter.CharacterModel,
@@ -198,7 +198,7 @@ namespace BrawlingToys.UI
         {
             var playerName = _nameInputValidator.InputFieldText; 
             var playerId = NetworkManager.LocalClientId; 
-            var characterGUID = _characterSelectionScreen.GetChosenCharacterData().ChosenCharacterPrefab.AssetGUID; 
+            var characterGUID = _characterSelectionScreen.GetChosenCharacterData().ChosenCharacterPrefab.name; 
 
             var info = new NetworkSerializedPlayerInfo(
                 playerName,
