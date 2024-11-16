@@ -16,37 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: d295c94a50bace243a4ad87d1a2c4dc6
-  m_SerializeEntries:
-  - m_GUID: 0236c9afa4bd3a044b9453620691339d
-    m_Address: Assets/Animations/Player/Mecha/_PlayerMecha_OverrideAC.overrideController
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PlayerModelAnimations
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4ee0638d5984e2c488125f4982e76bf3
-    m_Address: Assets/Animations/Player/Mecha/Idle.anim
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PlayerModelAnimations
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 80e9cfd3c6908eb4588b1b5fdd1c75ba
-    m_Address: Assets/Animations/Player/Mecha/Melee.anim
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PlayerModelAnimations
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1aff799a800eed34698a14baae404b37
-    m_Address: Assets/Animations/Player/Mecha/Dash.anim
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PlayerModelAnimations
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c33f458c68b23304abbde5be1754ff8e
-    m_Address: Assets/Animations/Player/Mecha/Walk.anim
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PlayerModelAnimations
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 201f26c357ad10342b245e4c63266640, type: 2}
   m_SchemaSet:

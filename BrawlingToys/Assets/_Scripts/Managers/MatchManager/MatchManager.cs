@@ -13,46 +13,46 @@ namespace BrawlingToys.Managers
     public class MatchManager : NetworkSingleton<MatchManager>
     {
         [SerializeField]
-        private GameObject _playerPrefab; 
-        
+        private GameObject _playerPrefab;
+
         private Dictionary<Player, PlayerRoundInfo> _playerMatchInfo = new();
         private int _deadPlayersCount = 0;
 
         private bool _playersSpawned = false;
 
-        public Player[] MatchPlayers { get 
-        {            
-            return _playerMatchInfo.Keys.ToArray();  
-        } }
+        public Player[] MatchPlayers { get
+            {
+                return _playerMatchInfo.Keys.ToArray();
+            } }
 
         public Dictionary<Player, PlayerRoundInfo> PlayerMatchInfo { get => _playerMatchInfo; }
-        
-        public event Action OnPlayersSpawned; 
+
+        public event Action OnPlayersSpawned;
 
         private void Start()
         {
             SubscribeEvents();
-            MusicManager.Instance.ChangeMusic(1);
+            //MusicManager.Instance.ChangeMusic(1);
         }
 
         private void SubscribeEvents()
         {
-            GameManager.LocalInstance.OnGameStateChange.AddListener(TrySetupCombatState); 
+            GameManager.LocalInstance.OnGameStateChange.AddListener(TrySetupCombatState);
         }
 
         private void GeneratePlayersRoundInfo()
         {
             foreach (var clientId in NetworkManager.Singleton.ConnectedClientsIds)
             {
-                var client = NetworkManager.Singleton.ConnectedClients.GetValueOrDefault(clientId); 
-                var playerPref = client.PlayerObject; 
+                var client = NetworkManager.Singleton.ConnectedClients.GetValueOrDefault(clientId);
+                var playerPref = client.PlayerObject;
 
-                var player = playerPref.GetComponent<Player>(); 
+                var player = playerPref.GetComponent<Player>();
 
                 player.OnPlayerKill.AddListener(RegisterKill);
                 player.OnPlayerDeath.AddListener(RegisterDeath);
 
-                var roundInfo = new PlayerRoundInfo(0, true); 
+                var roundInfo = new PlayerRoundInfo(0, true);
 
                 _playerMatchInfo.Add(player, roundInfo);
 
@@ -60,18 +60,18 @@ namespace BrawlingToys.Managers
                         .Keys
                         .Select(p => p.PlayerId)
                         .ToArray();
-                
+
                 var serializedKills = _playerMatchInfo
                         .Values
                         .Select(i => i.KillsAmount)
-                        .ToArray(); 
-                    
-                    var serializedSurvivals = _playerMatchInfo
-                        .Values
-                        .Select(i => i.IsSurvivor)
                         .ToArray();
 
-                SyncMatchPlayersServerRpc(serializedIds, serializedKills, serializedSurvivals); 
+                var serializedSurvivals = _playerMatchInfo
+                    .Values
+                    .Select(i => i.IsSurvivor)
+                    .ToArray();
+
+                SyncMatchPlayersServerRpc(serializedIds, serializedKills, serializedSurvivals);
             }
         }
 
@@ -79,15 +79,16 @@ namespace BrawlingToys.Managers
         {
             if (newGameState == GameStateType.Combat && NetworkManager.Singleton.IsHost)
             {
-                if(!_playersSpawned)
+                if (!_playersSpawned)
                 {
                     SpawnPlayerPrefsServerRpc();
-                    GeneratePlayersRoundInfo();  
-                    CallPlayerSpawnCallbacksClientRpc(); 
+                    GeneratePlayersRoundInfo();
+                    ApplyMatchSettingsServerRpc(); 
+                    CallPlayerSpawnCallbacksClientRpc();
                 }
 
-                ResetMatchInfoServerRpc(); 
-                EnablePlayersServerRpc(); 
+                ResetMatchInfoServerRpc();
+                EnablePlayersServerRpc();
             }
         }
 
@@ -111,42 +112,62 @@ namespace BrawlingToys.Managers
 
         private void CheckMatchEnd()
         {
-            if(RoundIsEnded())
-            {   
-                FinishRoundServerRpc(); 
+            if (RoundIsEnded())
+            {
+                FinishRoundServerRpc();
             }
 
-            bool RoundIsEnded() => _playerMatchInfo.Count - _deadPlayersCount <= 1; 
+            bool RoundIsEnded() => _playerMatchInfo.Count - _deadPlayersCount <= 1;
         }
 
         
         [ServerRpc]
         private void SpawnPlayerPrefsServerRpc()
         {
-            var clientIds = NetworkManager.Singleton.ConnectedClientsIds; 
-            
+            var clientIds = NetworkManager.Singleton.ConnectedClientsIds;
+
             foreach (var clientId in clientIds)
             {
-                var playerInstance = Instantiate(_playerPrefab);
+                var playerInstance = Instantiate(_playerPrefab, new Vector3(0f, 2f, 0f), Quaternion.identity);
 
                 playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
             }
 
             SpawnPlayerModelsClientRpc();
 
-            _playersSpawned = true; 
+            _playersSpawned = true;
+        }
+
+        [ServerRpc]
+        private void ApplyMatchSettingsServerRpc()
+        {
+            var hostClientData = PlayerClientDatasManager.LocalInstance.PlayerClientDatas
+                .First(cd => cd.PlayerID == 0); 
+
+            var livesToApply = hostClientData.PlayerLife; 
+            ApplyPlayerMaxLivesClientRpc(livesToApply); 
+        }
+
+        [ClientRpc]
+        private void ApplyPlayerMaxLivesClientRpc(int livesToApply)
+        {
+            var localPlayerGO = MatchPlayers
+                .First(p => p.PlayerId == NetworkManager.Singleton.LocalClientId); 
+
+            var hit = localPlayerGO.GetComponent<PlayerHit>();
+            hit.SetPlayerMaxLife(livesToApply);  
         }
 
         [ClientRpc]
         private void SpawnPlayerModelsClientRpc()
         {
-            ModelSpawnManager.Instance.InstantietePlayersModels(); 
+            ModelSpawnManager.Instance.InstantietePlayersModels();
         }
 
         [ClientRpc]
         private void CallPlayerSpawnCallbacksClientRpc()
         {
-            OnPlayersSpawned?.Invoke(); 
+            OnPlayersSpawned?.Invoke();
         }
 
         [ServerRpc(RequireOwnership = false)]

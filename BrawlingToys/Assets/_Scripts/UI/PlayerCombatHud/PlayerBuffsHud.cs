@@ -11,14 +11,9 @@ namespace BrawlingToys.UI
         [SerializeField]
         private Transform _buffsHorizontalLayout;
 
-        public override void ShowPlayerCombatHud(GameStateType newGameState)
+        public override void ShowPlayerCombatHud(Player player)
         {
-            base.ShowPlayerCombatHud(newGameState);
-
-            if (NetworkManager.LocalClient.PlayerObject == null)
-                return;
-
-            Player player = NetworkManager.LocalClient.PlayerObject.GetComponent<Player>();
+            base.ShowPlayerCombatHud(player);
 
             if (player.Stats.Mediator.GetAppliedModifiers() == null)
                 return;
@@ -28,14 +23,6 @@ namespace BrawlingToys.UI
             foreach (ModifierScriptable mod in player.Stats.Mediator.GetAppliedModifiers())
             {
                 EffectIconGenerator.instance.CreateEffectIcon(mod, _buffsHorizontalLayout);
-            }
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.H)) 
-            {
-                ShowPlayerCombatHud(GameStateType.Combat);
             }
         }
 

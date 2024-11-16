@@ -3,26 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using BrawlingToys.Managers;
+using BrawlingToys.Actors;
+using System.Linq;
 
 namespace BrawlingToys.UI
 {
     public abstract class PlayerCombatHud : NetworkBehaviour
     {
-        protected virtual void OnEnable()
+        private void Awake()
         {
-            GameManager.LocalInstance.OnGameStateChange.AddListener(ShowPlayerCombatHud);
+            MatchManager.LocalInstance.OnPlayersSpawned += InitializePlayer;
         }
 
-        protected virtual void OnDisable()
+        private void InitializePlayer()
         {
-            GameManager.LocalInstance.OnGameStateChange.RemoveListener(ShowPlayerCombatHud);
+            Player localPlayer = Player.Instances.First(p => p.IsOwner);
+            ShowPlayerCombatHud(localPlayer);
         }
 
-        public virtual void ShowPlayerCombatHud(GameStateType newGameState) 
+        public virtual void ShowPlayerCombatHud(Player player) 
         {
-            return;
-            if (newGameState != GameStateType.Combat)
+            if (player == null) 
+            {
+                Debug.LogError("PlayerCombatHud: Player is null!");
                 return;
+            }
         }
     }
 }

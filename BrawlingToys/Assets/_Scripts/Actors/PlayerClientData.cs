@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.AddressableAssets;
+using BrawlingToys.Network;
 
 namespace BrawlingToys.Actors
 {
@@ -35,7 +36,9 @@ namespace BrawlingToys.Actors
 
         public void SetPlayerCharacter(string characterName, AssetReference characterModelPrefab, Sprite characterIcon) 
         {
+            SelectedCharacterName = characterName;
             SelectedCharacterPrefab = characterModelPrefab;
+            SelectedCharacterSprite = characterIcon;
         }
 
         public void SetCombatSettings(float buffSpawnChance, float debuffSpawnChance, int playerLife, int requiredPointsToWin) 
@@ -44,6 +47,29 @@ namespace BrawlingToys.Actors
             DebuffSpawnChance = debuffSpawnChance;
             PlayerLife = playerLife;
             RequiredPointsToWin = requiredPointsToWin;
+        }
+
+        public NetworkSerializedPlayerInfo GetPlayerInfoSerializedData()
+        {
+            var result = new NetworkSerializedPlayerInfo(
+                PlayerUsername,
+                PlayerID,
+                SelectedCharacterPrefab.AssetGUID
+            ); 
+
+            return result; 
+        }
+
+        public NetworkSerializedMatchInfo GetMatchInfoSerializedData()
+        {
+            var result = new NetworkSerializedMatchInfo(
+                BuffSpawnChance,
+                DebuffSpawnChance,
+                PlayerLife,
+                RequiredPointsToWin
+            ); 
+            
+            return result; 
         }
     }
 }

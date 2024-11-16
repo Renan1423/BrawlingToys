@@ -107,6 +107,8 @@ namespace BrawlingToys.UI
         {
             _equipEffectsSelectionScreen.SetDrawnEffect(_currentSurpriseBox.GetBuffDebuffInsideBox());
 
+            Debug.Log(_equipEffectsSelectionScreen.ScreenName);
+
             ScreenManager.instance.ToggleScreenByTag(ScreenName, false);
             ScreenManager.instance.ToggleScreenByTag(_equipEffectsSelectionScreen.ScreenName, true);
         }

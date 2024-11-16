@@ -28,8 +28,15 @@ namespace BrawlingToys.UI
 
         [SerializeField] private ModifiersDB _allModifiersDB;
 
+        [Header("Subscreens")]
+
+        [SerializeField] private GameObject _choiceScreen;
+        [SerializeField] private GameObject _waitScreen;
+
         private List<PlayerInfoPanel> _currentPanels = new(); 
-        private bool _panelsInstantiated = false; 
+        private bool _panelsInstantiated = false;
+
+        private int _serverCompletedSelectionClients;  
 
         private void Awake()
         {
@@ -44,6 +51,8 @@ namespace BrawlingToys.UI
         
         protected override void OnScreenEnable()
         {
+            Debug.Log("Enable"); 
+            _serverCompletedSelectionClients = 0;
             DrawScreen();
         }
 
@@ -57,6 +66,9 @@ namespace BrawlingToys.UI
 
         public void DrawScreen()
         {
+            _waitScreen.SetActive(false);
+            _choiceScreen.SetActive(true);
+            
             for (int i = 0; i < _players.Count; i++)
             {
                 var player = _players[i]; 
@@ -104,9 +116,12 @@ namespace BrawlingToys.UI
         {
             var playerSelected = playerInfoPanel.Player; 
             
-            SetModifierToPlayerServerRpc(playerSelected.PlayerId, _drawnEffect.Tag); 
-            
-            ScreenManager.instance.ToggleScreenByTag(ScreenName, false);
+            SetModifierToPlayerServerRpc(playerSelected.PlayerId, _drawnEffect.Tag);
+
+            _waitScreen.SetActive(true);
+            _choiceScreen.SetActive(false);
+
+            ResgisterCompletitionServerRpc(); 
         }
 
         #region Online Actions
@@ -122,6 +137,7 @@ namespace BrawlingToys.UI
         {
             foreach (var player in MatchManager.LocalInstance.MatchPlayers)
             {
+                Debug.Log($"Register {player.PlayerId} in the screen"); 
                 _players.Add(player);
             }
         }
@@ -142,6 +158,29 @@ namespace BrawlingToys.UI
 
             Debug.Log($"Adding modifier: {modifier.Tag} To {player.PlayerId}");
             player.Stats.Mediator.AddModifier(modifier); 
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void ResgisterCompletitionServerRpc()
+        {
+            _serverCompletedSelectionClients++; 
+
+            var totalClientsPlaying = MatchManager.LocalInstance.MatchPlayers.Length;
+            var totalClientsFinished = _serverCompletedSelectionClients;
+
+            Debug.Log($"Total clients finished: {totalClientsFinished} - Total clients player: {totalClientsPlaying}"); 
+
+            if(totalClientsPlaying == totalClientsFinished)
+            {
+                CloseScreenClientRpc(); 
+            }
+        }
+
+        [ClientRpc]
+        private void CloseScreenClientRpc()
+        {
+            ScreenManager.instance.ToggleScreenByTag(ScreenName, false);
+            _serverCompletedSelectionClients = 0; 
         }
 
         #endregion

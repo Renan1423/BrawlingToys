@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BrawlingToys.Actors;
+using UnityEngine.UI;
+using System.Linq;
 
 namespace BrawlingToys.UI
 {
@@ -11,33 +13,24 @@ namespace BrawlingToys.UI
         [SerializeField]
         private GameObject _hpPrefab;
         [SerializeField]
+        private Image _PlayerIcon;
+        [SerializeField]
         private Transform _hpHorizontalLayout;
         private List<HealthPoint> _hpsList;
 
-        protected override void OnEnable()
+        public override void ShowPlayerCombatHud(Player player)
         {
-            //base.OnEnable();
+            base.ShowPlayerCombatHud(player);
 
-            //PlayerHit player = NetworkManager.LocalClient.PlayerObject.GetComponent<PlayerHit>();
-            //player.OnPlayerLifeChange.AddListener(UpdateHealthHud);
-        }
+            PlayerClientData clientData = PlayerClientDatasManager.LocalInstance.PlayerClientDatas.First(p => p.PlayerID == player.PlayerId);
+            _PlayerIcon.sprite = clientData.SelectedCharacterSprite;
 
-        protected override void OnDisable()
-        {
-            //base.OnDisable();
+            PlayerHit playerHit = NetworkManager.LocalClient.PlayerObject.GetComponent<PlayerHit>();
 
-            //PlayerHit player = NetworkManager.LocalClient.PlayerObject.GetComponent<PlayerHit>();
-            //player.OnPlayerLifeChange.RemoveListener(UpdateHealthHud);
-        }
+            if(playerHit != null)
+                ShowHealthHud(playerHit.MaxLife);
 
-        public override void ShowPlayerCombatHud(GameStateType newGameState)
-        {
-            base.ShowPlayerCombatHud(newGameState);
-
-            //PlayerHit playerHit = NetworkManager.LocalClient.PlayerObject.GetComponent<PlayerHit>();
-
-            //if(playerHit != null)
-            //    ShowHealthHud(playerHit.MaxLife);
+            playerHit.OnPlayerLifeChange.AddListener(UpdateHealthHud);
         }
 
         private void ShowHealthHud(int playerHealth)

@@ -14,10 +14,10 @@ namespace BrawlingToys.Actors
 
         private readonly CountdownTimer _timer;
 
-        // Passar valor 0 ou negativo de duração ocasionará a duração infinita desse modificador.
+        // Passar valor 0 ou negativo de duraï¿½ï¿½o ocasionarï¿½ a duraï¿½ï¿½o infinita desse modificador.
         protected StatModifier(float duration)
         {
-            // Modificação permanente
+            // Modificaï¿½ï¿½o permanente
             if (duration <= 0)
                 return;
 
@@ -32,7 +32,7 @@ namespace BrawlingToys.Actors
 
         public void Dispose()
         {
-            // Cada StatModifier pode precisar de uma manipulação diferente quando os descartamos
+            // Cada StatModifier pode precisar de uma manipulaï¿½ï¿½o diferente quando os descartamos
             OnDispose?.Invoke(this);
         }
     }

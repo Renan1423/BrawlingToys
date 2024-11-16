@@ -70,6 +70,7 @@ namespace BrawlingToys.UI
         {
             if (e.screenName == ScreenName) 
             {
+                Debug.Log($"{e.screenName} - {e.active}");
                 CheckGameManagerCallbacks();
 
                 ToggleGraphicContainer(e.active);

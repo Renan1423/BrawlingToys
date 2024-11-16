@@ -648,7 +648,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 367791a40dab5c646a1e9205a8ca767d,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8986213877784630197}
+      addedObject: {fileID: 6143799045375216760}
   m_SourcePrefab: {fileID: 100100000, guid: 367791a40dab5c646a1e9205a8ca767d, type: 3}
 --- !u!1 &3484274899224120624 stripped
 GameObject:
@@ -690,14 +690,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4824767858332536047}
-  controller: {fileID: 22100000, guid: 0236c9afa4bd3a044b9453620691339d, type: 2}
   OnAnimationAction:
     m_PersistentCalls:
       m_Calls: []
   OnAnimationEnd:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8986213877784630197
+--- !u!114 &6143799045375216760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

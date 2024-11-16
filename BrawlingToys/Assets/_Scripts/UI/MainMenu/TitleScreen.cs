@@ -46,7 +46,6 @@ namespace BrawlingToys.UI
 
         private void CloseTitleScreen() 
         {
-            ScreenManager.instance.ToggleScreenByTag(TagManager.MainMenu.MAIN_MENU, true);
             _anim.SetTrigger("Close");
 
             StartCoroutine(CloseTitleScreenCoroutine());
@@ -54,8 +53,9 @@ namespace BrawlingToys.UI
 
         private IEnumerator CloseTitleScreenCoroutine() 
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
 
+            ScreenManager.instance.ToggleScreenByTag(TagManager.MainMenu.MAIN_MENU, true);
             this.gameObject.SetActive(false);
         }
 

@@ -34,7 +34,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: f3194fc65078da6478e95dfdcbe82442, type: 3}
         m_Scale: {x: 30, y: 15}
         m_Offset: {x: 1.5, y: 1.7}
     - _BumpMap:
@@ -170,7 +170,7 @@ Material:
     - _VertexExtrusionSmoothNormals: 0
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.41960785, g: 0.47450978, b: 0.44705886, a: 1}
+    - _BaseColor: {r: 0.1432097, g: 1, b: 0, a: 1}
     - _Color: {r: 0.41960788, g: 0.47450984, b: 0.44705886, a: 1}
     - _ColorCelShadow: {r: 0.38581347, g: 0.38787434, b: 0.9622642, a: 1}
     - _ColorDim: {r: 0.2509804, g: 0.2509804, b: 0.2901961, a: 1}
@@ -184,7 +184,7 @@ Material:
     - _DetailMapColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 4.9245777, g: 0, b: 0, a: 1}
     - _FlatRimColor: {r: 0.52358484, g: 0.6375387, b: 1, a: 1}
-    - _FlatSpecularColor: {r: 0.29582056, g: 0.4433962, b: 0.27775007, a: 1}
+    - _FlatSpecularColor: {r: 0, g: 1, b: 0.8893428, a: 1}
     - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
     - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
     - _UnityShadowColor: {r: 0.65, g: 0.65, b: 0.65, a: 1}

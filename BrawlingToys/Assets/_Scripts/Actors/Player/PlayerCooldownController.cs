@@ -8,7 +8,8 @@ namespace BrawlingToys.Actors
         private Player _player;
 
         public CountdownTimer meleeTimer;
-        public CountdownTimer dashTimer;
+        public CountdownTimer dashTimer1;
+        public CountdownTimer dashTimer2;
         public CountdownTimer reloadTimer;
         public CountdownTimer fireRateTimer;
 
@@ -22,9 +23,16 @@ namespace BrawlingToys.Actors
             _player.Stats.OnStatsChanged += Stats_OnStatsChanged;
 
             meleeTimer = new CountdownTimer(_player.Stats.MeleeCooldown);
-            dashTimer = new CountdownTimer(_player.Stats.DashCooldown);
+            dashTimer1 = new CountdownTimer(_player.Stats.DashCooldown);
+            dashTimer2 = new CountdownTimer(_player.Stats.DashCooldown);
             reloadTimer = new CountdownTimer(_player.Stats.ReloadTime);
             fireRateTimer = new CountdownTimer(_player.Stats.FireRate);
+
+            dashTimer1.OnTimerStart += () => _player.DashCount++;
+            dashTimer1.OnTimerStop += () => _player.DashCount--;
+
+            dashTimer2.OnTimerStart += () => _player.DashCount++;
+            dashTimer2.OnTimerStop += () => _player.DashCount--;
         }
 
         private void Stats_OnStatsChanged(StatType statType)
@@ -33,9 +41,6 @@ namespace BrawlingToys.Actors
             {
                 case StatType.MeleeCooldown:
                     meleeTimer.Reset(_player.Stats.MeleeCooldown);
-                    break;
-                case StatType.DashCooldown:
-                    dashTimer.Reset(_player.Stats.DashCooldown);
                     break;
                 case StatType.ReloadTime:
                     reloadTimer.Reset(_player.Stats.ReloadTime);
@@ -48,25 +53,12 @@ namespace BrawlingToys.Actors
 
         public void UpdateCooldowns()
         {
-            if (meleeTimer.IsRunning)
-            {
-                meleeTimer.Tick(Time.deltaTime);
-            }
-
-            if (dashTimer.IsRunning)
-            {
-                dashTimer.Tick(Time.deltaTime);
-            }
-
-            if (reloadTimer.IsRunning)
-            {
-                reloadTimer.Tick(Time.deltaTime);
-            }
-
-            if (fireRateTimer.IsRunning)
-            {
-                fireRateTimer.Tick(Time.deltaTime);
-            }
+            meleeTimer.Tick(Time.deltaTime);
+            dashTimer1.Tick(Time.deltaTime);
+            dashTimer2.Tick(Time.deltaTime);
+            dashTimer2.Tick(Time.deltaTime);
+            reloadTimer.Tick(Time.deltaTime);
+            fireRateTimer.Tick(Time.deltaTime);
         }
 
         private bool CompareValues(float currentValue, float newValue)

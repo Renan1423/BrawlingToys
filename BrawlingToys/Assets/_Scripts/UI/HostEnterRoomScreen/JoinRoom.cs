@@ -6,8 +6,9 @@ using BrawlingToys.Core;
 using BrawlingToys.Actors;
 using Unity.Netcode;
 using System;
-using UnityEngine.AddressableAssets;
 using System.Linq;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace BrawlingToys.UI
 {
@@ -70,72 +71,142 @@ namespace BrawlingToys.UI
 
                 ScreenManager.instance.ToggleScreenByTag(TagManager.CreateRoomMenu.CLIENT_WAITING_ROOM, true);
                 
-                var playerName = _nameInputValidator.InputFieldText; 
-                var playerId = NetworkManager.LocalClientId; 
-                var characterGUID = _characterSelectionScreen.GetChosenCharacterData().ChosenCharacterPrefab.AssetGUID; 
+                var playerInfo = GenerateSerializedPlayerInfo(); 
+                var playerInfoJSON = JsonConvert.SerializeObject(playerInfo); 
                 
-                JoinPartyServerRpc(playerName, playerId, characterGUID);
+                RegisterClientServerRpc(playerInfoJSON);
 
                 CloseScreen(0.25f);
             }
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void JoinPartyServerRpc(string playerName, ulong playerId, string characterAssetGUID) 
+        private void RegisterClientServerRpc(string playerInfoJSON) 
         {
-            MakeClientDataInstance(playerName, playerId, characterAssetGUID); 
-            Debug.Log($"server generating: {playerName}");
-
-            var clients = PlayerClientDatasManager.LocalInstance.PlayerClientDatas; 
-
-            var connectedPlayerIds = clients.Select(c => c.PlayerID).ToArray(); 
-            var connectedPlayerNames = string.Join(";", clients.Select(c => c.PlayerUsername));
-            var connectedPlayerCharacterAssetGUIDs = string.Join(";", clients.Select(c => c.SelectedCharacterPrefab.AssetGUID));
+            var playerInfo = JsonConvert
+                .DeserializeObject<NetworkSerializedPlayerInfo>(playerInfoJSON); 
             
-            Debug.Log($"Calling Rpc to sync: {PlayerClientDatasManager.LocalInstance.PlayerClientDatas.Count} Players");
-            JoinPartyClientRpc(connectedPlayerNames, connectedPlayerIds, connectedPlayerCharacterAssetGUIDs); 
+            MakeClientDataInstance(playerInfo); 
+
+            var clients = PlayerClientDatasManager.LocalInstance.PlayerClientDatas;
+
+            var clientPlayerDataSerialized = clients    
+               .Select(client => client.GetPlayerInfoSerializedData())
+               .ToArray(); 
+
+            var allPlayerInfosJSON = JsonConvert.SerializeObject(clientPlayerDataSerialized);
+
+            Debug.Log(allPlayerInfosJSON); 
+            
+            var matchInfo = clients
+                .First(c => c.PlayerID == 0)
+                .GetMatchInfoSerializedData(); 
+
+            var matchInfoJSON = JsonConvert.SerializeObject(matchInfo); 
+            
+            RegisterClientClientRpc(allPlayerInfosJSON, matchInfoJSON); 
         }
 
         [ClientRpc]
-        private void JoinPartyClientRpc(string playerNamesJoined, ulong[] playerIds, string characterAssetGUIDsJoined) 
+        private void RegisterClientClientRpc(string playerInfosJSON, string matchInfoJSON) 
         {
-            Debug.Log(playerNamesJoined);
-            var localData = PlayerClientDatasManager.LocalInstance.PlayerClientDatas; 
-            
-            var localDataClientsId = localData.Count == 0 
-            ? new ulong[0]
-            : localData.Select(ld => ld.PlayerID).ToArray(); 
+            Debug.Log(playerInfosJSON);
+            var playerInfos = JsonConvert
+                .DeserializeObject<NetworkSerializedPlayerInfo[]>(playerInfosJSON);
 
-            var playerNames = playerNamesJoined.Split(';');
-            var characterAssetGUIDs = characterAssetGUIDsJoined.Split(';');
+            var matchInfo = JsonConvert
+                .DeserializeObject<NetworkSerializedMatchInfo>(matchInfoJSON); 
             
-            for (int i = 0; i < playerIds.Length; i++)
+            var localData = PlayerClientDatasManager.LocalInstance.PlayerClientDatas; 
+            var localDataClientsId = localData
+                .Select(data => data.PlayerID)
+                .ToArray(); 
+            
+            for (int i = 0; i < playerInfos.Length; i++)
             {
-                if(!localDataClientsId.Contains(playerIds[i]))
+                var currentData = playerInfos[i]; 
+                
+                if(!localDataClientsId.Contains(currentData.PlayerId))
                 {
-                    MakeClientDataInstance(playerNames[i], playerIds[i], characterAssetGUIDs[i]); 
+                    if(IsHostPlayer(currentData.PlayerId))
+                    {
+                        MakeHostDataInstance(currentData, matchInfo); 
+                    }   
+                    else
+                    {
+                        MakeClientDataInstance(currentData); 
+                    }
                 }
             }
+
+            bool IsHostPlayer(ulong playerId) => playerId == 0; 
         }
 
-        private void MakeClientDataInstance(string playerName, ulong playerId, string characterAssetGUID)
+        private void MakeClientDataInstance(NetworkSerializedPlayerInfo playerInfo)
         {
             var clientDataGO = Instantiate(_playerClientDataPrefab);
 
-            clientDataGO.name = $"{playerName}PlayerClientData"; 
+            clientDataGO.name = $"{playerInfo.PlayerName}PlayerClientData"; 
 
             var clientData = clientDataGO.GetComponent<PlayerClientData>();
 
-            clientData.SetPlayerData(playerId, playerName);
+            clientData.SetPlayerData(playerInfo.PlayerId, playerInfo.PlayerName);
 
-            var playerCharacter = _characterSelectionScreen.PlayableCharacters.First(pc => pc.CharacterModel.AssetGUID == characterAssetGUID); 
-            Debug.Log($"Asset GUID: {playerCharacter.CharacterModel.AssetGUID}");
+            var playerCharacter = _characterSelectionScreen.PlayableCharacters
+                .First(pc => pc.CharacterModel.AssetGUID == playerInfo.CharacterAssetGUID); 
 
             clientData.SetPlayerCharacter(playerCharacter.CharacterName,
                 playerCharacter.CharacterModel,
                 playerCharacter.CharacterIcon);
 
+            var combatSettings = _combatSettingsScreen.GetCombatSettings();
+
+            clientData.SetCombatSettings(combatSettings.BuffSpawnChance, combatSettings.DebuffSpawnChance,
+                combatSettings.PlayerLife, combatSettings.RequiredPointsToWin);
+
             OnNewPlayerJoined?.Invoke(clientData);
+        }
+
+        private void MakeHostDataInstance(NetworkSerializedPlayerInfo playerInfo, NetworkSerializedMatchInfo matchInfo)
+        {
+            var clientDataGO = Instantiate(_playerClientDataPrefab);
+
+            clientDataGO.name = $"{playerInfo.PlayerName}PlayerClientData"; 
+
+            var clientData = clientDataGO.GetComponent<PlayerClientData>();
+
+            clientData.SetPlayerData(playerInfo.PlayerId, playerInfo.PlayerName);
+
+            var playerCharacter = _characterSelectionScreen.PlayableCharacters
+                .First(pc => pc.CharacterModel.AssetGUID == playerInfo.CharacterAssetGUID); 
+
+            clientData.SetPlayerCharacter(playerCharacter.CharacterName,
+                playerCharacter.CharacterModel,
+                playerCharacter.CharacterIcon);
+
+            clientData.SetCombatSettings(
+                matchInfo.BuffSpawnChance,
+                matchInfo.DebuffSpawnChance,
+                matchInfo.PlayerLife,
+                matchInfo.RequiredPointsToWin
+            ); 
+
+            OnNewPlayerJoined?.Invoke(clientData);
+        }
+
+        private NetworkSerializedPlayerInfo GenerateSerializedPlayerInfo()
+        {
+            var playerName = _nameInputValidator.InputFieldText; 
+            var playerId = NetworkManager.LocalClientId; 
+            var characterGUID = _characterSelectionScreen.GetChosenCharacterData().ChosenCharacterPrefab.AssetGUID; 
+
+            var info = new NetworkSerializedPlayerInfo(
+                playerName,
+                playerId,
+                characterGUID
+            ); 
+
+            return info; 
         }
     }
 }

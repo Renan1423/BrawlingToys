@@ -1,22 +1,19 @@
 using Unity.Netcode;
 using UnityEngine;
 using BrawlingToys.Core;
-using System.Linq;
 
 namespace BrawlingToys.Actors
 {
     public class Bullet : NetworkBehaviour
     {
-        public float Speed { get => _speed; }
+        public float Speed { get => _constSpeed; }
         public Rigidbody Rb { get => _rb; }
 
-        [SerializeField] private float _speed = 1f;
-        //[SerializeField] private float _lifespan = 1f;
+        [SerializeField] private float _constSpeed = 1f; 
+        [SerializeField] private float _buffSpeed = 2f;
 
-        [SerializeField] private LayerMask _groundMask;
-        [SerializeField] private LayerMask _hitableMask;
+        [SerializeField] private float _gravityScale = 0.5f;
 
-        private CountdownTimer _timer;
         private Rigidbody _rb;
         private float _bulletPower = 1f;
         private Vector3 _direction;
@@ -25,21 +22,11 @@ namespace BrawlingToys.Actors
         private void Start()
         {
             _rb = GetComponent<Rigidbody>();
-
-            //_timer = new CountdownTimer(_lifespan);
-            //_timer.Start();
         }
 
         private void Update()
         {
             _direction = transform.forward;
-
-            //_timer.Tick(Time.deltaTime);
-
-            //if (!_rb.useGravity && _timer.IsFinished)
-            //{
-            //    EnableGravity();
-            //}
         }
 
         private void FixedUpdate()
@@ -55,26 +42,12 @@ namespace BrawlingToys.Actors
 
         private void MoveBehaviour()
         {
-            // PlayerWeapon possui Stats e avisa como a bala deve se mover
-            // if (IsOwner) _bulletOwner.Weapon.MoveBehaviour();
-
-            if (IsOwner) _rb.velocity = _speed * _bulletPower * _direction;
+            if (IsOwner) _rb.velocity = (GetVelocity() * _direction) + _gravityScale * Physics.gravity;
         }
 
-        private void DestroyEffect()
+        private float GetVelocity()
         {
-            // PlayerWeapon possui Stats e avisa qual efeito a bala deve ter quando for destruida
-            // if (IsOwner) _bulletOwner.Weapon.DestroyEffect();
-        }
-
-        private void EnableGravity()
-        {
-            _rb.useGravity = true;
-        }
-
-        public void Parry(Player player) {
-            _bulletOwner = player;
-            transform.forward = player.transform.forward;
+            return _constSpeed + (_buffSpeed * _bulletPower); 
         }
 
         public void OnTriggerEnter(Collider other)
@@ -84,15 +57,16 @@ namespace BrawlingToys.Actors
                 hitable.GetHit(_bulletOwner.gameObject, _bulletOwner.Stats.CurrentHitEffect);
             }
 
-            if (other.CompareTag("Ground"))
+            Debug.Log($"Bullet Collision: {other.CompareTag("Ground") || other.CompareTag("Wall")}");
+            if (other.CompareTag("Ground") || other.CompareTag("Wall")) 
             {
+                Debug.Log($"passou");
                 DestroyBulletServerRpc();
             }
         } 
 
         protected bool ValidCollision(Collider other)
         {
-            //if (!IsOwner) return false; 
             if (other.gameObject == _bulletOwner.gameObject) return false;
 
             return true; 
@@ -101,13 +75,14 @@ namespace BrawlingToys.Actors
         [ServerRpc(RequireOwnership = false)]
         protected void DestroyBulletServerRpc()
         {
+            Debug.Log($"Server");
             DestroyBulletClientRpc();
         }
 
         [ClientRpc]
         protected void DestroyBulletClientRpc()
         {
-            DestroyEffect();
+            Debug.Log($"cliente");
             Destroy(gameObject);
         }
     }

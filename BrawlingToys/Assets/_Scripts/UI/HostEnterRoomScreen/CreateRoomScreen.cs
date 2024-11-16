@@ -41,7 +41,9 @@ namespace BrawlingToys.UI
         {
             if (_nameInputValidator.CheckNameValidation())
             {
-                //ToggleButtons(false);
+                if(!Debug.isDebugBuild)
+                    ToggleButtons(false);
+
                 CreateParty(OnPartyCreatedCallback);
             }
         }

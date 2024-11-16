@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TRex
+  m_Controller: {fileID: 9100000, guid: 25e7141fb8fdfa3448300a7ef00a0837, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: d39691d931c1a7d4a9b49d4b576dd360, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ae3b76dd9f3efcc4b95ff96027792251, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 531777dcf9670a74bb6926040acb86fa, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f940be5c606f9d24d9cda9611ae6fd64, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7338a1bebcbd23642864184db41be47e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e7c963cfa3bfe604187a08a27a1dbcad, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 728119d00b20ca94696f33974049a4ac, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 21fc8e26803e2df44bb06252b9c08a27, type: 2}
