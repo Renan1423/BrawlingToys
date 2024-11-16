@@ -27,7 +27,7 @@ namespace BrawlingToys.Actors
         public PlayerAnimations Animations { get => _animations; }
         public PlayerCooldownController Cooldowns { get => _cooldowns; }
         public Stats Stats { get => _stats; }
-        public Player MyKiller { get => _myKiller; }
+        public Player MyKiller { get => _myKiller; set => _myKiller = value; }
         public Rigidbody Rb { get => _rb; }
         public StateFactory StateFactory { get => _stateFactory; }
         public State CurrentState { get => _currentState; }
