@@ -48,7 +48,7 @@ Material:
     - _FadeRangeStart: 10
     - _NormalThresholdMax: 2
     - _NormalThresholdMin: 0
-    - _Thickness: 2
+    - _Thickness: 1
     m_Colors:
     - _EdgeColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
@@ -62,10 +62,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 130791d3e20646d2b6d81688877b0909, type: 3}
-  m_Name: MainMenu_Outline
+  m_Name: MainMenu_Outline_Medium
   m_EditorClassIdentifier: 
   edgeColor: {r: 0, g: 0, b: 0, a: 1}
-  thickness: 2
+  thickness: 1
   resolutionInvariant: 0
   fadeWithDistance: 0
   fadeRangeStart: 10
