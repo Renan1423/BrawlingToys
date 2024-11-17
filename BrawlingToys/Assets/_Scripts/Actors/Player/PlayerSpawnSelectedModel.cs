@@ -1,22 +1,25 @@
 using System;
-using System.Collections;
 using System.Linq;
-using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace BrawlingToys.Actors
 {
     public class PlayerSpawnSelectedModel : MonoBehaviour
     {
         [SerializeField] private Transform _modelFather; 
-        
-        public Action OnModelSpawed;
 
-        public void SetCharacterModel(GameObject refe)
+        public void SpawnCharacterModel(ulong playerId)
         {
-            GameObject playerModel = Instantiate(refe, _modelFather);
+            var allClientData = GameObject.FindObjectsOfType<PlayerClientData>();
+            var players = GameObject.FindObjectsOfType<Player>();
+            
+            var data = allClientData.First(data => data.PlayerID == playerId); 
+            var player = players.First(p => p.PlayerId == data.PlayerID);
+
+            var modelSpawner = player.GetComponent<PlayerSpawnSelectedModel>();
+            var modelRef = data.SelectedCharacterPrefab;
+            
+            GameObject playerModel = Instantiate(modelRef, _modelFather); 
         }
     }
 }

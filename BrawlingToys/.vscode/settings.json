@@ -232,6 +232,7 @@
         "Addressables",
         "Debuff",
         "Despawn",
+        "Lerp",
         "Rigidbody",
         "Yellowpaper"
     ]
