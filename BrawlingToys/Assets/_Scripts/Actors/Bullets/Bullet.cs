@@ -1,6 +1,6 @@
+using System;
 using Unity.Netcode;
 using UnityEngine;
-using BrawlingToys.Core;
 
 namespace BrawlingToys.Actors
 {
@@ -13,6 +13,10 @@ namespace BrawlingToys.Actors
         [SerializeField] private float _buffSpeed = 2f;
 
         [SerializeField] private float _gravityScale = 0.5f;
+
+        [Header("Clients Sync")]
+
+        [SerializeField] private GameObject _fakeBullet; 
 
         private Rigidbody _rb;
         private float _bulletPower = 1f;
@@ -57,10 +61,8 @@ namespace BrawlingToys.Actors
                 hitable.GetHit(_bulletOwner.gameObject, _bulletOwner.Stats.CurrentHitEffect);
             }
 
-            Debug.Log($"Bullet Collision: {other.CompareTag("Ground") || other.CompareTag("Wall")}");
             if (other.CompareTag("Ground") || other.CompareTag("Wall")) 
             {
-                Debug.Log($"passou");
                 DestroyBulletServerRpc();
             }
         } 
@@ -75,15 +77,25 @@ namespace BrawlingToys.Actors
         [ServerRpc(RequireOwnership = false)]
         protected void DestroyBulletServerRpc()
         {
-            Debug.Log($"Server");
-            DestroyBulletClientRpc();
+            SpawnFakeBulletClientRpc(); 
+
+            var no = GetComponent<NetworkObject>(); 
+            no.Despawn(); 
         }
 
         [ClientRpc]
-        protected void DestroyBulletClientRpc()
+        private void SpawnFakeBulletClientRpc()
         {
-            Debug.Log($"cliente");
-            Destroy(gameObject);
+            if(!IsHost)
+            {
+                var instancePosition = transform.position; 
+                var instanceRotation = transform.rotation; 
+
+                var fakeBullet = Instantiate(_fakeBullet, instancePosition, instanceRotation)
+                    .GetComponent<FakeBullet>(); 
+
+                fakeBullet.Init(GetVelocity(), _gravityScale); 
+            }
         }
     }
 }

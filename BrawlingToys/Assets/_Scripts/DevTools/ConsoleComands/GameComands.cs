@@ -1,3 +1,4 @@
+using System;
 using BrawlingToys.Managers;
 using IngameDebugConsole;
 using UnityEngine;
@@ -23,6 +24,18 @@ namespace BrawlingToys.DevTools
         public static void ChangeScreen(string screenName, bool active)
         {
             ScreenManager.instance.ToggleScreenByTag(screenName, active);
+        }
+
+        [ConsoleMethod("timescale", "Change Time Scale To:")]
+        public static void ChangeTimeScale(float value)
+        {
+            Time.timeScale = Mathf.Clamp01(value); 
+        }
+
+        [ConsoleMethod("framerate", "Change Time Scale To:")]
+        public static void ChangeFPS(int frameRate)
+        {
+            Application.targetFrameRate = frameRate; 
         }
     }
 }
