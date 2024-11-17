@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
 namespace BrawlingToys.UI
 {
@@ -15,18 +14,11 @@ namespace BrawlingToys.UI
         [SerializeField]
         private Transform _characterModelContainer;
 
-        public void SpawnCharacterModel(AssetReference modelPrefab) 
+        public void SpawnCharacterModel(GameObject modelPrefab) 
         {
             ClearCharacterModelContainer();
 
-            SpawnModelFromAssetReference(modelPrefab, _characterModelContainer);
-        }
-
-        public GameObject SpawnModelFromAssetReference(AssetReference characterAsset, Transform parent)
-        {
-            GameObject model = Addressables.InstantiateAsync(characterAsset, parent).Result;
-
-            return model;
+            Instantiate(modelPrefab, _characterModelContainer);
         }
 
         public void ClearCharacterModelContainer() 

@@ -98,7 +98,7 @@ namespace BrawlingToys.Managers
 
         public void RegisterKill(Player player)
         {
-            //Debug.Log($"Register kill, killer: {player.PlayerId}");
+            Debug.Log($"Register kill, killer: {player.PlayerId}");
             if (player == null)
                 return;
 
