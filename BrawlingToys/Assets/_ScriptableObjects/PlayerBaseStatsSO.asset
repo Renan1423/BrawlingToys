@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4991a3bb4e035dd4680456f85d7a144f, type: 3}
   m_Name: PlayerBaseStatsSO
   m_EditorClassIdentifier: 
-  moveSpeed: 20
+  moveSpeed: 13
   meleeCooldown: 1
   dashCooldown: 2
   dashAmount: 1
