@@ -85,7 +85,10 @@ namespace BrawlingToys.Actors
             OnPlayerLifeChange?.Invoke(_currentLife);
             
             if(_currentLife <= 0)
+            {
+                Debug.Log("Calling Die Server Rpc");
                 DieServerRpc();
+            }
             else
                 _invulnerabilityTimer.Start();
         }
@@ -101,6 +104,7 @@ namespace BrawlingToys.Actors
 
         private void DieInCurrentState()
         {
+            Debug.Log("Die in current state");
             if (_player.CurrentState == null) return;
 
             _player.CurrentState.HandleDie();

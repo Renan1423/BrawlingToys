@@ -166,6 +166,11 @@ namespace BrawlingToys.Actors
             _stats.ModifyStat(modifier, 1);
         }
 
+        public void TeleportPlayerTo(Vector3 pos)
+        {
+            transform.position = pos; 
+        }
+
         private void OnDrawGizmos()
         {
             Gizmos.color = _aimColor;
