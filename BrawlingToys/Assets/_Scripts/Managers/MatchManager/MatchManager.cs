@@ -138,8 +138,6 @@ namespace BrawlingToys.Managers
                 playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
             }
 
-            SpawnPlayerModelsClientRpc();
-
             _playersSpawned = true;
         }
 
@@ -161,12 +159,6 @@ namespace BrawlingToys.Managers
 
             var hit = localPlayerGO.GetComponent<PlayerHit>();
             hit.SetPlayerMaxLife(livesToApply);  
-        }
-
-        [ClientRpc]
-        private void SpawnPlayerModelsClientRpc()
-        {
-            ModelSpawnManager.Instance.InstantietePlayersModels();
         }
 
         [ClientRpc]
