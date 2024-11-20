@@ -24,6 +24,8 @@ namespace BrawlingToys.Actors
         private float _bulletPower = 0;
         private float _maxBulletPower = 1f;
 
+        public RaycastHit HitInfo { get => _hitInfo; }
+
         public PlayerWeapon(Player player, Transform firePoint, float aimSmoothRate, LayerMask groundLayerMask, NetworkWeaponShooter networkShooter)
         {
             _player = player;

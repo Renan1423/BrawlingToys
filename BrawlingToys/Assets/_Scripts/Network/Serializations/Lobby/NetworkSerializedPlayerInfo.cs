@@ -5,13 +5,13 @@ namespace BrawlingToys.Network
     {
         public string PlayerName {  get; set; }
         public ulong PlayerId { get; set; }
-        public string CharacterAssetGUID { get; set; }
+        public string CharacterAssetName { get; set; }
 
         public NetworkSerializedPlayerInfo(string playerName, ulong playerId, string characterAssetGUID)
         {
             PlayerName = playerName;
             PlayerId = playerId;
-            CharacterAssetGUID = characterAssetGUID;
+            CharacterAssetName = characterAssetGUID;
         }
     }
 }

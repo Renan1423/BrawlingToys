@@ -1,18 +1,23 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Serialization;
 using BrawlingToys.Actors;
 using BrawlingToys.Network;
 using Unity.Netcode;
 using UnityEngine;
+using AYellowpaper.SerializedCollections; 
 
 namespace BrawlingToys.Managers
 {
     public class MatchManager : NetworkSingleton<MatchManager>
     {
-        [SerializeField]
-        private GameObject _playerPrefab;
+        [Header("Settings")]
+        
+        [SerializeField] private GameObject _playerPrefab;
+
+        [SerializeField][SerializedDictionary("Player ID", "Spawn Position")] 
+        private SerializedDictionary<ulong, Transform> _playersSpawnPositions; 
+
 
         private Dictionary<Player, PlayerRoundInfo> _playerMatchInfo = new();
         private int _deadPlayersCount = 0;
@@ -93,7 +98,7 @@ namespace BrawlingToys.Managers
 
         public void RegisterKill(Player player)
         {
-            //Debug.Log($"Register kill, killer: {player.PlayerId}");
+            Debug.Log($"Register kill, killer: {player.PlayerId}");
             if (player == null)
                 return;
 
@@ -126,12 +131,12 @@ namespace BrawlingToys.Managers
 
             foreach (var clientId in clientIds)
             {
-                var playerInstance = Instantiate(_playerPrefab, new Vector3(0f, 2f, 0f), Quaternion.identity);
+                var spawnPos = _playersSpawnPositions[clientId]; 
+                
+                var playerInstance = Instantiate(_playerPrefab, spawnPos.position, Quaternion.identity);
 
                 playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
             }
-
-            SpawnPlayerModelsClientRpc();
 
             _playersSpawned = true;
         }
@@ -154,12 +159,6 @@ namespace BrawlingToys.Managers
 
             var hit = localPlayerGO.GetComponent<PlayerHit>();
             hit.SetPlayerMaxLife(livesToApply);  
-        }
-
-        [ClientRpc]
-        private void SpawnPlayerModelsClientRpc()
-        {
-            ModelSpawnManager.Instance.InstantietePlayersModels();
         }
 
         [ClientRpc]
@@ -208,6 +207,7 @@ namespace BrawlingToys.Managers
             foreach (var player in MatchPlayers)
             {
                 player.gameObject.SetActive(true); 
+                player.transform.position = _playersSpawnPositions[player.PlayerId].position; 
             }
         }
 

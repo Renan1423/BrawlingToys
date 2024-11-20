@@ -2,6 +2,7 @@ using UnityEngine;
 using BrawlingToys.Actors;
 using UnityEngine.UI;
 using Unity.Netcode;
+using System.Collections;
 
 namespace BrawlingToys.UI
 {
@@ -14,7 +15,7 @@ namespace BrawlingToys.UI
         [SerializeField]
         private Image _image;
 
-        private void Start()
+        public override void OnNetworkSpawn()
         {
             if (!IsOwner)
             {
@@ -22,7 +23,15 @@ namespace BrawlingToys.UI
                 return;
             }
 
-            _player.OnPlayerInitialize.AddListener(Player_OnPlayerInitilize);
+            StartCoroutine(Action()); 
+
+            IEnumerator Action()
+            {
+                yield return new WaitUntil(() => _player.Initialized); 
+
+                _player.Weapon.OnUpdateCursorPosition += PlayerWeapon_OnUpdateCursorPosition;
+                _player.Weapon.OnBulletPowerChange += PlayerWeapon_OnBulletPowerChange;
+            }
         }
 
         public override void OnDestroy()
@@ -32,12 +41,6 @@ namespace BrawlingToys.UI
                 _player.Weapon.OnUpdateCursorPosition -= PlayerWeapon_OnUpdateCursorPosition;
                 _player.Weapon.OnBulletPowerChange -= PlayerWeapon_OnBulletPowerChange;
             }
-        }
-
-        private void Player_OnPlayerInitilize(Player player)
-        {
-            _player.Weapon.OnUpdateCursorPosition += PlayerWeapon_OnUpdateCursorPosition;
-            _player.Weapon.OnBulletPowerChange += PlayerWeapon_OnBulletPowerChange;
         }
 
         private void PlayerWeapon_OnUpdateCursorPosition(object sender, Vector2 e)

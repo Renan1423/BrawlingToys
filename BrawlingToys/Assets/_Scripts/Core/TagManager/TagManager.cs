@@ -16,6 +16,7 @@ namespace BrawlingToys.Core
             public const string MAIN_MENU = "MainMenu";
             public const string CREDITS = "Credits";
             public const string QUESTION_SCREEN = "QuestionScreen";
+            public const string SETTINGS = "Settings";
         }
 
         public static class CreateRoomMenu 

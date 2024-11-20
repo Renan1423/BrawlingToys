@@ -17,14 +17,17 @@ namespace BrawlingToys.Core
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void Execute()
         {
-            TryInstantiateDevelopmentObjects();
             InstantiateCoreObjects(); 
+
+            if (Debug.isDebugBuild)
+            {
+                InstantiateDevelopmentObjects();
+                MakeDevelopmentBuildOptimizations(); 
+            }
         }
 
-        private static void TryInstantiateDevelopmentObjects()
+        private static void InstantiateDevelopmentObjects()
         {
-            if (!Debug.isDebugBuild) return; 
-
             GameObject.Instantiate(Resources.Load(INGAMECONSONE_PATH)); 
         }
 
@@ -33,6 +36,15 @@ namespace BrawlingToys.Core
             GameObject.Instantiate(Resources.Load(NETWORK_MANAGER_PATH));
             GameObject.Instantiate(Resources.Load(NETWORK_AUTHENTICATION)); 
             GameObject.Instantiate(Resources.Load(SCREEN_MANAGER)); 
+        }
+
+        private static void MakeDevelopmentBuildOptimizations()
+        {
+            #if !UNITY_EDITOR
+                Application.targetFrameRate = 25; 
+                //QualitySettings.shadows = ShadowQuality.Disable;
+                //QualitySettings.SetQualityLevel(4);
+            #endif
         }
     }
 }

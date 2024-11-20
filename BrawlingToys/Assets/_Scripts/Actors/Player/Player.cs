@@ -27,13 +27,14 @@ namespace BrawlingToys.Actors
         public PlayerAnimations Animations { get => _animations; }
         public PlayerCooldownController Cooldowns { get => _cooldowns; }
         public Stats Stats { get => _stats; }
-        public Player MyKiller { get => _myKiller; }
+        public Player MyKiller { get => _myKiller; set => _myKiller = value; }
         public Rigidbody Rb { get => _rb; }
         public StateFactory StateFactory { get => _stateFactory; }
         public State CurrentState { get => _currentState; }
         public PlayerWeapon Weapon { get => _weapon; }
         public MMFeedbacks ShootFeedback { get => _shootFeedback; }
         [field: SerializeField] public int DashCount { get; set; }
+        public bool Initialized { get => _initialized; }
 
         #endregion
 
@@ -70,20 +71,17 @@ namespace BrawlingToys.Actors
         public bool canModify = false;
         public ModifierScriptable modifier;
 
-        private bool _initilized;
+        private bool _initialized;
         private PlayerAnimations _animations;
-
-        private void Awake()
-        {
-            _spawnSelectedModel.OnModelSpawed += SpawnSelectedModel_OnModelLoaded;
-        }
 
         private void OnEnable()
         {
-            Debug.Log($"Initilized: {_initilized}");
-            if (!_initilized) return; 
-            
-            if(PlayerEnableOnDeathState())
+            if (!_initialized)
+            {
+                return;
+            }
+
+            if (PlayerEnableOnDeathState())
             {
                 var idle = StateFactory.GetState(StateFactory.StateType.Idle); 
                 TransitionToState(idle); 
@@ -93,25 +91,17 @@ namespace BrawlingToys.Actors
             _currentState.GetType() == typeof(DieState);
         }
 
-        public override void OnDestroy()
-        {
-            base.OnDestroy();
-            _spawnSelectedModel.OnModelSpawed -= SpawnSelectedModel_OnModelLoaded;
-        }
-
-        private void SpawnSelectedModel_OnModelLoaded()
-        {
-            _stateFactory.InitializeStates(this);
-            InitializePlayer();
-            TransitionToState(_stateFactory.GetState(StateFactory.StateType.Idle));
-        }
-
         public override void OnNetworkSpawn()
         {
             PlayerId = OwnerClientId; 
             
             var playerInstances = GameObject.FindObjectsOfType<Player>(); 
             Instances = playerInstances.ToList(); 
+
+            _spawnSelectedModel.SpawnCharacterModel(PlayerId); 
+            _stateFactory.InitializeStates(this);
+            InitializePlayer();
+            TransitionToState(_stateFactory.GetState(StateFactory.StateType.Idle));
         }
 
         private void Update()
@@ -152,7 +142,7 @@ namespace BrawlingToys.Actors
             if(canModify)
                 ApplyModifier();
 
-            _initilized = true; 
+            _initialized = true; 
             OnPlayerInitialize?.Invoke(this);
         }
 
@@ -179,7 +169,7 @@ namespace BrawlingToys.Actors
         private void OnDrawGizmos()
         {
             Gizmos.color = _aimColor;
-            Gizmos.DrawSphere(_hitInfo.point, .5f);
+            Gizmos.DrawSphere(_weapon.HitInfo.point, .5f);
         }
     }
 }
