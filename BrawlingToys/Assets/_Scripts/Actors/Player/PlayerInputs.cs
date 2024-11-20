@@ -1,7 +1,10 @@
 using System;
+using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.InputSystem.Utilities;
 
 namespace BrawlingToys.Actors
 {
@@ -23,6 +26,7 @@ namespace BrawlingToys.Actors
         public event EventHandler<Vector2> OnMoveAction;
 
         private PlayerInputActions _playerInputActions;
+        private bool _isUsingMouse;
 
         public override void OnNetworkSpawn()
         {
@@ -67,6 +71,22 @@ namespace BrawlingToys.Actors
             _playerInputActions.PlayerMap.Enable();
         }
 
+        public bool UsingMouseAndKeyboard() {
+            if (Gamepad.current == null) {
+                _isUsingMouse = true;
+            } else {
+                if (Gamepad.current.allControls.Any(x => x is ButtonControl && x.IsPressed())) {
+                    _isUsingMouse = false;
+                    InputSystem.DisableDevice(Mouse.current);
+                } else {
+                    _isUsingMouse = true;
+                    InputSystem.EnableDevice(Mouse.current);
+                }
+            }
+
+            return _isUsingMouse;
+        }
+
         private void MovePerformed(InputAction.CallbackContext obj)
         {
             GetMovementVectorNormalized();
@@ -98,9 +118,15 @@ namespace BrawlingToys.Actors
             return inputVector;
         }
 
-        public Vector2 GetLookVector()
+        public Vector2 GetMouseLookVector()
         {
-            Vector2 inputVector = _playerInputActions.PlayerMap.Look.ReadValue<Vector2>();
+            Vector2 inputVector = _playerInputActions.PlayerMap.LookMouse.ReadValue<Vector2>();
+
+            return inputVector;
+        }
+
+        public Vector2 GetStickLookVector() {
+            Vector2 inputVector = _playerInputActions.PlayerMap.LookStick.ReadValue<Vector2>();
 
             return inputVector;
         }

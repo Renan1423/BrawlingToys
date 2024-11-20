@@ -49,7 +49,7 @@ namespace BrawlingToys.Actors
 
         public void Update()
         {
-            OnUpdateCursorPosition?.Invoke(this, _player.Inputs.GetLookVector());
+            OnUpdateCursorPosition?.Invoke(this, _player.Inputs.GetMouseLookVector());
             HandleAim();
 
             if (_player.Inputs.PlayerInputActions.PlayerMap.Shoot.IsPressed())
@@ -65,16 +65,27 @@ namespace BrawlingToys.Actors
             OnBulletPowerChange?.Invoke(this, _bulletPower/_maxBulletPower);
         }
 
-        private void HandleAim()
-        {
+        private void HandleAim() {
             if (!_player.Inputs.IsActive)
                 return;
 
-            Ray ray = Camera.main.ScreenPointToRay(_player.Inputs.GetLookVector());
-            if (Physics.Raycast(ray, out _hitInfo, float.MaxValue, _groundLayerMask))
-            {
-                _player.transform.forward = Vector3.Slerp(_player.transform.forward, _hitInfo.point - _player.transform.position, 
-                    _aimSmoothRate * Time.deltaTime);
+            if (_player.Inputs.UsingMouseAndKeyboard()) {
+                Ray ray = Camera.main.ScreenPointToRay(_player.Inputs.GetMouseLookVector());
+
+                if (Physics.Raycast(ray, out _hitInfo, float.MaxValue, _groundLayerMask)) {
+                    if (!_hitInfo.point.Equals(Vector3.zero))
+                        _player.transform.forward = Vector3.Slerp(
+                            _player.transform.forward,
+                            _hitInfo.point - _player.transform.position,
+                            _aimSmoothRate * Time.deltaTime
+                        );
+                }
+            } else {
+                _player.transform.forward = Vector3.Lerp(
+                    _player.transform.forward,
+                    new Vector3(_player.Inputs.GetStickLookVector().x, 0f, _player.Inputs.GetStickLookVector().y),
+                    _aimSmoothRate * Time.deltaTime
+                );
             }
         }
 

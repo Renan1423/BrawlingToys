@@ -64,9 +64,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Look"",
+                    ""name"": ""LookStick"",
                     ""type"": ""Value"",
                     ""id"": ""d9787db2-1fd5-479b-bb06-3152489a6d30"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""LookMouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""d956939b-409a-4da1-a130-8a3b2b268aba"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -241,23 +250,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c1262e62-da74-405f-9a23-e5818c56739f"",
-                    ""path"": ""<Mouse>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""bd471357-f31e-450c-97d9-e5c8bf6048ec"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Look"",
+                    ""action"": ""LookStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -280,6 +278,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Melee"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2d5b97e-1248-46a1-8d5f-9aa3a16d02ad"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookMouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -333,7 +342,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_PlayerMap_Dash = m_PlayerMap.FindAction("Dash", throwIfNotFound: true);
         m_PlayerMap_Shoot = m_PlayerMap.FindAction("Shoot", throwIfNotFound: true);
         m_PlayerMap_Melee = m_PlayerMap.FindAction("Melee", throwIfNotFound: true);
-        m_PlayerMap_Look = m_PlayerMap.FindAction("Look", throwIfNotFound: true);
+        m_PlayerMap_LookStick = m_PlayerMap.FindAction("LookStick", throwIfNotFound: true);
+        m_PlayerMap_LookMouse = m_PlayerMap.FindAction("LookMouse", throwIfNotFound: true);
         // PlayerUiMap
         m_PlayerUiMap = asset.FindActionMap("PlayerUiMap", throwIfNotFound: true);
         m_PlayerUiMap_Click = m_PlayerUiMap.FindAction("Click", throwIfNotFound: true);
@@ -402,7 +412,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMap_Dash;
     private readonly InputAction m_PlayerMap_Shoot;
     private readonly InputAction m_PlayerMap_Melee;
-    private readonly InputAction m_PlayerMap_Look;
+    private readonly InputAction m_PlayerMap_LookStick;
+    private readonly InputAction m_PlayerMap_LookMouse;
     public struct PlayerMapActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -411,7 +422,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_PlayerMap_Dash;
         public InputAction @Shoot => m_Wrapper.m_PlayerMap_Shoot;
         public InputAction @Melee => m_Wrapper.m_PlayerMap_Melee;
-        public InputAction @Look => m_Wrapper.m_PlayerMap_Look;
+        public InputAction @LookStick => m_Wrapper.m_PlayerMap_LookStick;
+        public InputAction @LookMouse => m_Wrapper.m_PlayerMap_LookMouse;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -433,9 +445,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Melee.started += instance.OnMelee;
             @Melee.performed += instance.OnMelee;
             @Melee.canceled += instance.OnMelee;
-            @Look.started += instance.OnLook;
-            @Look.performed += instance.OnLook;
-            @Look.canceled += instance.OnLook;
+            @LookStick.started += instance.OnLookStick;
+            @LookStick.performed += instance.OnLookStick;
+            @LookStick.canceled += instance.OnLookStick;
+            @LookMouse.started += instance.OnLookMouse;
+            @LookMouse.performed += instance.OnLookMouse;
+            @LookMouse.canceled += instance.OnLookMouse;
         }
 
         private void UnregisterCallbacks(IPlayerMapActions instance)
@@ -452,9 +467,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Melee.started -= instance.OnMelee;
             @Melee.performed -= instance.OnMelee;
             @Melee.canceled -= instance.OnMelee;
-            @Look.started -= instance.OnLook;
-            @Look.performed -= instance.OnLook;
-            @Look.canceled -= instance.OnLook;
+            @LookStick.started -= instance.OnLookStick;
+            @LookStick.performed -= instance.OnLookStick;
+            @LookStick.canceled -= instance.OnLookStick;
+            @LookMouse.started -= instance.OnLookMouse;
+            @LookMouse.performed -= instance.OnLookMouse;
+            @LookMouse.canceled -= instance.OnLookMouse;
         }
 
         public void RemoveCallbacks(IPlayerMapActions instance)
@@ -524,7 +542,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnMelee(InputAction.CallbackContext context);
-        void OnLook(InputAction.CallbackContext context);
+        void OnLookStick(InputAction.CallbackContext context);
+        void OnLookMouse(InputAction.CallbackContext context);
     }
     public interface IPlayerUiMapActions
     {

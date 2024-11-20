@@ -16,11 +16,9 @@ namespace BrawlingToys.Actors
             switch (hitCommandTypes) {
                 case HitCommandTypes.KillCommand:
                     return new KillCommand();
-                    break;
                     
                 case HitCommandTypes.CollateralCommand:
                     return new CollateralCommand();
-                    break;
 
                 default:
                     Debug.LogError("Não era pra isso ter acontecido!");

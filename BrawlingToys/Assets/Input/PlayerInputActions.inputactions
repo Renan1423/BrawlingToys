@@ -42,9 +42,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Look",
+                    "name": "LookStick",
                     "type": "Value",
                     "id": "d9787db2-1fd5-479b-bb06-3152489a6d30",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "LookMouse",
+                    "type": "Value",
+                    "id": "d956939b-409a-4da1-a130-8a3b2b268aba",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -219,23 +228,12 @@
                 },
                 {
                     "name": "",
-                    "id": "c1262e62-da74-405f-9a23-e5818c56739f",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "bd471357-f31e-450c-97d9-e5c8bf6048ec",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Look",
+                    "action": "LookStick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -258,6 +256,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Melee",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a2d5b97e-1248-46a1-8d5f-9aa3a16d02ad",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LookMouse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
