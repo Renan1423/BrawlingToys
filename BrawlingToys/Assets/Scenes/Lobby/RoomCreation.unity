@@ -182,51 +182,33 @@ MonoBehaviour:
   _closeTrigger: Close
   PlayableCharacters:
   - CharacterName: Mecha
-    CharacterModel:
-      m_AssetGUID: 7ea115021c9e06344b7dd26456008c43
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 0
+    CharacterModel: {fileID: 7309716974184661141, guid: 7ea115021c9e06344b7dd26456008c43,
+      type: 3}
     CharacterIcon: {fileID: 21300000, guid: 8fcbba906a442c8489adc39dbf58a84e, type: 3}
     CharacterColor: {r: 1, g: 0.9607843, b: 0.9647059, a: 1}
   - CharacterName: "Ursinho de Pel\xFAcia"
-    CharacterModel:
-      m_AssetGUID: 7b757a69d19eddc4ab92211ecb5b699b
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 0
+    CharacterModel: {fileID: 6776761139589724803, guid: 7b757a69d19eddc4ab92211ecb5b699b,
+      type: 3}
     CharacterIcon: {fileID: 21300000, guid: 1dc8ed4463f56af478e6eea515d25781, type: 3}
     CharacterColor: {r: 0.98039216, g: 0.77254903, b: 0.8862745, a: 1}
   - CharacterName: T-Rex
-    CharacterModel:
-      m_AssetGUID: dd241dd577658c14583a4acccc090535
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 1
+    CharacterModel: {fileID: 8396930070523282457, guid: dd241dd577658c14583a4acccc090535,
+      type: 3}
     CharacterIcon: {fileID: 21300000, guid: 821ef83604084a64394061d3e69c2056, type: 3}
     CharacterColor: {r: 0.27006942, g: 0.4811321, b: 0.30254063, a: 1}
   - CharacterName: Soldadinho de Chumbo
-    CharacterModel:
-      m_AssetGUID: 801fa065f2cdd514f9d32116566176a5
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 1
+    CharacterModel: {fileID: 6260364365559115699, guid: 801fa065f2cdd514f9d32116566176a5,
+      type: 3}
     CharacterIcon: {fileID: 21300000, guid: 0387bfd9709a82c49af857379283945a, type: 3}
     CharacterColor: {r: 0.9098039, g: 0.29803923, b: 0.22745098, a: 1}
   - CharacterName: Boneca de Pano
-    CharacterModel:
-      m_AssetGUID: 185a22524ec386d4e92f6fc345adabde
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 1
+    CharacterModel: {fileID: 3133926031197547560, guid: 185a22524ec386d4e92f6fc345adabde,
+      type: 3}
     CharacterIcon: {fileID: 21300000, guid: 474bb64dfe56cdd4c9f0dcb95a8029ed, type: 3}
     CharacterColor: {r: 0.47843137, g: 0.8392157, b: 0.79607844, a: 1}
   - CharacterName: Marionete
-    CharacterModel:
-      m_AssetGUID: fb0596a6b9bc6814180c9bd78e537445
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 1
+    CharacterModel: {fileID: 7063730979151652810, guid: fb0596a6b9bc6814180c9bd78e537445,
+      type: 3}
     CharacterIcon: {fileID: 21300000, guid: 1ed4ecf3cf2bf034d90983e47839b385, type: 3}
     CharacterColor: {r: 1, g: 0.8980392, b: 0.56078434, a: 1}
   _characterModelParent: {fileID: 662245464}
@@ -10570,7 +10552,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1697848678}
   - component: {fileID: 1697848677}
-  - component: {fileID: 1697848676}
+  - component: {fileID: 1697848679}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -10578,26 +10560,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1697848676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1697848675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
 --- !u!114 &1697848677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10628,6 +10590,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1697848679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697848675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!1 &1735664480
 GameObject:
   m_ObjectHideFlags: 0

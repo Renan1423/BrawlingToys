@@ -11,6 +11,7 @@ namespace BrawlingToys.Actors
             {
                 _player.Inputs.TogglePlayerMap(false);
             }
+            Debug.Log("Enter Die State");
             
             _player.OnPlayerKill?.Invoke(_player.MyKiller);
             _player.OnPlayerDeath?.Invoke(_player);
@@ -19,6 +20,8 @@ namespace BrawlingToys.Actors
             _player.Animations.OnAnimationEnd.AddListener(WhenAnimationEnd);
 
             _player.gameObject.SetActive(false);
+
+            Debug.Log("Disable Player");
         }
 
         protected override void ExitState()

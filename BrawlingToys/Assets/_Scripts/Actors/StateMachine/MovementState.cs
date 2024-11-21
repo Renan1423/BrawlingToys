@@ -7,6 +7,10 @@ namespace BrawlingToys.Actors
     {
         public UnityEvent OnStep;
 
+        [SerializeField] private MovementHandler _movementHandler;  
+        
+        [Space]
+        
         [SerializeField] private float _accel, _deAccel;
         [SerializeField] private Transform _stepFeedback;
 
@@ -39,11 +43,6 @@ namespace BrawlingToys.Actors
             _stepFeedback.forward = (-1 * _currentVelocity) + _stepFeedbackOffset;
         }
 
-        public override void FixedUpdateState()
-        {
-            
-        }
-
         private void CalculateSpeed(Vector2 inputVector)
         {
             if (Mathf.Abs(inputVector.x) > 0 || Mathf.Abs(inputVector.y) > 0)
@@ -70,7 +69,8 @@ namespace BrawlingToys.Actors
 
         private void SetVelocity()
         {
-            _player.Rb.velocity = _currentVelocity;
+            _movementHandler.ValidateWalk(transform.position); 
+            _player.Rb.velocity = _currentVelocity; 
         }
     }
 }

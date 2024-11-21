@@ -54,7 +54,7 @@ namespace BrawlingToys.UI
 
             var playerName = _nameInputValidator.InputFieldText; 
             var playerId = NetworkManager.LocalClientId; 
-            var characterGUID = _characterSelectionScreen.GetChosenCharacterData().ChosenCharacterPrefab.AssetGUID;
+            var characterGUID = _characterSelectionScreen.GetChosenCharacterData().ChosenCharacterPrefab.name;
             
             JoinPartyServerRpc(playerName, playerId, characterGUID); 
 
@@ -65,7 +65,7 @@ namespace BrawlingToys.UI
         }
 
         [ServerRpc]
-        private void JoinPartyServerRpc(string playerName, ulong playerId, string characterAssetGUID)
+        private void JoinPartyServerRpc(string playerName, ulong playerId, string characterAssetName)
         {
             var clientDataGO = Instantiate(_playerClientData);
 
@@ -75,8 +75,8 @@ namespace BrawlingToys.UI
 
             clientData.SetPlayerData(playerId, playerName);
 
-            var playerCharacter = _characterSelectionScreen.PlayableCharacters.First(pc => pc.CharacterModel.AssetGUID == characterAssetGUID); 
-            Debug.Log($"Asset GUID: {playerCharacter.CharacterModel.AssetGUID}");
+            var playerCharacter = _characterSelectionScreen.PlayableCharacters.First(pc => pc.CharacterModel.name == characterAssetName); 
+            Debug.Log($"Model asset name: {playerCharacter.CharacterModel.name}");
 
             clientData.SetPlayerCharacter(playerCharacter.CharacterName,
                 playerCharacter.CharacterModel,

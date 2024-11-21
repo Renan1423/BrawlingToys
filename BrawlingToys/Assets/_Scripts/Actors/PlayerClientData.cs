@@ -14,7 +14,7 @@ namespace BrawlingToys.Actors
 
         //Selected Character
         [field:SerializeField] public string SelectedCharacterName { get; private set; } 
-        [field:SerializeField] public AssetReference SelectedCharacterPrefab { get; private set; } 
+        [field:SerializeField] public GameObject SelectedCharacterPrefab { get; private set; } 
         [field:SerializeField] public Sprite SelectedCharacterSprite { get; private set; }
 
         //CombatSettings
@@ -34,7 +34,7 @@ namespace BrawlingToys.Actors
             PlayerUsername = userName;
         }
 
-        public void SetPlayerCharacter(string characterName, AssetReference characterModelPrefab, Sprite characterIcon) 
+        public void SetPlayerCharacter(string characterName, GameObject characterModelPrefab, Sprite characterIcon) 
         {
             SelectedCharacterName = characterName;
             SelectedCharacterPrefab = characterModelPrefab;
@@ -54,7 +54,7 @@ namespace BrawlingToys.Actors
             var result = new NetworkSerializedPlayerInfo(
                 PlayerUsername,
                 PlayerID,
-                SelectedCharacterPrefab.AssetGUID
+                SelectedCharacterPrefab.name
             ); 
 
             return result; 

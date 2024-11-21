@@ -18,8 +18,7 @@ namespace BrawlingToys.Managers
         [SerializeField][SerializedDictionary("Player ID", "Spawn Position")] 
         private SerializedDictionary<ulong, Transform> _playersSpawnPositions; 
 
-
-        private Dictionary<Player, PlayerRoundInfo> _playerMatchInfo = new();
+        private Dictionary<Player, PlayerRoundInfo> _playerMatchInfo = new(); 
         private int _deadPlayersCount = 0;
 
         private bool _playersSpawned = false;
@@ -98,7 +97,7 @@ namespace BrawlingToys.Managers
 
         public void RegisterKill(Player player)
         {
-            //Debug.Log($"Register kill, killer: {player.PlayerId}");
+            Debug.Log($"Register kill, killer: {player.PlayerId}");
             if (player == null)
                 return;
 
@@ -138,8 +137,6 @@ namespace BrawlingToys.Managers
                 playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
             }
 
-            SpawnPlayerModelsClientRpc();
-
             _playersSpawned = true;
         }
 
@@ -161,12 +158,6 @@ namespace BrawlingToys.Managers
 
             var hit = localPlayerGO.GetComponent<PlayerHit>();
             hit.SetPlayerMaxLife(livesToApply);  
-        }
-
-        [ClientRpc]
-        private void SpawnPlayerModelsClientRpc()
-        {
-            ModelSpawnManager.Instance.InstantietePlayersModels();
         }
 
         [ClientRpc]
@@ -215,7 +206,7 @@ namespace BrawlingToys.Managers
             foreach (var player in MatchPlayers)
             {
                 player.gameObject.SetActive(true); 
-                player.transform.position = _playersSpawnPositions[player.PlayerId].position; 
+                player.GetComponent<Player>().TeleportPlayerTo(_playersSpawnPositions[player.PlayerId].position); 
             }
         }
 
