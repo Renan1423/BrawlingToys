@@ -5546,6 +5546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ac2f97d1cb8d44badadcfcf6d8f69d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMultplyBy100: 1
   _tmp: {fileID: 331421897}
 --- !u!1 &333388903
 GameObject:
@@ -12953,7 +12954,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a68a6af5643d0f41b952816e72846f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resolutionDropdown: {fileID: 106355609}
+  _fullScreenToggle: {fileID: 1211468797}
+  _resolutionDropdown: {fileID: 106355609}
+  _qualityDropdown: {fileID: 291987559}
+  _masterVolumeSlider: {fileID: 872233410}
+  _musicVolumeSlider: {fileID: 1459734849}
+  _sfxVolumeSlider: {fileID: 266826803}
+  _fpsSlider: {fileID: 1625999130}
 --- !u!1001 &852726570
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23301,7 +23308,7 @@ MonoBehaviour:
   m_MinValue: 30
   m_MaxValue: 120
   m_WholeNumbers: 1
-  m_Value: 120
+  m_Value: 30
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -23870,6 +23877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ac2f97d1cb8d44badadcfcf6d8f69d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMultplyBy100: 1
   _tmp: {fileID: 1677484698}
 --- !u!1 &1681620360
 GameObject:
@@ -24468,6 +24476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ac2f97d1cb8d44badadcfcf6d8f69d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMultplyBy100: 0
   _tmp: {fileID: 1707418215}
 --- !u!1 &1707618743
 GameObject:
@@ -26213,6 +26222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ac2f97d1cb8d44badadcfcf6d8f69d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMultplyBy100: 1
   _tmp: {fileID: 1840919290}
 --- !u!1 &1844413274
 GameObject:
