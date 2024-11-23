@@ -31,8 +31,7 @@ namespace BrawlingToys.UI
         [SerializeField]
         private CombatSettingsScreen _combatSettingsScreen;
 
-        [SerializeField]
-        private Button _joinPartyButton;
+        public Button _joinPartyButton;
 
         public event Action<PlayerClientData> OnNewPlayerJoined;
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18326108, g: 0.22695844, b: 0.29506326, a: 1}
+  m_IndirectSpecularColor: {r: 0.1832616, g: 0.2269589, b: 0.2950642, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2667,6 +2667,7 @@ MonoBehaviour:
   _nameInputValidator: {fileID: 1764379207}
   _characterSelectionScreen: {fileID: 7655690}
   _combatSettingsScreen: {fileID: 1262741036}
+  _joinPartyButton: {fileID: 2072979355}
 --- !u!1 &453877674
 GameObject:
   m_ObjectHideFlags: 0
@@ -3236,7 +3237,6 @@ MonoBehaviour:
   _characterSelectionScreen: {fileID: 7655690}
   _combatSettingsScreen: {fileID: 1262741036}
   _createPartyButton: {fileID: 1927981779}
-  _settingsButton: {fileID: 1891201137}
 --- !u!1001 &582380727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11682,18 +11682,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1891201137 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3267801498034280142, guid: 9e6f7be87bd72244983ca45a06b00be3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1757639105}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1895310543
 GameObject:
   m_ObjectHideFlags: 0
@@ -12707,6 +12695,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2072979355 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3267801498034280142, guid: 9e6f7be87bd72244983ca45a06b00be3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2072979352}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2079654955
