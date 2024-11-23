@@ -9,6 +9,7 @@ using System;
 using System.Linq;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 namespace BrawlingToys.UI
 {
@@ -30,7 +31,15 @@ namespace BrawlingToys.UI
         [SerializeField]
         private CombatSettingsScreen _combatSettingsScreen;
 
-        public event Action<PlayerClientData> OnNewPlayerJoined; 
+        [SerializeField]
+        private Button _joinPartyButton;
+
+        public event Action<PlayerClientData> OnNewPlayerJoined;
+
+        protected override void OnScreenEnable()
+        {
+            ToggleButtons(true);
+        }
 
         public void Join() 
         {
@@ -38,6 +47,7 @@ namespace BrawlingToys.UI
 
             if (_nameInputValidator.CheckNameValidation()) 
             {
+                ToggleButtons(false);
                 JoinParty(OnJoinParty, _codeInputValidator.InputFieldText);
             }
         }
@@ -56,6 +66,7 @@ namespace BrawlingToys.UI
             {
                 Debug.Log($"Falha ao entrar na party: {partyCode}");
                 _codeInputValidator.ShowCodeInputFieldError();
+                ToggleButtons(true);
             }
         }
 
@@ -207,6 +218,11 @@ namespace BrawlingToys.UI
             ); 
 
             return info; 
+        }
+
+        private void ToggleButtons(bool result)
+        {
+            _joinPartyButton.interactable = result;
         }
     }
 }
