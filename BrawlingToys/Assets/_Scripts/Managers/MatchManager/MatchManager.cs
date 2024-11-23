@@ -120,7 +120,14 @@ namespace BrawlingToys.Managers
                 FinishRoundServerRpc();
             }
 
-            bool RoundIsEnded() => _playerMatchInfo.Count - _deadPlayersCount <= 1;
+            bool RoundIsEnded()  
+            {
+                var players = UnityEngine.Object.FindObjectsOfType<Player>(false)
+                    .Where(p => p.CurrentState.GetType() != typeof(DieState))
+                    .ToArray();
+
+                return players.Length <= 1;
+            }
         }
 
         [ServerRpc]
