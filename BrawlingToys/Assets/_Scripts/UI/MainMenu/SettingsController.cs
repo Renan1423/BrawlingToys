@@ -40,7 +40,7 @@ namespace BrawlingToys.UI
             int currentResolutionIndex = 0;
             for (int i = 0; i < _resolutions.Length; i++)
             {
-                string option = _resolutions[i].width + " x " + _resolutions[i].height;
+                string option = _resolutions[i].width + " x " + _resolutions[i].height + " " + _resolutions[i].refreshRateRatio.value.ToString("00") + "Hz";
                 if ((float)_resolutions[i].width / 16.0f == (float)_resolutions[i].height / 9.0f)
                     resolutionOptions.Add(option);
 
@@ -160,8 +160,6 @@ namespace BrawlingToys.UI
             // Load Resolution Settings
             if (PlayerPrefs.HasKey("resolutionIndex"))
                 SetResolution(PlayerPrefs.GetInt("resolutionIndex"));
-            else
-                SetResolution(_resolutions.Length - 1);
 
             // Load Quality Settings
             if (PlayerPrefs.HasKey("qualityIndex"))
