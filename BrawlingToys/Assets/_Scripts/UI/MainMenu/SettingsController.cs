@@ -41,7 +41,7 @@ namespace BrawlingToys.UI
             for (int i = 0; i < _resolutions.Length; i++)
             {
                 string option = _resolutions[i].width + " x " + _resolutions[i].height;
-                if (_resolutions[i].width % 16 == 0 && _resolutions[i].height % 9 == 0)
+                if ((float)_resolutions[i].width / 16.0f == (float)_resolutions[i].height / 9.0f)
                     resolutionOptions.Add(option);
 
                 if (_resolutions[i].width == Screen.currentResolution.width && _resolutions[i].height == Screen.currentResolution.height)
@@ -61,7 +61,7 @@ namespace BrawlingToys.UI
             _fpsSlider.onValueChanged.RemoveListener(SetTargetFPS);
         }
 
-        // Volume controlado pelo Feel. Aqui é apenas para salvar com PlayerPrefs
+        // Volume controlado pelo Feel. Aqui ï¿½ apenas para salvar com PlayerPrefs
         private void MasterVolumeSliderOnValueChange_Handler(float value)
         {
             PlayerPrefs.SetFloat("masterVolume", value);
