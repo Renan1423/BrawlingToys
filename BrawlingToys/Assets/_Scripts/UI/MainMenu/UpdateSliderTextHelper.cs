@@ -11,10 +11,16 @@ namespace BrawlingToys.UI
 
         public void SliderOnValueChange_Handler(float value)
         {
-            if(canMultplyBy100)
+            if (canMultplyBy100)
+            {
+                Debug.Log("Sons: " + value);
                 _tmp.text = Mathf.FloorToInt(100 * value).ToString();
+            }
             else
+            {
+                Debug.Log("FPS: " + value);
                 _tmp.text = Mathf.FloorToInt(value).ToString();
+            }
         }
     }
 }

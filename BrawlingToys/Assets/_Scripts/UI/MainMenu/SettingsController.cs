@@ -30,6 +30,7 @@ namespace BrawlingToys.UI
             _masterVolumeSlider.onValueChanged.AddListener(MasterVolumeSliderOnValueChange_Handler);
             _musicVolumeSlider.onValueChanged.AddListener(MusicVolumeSliderOnValueChange_Handler);
             _sfxVolumeSlider.onValueChanged.AddListener(SfxVolumeSliderOnValueChange_Handler);
+            _fpsSlider.onValueChanged.AddListener(SetTargetFPS);
 
             _resolutions = Screen.resolutions;
 
@@ -40,7 +41,8 @@ namespace BrawlingToys.UI
             for (int i = 0; i < _resolutions.Length; i++)
             {
                 string option = _resolutions[i].width + " x " + _resolutions[i].height;
-                resolutionOptions.Add(option);
+                if (_resolutions[i].width % 16 == 0 && _resolutions[i].height % 9 == 0)
+                    resolutionOptions.Add(option);
 
                 if (_resolutions[i].width == Screen.currentResolution.width && _resolutions[i].height == Screen.currentResolution.height)
                     currentResolutionIndex = i;
@@ -56,6 +58,7 @@ namespace BrawlingToys.UI
             _masterVolumeSlider.onValueChanged.RemoveListener(MasterVolumeSliderOnValueChange_Handler);
             _musicVolumeSlider.onValueChanged.RemoveListener(MusicVolumeSliderOnValueChange_Handler);
             _sfxVolumeSlider.onValueChanged.RemoveListener(SfxVolumeSliderOnValueChange_Handler);
+            _fpsSlider.onValueChanged.RemoveListener(SetTargetFPS);
         }
 
         // Volume controlado pelo Feel. Aqui é apenas para salvar com PlayerPrefs
@@ -115,13 +118,16 @@ namespace BrawlingToys.UI
 
         public void SetTargetFPS(float targetFPS)
         {
+            _fpsSlider.minValue = 30;
+            _fpsSlider.maxValue = 120;
+
             int int_targetFPS = Mathf.FloorToInt(targetFPS);
 
             Application.targetFrameRate = int_targetFPS;
 
             PlayerPrefs.SetInt("targetFPS", int_targetFPS);
 
-            _fpsSlider.value = PlayerPrefs.GetInt("targetFPS");
+            _fpsSlider.value = (float)PlayerPrefs.GetInt("targetFPS");
         }
 
         private void LoadSettings()
@@ -165,9 +171,9 @@ namespace BrawlingToys.UI
 
             // Load FPS Settings
             if (PlayerPrefs.HasKey("targetFPS"))
-                SetTargetFPS(PlayerPrefs.GetInt("targetFPS"));
+                SetTargetFPS((float)PlayerPrefs.GetInt("targetFPS"));
             else
-                SetTargetFPS(120);
+                SetTargetFPS(120f);
         }
     }
 }
