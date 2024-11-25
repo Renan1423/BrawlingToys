@@ -44,6 +44,8 @@ namespace BrawlingToys.Actors
         [SerializeField] private Stats _stats;
         [SerializeField] private Player _myKiller;
         [SerializeField] private Rigidbody _rb;
+        [SerializeField] private PlayerFeedbacks _playerFeedbacks; 
+        [SerializeField] private MovementHandler _movementHandler; 
         
         [Header("State Stuffs: ")]
         [SerializeField] private StateFactory _stateFactory;
@@ -137,7 +139,7 @@ namespace BrawlingToys.Actors
             _cooldowns = new(this);
             _cooldowns.Initialize();
 
-            _weapon = new(this, _firePoint, _aimSmoothRate, _groundLayerMask, _networkWeaponShooter);
+            _weapon = new(this, _firePoint, _aimSmoothRate, _groundLayerMask, _networkWeaponShooter, _movementHandler);
 
             if(canModify)
                 ApplyModifier();
@@ -164,6 +166,13 @@ namespace BrawlingToys.Actors
         public void ApplyModifier()
         {
             _stats.ModifyStat(modifier, 1);
+        }
+
+        public void TeleportPlayerTo(Vector3 pos)
+        {
+            _playerFeedbacks.StepFeedback.gameObject.SetActive(false); 
+            transform.position = pos; 
+            _playerFeedbacks.StepFeedback.gameObject.SetActive(true); 
         }
 
         private void OnDrawGizmos()

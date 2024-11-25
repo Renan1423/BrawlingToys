@@ -18,8 +18,7 @@ namespace BrawlingToys.Managers
         [SerializeField][SerializedDictionary("Player ID", "Spawn Position")] 
         private SerializedDictionary<ulong, Transform> _playersSpawnPositions; 
 
-
-        private Dictionary<Player, PlayerRoundInfo> _playerMatchInfo = new();
+        private Dictionary<Player, PlayerRoundInfo> _playerMatchInfo = new(); 
         private int _deadPlayersCount = 0;
 
         private bool _playersSpawned = false;
@@ -121,7 +120,14 @@ namespace BrawlingToys.Managers
                 FinishRoundServerRpc();
             }
 
-            bool RoundIsEnded() => _playerMatchInfo.Count - _deadPlayersCount <= 1;
+            bool RoundIsEnded()  
+            {
+                var players = UnityEngine.Object.FindObjectsOfType<Player>(false)
+                    .Where(p => p.CurrentState.GetType() != typeof(DieState))
+                    .ToArray();
+
+                return players.Length <= 1;
+            }
         }
 
         [ServerRpc]
@@ -207,7 +213,7 @@ namespace BrawlingToys.Managers
             foreach (var player in MatchPlayers)
             {
                 player.gameObject.SetActive(true); 
-                player.transform.position = _playersSpawnPositions[player.PlayerId].position; 
+                player.GetComponent<Player>().TeleportPlayerTo(_playersSpawnPositions[player.PlayerId].position); 
             }
         }
 

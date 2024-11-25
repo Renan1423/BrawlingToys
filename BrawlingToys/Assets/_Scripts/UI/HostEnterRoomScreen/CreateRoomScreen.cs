@@ -29,8 +29,6 @@ namespace BrawlingToys.UI
         private CombatSettingsScreen _combatSettingsScreen;
         [SerializeField]
         private Button _createPartyButton;
-        [SerializeField]
-        private Button _settingsButton;
         
         protected override void OnScreenEnable()
         {
@@ -120,7 +118,6 @@ namespace BrawlingToys.UI
         private void ToggleButtons(bool result) 
         {
             _createPartyButton.interactable = result;
-            _settingsButton.interactable = result;
         }
     }
 }

@@ -58,6 +58,7 @@ namespace BrawlingToys.Actors
         {
             if (other.gameObject.TryGetComponent(out Hitable hitable) && ValidCollision(other))
             {
+                Debug.Log($"Vilid Hit Registred in {hitable.gameObject.name}");
                 hitable.GetHit(_bulletOwner.gameObject, _bulletOwner.Stats.CurrentHitEffect);
             }
 

@@ -12,6 +12,7 @@ namespace BrawlingToys.UI
     public struct CharacterSelectionData
     {
         public string CharacterName;
+        public string CharacterTitle;
         public GameObject CharacterModel;
         public Sprite CharacterIcon;
         public Color CharacterColor;

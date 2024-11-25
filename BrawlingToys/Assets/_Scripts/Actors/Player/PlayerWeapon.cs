@@ -20,13 +20,14 @@ namespace BrawlingToys.Actors
         private RaycastHit _hitInfo;
 
         private NetworkWeaponShooter _networkShooter;
+        private MovementHandler _movementHandler;
 
         private float _bulletPower = 0;
         private float _maxBulletPower = 1f;
 
         public RaycastHit HitInfo { get => _hitInfo; }
 
-        public PlayerWeapon(Player player, Transform firePoint, float aimSmoothRate, LayerMask groundLayerMask, NetworkWeaponShooter networkShooter)
+        public PlayerWeapon(Player player, Transform firePoint, float aimSmoothRate, LayerMask groundLayerMask, NetworkWeaponShooter networkShooter, MovementHandler movementHandler)
         {
             _player = player;
             _firePoint = firePoint;
@@ -35,6 +36,8 @@ namespace BrawlingToys.Actors
             
             _networkShooter = networkShooter; 
             _networkShooter.Init(_firePoint);
+
+            _movementHandler = movementHandler; 
 
             _player.Stats.OnStatsChanged += Stats_OnStatsChanged;
         }

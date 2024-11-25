@@ -1,3 +1,4 @@
+using BrawlingToys.Actors;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,6 +16,8 @@ public class PlayerAnimations : NetworkBehaviour
     }
 
     private Animator animator;
+    private AnimationHandler _animHandler; 
+
     [SerializeField] private AnimatorOverrideController controller;
 
     public UnityEvent OnAnimationAction;
@@ -23,6 +26,8 @@ public class PlayerAnimations : NetworkBehaviour
     private void Start() {
         animator = GetComponent<Animator>();
         animator.runtimeAnimatorController = controller;
+
+        _animHandler = GetComponentInParent<AnimationHandler>(); 
     }
 
     // Da play na anima��o escolhida com base no AnimationType passado.
@@ -31,19 +36,19 @@ public class PlayerAnimations : NetworkBehaviour
         switch (animationType)
         {
             case AnimationType.Idle:
-                Play("Idle");
+                _animHandler.SetAnimatorStateServerRpc("Idle");
                 break;
             case AnimationType.Movement:
-                Play("Movement");
+                _animHandler.SetAnimatorStateServerRpc("Movement");
                 break;
             case AnimationType.MeleeAttack:
-                Play("MeleeAttack");
+                _animHandler.SetAnimatorStateServerRpc("MeleeAttack");
                 break;
             case AnimationType.Dash:
-                Play("Dash");
+                _animHandler.SetAnimatorStateServerRpc("Dash");
                 break;
             case AnimationType.Die:
-                Play("Die");
+                _animHandler.SetAnimatorStateServerRpc("Die");
                 break;
             default:
                 break;
@@ -52,7 +57,7 @@ public class PlayerAnimations : NetworkBehaviour
 
     public void Play(string stateName)
     {
-        SetAnimatorStateServerRpc(stateName);
+        animator.Play(stateName); 
     }
 
     public void StartAnimation()
@@ -79,18 +84,5 @@ public class PlayerAnimations : NetworkBehaviour
     {
         OnAnimationAction.RemoveAllListeners();
         OnAnimationEnd.RemoveAllListeners();
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    private void SetAnimatorStateServerRpc(string stateName)
-    {
-        SetAnimatorStateClientRpc(stateName); 
-    }
-
-    [ClientRpc]
-    private void SetAnimatorStateClientRpc(string stateName)
-    {
-        Debug.Log(stateName);
-        animator.Play(stateName);
     }
 }

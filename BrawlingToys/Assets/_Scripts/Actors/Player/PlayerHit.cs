@@ -81,13 +81,19 @@ namespace BrawlingToys.Actors
 
         public void PlayerDie()
         {
-            _currentLife--;
-            OnPlayerLifeChange?.Invoke(_currentLife);
+            Debug.Log("Calling Die Server Rpc");
+            DieServerRpc();
             
-            if(_currentLife <= 0)
-                DieServerRpc();
-            else
-                _invulnerabilityTimer.Start();
+            // _currentLife--;
+            // OnPlayerLifeChange?.Invoke(_currentLife);
+            
+            // if(_currentLife <= 0)
+            // {
+            //     Debug.Log("Calling Die Server Rpc");
+            //     DieServerRpc();
+            // }
+            // else
+            //     _invulnerabilityTimer.Start();
         }
 
         public bool PlayerTookCollateralDamage() {
@@ -101,6 +107,7 @@ namespace BrawlingToys.Actors
 
         private void DieInCurrentState()
         {
+            Debug.Log("Die in current state");
             if (_player.CurrentState == null) return;
 
             _player.CurrentState.HandleDie();
