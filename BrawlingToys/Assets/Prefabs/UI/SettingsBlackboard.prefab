@@ -1285,7 +1285,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1920 x 1080
+  m_text: 1280 X 720
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2f22866549cb8c940abc33067c402313, type: 2}
   m_sharedMaterial: {fileID: 5375145381976712372, guid: 2f22866549cb8c940abc33067c402313,
@@ -2696,11 +2696,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: 1920 x 1080
+    - m_Text: 1280 X 720
       m_Image: {fileID: 0}
-    - m_Text: 1280 x 720
+    - m_Text: 1600 X 900
       m_Image: {fileID: 0}
-    - m_Text: 640 x 360
+    - m_Text: 1920 X 1080
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

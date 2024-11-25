@@ -23,32 +23,12 @@ namespace BrawlingToys.UI
         [SerializeField] private Slider _sfxVolumeSlider;
         [SerializeField] private Slider _fpsSlider;
 
-        private Resolution[] _resolutions;
-
         private void Start()
         {
             _masterVolumeSlider.onValueChanged.AddListener(MasterVolumeSliderOnValueChange_Handler);
             _musicVolumeSlider.onValueChanged.AddListener(MusicVolumeSliderOnValueChange_Handler);
             _sfxVolumeSlider.onValueChanged.AddListener(SfxVolumeSliderOnValueChange_Handler);
             _fpsSlider.onValueChanged.AddListener(SetTargetFPS);
-
-            _resolutions = Screen.resolutions;
-
-            _resolutionDropdown.ClearOptions();
-
-            List<string> resolutionOptions = new List<string>();
-            int currentResolutionIndex = 0;
-            for (int i = 0; i < _resolutions.Length; i++)
-            {
-                string option = _resolutions[i].width + " x " + _resolutions[i].height + " " + _resolutions[i].refreshRateRatio.value.ToString("00") + "Hz";
-                if ((float)_resolutions[i].width / 16.0f == (float)_resolutions[i].height / 9.0f)
-                    resolutionOptions.Add(option);
-
-                if (_resolutions[i].width == Screen.currentResolution.width && _resolutions[i].height == Screen.currentResolution.height)
-                    currentResolutionIndex = i;
-            }
-
-            _resolutionDropdown.AddOptions(resolutionOptions);
 
             LoadSettings();
         }
@@ -97,8 +77,17 @@ namespace BrawlingToys.UI
 
         public void SetResolution(int resolutionIndex)
         {
-            Resolution resolution = _resolutions[resolutionIndex];
-            Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+            switch(resolutionIndex) {
+                case 0:
+                    Screen.SetResolution(1280, 720, Screen.fullScreenMode);
+                    break;
+                case 1:
+                    Screen.SetResolution(1600, 900, Screen.fullScreenMode);
+                    break;
+                case 2:
+                    Screen.SetResolution(1920, 1080, Screen.fullScreenMode);
+                    break;
+            }
 
             PlayerPrefs.SetInt("resolutionIndex", resolutionIndex);
 

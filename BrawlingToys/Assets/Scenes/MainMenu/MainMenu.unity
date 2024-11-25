@@ -23325,6 +23325,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 543450653471434922}
     m_Modifications:
+    - target: {fileID: 68104668408042723, guid: 276ef7347ca9ba841be3c2e09c20d6d7,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 68104668408042723, guid: 276ef7347ca9ba841be3c2e09c20d6d7,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 68104668408042723, guid: 276ef7347ca9ba841be3c2e09c20d6d7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 68104668408042723, guid: 276ef7347ca9ba841be3c2e09c20d6d7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 883564048805720040, guid: 276ef7347ca9ba841be3c2e09c20d6d7,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -23365,6 +23385,31 @@ PrefabInstance:
       propertyPath: _settingsDrawerButton
       value: 
       objectReference: {fileID: 611576945}
+    - target: {fileID: 1585619094121043299, guid: 276ef7347ca9ba841be3c2e09c20d6d7,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2051256480744054223, guid: 276ef7347ca9ba841be3c2e09c20d6d7,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2051256480744054223, guid: 276ef7347ca9ba841be3c2e09c20d6d7,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2051256480744054223, guid: 276ef7347ca9ba841be3c2e09c20d6d7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2051256480744054223, guid: 276ef7347ca9ba841be3c2e09c20d6d7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2593143263244203008, guid: 276ef7347ca9ba841be3c2e09c20d6d7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -23440,6 +23485,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingsBlackboard
       objectReference: {fileID: 0}
+    - target: {fileID: 6745231457191912852, guid: 276ef7347ca9ba841be3c2e09c20d6d7,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7152276525420047521, guid: 276ef7347ca9ba841be3c2e09c20d6d7,
         type: 3}
       propertyPath: GlobalObjectIdHash
@@ -23468,6 +23518,26 @@ PrefabInstance:
     - target: {fileID: 8681418759042648552, guid: 276ef7347ca9ba841be3c2e09c20d6d7,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921767695112593602, guid: 276ef7347ca9ba841be3c2e09c20d6d7,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921767695112593602, guid: 276ef7347ca9ba841be3c2e09c20d6d7,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921767695112593602, guid: 276ef7347ca9ba841be3c2e09c20d6d7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921767695112593602, guid: 276ef7347ca9ba841be3c2e09c20d6d7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
